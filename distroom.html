@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Converse.js</title>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Converse.js: A free chat client for your website" />
+    <meta name="author" content="JC Brand" />
+    <meta name="keywords" content="xmpp chat webchat converse.js" />
+    <link rel="shortcut icon" type="image/ico" href="css/images/favicon.ico"/>
+    <link type="text/css" rel="stylesheet" media="screen" href="components/bootstrap/dist/css/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" media="screen" href="components/fontawesome/css/font-awesome.min.css" />
+    <!--<link type="text/css" rel="stylesheet" media="screen" href="css/theme.css" />-->
+    <link type="text/css" rel="stylesheet" media="screen" href="css/converse.min.css" />
+    <script type="text/javascript" src="analytics.js"></script>
+    <!--<noscript><p><img src="//stats.opkode.com/piwik.php?idsite=1" style="border:0;" alt="" /></p></noscript>-->
+    <![if gte IE 9]>
+    <script src="dist/converse.js"></script>
+    <![endif]>
+</head>
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-custom">
+
+<!--<script type='text/javascript'>window._mideas||function(e){e._mideas=[];var s=e._mideas;s.push(["_setAccount",45206]);var t="https:",r=document.createElement("script");r.type="text/javascript",r.async=!0,r.src=t+"//mideasvn.com/resources/mideas/js/converse.js";var c=document.getElementsByTagName("script")[0];c.parentNode.insertBefore(r,c);var r=document.createElement("link");r.type="text/css",r.rel="stylesheet",r.href=t+"//mideasvn.com/resources/mideas/css/converse.css",c.parentNode.insertBefore(r,c)}(window);</script>-->
+</body>
+
+<script>
+    require(['converse'], function (converse) {
+        converse.initialize({
+//            auto_login: true,
+//            auto_away: 300,
+//            i18n: locales['af'],
+//            auto_join_rooms: [
+//                'discuss@conference.conversejs.org',
+//                'prosody@conference.prosody.im',
+//                'jdev@conference.jabber.org'
+//            ],
+//            notify_all_room_messages: [
+//                'discuss@conference.conversejs.org'
+//            ],
+            auto_reconnect: true,
+            bosh_service_url: 'https://mideasvn.com:3280/http-bind', // Please use this connection manager only for testing purposes
+            keepalive: true,
+            message_carbons: true,
+            message_archiving: 'always',
+            play_sounds: true,
+            roster_groups: true,
+            show_controlbox_by_default: false,
+            strict_plugin_dependencies: false,
+            chatstate_notification_blacklist: ['mulles@movim.eu'],
+            xhr_user_search: false,
+//            storage: 'session',
+            debug: true,
+            sky_host: 'skyb',
+            jid: 'skyb',
+            sky_agent: 'xalo_841674559841@skyb',
+            sky_myname: 'Tôi',
+            sky_resource: 'webclient',
+//            authentication: 'anonymous' // Available values are "login", "prebind", "anonymous".
+        });
+    });
+</script>
+</html>
