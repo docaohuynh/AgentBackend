@@ -69,6 +69,7 @@
                     this.save({
                         'minimized': this.get('minimized') || false,
                         'time_minimized': this.get('time_minimized') || moment(),
+                        'is_opened': this.get('is_opened') || false
                     });
                 },
 
@@ -85,6 +86,20 @@
                         'time_minimized': moment().format()
                     });
                 },
+                chatBoxOpen: function () {
+                    this.save({
+                        'minimized': false,
+                        'time_minimized': moment().format(),
+                        'is_opened': true
+                    });
+                },
+                chatBoxClose: function () {
+                    this.save({
+                        'minimized': false,
+                        'time_minimized': moment().format(),
+                        'is_opened': false
+                    });
+                }
             },
 
             ChatBoxView: {

@@ -84,31 +84,27 @@
                     // converse.log('[HUYNHDC create IQ room ]');
                     var converse = this._super.converse;
                     this._super.onConnected.apply(this, arguments);
+                    //
+                    // var infoUser = JSON.stringify({"uid":Strophe.getNodeFromJid(converse.connection.jid)});
+                    // //post data to
+                    // var that = this;
+                    // var xhr = new XMLHttpRequest();
+                    // var url = converse.sky_apiserver+"webclient/allroom";
+                    // xhr.open("POST", url, true);
+                    // xhr.onreadystatechange = function () {
+                    //     if (xhr.readyState == 4 && xhr.status == 200) {
+                    //         var json = JSON.parse(xhr.responseText);
+                    //         if(json.room.length == 0){
+                    //             //create room default create
+                    //             that.updateContact("defaultroom");
+                    //         }else{
+                    //
+                    //         }
+                    //     }
+                    // }
 
-                    var infoUser = JSON.stringify({"uid":Strophe.getNodeFromJid(converse.connection.jid)});
-                    //post data to
-                    var that = this;
-                    var xhr = new XMLHttpRequest();
-                    var url = converse.sky_apiserver+"webclient/allroom";
-                    xhr.open("POST", url, true);
-                    xhr.onreadystatechange = function () {
-                        if (xhr.readyState == 4 && xhr.status == 200) {
-                            var json = JSON.parse(xhr.responseText);
-                            if(json.room.length == 0){
-                                that.createRoomSuccess("defaultroom");
-                            }else{
-                                var allRoom = json.room;
-                                _.each(allRoom, function(roomx){
-                                    converse.log(roomx.room);
-                                    that.createRoomSuccess(roomx.room);
-                                });
-                            }
-                        }
-                    }
-                    xhr.send(infoUser);
-
-                    $('#toggle-controlbox').css("display", "none");
-                    $('#controlbox').css("display", "none");
+                    // $('#toggle-controlbox').css("display", "none");
+                    // $('#controlbox').css("display", "none");
                     // this.createRoomSuccess();
                     // $('#toggle-controlbox').hide();
 

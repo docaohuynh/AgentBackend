@@ -31,7 +31,7 @@
             var converse = this.converse;
 
             this.updateSettings({
-                ping_interval: 180 //in seconds
+                ping_interval: 30 //in seconds
             });
 
             converse.ping = function (jid, success, error, timeout) {

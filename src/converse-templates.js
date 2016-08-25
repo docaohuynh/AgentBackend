@@ -57,6 +57,13 @@ define("converse-templates", [
     // if minimization/trimming features not needed (for example for mobile
     // apps).
     "tpl!chatbox_minimize",
+    "tpl!messenger_left_menu",
+    "tpl!messenger_right_chat",
+    "tpl!contact_item",
+    "tpl!contact_search",
+    "tpl!chatbox_messenger",
+    "tpl!chatbox_message",
+    "tpl!chatbox_message_me"
 ], function () {
     return {
         action:                 arguments[0],
@@ -112,6 +119,13 @@ define("converse-templates", [
         toolbar_otr:            arguments[50],
         trimmed_chat:           arguments[51],
         vcard:                  arguments[52],
-        chatbox_minimize:       arguments[53]
+        chatbox_minimize:       arguments[53],
+        messenger_left_menu:    arguments[54],
+        messenger_right_chat:   arguments[55],
+        contact_item:           arguments[56],
+        contact_search:         arguments[57],
+        chatbox_messenger:      arguments[58],
+        chatbox_message:        arguments[59],
+        chatbox_message_me:        arguments[60]
     };
 });

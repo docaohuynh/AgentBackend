@@ -57,8 +57,9 @@
             });
 
             converse.ChatBoxView = Backbone.View.extend({
+                length: 200,
                 tagName: 'div',
-                className: 'chat',
+                className: 'chatbox',
                 is_chatroom: false,  // This is not a multi-user chatroom
 
                 events: {
@@ -68,7 +69,6 @@
                     'click .toggle-smiley ul li': 'insertEmoticon',
                     'click .toggle-clear': 'clearMessages',
                     'click .toggle-call': 'toggleCall',
-                    'scroll .messages': 'scrollContent',
                     'click .new-msgs-indicator': 'viewUnreadMessages'
                 },
 
@@ -83,34 +83,37 @@
                     this.model.on('change:status', this.onStatusChanged, this);
                     this.model.on('showHelpMessages', this.showHelpMessages, this);
                     this.model.on('sendMessage', this.sendMessage, this);
-                    this.$content = this.$el.find('.messages');
-                    // this.render().fetchMessages().insertIntoDOM().hide();
-                    // this.render().insertIntoDOM();
+                    this.render().fetchMessages().insertIntoDOM().hide();
                     // XXX: adding the event below to the events map above doesn't work.
                     // The code that gets executed because of that looks like this:
                     //      this.$el.on('scroll', '.chat-content', this.markScrolled.bind(this));
                     // Which for some reason doesn't work.
                     // So working around that fact here:
-                    // this.$el.find('.chat-content').on('scroll', this.markScrolled.bind(this));
+                    this.$el.find('.chat-content').on('scroll', this.markScrolled.bind(this));
                     converse.emit('chatBoxInitialized', this);
                 },
-                
+
                 render: function () {
                     this.$el.attr('id', this.model.get('box_id'))
-                        .html(converse.templates.chatbox_messenger(this.model.toJSON()));
-                    this.$content = this.$el.find('.messages');
-                    this.$content.scroll(function() {
-                        console.log('scroll');
-                    });
-                    // this.renderToolbar().renderAvatar();
+                        .html(converse.templates.chatbox(
+                                _.extend(this.model.toJSON(), {
+                                        show_toolbar: converse.show_toolbar,
+                                        show_textarea: true,
+                                        title: this.model.get('fullname'),
+                                        unread_msgs: __('You have unread messages'),
+                                        info_close: __('Close this chat box'),
+                                        label_personal_message: __('Personal message')
+                                    }
+                                )
+                            )
+                        );
+                    this.$content = this.$el.find('.chat-content');
+                    this.renderToolbar().renderAvatar();
                     converse.emit('chatBoxOpened', this);
-                    // window.setTimeout(utils.refreshWebkit, 50);
-                    // return this.showStatusMessage();
-                    return this;
+                    window.setTimeout(utils.refreshWebkit, 50);
+                    return this.showStatusMessage();
                 },
-                scrollContent: function(){
-                    return;  
-                },
+
                 afterMessagesFetched: function () {
                     // Provides a hook for plugins, such as converse-mam.
                     return;
@@ -182,67 +185,14 @@
                      */
                     var insert = prepend ? this.$content.prepend : this.$content.append;
                     _.compose(
-                        // this.scrollDownMessageHeight.bind(this),
+                        this.scrollDownMessageHeight.bind(this),
                         function ($el) {
                             insert.call(this.$content, $el);
                             return $el;
                         }.bind(this)
                     )(this.renderMessage(attrs));
-                    // this.renderMessage(attrs);
                 },
 
-                insertMessageSend: function (attrs, prepend) {
-                    /* Helper method which appends a message (or prepends if the
-                     * 2nd parameter is set to true) to the end of the chat box's
-                     * content area.
-                     *
-                     * Parameters:
-                     *  (Object) attrs: An object containing the message attributes.
-                     */
-                    var insert = prepend ? this.$content.prepend : this.$content.append;
-                    _.compose(
-                        this.scrollDownMessageHeight.bind(this),
-                        function ($el) {
-                            insert.call(this.$content, $el);
-                            return $el;
-                        }.bind(this)
-                    )(this.renderMessageSend(attrs));
-                },
-
-                insertMessageReceive: function (attrs, prepend) {
-                    /* Helper method which appends a message (or prepends if the
-                     * 2nd parameter is set to true) to the end of the chat box's
-                     * content area.
-                     *
-                     * Parameters:
-                     *  (Object) attrs: An object containing the message attributes.
-                     */
-                    var insert = prepend ? this.$content.prepend : this.$content.append;
-                    _.compose(
-                        // this.scrollDownMessageHeight.bind(this),
-                        function ($el) {
-                            insert.call(this.$content, $el);
-                            return $el;
-                        }.bind(this)
-                    )(this.renderMessageReceive(attrs));
-                },
-                insertMessageReceiveStore: function (attrs, prepend) {
-                    /* Helper method which appends a message (or prepends if the
-                     * 2nd parameter is set to true) to the end of the chat box's
-                     * content area.
-                     *
-                     * Parameters:
-                     *  (Object) attrs: An object containing the message attributes.
-                     */
-                    var insert = prepend ? this.$content.prepend : this.$content.append;
-                    _.compose(
-                        this.scrollDownMessageHeight.bind(this),
-                        function ($el) {
-                            insert.call(this.$content, $el);
-                            return $el;
-                        }.bind(this)
-                    )(this.renderMessageReceiveStore(attrs));
-                },
                 showMessage: function (attrs) {
                     /* Inserts a chat message into the content area of the chat box.
                      * Will also insert a new day indicator if the message is on a
@@ -254,37 +204,16 @@
                      * Parameters:
                      *  (Object) attrs: An object containing the message attributes.
                      */
-                    var $currentRoster = $('.list-friends').find('.open-image[data-msgid="contact_'+attrs.to+'"]').parent();
-                    $('.list-friends').prepend($currentRoster);
-
-
-                    /*
-                     *  sort contact update recent list here
-                     */
-                    this.$content = this.$el.find('.messages');
-                    var hasMsg = this.$content.find('.chat-message[data-msgid="'+attrs.msgid+'"]');
-                    if(hasMsg.length > 0){
-                        return;
-                    }
-                    // var hasMsg1 = this.$content.find('.chat-message[data-msgid="'+Strophe.getNodeFromJid(converse.connection.jid)+attrs.msgid+'"]');
-                    // if(hasMsg1.length > 0){
-                    //     return;
-                    // }
-                    // var hasMsg2 = this.$content.find('.chat-message[data-msgid="'+attrs.msgid.replace(Strophe.getNodeFromJid(converse.connection.jid),"")+'"]');
-                    // if(hasMsg2.length > 0){
-                    //     return;
-                    // }
                     var msg_dates, idx,
                         $first_msg = this.$content.children('.chat-message:first'),
                         first_msg_date = $first_msg.data('isodate'),
-                        timeMsg = Math.floor(attrs.time/1000)*1000,
-                        current_msg_date = moment(timeMsg) || moment,
+                        current_msg_date = moment(attrs.time) || moment,
                         last_msg_date = this.$content.children('.chat-message:last').data('isodate');
-                    converse.log(attrs.message);
+
                     if (!first_msg_date) {
                         // This is the first received message, so we insert a
                         // date indicator before it.
-                        // this.insertDayIndicator(current_msg_date);
+                        this.insertDayIndicator(current_msg_date);
                         this.insertMessage(attrs);
                         return;
                     }
@@ -324,104 +253,7 @@
                             }.bind(this)
                         )(this.renderMessage(attrs));
                 },
-                showMessageSend: function (attrs) {
 
-                    var msg_dates, idx,
-                        $first_msg = this.$content.children('.chat-message:first'),  //get first message
-                        first_msg_date = $first_msg.data('isodate'),                 //first message date
-                        timeMsg = attrs.timesend,
-                        current_msg_date = timeMsg,             //current date
-                        last_msg_date = this.$content.children('.chat-message:last').data('isodate');  //last message date
-
-                    this.insertMessageSend(attrs);
-                },
-                showMessageReceive: function (attrs) {
-
-                    var msg_dates, idx,
-                        $first_msg = this.$content.children('.chat-message:first'),  //get first message
-                        first_msg_date = $first_msg.data('isodate'),                 //first message date
-                        timeMsg = Number(attrs.time),
-                    // current_msg_date = Date.now(),             //current date
-                        last_msg_date = this.$content.children('.chat-message:last').data('isodate');  //last message date
-
-                    if (!first_msg_date) {            //if first message
-                        // This is the first received message, so we insert a
-                        // date indicator before it.
-                        // this.insertDayIndicator(current_msg_date);
-                        this.insertMessageReceive(attrs);
-                        return;
-                    }
-                    if (timeMsg >= last_msg_date) {  //insert last message date
-                        // The new message is after the last message
-                        // if (current_msg_date.isAfter(last_msg_date, 'day')) {
-                        //     // Append a new day indicator
-                        //     this.insertDayIndicator(current_msg_date);
-                        // }
-                        this.insertMessageReceive(attrs);
-                        return;
-                    }
-                    if (timeMsg <= first_msg_date) { //
-                        this.insertMessageReceive(attrs, 'prepend');
-                        return;
-                    }
-                    // Find the correct place to position the message
-                    msg_dates = _.map(this.$content.children('.chat-message'), function (el) {
-                        return $(el).data('isodate');
-                    });
-                    msg_dates.push(timeMsg);
-                    msg_dates.sort();
-                    idx = msg_dates.indexOf(timeMsg)-1;
-                    _.compose(
-                        // this.scrollDownMessageHeight.bind(this),
-                        function ($el) {
-                            $el.insertAfter(this.$content.find('.chat-message[data-isodate="'+msg_dates[idx]+'"]'));
-                            return $el;
-                        }.bind(this)
-                    )(this.renderMessageReceive(attrs));
-                },
-                showMessageReceiveStore: function (attrs) {
-                    var msg_dates, idx,
-                        $first_msg = this.$content.children('.chat-message:first'),  //get first message
-                        first_msg_date = $first_msg.data('isodate'),                 //first message date
-                        timeMsg = Number(attrs.time),
-                    // current_msg_date = Date.now(),             //current date
-                        last_msg_date = this.$content.children('.chat-message:last').data('isodate');  //last message date
-
-                    if (!first_msg_date) {            //if first message
-                        // This is the first received message, so we insert a
-                        // date indicator before it.
-                        // this.insertDayIndicator(current_msg_date);
-                        this.insertMessageReceiveStore(attrs);
-                        return;
-                    }
-                    if (timeMsg >= last_msg_date) {  //insert last message date
-                        // The new message is after the last message
-                        // if (current_msg_date.isAfter(last_msg_date, 'day')) {
-                        //     // Append a new day indicator
-                        //     this.insertDayIndicator(current_msg_date);
-                        // }
-                        this.insertMessageReceiveStore(attrs);
-                        return;
-                    }
-                    if (timeMsg <= first_msg_date) { //
-                        this.insertMessageReceiveStore(attrs, 'prepend');
-                        return;
-                    }
-                    // Find the correct place to position the message
-                    msg_dates = _.map(this.$content.children('.chat-message'), function (el) {
-                        return $(el).data('isodate');
-                    });
-                    msg_dates.push(timeMsg);
-                    msg_dates.sort();
-                    idx = msg_dates.indexOf(timeMsg)-1;
-                    _.compose(
-                        // this.scrollDownMessageHeight.bind(this),
-                        function ($el) {
-                            $el.insertAfter(this.$content.find('.chat-message[data-isodate="'+msg_dates[idx]+'"]'));
-                            return $el;
-                        }.bind(this)
-                    )(this.renderMessageReceiveStore(attrs));
-                },
                 getExtraMessageTemplateAttributes: function (attrs) {
                     // Provides a hook for sending more attributes to the
                     // message template.
@@ -444,40 +276,15 @@
                         extra_classes = attrs.delayed && 'delayed' || '',
                         template, username;
 
-                    // if ((match) && (match[1] === converse.sky_myname)) {
-                    //kiem tra cac message de hien thi
-                    var room =  Strophe.getNodeFromJid(this.model.get('id')),
-                        myNode = Strophe.getNodeFromJid(converse.connection.jid);
-                    if (attrs.sender == converse.sky_myname) {
-                        template = converse.templates.chatbox_message_me;
+                    if ((match) && (match[1] === converse.sky_myname)) {
+                        text = text.replace(/^\/me/, '');
+                        template = converse.templates.action;
+                        username = fullname;
+                    } else  {
+                        template = converse.templates.message;
                         username = attrs.sender === converse.sky_myname && __(converse.sky_myname) || fullname;
-
-                    }else{
-                        if(!attrs.jidsend) { // this is customer
-                            template = converse.templates.chatbox_message;
-                            var customername = Strophe.getNodeFromJid(attrs.to);
-                            var nameShow = customername.substr((customername.length -15), 6);
-                            username = nameShow;
-                        }else if(myNode == attrs.jidsend){
-                            text = text.replace(/^\/me/, '');
-                            // template = converse.templates.action;
-                            template = converse.templates.chatbox_message_me;
-                            username =  converse.sky_myname;
-                        }else{
-                            template = converse.templates.chatbox_message_me;
-                            username = attrs.fullname;
-                        }
                     }
-                    // if (attrs.sender != converse.sky_myname) {
-                    //     text = text.replace(/^\/me/, '');
-                    //     // template = converse.templates.action;
-                    //     template = converse.templates.chatbox_message;
-                    //     username = fullname;
-                    // } else  {
-                    //     template = converse.templates.chatbox_message_me;
-                    //     username = attrs.sender === converse.sky_myname && __(converse.sky_myname) || fullname;
-                    // }
-                    // this.$content.find('div.chat-event').remove();
+                    this.$content.find('div.chat-event').remove();
 
                     // FIXME: leaky abstraction from MUC
                     if (this.is_chatroom && attrs.sender === 'them' && (new RegExp("\\b"+this.model.get('nick')+"\\b")).test(text)) {
@@ -496,183 +303,8 @@
                                 'extra_classes': extra_classes
                             })
                         )).children('.chat-msg-content').first().text(text)
-                        .addHyperlinks()
-                        .addEmoticons(converse.visible_toolbar_buttons.emoticons).parent();
-                },
-                
-                renderMessageSend: function (attrs) {
-                    /* Renders a chat message based on the passed in attributes.
-                     *
-                     * Parameters:
-                     *  (Object) attrs: An object containing the message attributes.
-                     *
-                     *  Returns:
-                     *      The DOM element representing the message.
-                     */
-                    var msg_time = moment(attrs.time) || moment,
-                        text = attrs.message,
-                        match = text.match(/^\/(.*?)(?: (.*))?$/),
-                        fullname = this.model.get('fullname') || attrs.fullname,
-                        extra_classes = attrs.delayed && 'delayed' || '',
-                        template, username;
-
-                    // if ((match) && (match[1] === converse.sky_myname)) {
-                    //kiem tra cac message de hien thi
-                    var room =  Strophe.getNodeFromJid(this.model.get('id')),
-                        myNode = Strophe.getNodeFromJid(converse.connection.jid);
-                    if (attrs.sender == converse.sky_myname) {
-                        template = converse.templates.chatbox_message_me;
-                        username = attrs.sender === converse.sky_myname && __(converse.sky_myname) || fullname;
-
-                    }else{
-                        if(!attrs.jidsend) { // this is customer
-                            template = converse.templates.chatbox_message;
-                            var customername = Strophe.getNodeFromJid(attrs.to);
-                            var nameShow = customername.substr((customername.length -15), 6);
-                            username = nameShow;
-                        }else if(myNode == attrs.jidsend){
-                            text = text.replace(/^\/me/, '');
-                            // template = converse.templates.action;
-                            template = converse.templates.chatbox_message_me;
-                            username =  converse.sky_myname;
-                        }else{
-                            template = converse.templates.chatbox_message_me;
-                            username = attrs.fullname;
-                        }
-                    }
-                    this.$content.find('div.chat-event').remove();
-
-                    // FIXME: leaky abstraction from MUC
-                    if (this.is_chatroom && attrs.sender === 'them' && (new RegExp("\\b"+this.model.get('nick')+"\\b")).test(text)) {
-                        // Add special class to mark groupchat messages in which we
-                        // are mentioned.
-                        extra_classes += ' mentioned';
-                    }
-                    converse.log("CHAT BOT" + username);
-                    return $(template(
-                        _.extend(this.getExtraMessageTemplateAttributes(attrs), {
-                            'msgid': attrs.msgid,
-                            'sender': attrs.sender,
-                            'time': msg_time.format('hh:mm'),
-                            'isodate': attrs.timesend,
-                            'username': username,
-                            'message': '',
-                            'extra_classes': extra_classes
-                        })
-                    )).children('.chat-msg-content').first().text(text)
-                        .addHyperlinks()
-                        .addEmoticons(converse.visible_toolbar_buttons.emoticons).parent();
-                },
-
-                renderMessageReceive: function (attrs) {
-                    var msg_time = moment(attrs.time) || moment,
-                        text = attrs.message,
-                        match = text.match(/^\/(.*?)(?: (.*))?$/),
-                        fullname = this.model.get('fullname') || attrs.fullname,
-                        extra_classes = attrs.delayed && 'delayed' || '',
-                        template, username;
-
-                    // if ((match) && (match[1] === converse.sky_myname)) {
-                    //kiem tra cac message de hien thi
-                    var room =  Strophe.getNodeFromJid(this.model.get('id')),
-                        myNode = Strophe.getNodeFromJid(converse.connection.jid);
-                    if (attrs.sender == converse.sky_myname) {
-                        template = converse.templates.chatbox_message_me;
-                        username = attrs.sender === converse.sky_myname && __(converse.sky_myname) || fullname;
-
-                    }else{
-                        if(!attrs.jidsend) { // this is customer
-                            template = converse.templates.chatbox_message;
-                            // var customername = Strophe.getNodeFromJid(attrs.to);
-                            var customername = room;
-                            var nameShow = customername.substr((customername.length -6), 6);
-                            username = nameShow;
-                        }else if(myNode == attrs.jidsend){
-                            text = text.replace(/^\/me/, '');
-                            // template = converse.templates.action;
-                            template = converse.templates.chatbox_message_me;
-                            username =  converse.sky_myname;
-                        }else{
-                            template = converse.templates.chatbox_message_me;
-                            username = attrs.fullname;
-                        }
-                    }
-
-                    // FIXME: leaky abstraction from MUC
-                    if (this.is_chatroom && attrs.sender === 'them' && (new RegExp("\\b"+this.model.get('nick')+"\\b")).test(text)) {
-                        // Add special class to mark groupchat messages in which we
-                        // are mentioned.
-                        extra_classes += ' mentioned';
-                    }
-                    converse.log("CHAT BOT" + username);
-                    return $(template(
-                        _.extend(this.getExtraMessageTemplateAttributes(attrs), {
-                            'msgid': attrs.msgid,
-                            'sender': attrs.sender,
-                            'time': msg_time.format('hh:mm'),
-                            'isodate': attrs.timesend,
-                            'username': username,
-                            'message': '',
-                            'extra_classes': extra_classes
-                        })
-                    )).children('.chat-msg-content').first().text(text)
-                        .addHyperlinks()
-                        .addEmoticons(converse.visible_toolbar_buttons.emoticons).parent();
-                },
-                renderMessageReceiveStore: function (attrs) {
-                    var msg_time = moment(attrs.time) || moment,
-                        text = attrs.message,
-                        match = text.match(/^\/(.*?)(?: (.*))?$/),
-                        fullname = this.model.get('fullname') || attrs.fullname,
-                        extra_classes = attrs.delayed && 'delayed' || '',
-                        template, username;
-
-                    // if ((match) && (match[1] === converse.sky_myname)) {
-                    //kiem tra cac message de hien thi
-                    var room =  Strophe.getNodeFromJid(this.model.get('id')),
-                        myNode = Strophe.getNodeFromJid(converse.connection.jid);
-                    if (attrs.sender == converse.sky_myname) {
-                        template = converse.templates.chatbox_message_me;
-                        username = attrs.sender === converse.sky_myname && __(converse.sky_myname) || fullname;
-
-                    }else{
-                        if(!attrs.jidsend) { // this is customer
-                            template = converse.templates.chatbox_message;
-                            // var customername = Strophe.getNodeFromJid(attrs.to);
-                            var customername = room;
-                            var nameShow = customername.substr((customername.length -6), 6);
-                            username = nameShow;
-                        }else if(myNode == attrs.jidsend){
-                            text = text.replace(/^\/me/, '');
-                            // template = converse.templates.action;
-                            template = converse.templates.chatbox_message_me;
-                            username =  converse.sky_myname;
-                        }else{
-                            template = converse.templates.chatbox_message_me;
-                            username = attrs.fullname;
-                        }
-                    }
-
-                    // FIXME: leaky abstraction from MUC
-                    if (this.is_chatroom && attrs.sender === 'them' && (new RegExp("\\b"+this.model.get('nick')+"\\b")).test(text)) {
-                        // Add special class to mark groupchat messages in which we
-                        // are mentioned.
-                        extra_classes += ' mentioned';
-                    }
-                    converse.log("CHAT BOT" + username);
-                    return $(template(
-                        _.extend(this.getExtraMessageTemplateAttributes(attrs), {
-                            'msgid': attrs.msgid,
-                            'sender': attrs.sender,
-                            'time': msg_time.format('hh:mm'),
-                            'isodate': attrs.timesend,
-                            'username': username,
-                            'message': '',
-                            'extra_classes': extra_classes
-                        })
-                    )).children('.chat-msg-content').first().text(text)
-                        .addHyperlinks()
-                        .addEmoticons(converse.visible_toolbar_buttons.emoticons).parent();
+                            .addHyperlinks()
+                            .addEmoticons(converse.visible_toolbar_buttons.emoticons).parent();
                 },
 
                 showHelpMessages: function (msgs, type, spinner) {
@@ -725,14 +357,7 @@
                 },
 
                 handleTextMessage: function (message) {
-                    // this.showMessage(_.clone(message.attributes));
-                    if(message.attributes.sendtype == 'presskey'){
-                        this.showMessageSend(_.clone(message.attributes));
-                    }else if(message.attributes.sendtype == 'storemsg'){
-                        this.showMessageReceiveStore(_.clone(message.attributes));
-                    }else{
-                        this.showMessageReceive(_.clone(message.attributes));
-                    }
+                    this.showMessage(_.clone(message.attributes));
                     if (message.get('sender') !== converse.sky_myname) {
                         this.updateNewMessageIndicators(message);
                     } else {
@@ -742,25 +367,11 @@
                         // message is received.
                         this.model.set('scrolled', false);
                     }
-                    // if (this.shouldShowOnTextMessage()) {
-                    //     if(converse.chatboxviewsmessenger.$el.length > 0){
-                    //
-                    //         this.scrollDown();
-                    //     }else{
-                    //         this.show();
-                    //     }
-                    // } else {
-                    //     this.scrollDown();
-                    // }
-                    // console.log($('.chat-content').height());
-                    // console.log($('.chat-content').scrollTop());
-                    var scroll = this.$content.height() + this.$content.scrollTop()+ 113;
-                    var scrollHeight = this.$content.prop("scrollHeight");
-                    converse.log("[HUYNHDC] SCROLL == SCROLLHEIGHT "+ scroll +" == "+ scrollHeight);
-                    if(scroll == scrollHeight ){
+                    if (this.shouldShowOnTextMessage()) {
+                        this.show();
+                    } else {
                         this.scrollDown();
                     }
-
                 },
 
                 handleErrorMessage: function (message) {
@@ -928,26 +539,7 @@
                         this.setChatState(converse.COMPOSING, ev.keyCode === KEY.FORWARD_SLASH);
                     }
                 },
-                sendRawMsg: function (ev) {
-                    /* Event handler for when a key is pressed in a chat box textarea.
-                     */
-                    var $textarea = $(ev.target), message;
 
-                    ev.preventDefault();
-                    message = $textarea.val();
-                    $textarea.val('').focus();
-                    if (message !== '') {
-                        // XXX: leaky abstraction from MUC
-                        if (this.model.get('type') === 'chatroom') {
-                            this.onChatRoomMessageSubmitted(message);
-                        } else {
-                            this.onMessageSubmitted(message);
-                        }
-                        converse.emit('messageSend', message);
-                    }
-                    this.setChatState(converse.ACTIVE);
-                    
-                },
                 clearMessages: function (ev) {
                     if (ev && ev.preventDefault) { ev.preventDefault(); }
                     var result = confirm(__("Are you sure you want to clear the messages from this chat box?"));
@@ -1085,20 +677,6 @@
                 },
 
                 hide: function () {
-                    if (this.model.get('is_opened')) {
-                        return this;
-                    }
-                    this.$el.hide();
-                    utils.refreshWebkit();
-                    return this;
-                },
-
-                hideAll: function () {
-                    this.model.save({
-                        'minimized': false,
-                        'time_minimized': moment().format(),
-                        'is_opened': false
-                    });
                     this.$el.hide();
                     utils.refreshWebkit();
                     return this;

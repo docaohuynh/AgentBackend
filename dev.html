@@ -13,29 +13,22 @@
     <!--<link type="text/css" rel="stylesheet" media="screen" href="components/fontawesome/css/font-awesome.min.css" />-->
     <!--<link type="text/css" rel="stylesheet" media="screen" href="css/theme.css" />-->
     <link type="text/css" rel="stylesheet" media="screen" href="css/converse.css" />
+    <link type="text/css" rel="stylesheet" href="css/normalize.css">
+    <link type="text/css" rel="stylesheet" href="css/style.css">
+
     <script src="components/requirejs/require.js"></script>
     <script src="converse.js"></script>
 </head>
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-custom">
-
+    <div class="direct-chat-primary">
+    </div>
 </body>
 
 <script>
     require(['converse'], function (converse) {
 
         converse.initialize({
-//            auto_login: true,
-//            auto_away: 300,
-//            i18n: locales['af'],
-//            auto_join_rooms: [
-//                'discuss@conference.conversejs.org',
-//                'prosody@conference.prosody.im',
-//                'jdev@conference.jabber.org'
-//            ],
-//            notify_all_room_messages: [
-//                'discuss@conference.conversejs.org'
-//            ],
             auto_reconnect: true,
             bosh_service_url: 'https://mideasvn.com:3280/http-bind', // Please use this connection manager only for testing purposes
             keepalive: true,
@@ -53,7 +46,9 @@
             sky_room: '@muc.skyb',
             sky_apiserver: 'https://mideasvn.com:7272/ReengBackendBiz/',
             jid: 'skyb',
-            sky_agent: 'xalo_841674559841@skyb',
+            sky_agent: '10min_nhung',
+            sky_partner: '5618cbfc-9b91-4bec-accc-a8af52c9e241',
+            sky_pass: '7f874b76d2f8b7f97527803b78b5b74ab4c33a79',
             sky_myname: 'Tôi',
             sky_resource: 'webclient',
 //            authentication: 'anonymous' // Available values are "login", "prebind", "anonymous".

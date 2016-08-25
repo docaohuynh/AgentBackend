@@ -261,7 +261,9 @@
             sky_apiserver: 'http://localhost:8080/ReengBackendBiz/',
             sky_room: '@muc.skyb',
             sky_host: '@skya',
+            sky_partner: 'hello',
             sky_agent: '01656132662@skyb',
+            sky_pass: '1111',
             sky_resource: 'website',
             allow_contact_requests: true,
             animate: true,
@@ -487,7 +489,7 @@
                 } else {
                     converse.log(status === Strophe.Status.CONNECTED ? 'Connected' : 'Attached');
                     if (converse.connection.restored) {
-                        converse.send_initial_presence = false; // No need to send an initial presence stanza when
+                        converse.send_initial_presence = true; // No need to send an initial presence stanza when
                                                                 // we're restoring an existing session.
                     }
                     converse.onConnected();
@@ -682,6 +684,9 @@
             this.rostergroups = new converse.RosterGroups();
             this.rostergroups.browserStorage = new Backbone.BrowserStorage[converse.storage](
                 b64_sha1('converse.roster.groups'+converse.bare_jid));
+            this.rostermessenger = new this.RosterContactsMesenger();
+            this.rostermessenger.browserStorage = new Backbone.BrowserStorage[this.storage](
+                b64_sha1('converse.contactsmessenger-'+this.bare_jid));
         };
 
         this.unregisterPresenceHandler = function () {
@@ -871,6 +876,132 @@
             }
         });
 
+        this.RosterContactMessenger = Backbone.Model.extend({
+
+            initialize: function (attributes, options) {
+                var jid = attributes.jid;
+                var bare_jid = Strophe.getBareJidFromJid(jid);
+                var resource = Strophe.getResourceFromJid(jid);
+                attributes.jid = bare_jid;
+                this.set(_.extend({
+                    'nameShow': 'Khách hàng',
+                    'id': bare_jid,
+                    'jid': bare_jid,
+                    'fullname': bare_jid,
+                    'chat_status': 'offline',
+                    'user_id': Strophe.getNodeFromJid(jid),
+                    'resources': resource ? [resource] : [],
+                    'groups': [],
+                    'image_type': 'image/png',
+                    'image': "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",
+                    'status': '',
+                    'is_create':'none',
+                }, attributes));
+
+                this.on('destroy', function () { this.removeFromRoster(); }.bind(this));
+                this.on('change:chat_status', function (item) {
+                    converse.emit('contactStatusChanged', item.attributes);
+                });
+            },
+
+            subscribe: function (message) {
+                /* Send a presence subscription request to this roster contact
+                 *
+                 * Parameters:
+                 *    (String) message - An optional message to explain the
+                 *      reason for the subscription request.
+                 */
+                this.save('ask', "subscribe"); // ask === 'subscribe' Means we have ask to subscribe to them.
+                var pres = $pres({to: this.get('jid'), type: "subscribe"});
+                if (message && message !== "") {
+                    pres.c("status").t(message).up();
+                }
+                var nick = converse.xmppstatus.get('fullname');
+                if (nick && nick !== "") {
+                    pres.c('nick', {'xmlns': Strophe.NS.NICK}).t(nick).up();
+                }
+                converse.connection.send(pres);
+                return this;
+            },
+
+            ackSubscribe: function () {
+                /* Upon receiving the presence stanza of type "subscribed",
+                 * the user SHOULD acknowledge receipt of that subscription
+                 * state notification by sending a presence stanza of type
+                 * "subscribe" to the contact
+                 */
+                converse.connection.send($pres({
+                    'type': 'subscribe',
+                    'to': this.get('jid')
+                }));
+            },
+
+            ackUnsubscribe: function (jid) {
+                /* Upon receiving the presence stanza of type "unsubscribed",
+                 * the user SHOULD acknowledge receipt of that subscription state
+                 * notification by sending a presence stanza of type "unsubscribe"
+                 * this step lets the user's server know that it MUST no longer
+                 * send notification of the subscription state change to the user.
+                 *  Parameters:
+                 *    (String) jid - The Jabber ID of the user who is unsubscribing
+                 */
+                converse.connection.send($pres({'type': 'unsubscribe', 'to': this.get('jid')}));
+                this.destroy(); // Will cause removeFromRoster to be called.
+            },
+
+            unauthorize: function (message) {
+                /* Unauthorize this contact's presence subscription
+                 * Parameters:
+                 *   (String) message - Optional message to send to the person being unauthorized
+                 */
+                converse.rejectPresenceSubscription(this.get('jid'), message);
+                return this;
+            },
+
+            authorize: function (message) {
+                /* Authorize presence subscription
+                 * Parameters:
+                 *   (String) message - Optional message to send to the person being authorized
+                 */
+                var pres = $pres({to: this.get('jid'), type: "subscribed"});
+                if (message && message !== "") {
+                    pres.c("status").t(message);
+                }
+                converse.connection.send(pres);
+                return this;
+            },
+
+            removeResource: function (resource) {
+                var resources = this.get('resources'), idx;
+                if (resource) {
+                    idx = _.indexOf(resources, resource);
+                    if (idx !== -1) {
+                        resources.splice(idx, 1);
+                        this.save({'resources': resources});
+                    }
+                }
+                else {
+                    // if there is no resource (resource is null), it probably
+                    // means that the user is now completely offline. To make sure
+                    // that there isn't any "ghost" resources left, we empty the array
+                    this.save({'resources': []});
+                    return 0;
+                }
+                return resources.length;
+            },
+
+            removeFromRoster: function (callback) {
+                /* Instruct the XMPP server to remove this contact from our roster
+                 * Parameters:
+                 *   (Function) callback
+                 */
+                var iq = $iq({type: 'set'})
+                    .c('query', {xmlns: Strophe.NS.ROSTER})
+                    .c('item', {jid: this.get('jid'), subscription: "remove"});
+                converse.connection.sendIQ(iq, callback, callback);
+                return this;
+            }
+        });
 
         this.RosterContacts = Backbone.Collection.extend({
             model: converse.RosterContact,
@@ -1214,6 +1345,403 @@
             }
         });
 
+        this.RosterContactsMesenger = Backbone.Collection.extend({
+            model: converse.RosterContactMessenger,
+
+            comparator: function (contact1, contact2) {
+                var name1, name2;
+                var status1 = contact1.get('chat_status') || 'offline';
+                var status2 = contact2.get('chat_status') || 'offline';
+                if (converse.STATUS_WEIGHTS[status1] === converse.STATUS_WEIGHTS[status2]) {
+                    name1 = contact1.get('fullname').toLowerCase();
+                    name2 = contact2.get('fullname').toLowerCase();
+                    return name1 < name2 ? -1 : (name1 > name2? 1 : 0);
+                } else  {
+                    return converse.STATUS_WEIGHTS[status1] < converse.STATUS_WEIGHTS[status2] ? -1 : 1;
+                }
+            },
+
+            subscribeToSuggestedItems: function (msg) {
+                $(msg).find('item').each(function (i, items) {
+                    if (this.getAttribute('action') === 'add') {
+                        converse.roster.addAndSubscribe(
+                            this.getAttribute('jid'), null, converse.xmppstatus.get('fullname'));
+                    }
+                });
+                return true;
+            },
+
+            isSelf: function (jid) {
+                return (Strophe.getBareJidFromJid(jid) === Strophe.getBareJidFromJid(converse.connection.jid));
+            },
+
+            addAndSubscribe: function (jid, name, groups, message, attributes) {
+                /* Add a roster contact and then once we have confirmation from
+                 * the XMPP server we subscribe to that contact's presence updates.
+                 *  Parameters:
+                 *    (String) jid - The Jabber ID of the user being added and subscribed to.
+                 *    (String) name - The name of that user
+                 *    (Array of Strings) groups - Any roster groups the user might belong to
+                 *    (String) message - An optional message to explain the
+                 *      reason for the subscription request.
+                 *    (Object) attributes - Any additional attributes to be stored on the user's model.
+                 */
+                this.addContact(jid, name, groups, attributes).done(function (contact) {
+                    if (contact instanceof converse.RosterContact) {
+                        contact.subscribe(message);
+                    }
+                });
+            },
+
+            sendContactAddIQ: function (jid, name, groups, callback, errback) {
+                /*  Send an IQ stanza to the XMPP server to add a new roster contact.
+                 *
+                 *  Parameters:
+                 *    (String) jid - The Jabber ID of the user being added
+                 *    (String) name - The name of that user
+                 *    (Array of Strings) groups - Any roster groups the user might belong to
+                 *    (Function) callback - A function to call once the IQ is returned
+                 *    (Function) errback - A function to call if an error occured
+                 */
+                name = _.isEmpty(name)? jid: name;
+                var iq = $iq({type: 'set'})
+                    .c('query', {xmlns: Strophe.NS.ROSTER})
+                    .c('item', { jid: jid, name: name });
+                _.map(groups, function (group) { iq.c('group').t(group).up(); });
+                converse.connection.sendIQ(iq, callback, errback);
+            },
+
+            addContact: function (jid, name, groups, attributes) {
+                /* Adds a RosterContact instance to converse.roster and
+                 * registers the contact on the XMPP server.
+                 * Returns a promise which is resolved once the XMPP server has
+                 * responded.
+                 *
+                 *  Parameters:
+                 *    (String) jid - The Jabber ID of the user being added and subscribed to.
+                 *    (String) name - The name of that user
+                 *    (Array of Strings) groups - Any roster groups the user might belong to
+                 *    (Object) attributes - Any additional attributes to be stored on the user's model.
+                 */
+                var deferred = new $.Deferred();
+                groups = groups || [];
+                name = _.isEmpty(name)? jid: name;
+                this.sendContactAddIQ(jid, name, groups,
+                    function (iq) {
+                        var contact = this.create(_.extend({
+                            ask: undefined,
+                            fullname: name,
+                            groups: groups,
+                            jid: jid,
+                            requesting: false,
+                            subscription: 'none'
+                        }, attributes), {sort: false});
+                        deferred.resolve(contact);
+                    }.bind(this),
+                    function (err) {
+                        alert(__("Sorry, there was an error while trying to add "+name+" as a contact."));
+                        converse.log(err);
+                        deferred.resolve(err);
+                    }
+                );
+                return deferred.promise();
+            },
+
+            addResource: function (bare_jid, resource) {
+                var item = this.get(bare_jid),
+                    resources;
+                if (item) {
+                    resources = item.get('resources');
+                    if (resources) {
+                        if (_.indexOf(resources, resource) === -1) {
+                            resources.push(resource);
+                            item.set({'resources': resources});
+                        }
+                    } else  {
+                        item.set({'resources': [resource]});
+                    }
+                }
+            },
+
+            subscribeBack: function (bare_jid) {
+                var contact = this.get(bare_jid);
+                if (contact instanceof converse.RosterContact) {
+                    contact.authorize().subscribe();
+                } else {
+                    // Can happen when a subscription is retried or roster was deleted
+                    this.addContact(bare_jid, '', [], { 'subscription': 'from' }).done(function (contact) {
+                        if (contact instanceof converse.RosterContact) {
+                            contact.authorize().subscribe();
+                        }
+                    });
+                }
+            },
+
+            getNumOnlineContacts: function () {
+                var count = 0,
+                    ignored = ['offline', 'unavailable'],
+                    models = this.models,
+                    models_length = models.length,
+                    i;
+                if (converse.show_only_online_users) {
+                    ignored = _.union(ignored, ['dnd', 'xa', 'away']);
+                }
+                for (i=0; i<models_length; i++) {
+                    if (_.indexOf(ignored, models[i].get('chat_status')) === -1) {
+                        count++;
+                    }
+                }
+                return count;
+            },
+
+            onRosterPush: function (iq) {
+                /* Handle roster updates from the XMPP server.
+                 * See: https://xmpp.org/rfcs/rfc6121.html#roster-syntax-actions-push
+                 *
+                 * Parameters:
+                 *    (XMLElement) IQ - The IQ stanza received from the XMPP server.
+                 */
+                var id = iq.getAttribute('id');
+                var from = iq.getAttribute('from');
+                if (from && from !== "" && Strophe.getBareJidFromJid(from) !== converse.bare_jid) {
+                    // Receiving client MUST ignore stanza unless it has no from or from = user's bare JID.
+                    // XXX: Some naughty servers apparently send from a full
+                    // JID so we need to explicitly compare bare jids here.
+                    // https://github.com/jcbrand/converse.js/issues/493
+                    converse.connection.send(
+                        $iq({type: 'error', id: id, from: converse.connection.jid})
+                            .c('error', {'type': 'cancel'})
+                            .c('service-unavailable', {'xmlns': Strophe.NS.ROSTER })
+                    );
+                    return true;
+                }
+                converse.connection.send($iq({type: 'result', id: id, from: converse.connection.jid}));
+                $(iq).children('query').find('item').each(function (idx, item) {
+                    this.updateContact(item);
+                }.bind(this));
+
+                converse.emit('rosterPush', iq);
+                return true;
+            },
+
+            fetchFromServer: function (callback) {
+                /* Get the roster from the XMPP server */
+                var infoUser = JSON.stringify({"uid":Strophe.getNodeFromJid(converse.connection.jid)});
+                //post data to
+                var that = this;
+                var xhr = new XMLHttpRequest();
+                var url = converse.sky_apiserver+"webclient/allroom";
+                xhr.open("POST", url, true);
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        var json = JSON.parse(xhr.responseText);
+                        var jidTemp = "defaultroom"+converse.sky_room;
+                        converse.chatboxviewsmessenger.showChat({
+                            'id': jidTemp,
+                            'jid': jidTemp,
+                            'name': Strophe.unescapeNode(Strophe.getNodeFromJid(jidTemp)),
+                            'nick': 'PHòng chat',
+                            'type': 'chatroom',
+                            'box_id': b64_sha1(jidTemp)
+                        });
+                        if(!json.room){
+                            //create room default
+                        }else{
+                            var allRoom = json.room;
+                            that.updateContact(allRoom);
+                        }
+                    }
+                }
+                xhr.send(infoUser);
+                // var iq = $iq({type: 'get', 'id': converse.connection.getUniqueId('roster')})
+                //     .c('query', {xmlns: Strophe.NS.ROSTER});
+                // return converse.connection.sendIQ(iq, function () {
+                //     this.onReceivedFromServer.apply(this, arguments);
+                //     callback.apply(this, arguments);
+                // }.bind(this));
+            },
+
+            onReceivedFromServer: function (room) {
+                /* An IQ stanza containing the roster has been received from
+                 * the XMPP server.
+                 */
+                converse.emit('roster', iq);
+                $(iq).children('query').find('item').each(function (idx, item) {
+                    this.updateContact(item);
+                }.bind(this));
+            },
+
+            updateContact: function (allRoom) {
+                /* Update or create RosterContact models based on items
+                 * received in the IQ from the server.
+                 */
+                var that = this;
+                var firstRoom = 1;
+                _.each(allRoom, function(roomx){
+                    var room = roomx.room;
+                    var jid = room+converse.sky_room;
+                    //open first chat room
+                    if(firstRoom == 1){
+                        converse.chatboxviewsmessenger.showChat({
+                            'id': jid,
+                            'jid': jid,
+                            'name': Strophe.unescapeNode(Strophe.getNodeFromJid(jid)),
+                            'nick': jid,
+                            'type': 'chatroom',
+                            'box_id': b64_sha1(jid)
+                        });
+                    }
+                    firstRoom ++;
+                    //end open first chat room
+
+                    if (that.isSelf(jid)) { return; }
+                    var groups = [],
+                        contact = that.get(jid);
+                    var nameShow = jid.substr((jid.length -15), 6);
+                    if (!contact) {
+                        that.create({
+                            nameShow: nameShow,
+                            fullname: jid,
+                            groups: groups,
+                            jid: jid,
+                        }, {sort: false});
+                    }
+                    // that.updateContact(room);
+                });
+                //scroll contact
+                var conf = {
+                    cursorcolor: "#696c75",
+                    cursorwidth: "4px",
+                    cursorborder: "none"
+                };
+                $('.list-friends').niceScroll(conf);
+                return this;
+            },
+            addNewContact: function (room) {
+                /* Update or create RosterContact models based on items
+                 * received in the IQ from the server.
+                 */
+                var jid = room+converse.sky_room;
+                //open first chat room
+                //end open first chat room
+
+                if (this.isSelf(jid)) { return; }
+                var groups = [],
+                    contact = this.get(jid);
+                var nameShow = jid.substr((jid.length -15), 6);
+                if (!contact) {
+                    this.create({
+                        nameShow: nameShow,
+                        fullname: jid,
+                        groups: groups,
+                        jid: jid,
+                    }, {sort: false});
+                }
+                return this;
+            },
+
+            createRequestingContact: function (presence) {
+                /* Creates a Requesting Contact.
+                 *
+                 * Note: this method gets completely overridden by converse-vcard.js
+                 */
+                var bare_jid = Strophe.getBareJidFromJid(presence.getAttribute('from'));
+                var nick = $(presence).children('nick[xmlns='+Strophe.NS.NICK+']').text();
+                var user_data = {
+                    jid: bare_jid,
+                    subscription: 'none',
+                    ask: null,
+                    requesting: true,
+                    fullname: nick || bare_jid,
+                };
+                this.create(user_data);
+                converse.emit('contactRequest', user_data);
+            },
+
+            handleIncomingSubscription: function (presence) {
+                var jid = presence.getAttribute('from');
+                var bare_jid = Strophe.getBareJidFromJid(jid);
+                var contact = this.get(bare_jid);
+                if (!converse.allow_contact_requests) {
+                    converse.rejectPresenceSubscription(
+                        jid,
+                        __("This client does not allow presence subscriptions")
+                    );
+                }
+                if (converse.auto_subscribe) {
+                    if ((!contact) || (contact.get('subscription') !== 'to')) {
+                        this.subscribeBack(bare_jid);
+                    } else {
+                        contact.authorize();
+                    }
+                } else {
+                    if (contact) {
+                        if (contact.get('subscription') !== 'none')  {
+                            contact.authorize();
+                        } else if (contact.get('ask') === "subscribe") {
+                            contact.authorize();
+                        }
+                    } else if (!contact) {
+                        this.createRequestingContact(presence);
+                    }
+                }
+            },
+
+            presenceHandler: function (presence) {
+                converse.log('KHONG XU LY SU KIEN PRESEND HANDLE');
+                return true;
+                var $presence = $(presence),
+                    presence_type = presence.getAttribute('type');
+                if (presence_type === 'error') { return true; }
+                var jid = presence.getAttribute('from'),
+                    bare_jid = Strophe.getBareJidFromJid(jid),
+                    resource = Strophe.getResourceFromJid(jid),
+                    chat_status = $presence.find('show').text() || 'online',
+                    status_message = $presence.find('status'),
+                    contact = this.get(bare_jid);
+                if (this.isSelf(bare_jid)) {
+                    if ((converse.connection.jid !== jid) &&
+                        (presence_type !== 'unavailable') &&
+                        (converse.synchronize_availability === true ||
+                        converse.synchronize_availability === resource)) {
+                        // Another resource has changed its status and
+                        // synchronize_availability option set to update,
+                        // we'll update ours as well.
+                        converse.xmppstatus.save({'status': chat_status});
+                        if (status_message.length) {
+                            converse.xmppstatus.save({
+                                'status_message': status_message.text()
+                            });
+                        }
+                    }
+                    return;
+                } else if (($presence.find('x').attr('xmlns') || '').indexOf(Strophe.NS.MUC) === 0) {
+                    return; // Ignore MUC
+                }
+                if (contact && (status_message.text() !== contact.get('status'))) {
+                    contact.save({'status': status_message.text()});
+                }
+                if (presence_type === 'subscribed' && contact) {
+                    contact.ackSubscribe();
+                } else if (presence_type === 'unsubscribed' && contact) {
+                    contact.ackUnsubscribe();
+                } else if (presence_type === 'unsubscribe') {
+                    return;
+                } else if (presence_type === 'subscribe') {
+                    this.handleIncomingSubscription(presence);
+                } else if (presence_type === 'unavailable' && contact) {
+                    // Only set the user to offline if there aren't any
+                    // other resources still available.
+                    if (contact.removeResource(resource) === 0) {
+                        contact.save({'chat_status': "offline"});
+                    }
+                } else if (contact) { // presence_type is undefined
+                    this.addResource(bare_jid, resource);
+                    contact.save({'chat_status': chat_status});
+                }
+            }
+        });
+
 
         this.RosterGroup = Backbone.Model.extend({
             initialize: function (attributes, options) {
@@ -1268,7 +1796,7 @@
             getMessageAttributes: function ($message, $delay, original_stanza) {
                 $delay = $delay || $message.find('delay');
                 var type = $message.attr('type'),
-                    body, stamp, time, sender, from;
+                    body, stamp, time, sender, from, jidSend;
 
                 if (type === 'error') {
                     body = $message.find('error').children('text').text();
@@ -1293,13 +1821,17 @@
                 if (is_groupchat) {
                     // from = Strophe.unescapeNode(Strophe.getResourceFromJid($message.attr('from')));
                     from = $message.attr('member');
+                    if($message.attr('member') == 'hana_ai'){
+                        jidSend = $message.attr('member');
+                    }
                     if(!from){
                         from = Strophe.getBareJidFromJid($message.attr('from'));
                     }else{
-                        from = "Khách";
+                        // from = "Khách";
                         _.each(converse.all_agent.users, function(userx){
                             if(userx.username == $message.attr('member')){
                                 from =  userx.name;
+                                jidSend = $message.attr('member');
                             }
                         });
                     }
@@ -1321,21 +1853,147 @@
                 } else {
                     sender = 'them';
                 }
+                // var timeS = $message.attr('timesend');
+                // var date = new Date(Number(timeS));
+                // time = date;
+                // return {
+                //     'type': type,
+                //     'chat_state': chat_state,
+                //     'delayed': delayed,
+                //     'to':$message.attr('from'),
+                //     'fullname': fullname,
+                //     'message': body || undefined,
+                //     'msgid': $message.attr('id'),
+                //     'sender': sender,
+                //     'jidsend': jidSend,
+                //     'time': time
+                //     // 'time': $message.attr('timesend')
+                // };
+                var timeS = $message.attr('timesend');
+                var timesend = $message.attr('timesend');
+                var timereceive = $message.attr('timereceive');
+                // var timesendlocal = Date.now() + (Number(timereceive) - Number(timesend));
+
+                var timesendlocal = Number(Date.now()) + (Number(timereceive) - Number(timesend));
+                converse.log("TIMESEND==TIMERECEIVE==TIMELOCAL "+ timesend + "==" + timereceive + "=="+timesendlocal);
+                if(!timeS){
+
+                }else{
+                    var date = new Date(Number(timeS));
+                    time = date;
+                }
+
                 return {
                     'type': type,
                     'chat_state': chat_state,
                     'delayed': delayed,
+                    'to':$message.attr('from'),
                     'fullname': fullname,
                     'message': body || undefined,
                     'msgid': $message.attr('id'),
                     'sender': sender,
+                    'jidsend': jidSend,
+                    'timesend': timesendlocal,
+                    'sendtype': 'receive',
+                    'time': time
+                };
+            },
+            getMessageAttributesStore: function ($message, $delay, original_stanza, timereceivestore) {
+                $delay = $delay || $message.find('delay');
+                var type = $message.attr('type'),
+                    body, stamp, time, sender, from, jidSend;
+                converse.log('[HUYNHDC ]Message getMessageAttributes : ' + $message );
+                if (type === 'error') {
+                    body = $message.find('error').children('text').text();
+                } else if(type === 'chat' || type === 'groupchat'){
+                    if($message.find('body').length > 0){
+                        body = $message.children('body').text();
+                    }else{
+                        body = $message.text();
+                    }
+                }else{
+                    body = "";
+                }
+                var delayed = $delay.length > 0,
+                    fullname = this.get('fullname'),
+                    is_groupchat = type === 'groupchat',
+                    chat_state = $message.find(converse.COMPOSING).length && converse.COMPOSING ||
+                        $message.find(converse.PAUSED).length && converse.PAUSED ||
+                        $message.find(converse.INACTIVE).length && converse.INACTIVE ||
+                        $message.find(converse.ACTIVE).length && converse.ACTIVE ||
+                        $message.find(converse.GONE).length && converse.GONE;
+
+                if (is_groupchat) {
+                    // from = Strophe.unescapeNode(Strophe.getResourceFromJid($message.attr('from')));
+                    from = $message.attr('member');
+                    if($message.attr('member') == 'hana_ai'){
+                        jidSend = $message.attr('member');
+                    }
+                    if(!from){
+                        from = Strophe.getBareJidFromJid($message.attr('from'));
+                    }else{
+                        _.each(converse.all_agent.users, function(userx){
+                            if(userx.username == $message.attr('member')){
+                                from =  userx.name;
+                                jidSend = $message.attr('member');
+                            }
+                        });
+                    }
+                } else {
+                    from = Strophe.getBareJidFromJid($message.attr('from'));
+                }
+                if (_.isEmpty(fullname)) {
+                    fullname = from;
+                }
+                if (delayed) {
+                    stamp = $delay.attr('stamp');
+                    time = stamp;
+                } else {
+                    time = moment().format();
+                }
+                converse.log("[HUYNHDC] is_groupchat "+is_groupchat + " From "+ from + " bareId "+converse.bare_jid);
+                if ((is_groupchat && from === this.get('nick') || (is_groupchat && from === converse.bare_jid)) || (!is_groupchat && from === converse.bare_jid)) {
+                    sender = converse.sky_myname;
+                } else {
+                    sender = 'them';
+                }
+                var timeS = $message.attr('timesend');
+                var timesend = $message.attr('timesend');
+                var timereceive = timereceivestore;
+                // var timesendlocal = Date.now() + (Number(timereceive) - Number(timesend));
+
+                var timesendlocal = Number(Date.now()) + (Number(timereceive) - Number(timesend));
+                converse.log("TIMESEND==TIMERECEIVE==TIMELOCAL "+ timesend + "==" + timereceive + "=="+timesendlocal);
+                if(!timeS){
+
+                }else{
+                    var date = new Date(Number(timeS));
+                    time = date;
+                }
+
+                return {
+                    'type': type,
+                    'chat_state': chat_state,
+                    'delayed': delayed,
+                    'to':$message.attr('from'),
+                    'fullname': fullname,
+                    'message': body || undefined,
+                    'msgid': $message.attr('id'),
+                    'sender': sender,
+                    'jidsend': jidSend,
+                    'timesend': timesend,
+                    'sendtype': 'storemsg',
                     'time': time
                 };
             },
 
             createMessage: function ($message, $delay, original_stanza) {
                 return this.messages.create(this.getMessageAttributes.apply(this, arguments));
+            },
+            createMessageStore: function ($message, $delay, original_stanza, timereceive) {
+                return this.messages.create(this.getMessageAttributesStore.apply(this, arguments));
             }
+
         });
 
         this.ChatBoxes = Backbone.Collection.extend({
@@ -1346,6 +2004,10 @@
                 converse.connection.addHandler(this.onMessage.bind(this), null, 'message', 'chat');
                 converse.connection.addHandler(this.onErrorMessage.bind(this), null, 'message', 'error');
             },
+
+            // chatBoxMayBeShown: function (chatbox) {
+            //     return true;
+            // },
 
             chatBoxMayBeShown: function (chatbox) {
                 return true;
@@ -1591,10 +2253,142 @@
                 // if (this.chatBoxMayBeShown(chatbox)) {
                 //     chatbox.trigger('show', true);
                 // }
+                // if(converse.chatboxviews.length > 0){
+                //     return;
+                // }else{
+                //     return chatbox;
+                // }
                 return chatbox;
+
             }
         });
 
+        this.ChatBoxViewsMessenger = Backbone.Overview.extend({
+
+            initialize: function () {
+                this.model.on("add", this.onChatBoxAdded, this);
+                this.model.on("destroy", this.removeChat, this);
+            },
+
+            _ensureElement: function () {
+                /* Override method from backbone.js
+                 * If the #conversejs element doesn't exist, create it.
+                 */
+                if (!this.el) {
+                    var $el = $('.ui');
+                    if (!$el.length) {
+                        $el = $('<div class="ui">');
+                        $('.direct-chat-primary').append($el);
+                    }
+                    $el.html(converse.templates.messenger_left_menu());
+                    this.setElement($el, false);
+                } else {
+                    this.setElement(_.result(this, 'el'), false);
+                }
+            },
+
+            onChatBoxAdded: function (item) {
+                // Views aren't created here, since the core code doesn't
+                // contain any views. Instead, they're created in overrides in
+                // plugins, such as in converse-chatview.js and converse-muc.js
+                return this.get(item.get('id'));
+            },
+
+            removeChat: function (item) {
+                this.remove(item.get('id'));
+            },
+
+            closeAllChatBoxes: function () {
+                /* This method gets overridden in src/converse-controlbox.js if
+                 * the controlbox plugin is active.
+                 */
+                this.each(function (view) { view.hide(); });
+                return this;
+            },
+
+            closeAllChatBoxesHide: function () {
+                /* This method gets overridden in src/converse-controlbox.js if
+                 * the controlbox plugin is active.
+                 */
+                this.each(function (view) { view.hideAll(); });
+                return this;
+            },
+
+            chatBoxMayBeShown: function (chatbox) {
+                return this.model.chatBoxMayBeShown(chatbox);
+            },
+
+            setChatboxShow: function (chatbox) {
+                return this.model.chatBoxMayBeShown(chatbox);
+            },
+
+            getChatBox: function (attrs, create) {
+                var chatbox  = this.model.get(attrs.jid);
+                if (!chatbox && create) {
+                    chatbox = this.model.create(attrs, {
+                        'error': function (model, response) {
+                            converse.log(response.responseText);
+                        }
+                    });
+
+                }else{
+                    converse.chatboxviewsmessenger.closeAllChatBoxesHide();
+                    converse.chatboxviewsmessenger.get(chatbox.get('id')).show();
+                    chatbox.chatBoxOpen();
+                }
+                var defaultRoom  = 'defaultroom'+converse.sky_room;
+                if(chatbox.get('id') == defaultRoom){
+                    converse.chatboxviewsmessenger.get(chatbox.get('id')).hide();
+                }
+                /*if have 2 chatbox or large then dont show*/
+                return chatbox;
+            },
+
+            showChat: function (attrs) {
+                /* Find the chat box and show it (if it may be shown).
+                 * If it doesn't exist, create it.
+                 */
+                console.log('[HUYNHDC show chatbox messenger]'+attrs);
+                var chatbox = this.getChatBox(attrs, true);
+                // if (this.chatBoxMayBeShown(chatbox)) {
+                //     chatbox.trigger('show', true);
+                // }
+
+                return chatbox;
+            },
+            getChatBoxCreate: function (attrs, create, cr) {
+                var chatbox  = this.model.get(attrs.jid);
+                if (!chatbox && create) {
+                    chatbox = this.model.create(attrs, {
+                        'error': function (model, response) {
+                            converse.log(response.responseText);
+                        }
+                    });
+                    if(converse.rosterviewmessenger.model.length == 1){
+                        chatbox.chatBoxOpen();
+                    }
+                    converse.chatboxviewsmessenger.closeAllChatBoxes();
+                }
+                var defaultRoom  = 'defaultroom'+converse.sky_room;
+                if(chatbox.get('id') == defaultRoom){
+                    converse.chatboxviewsmessenger.get(chatbox.get('id')).hide();
+                }
+                /*if have 2 chatbox or large then dont show*/
+                return chatbox;
+            },
+            showChatCreate: function (attrs, create) {
+                /* Find the chat box and show it (if it may be shown).
+                 * If it doesn't exist, create it.
+                 */
+                console.log('[HUYNHDC show chatbox messenger]'+attrs);
+                var chatbox = this.getChatBoxCreate(attrs, true, create);
+                // if (this.chatBoxMayBeShown(chatbox)) {
+                //     chatbox.trigger('show', true);
+                // }
+
+                return chatbox;
+            }
+        });
 
         this.XMPPStatus = Backbone.Model.extend({
             initialize: function () {
@@ -1752,10 +2546,11 @@
             // converse.log(users.users);
             var settingUser = {"all_agent": users };
             _.extend(converse, settingUser);
+            this.logIn({"jid":converse.sky_agent, "password":converse.sky_pass});
         };
         this.createAnonymous = function (){
             console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAaa");
-            var infoUser = JSON.stringify({"app":"1234"});
+            var infoUser = JSON.stringify({"app":converse.sky_partner});
             //post data to
             var xhr = new XMLHttpRequest();
             var url = converse.sky_apiserver+"webclient/allAgent";
@@ -1923,7 +2718,6 @@
                 }
             }
         };
-
         this.initConnection = function () {
             if (this.connection) {
                 return;
@@ -1960,6 +2754,7 @@
         this._initialize = function () {
             this.chatboxes = new this.ChatBoxes();
             this.chatboxviews = new this.ChatBoxViews({model: this.chatboxes});
+            this.chatboxviewsmessenger = new this.ChatBoxViewsMessenger({model: this.chatboxes});
             this.initSession();
             this.initConnection();
             this.setUpXMLLogging();

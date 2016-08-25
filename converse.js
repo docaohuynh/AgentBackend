@@ -19,6 +19,7 @@ require.config({
         "backbone.overview":        "components/backbone.overview/backbone.overview",
         "eventemitter":             "components/otr/build/dep/eventemitter",
         "jquery":                   "components/jquery/dist/jquery",
+        "jquery.nicescroll":        "components/jquery/dist/jquery.nicescroll",
         "jquery-private":           "src/jquery-private",
         "jquery.browser":           "components/jquery.browser/dist/jquery.browser",
         "jquery.easing":            "components/jquery-easing-original/index",          // XXX: Only required for https://conversejs.org website
@@ -54,6 +55,7 @@ require.config({
         "converse-minimize":        "src/converse-minimize",
         "converse-muc":             "src/converse-muc",
         "converse-frontend-muc":    "src/converse-frontend-muc",
+        "converse-contactview":     "src/converse-contactview",
         "converse-notification":    "src/converse-notification",
         "converse-otr":             "src/converse-otr",
         "converse-ping":            "src/converse-ping",
@@ -174,7 +176,14 @@ require.config({
         "toolbar_otr":              "src/templates/toolbar_otr",
         "trimmed_chat":             "src/templates/trimmed_chat",
         "vcard":                    "src/templates/vcard",
-        "chatbox_minimize":         "src/templates/chatbox_minimize"
+        "chatbox_minimize":         "src/templates/chatbox_minimize",
+        "messenger_left_menu":      "src/templates/messenger_left_menu",
+        "messenger_right_chat":     "src/templates/messenger_right_chat",
+        "contact_item":             "src/templates/contact_item",
+        "contact_search":           "src/templates/contact_search",
+        "chatbox_messenger":        "src/templates/chatbox_messenger",
+        "chatbox_message":          "src/templates/chatbox_message",
+        "chatbox_message_me":          "src/templates/chatbox_message_me"
     },
 
     map: {
@@ -231,6 +240,7 @@ if (typeof define !== 'undefined') {
         * --------------------
         * Any of the following components may be removed if they're not needed.
         */
+        "jquery.nicescroll",
         "locales",              // Translations for converse.js. This line can be removed
                                 // to remove *all* translations, or you can modify the
                                 // file src/locales.js to include only those
@@ -238,16 +248,17 @@ if (typeof define !== 'undefined') {
 
         "converse-chatview",    // Renders standalone chat boxes for single user chat
         "converse-controlbox",  // The control box
-        "converse-mam",         // XEP-0313 Message Archive Management
+        // "converse-mam",         // XEP-0313 Message Archive Management
         "converse-muc",         // XEP-0045 Multi-user chat
         "converse-frontend-muc",    // XEP-0045 frontend
-        "converse-vcard",       // XEP-0054 VCard-temp
-        "converse-otr",         // Off-the-record encryption for one-on-one messages
-        "converse-register",    // XEP-0077 In-band registration
+        "converse-contactview",
+        // "converse-vcard",       // XEP-0054 VCard-temp
+        // "converse-otr",         // Off-the-record encryption for one-on-one messages
+        // "converse-register",    // XEP-0077 In-band registration
         "converse-ping",        // XEP-0199 XMPP Ping
         "converse-notification",// HTML5 Notifications
         "converse-minimize",    // Allows chat boxes to be minimized
-        "converse-dragresize",  // Allows chat boxes to be resized by dragging them
+        // "converse-dragresize",  // Allows chat boxes to be resized by dragging them
         "converse-headline",    // Support for headline messages
         /* END: Removable components */
 

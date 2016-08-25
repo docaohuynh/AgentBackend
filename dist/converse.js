@@ -25599,6 +25599,99 @@ __p+='<a class="chatbox-btn toggle-chatbox-button icon-minus" title="'+
 return __p;
 }; });
 
+
+define('tpl!messenger_left_menu', [],function () { return function(obj){
+var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+with(obj||{}){
+__p+='<div class="left-menu">\r\n</div>';
+}
+return __p;
+}; });
+
+
+define('tpl!messenger_right_chat', [],function () { return function(obj){
+var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+with(obj||{}){
+__p+='<div class="chat">\r\n</div>';
+}
+return __p;
+}; });
+
+
+define('tpl!contact_item', [],function () { return function(obj){
+var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+with(obj||{}){
+__p+='<img class="open-chat open-image" data-msgid="contact_'+
+((__t=(id))==null?'':__t)+
+'" width="50" height="50" src="http://cs625730.vk.me/v625730358/1126a/qEjM1AnybRA.jpg">\r\n<div class="info open-chat">\r\n    <div class="user">'+
+((__t=(nameShow))==null?'':__t)+
+'</div>\r\n    <div class="status on"> online</div>\r\n    <i class="fa fa-sign-out pull-right pickup-chat" style="cursor:pointer"></i>\r\n</div>';
+}
+return __p;
+}; });
+
+
+define('tpl!contact_search', [],function () { return function(obj){
+var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+with(obj||{}){
+__p+='<form action="#" class="search">\r\n    <input placeholder="search..." type="search" name="" id="">\r\n    <input type="submit" value="&#xf002;">\r\n</form>';
+}
+return __p;
+}; });
+
+
+define('tpl!chatbox_messenger', [],function () { return function(obj){
+var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+with(obj||{}){
+__p+='<div class="top">\r\n    <div class="avatar">\r\n        <img width="50" height="50" src="http://cs625730.vk.me/v625730358/1126a/qEjM1AnybRA.jpg">\r\n    </div>\r\n    <div class="info">\r\n        <div class="name">Khách hàng</div>\r\n        <div class="count">'+
+((__t=(id))==null?'':__t)+
+'</div>\r\n    </div>\r\n    <i class="fa fa-star"></i>\r\n</div>\r\n<ul class="messages">\r\n\r\n</ul>\r\n<div class="write-form">\r\n    <textarea placeholder="Type your message" name="e" id="texxt"  rows="2" class="chat-textarea"></textarea>\r\n    <i class="fa fa-picture-o"></i>\r\n    <i class="fa fa-file-o"></i>\r\n    <span class="send">Send</span>\r\n</div>';
+}
+return __p;
+}; });
+
+
+define('tpl!chatbox_message', [],function () { return function(obj){
+var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+with(obj||{}){
+__p+='<li class="friend-with-a-SVAGina chat-message '+
+((__t=(extra_classes))==null?'':__t)+
+'" data-isodate="'+
+((__t=(isodate))==null?'':__t)+
+'" data-msgid="'+
+((__t=(msgid))==null?'':__t)+
+'">\r\n    <div class="head">\r\n        <!--<span class="time">10:14 AM, Today</span>-->\r\n        <span class="name chat-msg-author chat-msg-'+
+((__t=(sender))==null?'':__t)+
+'">'+
+((__t=(username))==null?'':__t)+
+':&nbsp;</span>\r\n    </div>\r\n    <div class="message chat-msg-content">'+
+((__t=(message))==null?'':__t)+
+'</div>\r\n</li>';
+}
+return __p;
+}; });
+
+
+define('tpl!chatbox_message_me', [],function () { return function(obj){
+var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+with(obj||{}){
+__p+='<li class="i chat-message '+
+((__t=(extra_classes))==null?'':__t)+
+'" data-isodate="'+
+((__t=(isodate))==null?'':__t)+
+'" data-msgid="'+
+((__t=(msgid))==null?'':__t)+
+'">\r\n    <div class="head">\r\n        <span class="time">10:14 AM, Today</span>\r\n        <span class="name chat-msg-author chat-msg-'+
+((__t=(sender))==null?'':__t)+
+'">'+
+((__t=(username))==null?'':__t)+
+':&nbsp;</span>\r\n    </div>\r\n    <div class="message chat-msg-content">'+
+((__t=(message))==null?'':__t)+
+'</div>\r\n</li>';
+}
+return __p;
+}; });
+
 define("converse-templates", [
     "tpl!action",
     "tpl!add_contact_dropdown",
@@ -25658,6 +25751,13 @@ define("converse-templates", [
     // if minimization/trimming features not needed (for example for mobile
     // apps).
     "tpl!chatbox_minimize",
+    "tpl!messenger_left_menu",
+    "tpl!messenger_right_chat",
+    "tpl!contact_item",
+    "tpl!contact_search",
+    "tpl!chatbox_messenger",
+    "tpl!chatbox_message",
+    "tpl!chatbox_message_me"
 ], function () {
     return {
         action:                 arguments[0],
@@ -25713,7 +25813,14 @@ define("converse-templates", [
         toolbar_otr:            arguments[50],
         trimmed_chat:           arguments[51],
         vcard:                  arguments[52],
-        chatbox_minimize:       arguments[53]
+        chatbox_minimize:       arguments[53],
+        messenger_left_menu:    arguments[54],
+        messenger_right_chat:   arguments[55],
+        contact_item:           arguments[56],
+        contact_search:         arguments[57],
+        chatbox_messenger:      arguments[58],
+        chatbox_message:        arguments[59],
+        chatbox_message_me:        arguments[60]
     };
 });
 
@@ -28734,7 +28841,9 @@ return Backbone.BrowserStorage;
             sky_apiserver: 'http://localhost:8080/ReengBackendBiz/',
             sky_room: '@muc.skyb',
             sky_host: '@skya',
+            sky_partner: 'hello',
             sky_agent: '01656132662@skyb',
+            sky_pass: '1111',
             sky_resource: 'website',
             allow_contact_requests: true,
             animate: true,
@@ -28960,7 +29069,7 @@ return Backbone.BrowserStorage;
                 } else {
                     converse.log(status === Strophe.Status.CONNECTED ? 'Connected' : 'Attached');
                     if (converse.connection.restored) {
-                        converse.send_initial_presence = false; // No need to send an initial presence stanza when
+                        converse.send_initial_presence = true; // No need to send an initial presence stanza when
                                                                 // we're restoring an existing session.
                     }
                     converse.onConnected();
@@ -29155,6 +29264,9 @@ return Backbone.BrowserStorage;
             this.rostergroups = new converse.RosterGroups();
             this.rostergroups.browserStorage = new Backbone.BrowserStorage[converse.storage](
                 b64_sha1('converse.roster.groups'+converse.bare_jid));
+            this.rostermessenger = new this.RosterContactsMesenger();
+            this.rostermessenger.browserStorage = new Backbone.BrowserStorage[this.storage](
+                b64_sha1('converse.contactsmessenger-'+this.bare_jid));
         };
 
         this.unregisterPresenceHandler = function () {
@@ -29344,6 +29456,132 @@ return Backbone.BrowserStorage;
             }
         });
 
+        this.RosterContactMessenger = Backbone.Model.extend({
+
+            initialize: function (attributes, options) {
+                var jid = attributes.jid;
+                var bare_jid = Strophe.getBareJidFromJid(jid);
+                var resource = Strophe.getResourceFromJid(jid);
+                attributes.jid = bare_jid;
+                this.set(_.extend({
+                    'nameShow': 'Khách hàng',
+                    'id': bare_jid,
+                    'jid': bare_jid,
+                    'fullname': bare_jid,
+                    'chat_status': 'offline',
+                    'user_id': Strophe.getNodeFromJid(jid),
+                    'resources': resource ? [resource] : [],
+                    'groups': [],
+                    'image_type': 'image/png',
+                    'image': "iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAIAAABt+uBvAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3gwHCy455JBsggAABkJJREFUeNrtnM1PE1sUwHvvTD8otWLHST/Gimi1CEgr6M6FEWuIBo2pujDVsNDEP8GN/4MbN7oxrlipG2OCgZgYlxAbkRYw1KqkIDRCSkM7nXvvW8x7vjyNeQ9m7p1p3z1LQk/v/Dhz7vkEXL161cHl9wI5Ag6IA+KAOCAOiAPigDggLhwQB2S+iNZ+PcYY/SWEEP2HAAAIoSAIoihCCP+ngDDGtVotGAz29/cfOXJEUZSOjg6n06lp2sbGRqlUWlhYyGazS0tLbrdbEASrzgksyeYJId3d3el0uqenRxRFAAAA4KdfIIRgjD9+/Pj8+fOpqSndslofEIQwHA6Pjo4mEon//qmFhYXHjx8vLi4ihBgDEnp7e9l8E0Jo165dQ0NDd+/eDYVC2/qsJElDQ0OEkKWlpa2tLZamxAhQo9EIBoOjo6MXL17csZLe3l5FUT59+lQul5l5JRaAVFWNRqN37tw5ceKEQVWRSOTw4cOFQuHbt2+iKLYCIISQLMu3b99OJpOmKAwEAgcPHszn8+vr6wzsiG6UQQhxuVyXLl0aGBgwUW0sFstkMl6v90fo1KyAMMYDAwPnzp0zXfPg4GAqlWo0Gk0MiBAiy/L58+edTqf5Aa4onj59OhaLYYybFRCEMBaL0fNxBw4cSCQStN0QRUBut3t4eJjq6U+dOiVJElVPRBFQIBDo6+ujCqirqyscDlONGykC2lYyYSR6pBoQQapHZwAoHo/TuARYAOrs7GQASFEUqn6aIiBJkhgA6ujooFpUo6iaTa7koFwnaoWadLNe81tbWwzoaJrWrICWl5cZAFpbW6OabVAEtLi4yABQsVjUNK0pAWWzWQaAcrlcswKanZ1VVZUqHYRQEwOq1Wpv3ryhCmh6erpcLjdrNl+v1ycnJ+l5UELI27dvv3//3qxxEADgy5cvExMT9Mznw4cPtFtAdAPFarU6Pj5eKpVM17yxsfHy5cvV1VXazXu62gVBKBQKT58+rdVqJqrFGL948eLdu3dU8/g/H4FBUaJYLAqC0NPTY9brMD4+PjY25mDSracOCABACJmZmXE6nUePHjWu8NWrV48ePSKEsGlAs7Agfd5nenq6Wq0mk0kjDzY2NvbkyRMIIbP2PLvhBUEQ8vl8NpuNx+M+n29bzhVjvLKycv/+/YmJCcazQuwA6YzW1tYmJyf1SY+2trZ/rRk1Go1SqfT69esHDx4UCgVmNaa/zZ/9ABUhRFXVYDB48uTJeDweiUQkSfL7/T9MA2NcqVTK5fLy8vL8/PzU1FSxWHS5XJaM4wGr9sUwxqqqer3eUCgkSZJuUBBCfTRvc3OzXC6vrKxUKhWn02nhCJ5lM4oQQo/HgxD6+vXr58+fHf8sDOp+HQDg8XgclorFU676dKLlo6yWRdItIBwQB8QBcUCtfosRQjRNQwhhjPUC4w46WXryBSHU1zgEQWBz99EFhDGu1+t+v//48ePxeFxRlD179ng8nh0Efgiher2+vr6ur3HMzMysrq7uTJVdACGEurq6Ll++nEgkPB7Pj9jPoDHqOxyqqubz+WfPnuVyuV9XPeyeagAAAoHArVu3BgcHab8CuVzu4cOHpVKJUnfA5GweY+xyuc6cOXPv3r1IJMLAR8iyPDw8XK/Xi8Wiqqqmm5KZgBBC7e3tN27cuHbtGuPVpf7+/lAoNDs7W61WzfVKpgHSSzw3b95MpVKW3MfRaDQSiczNzVUqFRMZmQOIEOL1eq9fv3727FlL1t50URRFluX5+flqtWpWEGAOIFEUU6nUlStXLKSjy759+xwOx9zcnKZpphzGHMzhcDiTydgk9r1w4YIp7RPTAAmCkMlk2FeLf/tIEKbTab/fbwtAhJBoNGrutpNx6e7uPnTokC1eMU3T0um0DZPMkZER6wERQnw+n/FFSxpy7Nix3bt3WwwIIcRgIWnHkkwmjecfRgGx7DtuV/r6+iwGhDHev3+/bQF1dnYaH6E2CkiWZdsC2rt3r8WAHA5HW1ubbQGZcjajgOwTH/4qNko1Wlg4IA6IA+KAOKBWBUQIsfNojyliKIoRRfH9+/dut9umf3wzpoUNNQ4BAJubmwz+ic+OxefzWWlBhJD29nbug7iT5sIBcUAcEAfEAXFAHBAHxOVn+QMrmWpuPZx12gAAAABJRU5ErkJggg==",
+                    'status': '',
+                    'is_create':'none',
+                }, attributes));
+
+                this.on('destroy', function () { this.removeFromRoster(); }.bind(this));
+                this.on('change:chat_status', function (item) {
+                    converse.emit('contactStatusChanged', item.attributes);
+                });
+            },
+
+            subscribe: function (message) {
+                /* Send a presence subscription request to this roster contact
+                 *
+                 * Parameters:
+                 *    (String) message - An optional message to explain the
+                 *      reason for the subscription request.
+                 */
+                this.save('ask', "subscribe"); // ask === 'subscribe' Means we have ask to subscribe to them.
+                var pres = $pres({to: this.get('jid'), type: "subscribe"});
+                if (message && message !== "") {
+                    pres.c("status").t(message).up();
+                }
+                var nick = converse.xmppstatus.get('fullname');
+                if (nick && nick !== "") {
+                    pres.c('nick', {'xmlns': Strophe.NS.NICK}).t(nick).up();
+                }
+                converse.connection.send(pres);
+                return this;
+            },
+
+            ackSubscribe: function () {
+                /* Upon receiving the presence stanza of type "subscribed",
+                 * the user SHOULD acknowledge receipt of that subscription
+                 * state notification by sending a presence stanza of type
+                 * "subscribe" to the contact
+                 */
+                converse.connection.send($pres({
+                    'type': 'subscribe',
+                    'to': this.get('jid')
+                }));
+            },
+
+            ackUnsubscribe: function (jid) {
+                /* Upon receiving the presence stanza of type "unsubscribed",
+                 * the user SHOULD acknowledge receipt of that subscription state
+                 * notification by sending a presence stanza of type "unsubscribe"
+                 * this step lets the user's server know that it MUST no longer
+                 * send notification of the subscription state change to the user.
+                 *  Parameters:
+                 *    (String) jid - The Jabber ID of the user who is unsubscribing
+                 */
+                converse.connection.send($pres({'type': 'unsubscribe', 'to': this.get('jid')}));
+                this.destroy(); // Will cause removeFromRoster to be called.
+            },
+
+            unauthorize: function (message) {
+                /* Unauthorize this contact's presence subscription
+                 * Parameters:
+                 *   (String) message - Optional message to send to the person being unauthorized
+                 */
+                converse.rejectPresenceSubscription(this.get('jid'), message);
+                return this;
+            },
+
+            authorize: function (message) {
+                /* Authorize presence subscription
+                 * Parameters:
+                 *   (String) message - Optional message to send to the person being authorized
+                 */
+                var pres = $pres({to: this.get('jid'), type: "subscribed"});
+                if (message && message !== "") {
+                    pres.c("status").t(message);
+                }
+                converse.connection.send(pres);
+                return this;
+            },
+
+            removeResource: function (resource) {
+                var resources = this.get('resources'), idx;
+                if (resource) {
+                    idx = _.indexOf(resources, resource);
+                    if (idx !== -1) {
+                        resources.splice(idx, 1);
+                        this.save({'resources': resources});
+                    }
+                }
+                else {
+                    // if there is no resource (resource is null), it probably
+                    // means that the user is now completely offline. To make sure
+                    // that there isn't any "ghost" resources left, we empty the array
+                    this.save({'resources': []});
+                    return 0;
+                }
+                return resources.length;
+            },
+
+            removeFromRoster: function (callback) {
+                /* Instruct the XMPP server to remove this contact from our roster
+                 * Parameters:
+                 *   (Function) callback
+                 */
+                var iq = $iq({type: 'set'})
+                    .c('query', {xmlns: Strophe.NS.ROSTER})
+                    .c('item', {jid: this.get('jid'), subscription: "remove"});
+                converse.connection.sendIQ(iq, callback, callback);
+                return this;
+            }
+        });
 
         this.RosterContacts = Backbone.Collection.extend({
             model: converse.RosterContact,
@@ -29687,6 +29925,403 @@ return Backbone.BrowserStorage;
             }
         });
 
+        this.RosterContactsMesenger = Backbone.Collection.extend({
+            model: converse.RosterContactMessenger,
+
+            comparator: function (contact1, contact2) {
+                var name1, name2;
+                var status1 = contact1.get('chat_status') || 'offline';
+                var status2 = contact2.get('chat_status') || 'offline';
+                if (converse.STATUS_WEIGHTS[status1] === converse.STATUS_WEIGHTS[status2]) {
+                    name1 = contact1.get('fullname').toLowerCase();
+                    name2 = contact2.get('fullname').toLowerCase();
+                    return name1 < name2 ? -1 : (name1 > name2? 1 : 0);
+                } else  {
+                    return converse.STATUS_WEIGHTS[status1] < converse.STATUS_WEIGHTS[status2] ? -1 : 1;
+                }
+            },
+
+            subscribeToSuggestedItems: function (msg) {
+                $(msg).find('item').each(function (i, items) {
+                    if (this.getAttribute('action') === 'add') {
+                        converse.roster.addAndSubscribe(
+                            this.getAttribute('jid'), null, converse.xmppstatus.get('fullname'));
+                    }
+                });
+                return true;
+            },
+
+            isSelf: function (jid) {
+                return (Strophe.getBareJidFromJid(jid) === Strophe.getBareJidFromJid(converse.connection.jid));
+            },
+
+            addAndSubscribe: function (jid, name, groups, message, attributes) {
+                /* Add a roster contact and then once we have confirmation from
+                 * the XMPP server we subscribe to that contact's presence updates.
+                 *  Parameters:
+                 *    (String) jid - The Jabber ID of the user being added and subscribed to.
+                 *    (String) name - The name of that user
+                 *    (Array of Strings) groups - Any roster groups the user might belong to
+                 *    (String) message - An optional message to explain the
+                 *      reason for the subscription request.
+                 *    (Object) attributes - Any additional attributes to be stored on the user's model.
+                 */
+                this.addContact(jid, name, groups, attributes).done(function (contact) {
+                    if (contact instanceof converse.RosterContact) {
+                        contact.subscribe(message);
+                    }
+                });
+            },
+
+            sendContactAddIQ: function (jid, name, groups, callback, errback) {
+                /*  Send an IQ stanza to the XMPP server to add a new roster contact.
+                 *
+                 *  Parameters:
+                 *    (String) jid - The Jabber ID of the user being added
+                 *    (String) name - The name of that user
+                 *    (Array of Strings) groups - Any roster groups the user might belong to
+                 *    (Function) callback - A function to call once the IQ is returned
+                 *    (Function) errback - A function to call if an error occured
+                 */
+                name = _.isEmpty(name)? jid: name;
+                var iq = $iq({type: 'set'})
+                    .c('query', {xmlns: Strophe.NS.ROSTER})
+                    .c('item', { jid: jid, name: name });
+                _.map(groups, function (group) { iq.c('group').t(group).up(); });
+                converse.connection.sendIQ(iq, callback, errback);
+            },
+
+            addContact: function (jid, name, groups, attributes) {
+                /* Adds a RosterContact instance to converse.roster and
+                 * registers the contact on the XMPP server.
+                 * Returns a promise which is resolved once the XMPP server has
+                 * responded.
+                 *
+                 *  Parameters:
+                 *    (String) jid - The Jabber ID of the user being added and subscribed to.
+                 *    (String) name - The name of that user
+                 *    (Array of Strings) groups - Any roster groups the user might belong to
+                 *    (Object) attributes - Any additional attributes to be stored on the user's model.
+                 */
+                var deferred = new $.Deferred();
+                groups = groups || [];
+                name = _.isEmpty(name)? jid: name;
+                this.sendContactAddIQ(jid, name, groups,
+                    function (iq) {
+                        var contact = this.create(_.extend({
+                            ask: undefined,
+                            fullname: name,
+                            groups: groups,
+                            jid: jid,
+                            requesting: false,
+                            subscription: 'none'
+                        }, attributes), {sort: false});
+                        deferred.resolve(contact);
+                    }.bind(this),
+                    function (err) {
+                        alert(__("Sorry, there was an error while trying to add "+name+" as a contact."));
+                        converse.log(err);
+                        deferred.resolve(err);
+                    }
+                );
+                return deferred.promise();
+            },
+
+            addResource: function (bare_jid, resource) {
+                var item = this.get(bare_jid),
+                    resources;
+                if (item) {
+                    resources = item.get('resources');
+                    if (resources) {
+                        if (_.indexOf(resources, resource) === -1) {
+                            resources.push(resource);
+                            item.set({'resources': resources});
+                        }
+                    } else  {
+                        item.set({'resources': [resource]});
+                    }
+                }
+            },
+
+            subscribeBack: function (bare_jid) {
+                var contact = this.get(bare_jid);
+                if (contact instanceof converse.RosterContact) {
+                    contact.authorize().subscribe();
+                } else {
+                    // Can happen when a subscription is retried or roster was deleted
+                    this.addContact(bare_jid, '', [], { 'subscription': 'from' }).done(function (contact) {
+                        if (contact instanceof converse.RosterContact) {
+                            contact.authorize().subscribe();
+                        }
+                    });
+                }
+            },
+
+            getNumOnlineContacts: function () {
+                var count = 0,
+                    ignored = ['offline', 'unavailable'],
+                    models = this.models,
+                    models_length = models.length,
+                    i;
+                if (converse.show_only_online_users) {
+                    ignored = _.union(ignored, ['dnd', 'xa', 'away']);
+                }
+                for (i=0; i<models_length; i++) {
+                    if (_.indexOf(ignored, models[i].get('chat_status')) === -1) {
+                        count++;
+                    }
+                }
+                return count;
+            },
+
+            onRosterPush: function (iq) {
+                /* Handle roster updates from the XMPP server.
+                 * See: https://xmpp.org/rfcs/rfc6121.html#roster-syntax-actions-push
+                 *
+                 * Parameters:
+                 *    (XMLElement) IQ - The IQ stanza received from the XMPP server.
+                 */
+                var id = iq.getAttribute('id');
+                var from = iq.getAttribute('from');
+                if (from && from !== "" && Strophe.getBareJidFromJid(from) !== converse.bare_jid) {
+                    // Receiving client MUST ignore stanza unless it has no from or from = user's bare JID.
+                    // XXX: Some naughty servers apparently send from a full
+                    // JID so we need to explicitly compare bare jids here.
+                    // https://github.com/jcbrand/converse.js/issues/493
+                    converse.connection.send(
+                        $iq({type: 'error', id: id, from: converse.connection.jid})
+                            .c('error', {'type': 'cancel'})
+                            .c('service-unavailable', {'xmlns': Strophe.NS.ROSTER })
+                    );
+                    return true;
+                }
+                converse.connection.send($iq({type: 'result', id: id, from: converse.connection.jid}));
+                $(iq).children('query').find('item').each(function (idx, item) {
+                    this.updateContact(item);
+                }.bind(this));
+
+                converse.emit('rosterPush', iq);
+                return true;
+            },
+
+            fetchFromServer: function (callback) {
+                /* Get the roster from the XMPP server */
+                var infoUser = JSON.stringify({"uid":Strophe.getNodeFromJid(converse.connection.jid)});
+                //post data to
+                var that = this;
+                var xhr = new XMLHttpRequest();
+                var url = converse.sky_apiserver+"webclient/allroom";
+                xhr.open("POST", url, true);
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        var json = JSON.parse(xhr.responseText);
+                        var jidTemp = "defaultroom"+converse.sky_room;
+                        converse.chatboxviewsmessenger.showChat({
+                            'id': jidTemp,
+                            'jid': jidTemp,
+                            'name': Strophe.unescapeNode(Strophe.getNodeFromJid(jidTemp)),
+                            'nick': 'PHòng chat',
+                            'type': 'chatroom',
+                            'box_id': b64_sha1(jidTemp)
+                        });
+                        if(!json.room){
+                            //create room default
+                        }else{
+                            var allRoom = json.room;
+                            that.updateContact(allRoom);
+                        }
+                    }
+                }
+                xhr.send(infoUser);
+                // var iq = $iq({type: 'get', 'id': converse.connection.getUniqueId('roster')})
+                //     .c('query', {xmlns: Strophe.NS.ROSTER});
+                // return converse.connection.sendIQ(iq, function () {
+                //     this.onReceivedFromServer.apply(this, arguments);
+                //     callback.apply(this, arguments);
+                // }.bind(this));
+            },
+
+            onReceivedFromServer: function (room) {
+                /* An IQ stanza containing the roster has been received from
+                 * the XMPP server.
+                 */
+                converse.emit('roster', iq);
+                $(iq).children('query').find('item').each(function (idx, item) {
+                    this.updateContact(item);
+                }.bind(this));
+            },
+
+            updateContact: function (allRoom) {
+                /* Update or create RosterContact models based on items
+                 * received in the IQ from the server.
+                 */
+                var that = this;
+                var firstRoom = 1;
+                _.each(allRoom, function(roomx){
+                    var room = roomx.room;
+                    var jid = room+converse.sky_room;
+                    //open first chat room
+                    if(firstRoom == 1){
+                        converse.chatboxviewsmessenger.showChat({
+                            'id': jid,
+                            'jid': jid,
+                            'name': Strophe.unescapeNode(Strophe.getNodeFromJid(jid)),
+                            'nick': jid,
+                            'type': 'chatroom',
+                            'box_id': b64_sha1(jid)
+                        });
+                    }
+                    firstRoom ++;
+                    //end open first chat room
+
+                    if (that.isSelf(jid)) { return; }
+                    var groups = [],
+                        contact = that.get(jid);
+                    var nameShow = jid.substr((jid.length -15), 6);
+                    if (!contact) {
+                        that.create({
+                            nameShow: nameShow,
+                            fullname: jid,
+                            groups: groups,
+                            jid: jid,
+                        }, {sort: false});
+                    }
+                    // that.updateContact(room);
+                });
+                //scroll contact
+                var conf = {
+                    cursorcolor: "#696c75",
+                    cursorwidth: "4px",
+                    cursorborder: "none"
+                };
+                $('.list-friends').niceScroll(conf);
+                return this;
+            },
+            addNewContact: function (room) {
+                /* Update or create RosterContact models based on items
+                 * received in the IQ from the server.
+                 */
+                var jid = room+converse.sky_room;
+                //open first chat room
+                //end open first chat room
+
+                if (this.isSelf(jid)) { return; }
+                var groups = [],
+                    contact = this.get(jid);
+                var nameShow = jid.substr((jid.length -15), 6);
+                if (!contact) {
+                    this.create({
+                        nameShow: nameShow,
+                        fullname: jid,
+                        groups: groups,
+                        jid: jid,
+                    }, {sort: false});
+                }
+                return this;
+            },
+
+            createRequestingContact: function (presence) {
+                /* Creates a Requesting Contact.
+                 *
+                 * Note: this method gets completely overridden by converse-vcard.js
+                 */
+                var bare_jid = Strophe.getBareJidFromJid(presence.getAttribute('from'));
+                var nick = $(presence).children('nick[xmlns='+Strophe.NS.NICK+']').text();
+                var user_data = {
+                    jid: bare_jid,
+                    subscription: 'none',
+                    ask: null,
+                    requesting: true,
+                    fullname: nick || bare_jid,
+                };
+                this.create(user_data);
+                converse.emit('contactRequest', user_data);
+            },
+
+            handleIncomingSubscription: function (presence) {
+                var jid = presence.getAttribute('from');
+                var bare_jid = Strophe.getBareJidFromJid(jid);
+                var contact = this.get(bare_jid);
+                if (!converse.allow_contact_requests) {
+                    converse.rejectPresenceSubscription(
+                        jid,
+                        __("This client does not allow presence subscriptions")
+                    );
+                }
+                if (converse.auto_subscribe) {
+                    if ((!contact) || (contact.get('subscription') !== 'to')) {
+                        this.subscribeBack(bare_jid);
+                    } else {
+                        contact.authorize();
+                    }
+                } else {
+                    if (contact) {
+                        if (contact.get('subscription') !== 'none')  {
+                            contact.authorize();
+                        } else if (contact.get('ask') === "subscribe") {
+                            contact.authorize();
+                        }
+                    } else if (!contact) {
+                        this.createRequestingContact(presence);
+                    }
+                }
+            },
+
+            presenceHandler: function (presence) {
+                converse.log('KHONG XU LY SU KIEN PRESEND HANDLE');
+                return true;
+                var $presence = $(presence),
+                    presence_type = presence.getAttribute('type');
+                if (presence_type === 'error') { return true; }
+                var jid = presence.getAttribute('from'),
+                    bare_jid = Strophe.getBareJidFromJid(jid),
+                    resource = Strophe.getResourceFromJid(jid),
+                    chat_status = $presence.find('show').text() || 'online',
+                    status_message = $presence.find('status'),
+                    contact = this.get(bare_jid);
+                if (this.isSelf(bare_jid)) {
+                    if ((converse.connection.jid !== jid) &&
+                        (presence_type !== 'unavailable') &&
+                        (converse.synchronize_availability === true ||
+                        converse.synchronize_availability === resource)) {
+                        // Another resource has changed its status and
+                        // synchronize_availability option set to update,
+                        // we'll update ours as well.
+                        converse.xmppstatus.save({'status': chat_status});
+                        if (status_message.length) {
+                            converse.xmppstatus.save({
+                                'status_message': status_message.text()
+                            });
+                        }
+                    }
+                    return;
+                } else if (($presence.find('x').attr('xmlns') || '').indexOf(Strophe.NS.MUC) === 0) {
+                    return; // Ignore MUC
+                }
+                if (contact && (status_message.text() !== contact.get('status'))) {
+                    contact.save({'status': status_message.text()});
+                }
+                if (presence_type === 'subscribed' && contact) {
+                    contact.ackSubscribe();
+                } else if (presence_type === 'unsubscribed' && contact) {
+                    contact.ackUnsubscribe();
+                } else if (presence_type === 'unsubscribe') {
+                    return;
+                } else if (presence_type === 'subscribe') {
+                    this.handleIncomingSubscription(presence);
+                } else if (presence_type === 'unavailable' && contact) {
+                    // Only set the user to offline if there aren't any
+                    // other resources still available.
+                    if (contact.removeResource(resource) === 0) {
+                        contact.save({'chat_status': "offline"});
+                    }
+                } else if (contact) { // presence_type is undefined
+                    this.addResource(bare_jid, resource);
+                    contact.save({'chat_status': chat_status});
+                }
+            }
+        });
+
 
         this.RosterGroup = Backbone.Model.extend({
             initialize: function (attributes, options) {
@@ -29741,7 +30376,7 @@ return Backbone.BrowserStorage;
             getMessageAttributes: function ($message, $delay, original_stanza) {
                 $delay = $delay || $message.find('delay');
                 var type = $message.attr('type'),
-                    body, stamp, time, sender, from;
+                    body, stamp, time, sender, from, jidSend;
 
                 if (type === 'error') {
                     body = $message.find('error').children('text').text();
@@ -29766,13 +30401,17 @@ return Backbone.BrowserStorage;
                 if (is_groupchat) {
                     // from = Strophe.unescapeNode(Strophe.getResourceFromJid($message.attr('from')));
                     from = $message.attr('member');
+                    if($message.attr('member') == 'hana_ai'){
+                        jidSend = $message.attr('member');
+                    }
                     if(!from){
                         from = Strophe.getBareJidFromJid($message.attr('from'));
                     }else{
-                        from = "Khách";
+                        // from = "Khách";
                         _.each(converse.all_agent.users, function(userx){
                             if(userx.username == $message.attr('member')){
                                 from =  userx.name;
+                                jidSend = $message.attr('member');
                             }
                         });
                     }
@@ -29794,21 +30433,147 @@ return Backbone.BrowserStorage;
                 } else {
                     sender = 'them';
                 }
+                // var timeS = $message.attr('timesend');
+                // var date = new Date(Number(timeS));
+                // time = date;
+                // return {
+                //     'type': type,
+                //     'chat_state': chat_state,
+                //     'delayed': delayed,
+                //     'to':$message.attr('from'),
+                //     'fullname': fullname,
+                //     'message': body || undefined,
+                //     'msgid': $message.attr('id'),
+                //     'sender': sender,
+                //     'jidsend': jidSend,
+                //     'time': time
+                //     // 'time': $message.attr('timesend')
+                // };
+                var timeS = $message.attr('timesend');
+                var timesend = $message.attr('timesend');
+                var timereceive = $message.attr('timereceive');
+                // var timesendlocal = Date.now() + (Number(timereceive) - Number(timesend));
+
+                var timesendlocal = Number(Date.now()) + (Number(timereceive) - Number(timesend));
+                converse.log("TIMESEND==TIMERECEIVE==TIMELOCAL "+ timesend + "==" + timereceive + "=="+timesendlocal);
+                if(!timeS){
+
+                }else{
+                    var date = new Date(Number(timeS));
+                    time = date;
+                }
+
                 return {
                     'type': type,
                     'chat_state': chat_state,
                     'delayed': delayed,
+                    'to':$message.attr('from'),
                     'fullname': fullname,
                     'message': body || undefined,
                     'msgid': $message.attr('id'),
                     'sender': sender,
+                    'jidsend': jidSend,
+                    'timesend': timesendlocal,
+                    'sendtype': 'receive',
+                    'time': time
+                };
+            },
+            getMessageAttributesStore: function ($message, $delay, original_stanza, timereceivestore) {
+                $delay = $delay || $message.find('delay');
+                var type = $message.attr('type'),
+                    body, stamp, time, sender, from, jidSend;
+                converse.log('[HUYNHDC ]Message getMessageAttributes : ' + $message );
+                if (type === 'error') {
+                    body = $message.find('error').children('text').text();
+                } else if(type === 'chat' || type === 'groupchat'){
+                    if($message.find('body').length > 0){
+                        body = $message.children('body').text();
+                    }else{
+                        body = $message.text();
+                    }
+                }else{
+                    body = "";
+                }
+                var delayed = $delay.length > 0,
+                    fullname = this.get('fullname'),
+                    is_groupchat = type === 'groupchat',
+                    chat_state = $message.find(converse.COMPOSING).length && converse.COMPOSING ||
+                        $message.find(converse.PAUSED).length && converse.PAUSED ||
+                        $message.find(converse.INACTIVE).length && converse.INACTIVE ||
+                        $message.find(converse.ACTIVE).length && converse.ACTIVE ||
+                        $message.find(converse.GONE).length && converse.GONE;
+
+                if (is_groupchat) {
+                    // from = Strophe.unescapeNode(Strophe.getResourceFromJid($message.attr('from')));
+                    from = $message.attr('member');
+                    if($message.attr('member') == 'hana_ai'){
+                        jidSend = $message.attr('member');
+                    }
+                    if(!from){
+                        from = Strophe.getBareJidFromJid($message.attr('from'));
+                    }else{
+                        _.each(converse.all_agent.users, function(userx){
+                            if(userx.username == $message.attr('member')){
+                                from =  userx.name;
+                                jidSend = $message.attr('member');
+                            }
+                        });
+                    }
+                } else {
+                    from = Strophe.getBareJidFromJid($message.attr('from'));
+                }
+                if (_.isEmpty(fullname)) {
+                    fullname = from;
+                }
+                if (delayed) {
+                    stamp = $delay.attr('stamp');
+                    time = stamp;
+                } else {
+                    time = moment().format();
+                }
+                converse.log("[HUYNHDC] is_groupchat "+is_groupchat + " From "+ from + " bareId "+converse.bare_jid);
+                if ((is_groupchat && from === this.get('nick') || (is_groupchat && from === converse.bare_jid)) || (!is_groupchat && from === converse.bare_jid)) {
+                    sender = converse.sky_myname;
+                } else {
+                    sender = 'them';
+                }
+                var timeS = $message.attr('timesend');
+                var timesend = $message.attr('timesend');
+                var timereceive = timereceivestore;
+                // var timesendlocal = Date.now() + (Number(timereceive) - Number(timesend));
+
+                var timesendlocal = Number(Date.now()) + (Number(timereceive) - Number(timesend));
+                converse.log("TIMESEND==TIMERECEIVE==TIMELOCAL "+ timesend + "==" + timereceive + "=="+timesendlocal);
+                if(!timeS){
+
+                }else{
+                    var date = new Date(Number(timeS));
+                    time = date;
+                }
+
+                return {
+                    'type': type,
+                    'chat_state': chat_state,
+                    'delayed': delayed,
+                    'to':$message.attr('from'),
+                    'fullname': fullname,
+                    'message': body || undefined,
+                    'msgid': $message.attr('id'),
+                    'sender': sender,
+                    'jidsend': jidSend,
+                    'timesend': timesend,
+                    'sendtype': 'storemsg',
                     'time': time
                 };
             },
 
             createMessage: function ($message, $delay, original_stanza) {
                 return this.messages.create(this.getMessageAttributes.apply(this, arguments));
+            },
+            createMessageStore: function ($message, $delay, original_stanza, timereceive) {
+                return this.messages.create(this.getMessageAttributesStore.apply(this, arguments));
             }
+
         });
 
         this.ChatBoxes = Backbone.Collection.extend({
@@ -29819,6 +30584,10 @@ return Backbone.BrowserStorage;
                 converse.connection.addHandler(this.onMessage.bind(this), null, 'message', 'chat');
                 converse.connection.addHandler(this.onErrorMessage.bind(this), null, 'message', 'error');
             },
+
+            // chatBoxMayBeShown: function (chatbox) {
+            //     return true;
+            // },
 
             chatBoxMayBeShown: function (chatbox) {
                 return true;
@@ -30064,10 +30833,142 @@ return Backbone.BrowserStorage;
                 // if (this.chatBoxMayBeShown(chatbox)) {
                 //     chatbox.trigger('show', true);
                 // }
+                // if(converse.chatboxviews.length > 0){
+                //     return;
+                // }else{
+                //     return chatbox;
+                // }
                 return chatbox;
+
             }
         });
 
+        this.ChatBoxViewsMessenger = Backbone.Overview.extend({
+
+            initialize: function () {
+                this.model.on("add", this.onChatBoxAdded, this);
+                this.model.on("destroy", this.removeChat, this);
+            },
+
+            _ensureElement: function () {
+                /* Override method from backbone.js
+                 * If the #conversejs element doesn't exist, create it.
+                 */
+                if (!this.el) {
+                    var $el = $('.ui');
+                    if (!$el.length) {
+                        $el = $('<div class="ui">');
+                        $('.direct-chat-primary').append($el);
+                    }
+                    $el.html(converse.templates.messenger_left_menu());
+                    this.setElement($el, false);
+                } else {
+                    this.setElement(_.result(this, 'el'), false);
+                }
+            },
+
+            onChatBoxAdded: function (item) {
+                // Views aren't created here, since the core code doesn't
+                // contain any views. Instead, they're created in overrides in
+                // plugins, such as in converse-chatview.js and converse-muc.js
+                return this.get(item.get('id'));
+            },
+
+            removeChat: function (item) {
+                this.remove(item.get('id'));
+            },
+
+            closeAllChatBoxes: function () {
+                /* This method gets overridden in src/converse-controlbox.js if
+                 * the controlbox plugin is active.
+                 */
+                this.each(function (view) { view.hide(); });
+                return this;
+            },
+
+            closeAllChatBoxesHide: function () {
+                /* This method gets overridden in src/converse-controlbox.js if
+                 * the controlbox plugin is active.
+                 */
+                this.each(function (view) { view.hideAll(); });
+                return this;
+            },
+
+            chatBoxMayBeShown: function (chatbox) {
+                return this.model.chatBoxMayBeShown(chatbox);
+            },
+
+            setChatboxShow: function (chatbox) {
+                return this.model.chatBoxMayBeShown(chatbox);
+            },
+
+            getChatBox: function (attrs, create) {
+                var chatbox  = this.model.get(attrs.jid);
+                if (!chatbox && create) {
+                    chatbox = this.model.create(attrs, {
+                        'error': function (model, response) {
+                            converse.log(response.responseText);
+                        }
+                    });
+
+                }else{
+                    converse.chatboxviewsmessenger.closeAllChatBoxesHide();
+                    converse.chatboxviewsmessenger.get(chatbox.get('id')).show();
+                    chatbox.chatBoxOpen();
+                }
+                var defaultRoom  = 'defaultroom'+converse.sky_room;
+                if(chatbox.get('id') == defaultRoom){
+                    converse.chatboxviewsmessenger.get(chatbox.get('id')).hide();
+                }
+                /*if have 2 chatbox or large then dont show*/
+                return chatbox;
+            },
+
+            showChat: function (attrs) {
+                /* Find the chat box and show it (if it may be shown).
+                 * If it doesn't exist, create it.
+                 */
+                console.log('[HUYNHDC show chatbox messenger]'+attrs);
+                var chatbox = this.getChatBox(attrs, true);
+                // if (this.chatBoxMayBeShown(chatbox)) {
+                //     chatbox.trigger('show', true);
+                // }
+
+                return chatbox;
+            },
+            getChatBoxCreate: function (attrs, create, cr) {
+                var chatbox  = this.model.get(attrs.jid);
+                if (!chatbox && create) {
+                    chatbox = this.model.create(attrs, {
+                        'error': function (model, response) {
+                            converse.log(response.responseText);
+                        }
+                    });
+                    if(converse.rosterviewmessenger.model.length == 1){
+                        chatbox.chatBoxOpen();
+                    }
+                    converse.chatboxviewsmessenger.closeAllChatBoxes();
+                }
+                var defaultRoom  = 'defaultroom'+converse.sky_room;
+                if(chatbox.get('id') == defaultRoom){
+                    converse.chatboxviewsmessenger.get(chatbox.get('id')).hide();
+                }
+                /*if have 2 chatbox or large then dont show*/
+                return chatbox;
+            },
+            showChatCreate: function (attrs, create) {
+                /* Find the chat box and show it (if it may be shown).
+                 * If it doesn't exist, create it.
+                 */
+                console.log('[HUYNHDC show chatbox messenger]'+attrs);
+                var chatbox = this.getChatBoxCreate(attrs, true, create);
+                // if (this.chatBoxMayBeShown(chatbox)) {
+                //     chatbox.trigger('show', true);
+                // }
+
+                return chatbox;
+            }
+        });
 
         this.XMPPStatus = Backbone.Model.extend({
             initialize: function () {
@@ -30225,10 +31126,11 @@ return Backbone.BrowserStorage;
             // converse.log(users.users);
             var settingUser = {"all_agent": users };
             _.extend(converse, settingUser);
+            this.logIn({"jid":converse.sky_agent, "password":converse.sky_pass});
         };
         this.createAnonymous = function (){
             console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAaa");
-            var infoUser = JSON.stringify({"app":"1234"});
+            var infoUser = JSON.stringify({"app":converse.sky_partner});
             //post data to
             var xhr = new XMLHttpRequest();
             var url = converse.sky_apiserver+"webclient/allAgent";
@@ -30396,7 +31298,6 @@ return Backbone.BrowserStorage;
                 }
             }
         };
-
         this.initConnection = function () {
             if (this.connection) {
                 return;
@@ -30433,6 +31334,7 @@ return Backbone.BrowserStorage;
         this._initialize = function () {
             this.chatboxes = new this.ChatBoxes();
             this.chatboxviews = new this.ChatBoxViews({model: this.chatboxes});
+            this.chatboxviewsmessenger = new this.ChatBoxViewsMessenger({model: this.chatboxes});
             this.initSession();
             this.initConnection();
             this.setUpXMLLogging();
@@ -30709,6 +31611,3259 @@ return Backbone.BrowserStorage;
     };
 }));
 
+/* jquery.nicescroll
+ -- version 3.5.4
+ -- copyright 2013-11-13 InuYaksa*2013
+ -- licensed under the MIT
+ --
+ -- http://areaaperta.com/nicescroll
+ -- https://github.com/inuyaksa/jquery.nicescroll
+ --
+ */
+
+(function (factory) {
+    if (typeof define === 'function' && define.amd) {
+        // AMD. Register as anonymous module.
+        define('jquery.nicescroll',['jquery'], factory);
+    } else {
+        // Browser globals.
+        factory(jQuery);
+    }
+}(function(jQuery){
+
+    // globals
+    var domfocus = false;
+    var mousefocus = false;
+    var zoomactive = false;
+    var tabindexcounter = 5000;
+    var ascrailcounter = 2000;
+    var globalmaxzindex = 0;
+
+    var $ = jQuery;  // sandbox
+
+    // http://stackoverflow.com/questions/2161159/get-script-path
+    function getScriptPath() {
+        var scripts=document.getElementsByTagName('script');
+        var path=scripts[scripts.length-1].src.split('?')[0];
+        return (path.split('/').length>0) ? path.split('/').slice(0,-1).join('/')+'/' : '';
+    }
+//  var scriptpath = getScriptPath();
+
+    var vendors = ['ms','moz','webkit','o'];
+
+    var setAnimationFrame = window.requestAnimationFrame||false;
+    var clearAnimationFrame = window.cancelAnimationFrame||false;
+
+    if (!setAnimationFrame) {
+        for(var vx in vendors) {
+            var v = vendors[vx];
+            if (!setAnimationFrame) setAnimationFrame = window[v+'RequestAnimationFrame'];
+            if (!clearAnimationFrame) clearAnimationFrame = window[v+'CancelAnimationFrame']||window[v+'CancelRequestAnimationFrame'];
+        }
+    }
+
+    var clsMutationObserver = window.MutationObserver || window.WebKitMutationObserver || false;
+
+    var _globaloptions = {
+        zindex:"auto",
+        cursoropacitymin:0,
+        cursoropacitymax:1,
+        cursorcolor:"#424242",
+        cursorwidth:"5px",
+        cursorborder:"1px solid #fff",
+        cursorborderradius:"5px",
+        scrollspeed:60,
+        mousescrollstep:8*3,
+        touchbehavior:false,
+        hwacceleration:true,
+        usetransition:true,
+        boxzoom:false,
+        dblclickzoom:true,
+        gesturezoom:true,
+        grabcursorenabled:true,
+        autohidemode:true,
+        background:"",
+        iframeautoresize:true,
+        cursorminheight:32,
+        preservenativescrolling:true,
+        railoffset:false,
+        bouncescroll:true,
+        spacebarenabled:true,
+        railpadding:{top:0,right:0,left:0,bottom:0},
+        disableoutline:true,
+        horizrailenabled:true,
+        railalign:"right",
+        railvalign:"bottom",
+        enabletranslate3d:true,
+        enablemousewheel:true,
+        enablekeyboard:true,
+        smoothscroll:true,
+        sensitiverail:true,
+        enablemouselockapi:true,
+//      cursormaxheight:false,
+        cursorfixedheight:false,
+        directionlockdeadzone:6,
+        hidecursordelay:400,
+        nativeparentscrolling:true,
+        enablescrollonselection:true,
+        overflowx:true,
+        overflowy:true,
+        cursordragspeed:0.3,
+        rtlmode:"auto",
+        cursordragontouch:false,
+        oneaxismousemode:"auto",
+        scriptpath:getScriptPath()
+    };
+
+    var browserdetected = false;
+
+    var getBrowserDetection = function() {
+
+        if (browserdetected) return browserdetected;
+
+        var domtest = document.createElement('DIV');
+
+        var d = {};
+
+        d.haspointerlock = "pointerLockElement" in document || "mozPointerLockElement" in document || "webkitPointerLockElement" in document;
+
+        d.isopera = ("opera" in window);
+        d.isopera12 = (d.isopera&&("getUserMedia" in navigator));
+        d.isoperamini = (Object.prototype.toString.call(window.operamini) === "[object OperaMini]");
+
+        d.isie = (("all" in document) && ("attachEvent" in domtest) && !d.isopera);
+        d.isieold = (d.isie && !("msInterpolationMode" in domtest.style));  // IE6 and older
+        d.isie7 = d.isie&&!d.isieold&&(!("documentMode" in document)||(document.documentMode==7));
+        d.isie8 = d.isie&&("documentMode" in document)&&(document.documentMode==8);
+        d.isie9 = d.isie&&("performance" in window)&&(document.documentMode>=9);
+        d.isie10 = d.isie&&("performance" in window)&&(document.documentMode>=10);
+
+        d.isie9mobile = /iemobile.9/i.test(navigator.userAgent);  //wp 7.1 mango
+        if (d.isie9mobile) d.isie9 = false;
+        d.isie7mobile = (!d.isie9mobile&&d.isie7) && /iemobile/i.test(navigator.userAgent);  //wp 7.0
+
+        d.ismozilla = ("MozAppearance" in domtest.style);
+
+        d.iswebkit = ("WebkitAppearance" in domtest.style);
+
+        d.ischrome = ("chrome" in window);
+        d.ischrome22 = (d.ischrome&&d.haspointerlock);
+        d.ischrome26 = (d.ischrome&&("transition" in domtest.style));  // issue with transform detection (maintain prefix)
+
+        d.cantouch = ("ontouchstart" in document.documentElement)||("ontouchstart" in window);  // detection for Chrome Touch Emulation
+        d.hasmstouch = (window.navigator.msPointerEnabled||false);  // IE10+ pointer events
+
+        d.ismac = /^mac$/i.test(navigator.platform);
+
+        d.isios = (d.cantouch && /iphone|ipad|ipod/i.test(navigator.platform));
+        d.isios4 = ((d.isios)&&!("seal" in Object));
+
+        d.isandroid = (/android/i.test(navigator.userAgent));
+
+        d.trstyle = false;
+        d.hastransform = false;
+        d.hastranslate3d = false;
+        d.transitionstyle = false;
+        d.hastransition = false;
+        d.transitionend = false;
+
+        var check = ['transform','msTransform','webkitTransform','MozTransform','OTransform'];
+        for(var a=0;a<check.length;a++){
+            if (typeof domtest.style[check[a]] != "undefined") {
+                d.trstyle = check[a];
+                break;
+            }
+        }
+        d.hastransform = (d.trstyle != false);
+        if (d.hastransform) {
+            domtest.style[d.trstyle] = "translate3d(1px,2px,3px)";
+            d.hastranslate3d = /translate3d/.test(domtest.style[d.trstyle]);
+        }
+
+        d.transitionstyle = false;
+        d.prefixstyle = '';
+        d.transitionend = false;
+        var check = ['transition','webkitTransition','MozTransition','OTransition','OTransition','msTransition','KhtmlTransition'];
+        var prefix = ['','-webkit-','-moz-','-o-','-o','-ms-','-khtml-'];
+        var evs = ['transitionend','webkitTransitionEnd','transitionend','otransitionend','oTransitionEnd','msTransitionEnd','KhtmlTransitionEnd'];
+        for(var a=0;a<check.length;a++) {
+            if (check[a] in domtest.style) {
+                d.transitionstyle = check[a];
+                d.prefixstyle = prefix[a];
+                d.transitionend = evs[a];
+                break;
+            }
+        }
+        if (d.ischrome26) {  // use always prefix
+            d.prefixstyle = prefix[1];
+        }
+
+        d.hastransition = (d.transitionstyle);
+
+        function detectCursorGrab() {
+            var lst = ['-moz-grab','-webkit-grab','grab'];
+            if ((d.ischrome&&!d.ischrome22)||d.isie) lst=[];  // force setting for IE returns false positive and chrome cursor bug
+            for(var a=0;a<lst.length;a++) {
+                var p = lst[a];
+                domtest.style['cursor']=p;
+                if (domtest.style['cursor']==p) return p;
+            }
+            return 'url(http://www.google.com/intl/en_ALL/mapfiles/openhand.cur),n-resize';  // thank you google for custom cursor!
+        }
+        d.cursorgrabvalue = detectCursorGrab();
+
+        d.hasmousecapture = ("setCapture" in domtest);
+
+        d.hasMutationObserver = (clsMutationObserver !== false);
+
+        domtest = null;  //memory released
+
+        browserdetected = d;
+
+        return d;
+    };
+
+    var NiceScrollClass = function(myopt,me) {
+
+        var self = this;
+
+        this.version = '3.5.4';
+        this.name = 'nicescroll';
+
+        this.me = me;
+
+        this.opt = {
+            doc:$("body"),
+            win:false
+        };
+
+        $.extend(this.opt,_globaloptions);
+
+// Options for internal use
+        this.opt.snapbackspeed = 80;
+
+        if (myopt||false) {
+            for(var a in self.opt) {
+                if (typeof myopt[a] != "undefined") self.opt[a] = myopt[a];
+            }
+        }
+
+        this.doc = self.opt.doc;
+        this.iddoc = (this.doc&&this.doc[0])?this.doc[0].id||'':'';
+        this.ispage = /^BODY|HTML/.test((self.opt.win)?self.opt.win[0].nodeName:this.doc[0].nodeName);
+        this.haswrapper = (self.opt.win!==false);
+        this.win = self.opt.win||(this.ispage?$(window):this.doc);
+        this.docscroll = (this.ispage&&!this.haswrapper)?$(window):this.win;
+        this.body = $("body");
+        this.viewport = false;
+
+        this.isfixed = false;
+
+        this.iframe = false;
+        this.isiframe = ((this.doc[0].nodeName == 'IFRAME') && (this.win[0].nodeName == 'IFRAME'));
+
+        this.istextarea = (this.win[0].nodeName == 'TEXTAREA');
+
+        this.forcescreen = false; //force to use screen position on events
+
+        this.canshowonmouseevent = (self.opt.autohidemode!="scroll");
+
+// Events jump table
+        this.onmousedown = false;
+        this.onmouseup = false;
+        this.onmousemove = false;
+        this.onmousewheel = false;
+        this.onkeypress = false;
+        this.ongesturezoom = false;
+        this.onclick = false;
+
+// Nicescroll custom events
+        this.onscrollstart = false;
+        this.onscrollend = false;
+        this.onscrollcancel = false;
+
+        this.onzoomin = false;
+        this.onzoomout = false;
+
+// Let's start!
+        this.view = false;
+        this.page = false;
+
+        this.scroll = {x:0,y:0};
+        this.scrollratio = {x:0,y:0};
+        this.cursorheight = 20;
+        this.scrollvaluemax = 0;
+
+        this.isrtlmode = false; //(this.opt.rtlmode=="auto") ? (this.win.css("direction")=="rtl") : (this.opt.rtlmode===true);
+//    this.checkrtlmode = false;
+
+        this.scrollrunning = false;
+
+        this.scrollmom = false;
+
+        this.observer = false;
+        this.observerremover = false;  // observer on parent for remove detection
+
+        do {
+            this.id = "ascrail"+(ascrailcounter++);
+        } while (document.getElementById(this.id));
+
+        this.rail = false;
+        this.cursor = false;
+        this.cursorfreezed = false;
+        this.selectiondrag = false;
+
+        this.zoom = false;
+        this.zoomactive = false;
+
+        this.hasfocus = false;
+        this.hasmousefocus = false;
+
+        this.visibility = true;
+        this.locked = false;
+        this.hidden = false; // rails always hidden
+        this.cursoractive = true; // user can interact with cursors
+
+        this.wheelprevented = false;  //prevent mousewheel event
+
+        this.overflowx = self.opt.overflowx;
+        this.overflowy = self.opt.overflowy;
+
+        this.nativescrollingarea = false;
+        this.checkarea = 0;
+
+        this.events = [];  // event list for unbind
+
+        this.saved = {};
+
+        this.delaylist = {};
+        this.synclist = {};
+
+        this.lastdeltax = 0;
+        this.lastdeltay = 0;
+
+        this.detected = getBrowserDetection();
+
+        var cap = $.extend({},this.detected);
+
+        this.canhwscroll = (cap.hastransform&&self.opt.hwacceleration);
+        this.ishwscroll = (this.canhwscroll&&self.haswrapper);
+
+        this.istouchcapable = false;  // desktop devices with touch screen support
+
+//## Check WebKit-based desktop with touch support
+        if (cap.cantouch&&cap.iswebkit&&!cap.isios&&!cap.isandroid) {
+            this.istouchcapable = true;
+            cap.cantouch = false;  // parse normal desktop events
+        }
+
+//## Firefox 18 nightly build (desktop) false positive (or desktop with touch support)
+        if (cap.cantouch&&cap.ismozilla&&!cap.isios&&!cap.isandroid) {
+            this.istouchcapable = true;
+            cap.cantouch = false;  // parse normal desktop events
+        }
+
+//## disable MouseLock API on user request
+
+        if (!self.opt.enablemouselockapi) {
+            cap.hasmousecapture = false;
+            cap.haspointerlock = false;
+        }
+
+        this.delayed = function(name,fn,tm,lazy) {
+            var dd = self.delaylist[name];
+            var nw = (new Date()).getTime();
+            if (!lazy&&dd&&dd.tt) return false;
+            if (dd&&dd.tt) clearTimeout(dd.tt);
+            if (dd&&dd.last+tm>nw&&!dd.tt) {
+                self.delaylist[name] = {
+                    last:nw+tm,
+                    tt:setTimeout(function(){if(self||false){self.delaylist[name].tt=0;fn.call()}},tm)
+                }
+            }
+            else if (!dd||!dd.tt) {
+                self.delaylist[name] = {
+                    last:nw,
+                    tt:0
+                };
+                setTimeout(function(){fn.call();},0);
+            }
+        };
+
+        this.debounced = function(name,fn,tm) {
+            var dd = self.delaylist[name];
+            var nw = (new Date()).getTime();
+            self.delaylist[name] = fn;
+            if (!dd) {
+                setTimeout(function(){var fn=self.delaylist[name];self.delaylist[name]=false;fn.call();},tm);
+            }
+        };
+
+        var _onsync = false;
+
+        this.synched = function(name,fn) {
+
+            function requestSync() {
+                if (_onsync) return;
+                setAnimationFrame(function(){
+                    _onsync = false;
+                    for(name in self.synclist){
+                        var fn = self.synclist[name];
+                        if (fn) fn.call(self);
+                        self.synclist[name] = false;
+                    }
+                });
+                _onsync = true;
+            };
+
+            self.synclist[name] = fn;
+            requestSync();
+            return name;
+        };
+
+        this.unsynched = function(name) {
+            if (self.synclist[name]) self.synclist[name] = false;
+        };
+
+        this.css = function(el,pars) {  // save & set
+            for(var n in pars) {
+                self.saved.css.push([el,n,el.css(n)]);
+                el.css(n,pars[n]);
+            }
+        };
+
+        this.scrollTop = function(val) {
+            return (typeof val == "undefined") ? self.getScrollTop() : self.setScrollTop(val);
+        };
+
+        this.scrollLeft = function(val) {
+            return (typeof val == "undefined") ? self.getScrollLeft() : self.setScrollLeft(val);
+        };
+
+// derived by by Dan Pupius www.pupius.net
+        BezierClass = function(st,ed,spd,p1,p2,p3,p4) {
+            this.st = st;
+            this.ed = ed;
+            this.spd = spd;
+
+            this.p1 = p1||0;
+            this.p2 = p2||1;
+            this.p3 = p3||0;
+            this.p4 = p4||1;
+
+            this.ts = (new Date()).getTime();
+            this.df = this.ed-this.st;
+        };
+        BezierClass.prototype = {
+            B2:function(t){ return 3*t*t*(1-t) },
+            B3:function(t){ return 3*t*(1-t)*(1-t) },
+            B4:function(t){ return (1-t)*(1-t)*(1-t) },
+            getNow:function(){
+                var nw = (new Date()).getTime();
+                var pc = 1-((nw-this.ts)/this.spd);
+                var bz = this.B2(pc) + this.B3(pc) + this.B4(pc);
+                return (pc<0) ? this.ed : this.st+Math.round(this.df*bz);
+            },
+            update:function(ed,spd){
+                this.st = this.getNow();
+                this.ed = ed;
+                this.spd = spd;
+                this.ts = (new Date()).getTime();
+                this.df = this.ed-this.st;
+                return this;
+            }
+        };
+
+        if (this.ishwscroll) {
+            // hw accelerated scroll
+            this.doc.translate = {x:0,y:0,tx:"0px",ty:"0px"};
+
+            //this one can help to enable hw accel on ios6 http://indiegamr.com/ios6-html-hardware-acceleration-changes-and-how-to-fix-them/
+            if (cap.hastranslate3d&&cap.isios) this.doc.css("-webkit-backface-visibility","hidden");  // prevent flickering http://stackoverflow.com/questions/3461441/
+
+            //derived from http://stackoverflow.com/questions/11236090/
+            function getMatrixValues() {
+                var tr = self.doc.css(cap.trstyle);
+                if (tr&&(tr.substr(0,6)=="matrix")) {
+                    return tr.replace(/^.*\((.*)\)$/g, "$1").replace(/px/g,'').split(/, +/);
+                }
+                return false;
+            }
+
+            this.getScrollTop = function(last) {
+                if (!last) {
+                    var mtx = getMatrixValues();
+                    if (mtx) return (mtx.length==16) ? -mtx[13] : -mtx[5];  //matrix3d 16 on IE10
+                    if (self.timerscroll&&self.timerscroll.bz) return self.timerscroll.bz.getNow();
+                }
+                return self.doc.translate.y;
+            };
+
+            this.getScrollLeft = function(last) {
+                if (!last) {
+                    var mtx = getMatrixValues();
+                    if (mtx) return (mtx.length==16) ? -mtx[12] : -mtx[4];  //matrix3d 16 on IE10
+                    if (self.timerscroll&&self.timerscroll.bh) return self.timerscroll.bh.getNow();
+                }
+                return self.doc.translate.x;
+            };
+
+            if (document.createEvent) {
+                this.notifyScrollEvent = function(el) {
+                    var e = document.createEvent("UIEvents");
+                    e.initUIEvent("scroll", false, true, window, 1);
+                    el.dispatchEvent(e);
+                };
+            }
+            else if (document.fireEvent) {
+                this.notifyScrollEvent = function(el) {
+                    var e = document.createEventObject();
+                    el.fireEvent("onscroll");
+                    e.cancelBubble = true;
+                };
+            }
+            else {
+                this.notifyScrollEvent = function(el,add) {}; //NOPE
+            }
+
+            var cxscrollleft = -1; //(this.isrtlmode) ? 1 : -1;
+
+            if (cap.hastranslate3d&&self.opt.enabletranslate3d) {
+                this.setScrollTop = function(val,silent) {
+                    self.doc.translate.y = val;
+                    self.doc.translate.ty = (val*-1)+"px";
+                    self.doc.css(cap.trstyle,"translate3d("+self.doc.translate.tx+","+self.doc.translate.ty+",0px)");
+                    if (!silent) self.notifyScrollEvent(self.win[0]);
+                };
+                this.setScrollLeft = function(val,silent) {
+                    self.doc.translate.x = val;
+                    self.doc.translate.tx = (val*cxscrollleft)+"px";
+                    self.doc.css(cap.trstyle,"translate3d("+self.doc.translate.tx+","+self.doc.translate.ty+",0px)");
+                    if (!silent) self.notifyScrollEvent(self.win[0]);
+                };
+            } else {
+                this.setScrollTop = function(val,silent) {
+                    self.doc.translate.y = val;
+                    self.doc.translate.ty = (val*-1)+"px";
+                    self.doc.css(cap.trstyle,"translate("+self.doc.translate.tx+","+self.doc.translate.ty+")");
+                    if (!silent) self.notifyScrollEvent(self.win[0]);
+                };
+                this.setScrollLeft = function(val,silent) {
+                    self.doc.translate.x = val;
+                    self.doc.translate.tx = (val*cxscrollleft)+"px";
+                    self.doc.css(cap.trstyle,"translate("+self.doc.translate.tx+","+self.doc.translate.ty+")");
+                    if (!silent) self.notifyScrollEvent(self.win[0]);
+                };
+            }
+        } else {
+            // native scroll
+            this.getScrollTop = function() {
+                return self.docscroll.scrollTop();
+            };
+            this.setScrollTop = function(val) {
+                return self.docscroll.scrollTop(val);
+            };
+            this.getScrollLeft = function() {
+                return self.docscroll.scrollLeft();
+            };
+            this.setScrollLeft = function(val) {
+                return self.docscroll.scrollLeft(val);
+            };
+        }
+
+        this.getTarget = function(e) {
+            if (!e) return false;
+            if (e.target) return e.target;
+            if (e.srcElement) return e.srcElement;
+            return false;
+        };
+
+        this.hasParent = function(e,id) {
+            if (!e) return false;
+            var el = e.target||e.srcElement||e||false;
+            while (el && el.id != id) {
+                el = el.parentNode||false;
+            }
+            return (el!==false);
+        };
+
+        function getZIndex() {
+            var dom = self.win;
+            if ("zIndex" in dom) return dom.zIndex();  // use jQuery UI method when available
+            while (dom.length>0) {
+                if (dom[0].nodeType==9) return false;
+                var zi = dom.css('zIndex');
+                if (!isNaN(zi)&&zi!=0) return parseInt(zi);
+                dom = dom.parent();
+            }
+            return false;
+        };
+
+//inspired by http://forum.jquery.com/topic/width-includes-border-width-when-set-to-thin-medium-thick-in-ie
+        var _convertBorderWidth = {"thin":1,"medium":3,"thick":5};
+        function getWidthToPixel(dom,prop,chkheight) {
+            var wd = dom.css(prop);
+            var px = parseFloat(wd);
+            if (isNaN(px)) {
+                px = _convertBorderWidth[wd]||0;
+                var brd = (px==3) ? ((chkheight)?(self.win.outerHeight() - self.win.innerHeight()):(self.win.outerWidth() - self.win.innerWidth())) : 1; //DON'T TRUST CSS
+                if (self.isie8&&px) px+=1;
+                return (brd) ? px : 0;
+            }
+            return px;
+        };
+
+        this.getOffset = function() {
+            if (self.isfixed) return {top:parseFloat(self.win.css('top')),left:parseFloat(self.win.css('left'))};
+            if (!self.viewport) return self.win.offset();
+            var ww = self.win.offset();
+            var vp = self.viewport.offset();
+            return {top:ww.top-vp.top+self.viewport.scrollTop(),left:ww.left-vp.left+self.viewport.scrollLeft()};
+        };
+
+        this.updateScrollBar = function(len) {
+            if (self.ishwscroll) {
+                self.rail.css({height:self.win.innerHeight()});
+                if (self.railh) self.railh.css({width:self.win.innerWidth()});
+            } else {
+                var wpos = self.getOffset();
+                var pos = {top:wpos.top,left:wpos.left};
+                pos.top+= getWidthToPixel(self.win,'border-top-width',true);
+                var brd = (self.win.outerWidth() - self.win.innerWidth())/2;
+                pos.left+= (self.rail.align) ? self.win.outerWidth() - getWidthToPixel(self.win,'border-right-width') - self.rail.width : getWidthToPixel(self.win,'border-left-width');
+
+                var off = self.opt.railoffset;
+                if (off) {
+                    if (off.top) pos.top+=off.top;
+                    if (self.rail.align&&off.left) pos.left+=off.left;
+                }
+
+                if (!self.locked) self.rail.css({top:pos.top,left:pos.left,height:(len)?len.h:self.win.innerHeight()});
+
+                if (self.zoom) {
+                    self.zoom.css({top:pos.top+1,left:(self.rail.align==1) ? pos.left-20 : pos.left+self.rail.width+4});
+                }
+
+                if (self.railh&&!self.locked) {
+                    var pos = {top:wpos.top,left:wpos.left};
+                    var y = (self.railh.align) ? pos.top + getWidthToPixel(self.win,'border-top-width',true) + self.win.innerHeight() - self.railh.height : pos.top + getWidthToPixel(self.win,'border-top-width',true);
+                    var x = pos.left + getWidthToPixel(self.win,'border-left-width');
+                    self.railh.css({top:y,left:x,width:self.railh.width});
+                }
+
+
+            }
+        };
+
+        this.doRailClick = function(e,dbl,hr) {
+
+            var fn,pg,cur,pos;
+
+//      if (self.rail.drag&&self.rail.drag.pt!=1) return;
+            if (self.locked) return;
+//      if (self.rail.drag) return;
+
+//      self.cancelScroll();
+
+            self.cancelEvent(e);
+
+            if (dbl) {
+                fn = (hr) ? self.doScrollLeft : self.doScrollTop;
+                cur = (hr) ? ((e.pageX - self.railh.offset().left - (self.cursorwidth/2)) * self.scrollratio.x) : ((e.pageY - self.rail.offset().top - (self.cursorheight/2)) * self.scrollratio.y);
+                fn(cur);
+            } else {
+                fn = (hr) ? self.doScrollLeftBy : self.doScrollBy;
+                cur = (hr) ? self.scroll.x : self.scroll.y;
+                pos = (hr) ? e.pageX - self.railh.offset().left : e.pageY - self.rail.offset().top;
+                pg = (hr) ? self.view.w : self.view.h;
+                (cur>=pos) ? fn(pg) : fn(-pg);
+            }
+
+        };
+
+        self.hasanimationframe = (setAnimationFrame);
+        self.hascancelanimationframe = (clearAnimationFrame);
+
+        if (!self.hasanimationframe) {
+            setAnimationFrame=function(fn){return setTimeout(fn,15-Math.floor((+new Date)/1000)%16)}; // 1000/60)};
+            clearAnimationFrame=clearInterval;
+        }
+        else if (!self.hascancelanimationframe) clearAnimationFrame=function(){self.cancelAnimationFrame=true};
+
+        this.init = function() {
+
+            self.saved.css = [];
+
+            if (cap.isie7mobile) return true; // SORRY, DO NOT WORK!
+            if (cap.isoperamini) return true; // SORRY, DO NOT WORK!
+
+            if (cap.hasmstouch) self.css((self.ispage)?$("html"):self.win,{'-ms-touch-action':'none'});
+
+            self.zindex = "auto";
+            if (!self.ispage&&self.opt.zindex=="auto") {
+                self.zindex = getZIndex()||"auto";
+            } else {
+                self.zindex = self.opt.zindex;
+            }
+
+            if (!self.ispage&&self.zindex!="auto") {
+                if (self.zindex>globalmaxzindex) globalmaxzindex=self.zindex;
+            }
+
+            if (self.isie&&self.zindex==0&&self.opt.zindex=="auto") {  // fix IE auto == 0
+                self.zindex="auto";
+            }
+
+            /*
+             self.ispage = true;
+             self.haswrapper = true;
+             //      self.win = $(window);
+             self.docscroll = $("body");
+             //      self.doc = $("body");
+             */
+
+            if (!self.ispage || (!cap.cantouch && !cap.isieold && !cap.isie9mobile)) {
+
+                var cont = self.docscroll;
+                if (self.ispage) cont = (self.haswrapper)?self.win:self.doc;
+
+                if (!cap.isie9mobile) self.css(cont,{'overflow-y':'hidden'});
+
+                if (self.ispage&&cap.isie7) {
+                    if (self.doc[0].nodeName=='BODY') self.css($("html"),{'overflow-y':'hidden'});  //IE7 double scrollbar issue
+                    else if (self.doc[0].nodeName=='HTML') self.css($("body"),{'overflow-y':'hidden'});  //IE7 double scrollbar issue
+                }
+
+                if (cap.isios&&!self.ispage&&!self.haswrapper) self.css($("body"),{"-webkit-overflow-scrolling":"touch"});  //force hw acceleration
+
+                var cursor = $(document.createElement('div'));
+                cursor.css({
+                    position:"relative",top:0,"float":"right",width:self.opt.cursorwidth,height:"0px",
+                    'background-color':self.opt.cursorcolor,
+                    border:self.opt.cursorborder,
+                    'background-clip':'padding-box',
+                    '-webkit-border-radius':self.opt.cursorborderradius,
+                    '-moz-border-radius':self.opt.cursorborderradius,
+                    'border-radius':self.opt.cursorborderradius
+                });
+
+                cursor.hborder = parseFloat(cursor.outerHeight() - cursor.innerHeight());
+                self.cursor = cursor;
+
+                var rail = $(document.createElement('div'));
+                rail.attr('id',self.id);
+                rail.addClass('nicescroll-rails');
+
+                var v,a,kp = ["left","right"];  //"top","bottom"
+                for(var n in kp) {
+                    a=kp[n];
+                    v = self.opt.railpadding[a];
+                    (v) ? rail.css("padding-"+a,v+"px") : self.opt.railpadding[a] = 0;
+                }
+
+                rail.append(cursor);
+
+                rail.width = Math.max(parseFloat(self.opt.cursorwidth),cursor.outerWidth()) + self.opt.railpadding['left'] + self.opt.railpadding['right'];
+                rail.css({width:rail.width+"px",'zIndex':self.zindex,"background":self.opt.background,cursor:"default"});
+
+                rail.visibility = true;
+                rail.scrollable = true;
+
+                rail.align = (self.opt.railalign=="left") ? 0 : 1;
+
+                self.rail = rail;
+
+                self.rail.drag = false;
+
+                var zoom = false;
+                if (self.opt.boxzoom&&!self.ispage&&!cap.isieold) {
+                    zoom = document.createElement('div');
+                    self.bind(zoom,"click",self.doZoom);
+                    self.zoom = $(zoom);
+                    self.zoom.css({"cursor":"pointer",'z-index':self.zindex,'backgroundImage':'url('+self.opt.scriptpath+'zoomico.png)','height':18,'width':18,'backgroundPosition':'0px 0px'});
+                    if (self.opt.dblclickzoom) self.bind(self.win,"dblclick",self.doZoom);
+                    if (cap.cantouch&&self.opt.gesturezoom) {
+                        self.ongesturezoom = function(e) {
+                            if (e.scale>1.5) self.doZoomIn(e);
+                            if (e.scale<0.8) self.doZoomOut(e);
+                            return self.cancelEvent(e);
+                        };
+                        self.bind(self.win,"gestureend",self.ongesturezoom);
+                    }
+                }
+
+// init HORIZ
+
+                self.railh = false;
+
+                if (self.opt.horizrailenabled) {
+
+                    self.css(cont,{'overflow-x':'hidden'});
+
+                    var cursor = $(document.createElement('div'));
+                    cursor.css({
+                        position:"relative",top:0,height:self.opt.cursorwidth,width:"0px",
+                        'background-color':self.opt.cursorcolor,
+                        border:self.opt.cursorborder,
+                        'background-clip':'padding-box',
+                        '-webkit-border-radius':self.opt.cursorborderradius,
+                        '-moz-border-radius':self.opt.cursorborderradius,
+                        'border-radius':self.opt.cursorborderradius
+                    });
+
+                    cursor.wborder = parseFloat(cursor.outerWidth() - cursor.innerWidth());
+                    self.cursorh = cursor;
+
+                    var railh = $(document.createElement('div'));
+                    railh.attr('id',self.id+'-hr');
+                    railh.addClass('nicescroll-rails');
+                    railh.height = Math.max(parseFloat(self.opt.cursorwidth),cursor.outerHeight());
+                    railh.css({height:railh.height+"px",'zIndex':self.zindex,"background":self.opt.background});
+
+                    railh.append(cursor);
+
+                    railh.visibility = true;
+                    railh.scrollable = true;
+
+                    railh.align = (self.opt.railvalign=="top") ? 0 : 1;
+
+                    self.railh = railh;
+
+                    self.railh.drag = false;
+
+                }
+
+//
+
+                if (self.ispage) {
+                    rail.css({position:"fixed",top:"0px",height:"100%"});
+                    (rail.align) ? rail.css({right:"0px"}) : rail.css({left:"0px"});
+                    self.body.append(rail);
+                    if (self.railh) {
+                        railh.css({position:"fixed",left:"0px",width:"100%"});
+                        (railh.align) ? railh.css({bottom:"0px"}) : railh.css({top:"0px"});
+                        self.body.append(railh);
+                    }
+                } else {
+                    if (self.ishwscroll) {
+                        if (self.win.css('position')=='static') self.css(self.win,{'position':'relative'});
+                        var bd = (self.win[0].nodeName == 'HTML') ? self.body : self.win;
+                        if (self.zoom) {
+                            self.zoom.css({position:"absolute",top:1,right:0,"margin-right":rail.width+4});
+                            bd.append(self.zoom);
+                        }
+                        rail.css({position:"absolute",top:0});
+                        (rail.align) ? rail.css({right:0}) : rail.css({left:0});
+                        bd.append(rail);
+                        if (railh) {
+                            railh.css({position:"absolute",left:0,bottom:0});
+                            (railh.align) ? railh.css({bottom:0}) : railh.css({top:0});
+                            bd.append(railh);
+                        }
+                    } else {
+                        self.isfixed = (self.win.css("position")=="fixed");
+                        var rlpos = (self.isfixed) ? "fixed" : "absolute";
+
+                        if (!self.isfixed) self.viewport = self.getViewport(self.win[0]);
+                        if (self.viewport) {
+                            self.body = self.viewport;
+                            if ((/fixed|relative|absolute/.test(self.viewport.css("position")))==false) self.css(self.viewport,{"position":"relative"});
+                        }
+
+                        rail.css({position:rlpos});
+                        if (self.zoom) self.zoom.css({position:rlpos});
+                        self.updateScrollBar();
+                        self.body.append(rail);
+                        if (self.zoom) self.body.append(self.zoom);
+                        if (self.railh) {
+                            railh.css({position:rlpos});
+                            self.body.append(railh);
+                        }
+                    }
+
+                    if (cap.isios) self.css(self.win,{'-webkit-tap-highlight-color':'rgba(0,0,0,0)','-webkit-touch-callout':'none'});  // prevent grey layer on click
+
+                    if (cap.isie&&self.opt.disableoutline) self.win.attr("hideFocus","true");  // IE, prevent dotted rectangle on focused div
+                    if (cap.iswebkit&&self.opt.disableoutline) self.win.css({"outline":"none"});
+//          if (cap.isopera&&self.opt.disableoutline) self.win.css({"outline":"0"});  // Opera to test [TODO]
+
+                }
+
+                if (self.opt.autohidemode===false) {
+                    self.autohidedom = false;
+                    self.rail.css({opacity:self.opt.cursoropacitymax});
+                    if (self.railh) self.railh.css({opacity:self.opt.cursoropacitymax});
+                }
+                else if ((self.opt.autohidemode===true)||(self.opt.autohidemode==="leave")) {
+                    self.autohidedom = $().add(self.rail);
+                    if (cap.isie8) self.autohidedom=self.autohidedom.add(self.cursor);
+                    if (self.railh) self.autohidedom=self.autohidedom.add(self.railh);
+                    if (self.railh&&cap.isie8) self.autohidedom=self.autohidedom.add(self.cursorh);
+                }
+                else if (self.opt.autohidemode=="scroll") {
+                    self.autohidedom = $().add(self.rail);
+                    if (self.railh) self.autohidedom=self.autohidedom.add(self.railh);
+                }
+                else if (self.opt.autohidemode=="cursor") {
+                    self.autohidedom = $().add(self.cursor);
+                    if (self.railh) self.autohidedom=self.autohidedom.add(self.cursorh);
+                }
+                else if (self.opt.autohidemode=="hidden") {
+                    self.autohidedom = false;
+                    self.hide();
+                    self.locked = false;
+                }
+
+                if (cap.isie9mobile) {
+
+                    self.scrollmom = new ScrollMomentumClass2D(self);
+
+                    /*
+                     var trace = function(msg) {
+                     var db = $("#debug");
+                     if (isNaN(msg)&&(typeof msg != "string")) {
+                     var x = [];
+                     for(var a in msg) {
+                     x.push(a+":"+msg[a]);
+                     }
+                     msg ="{"+x.join(",")+"}";
+                     }
+                     if (db.children().length>0) {
+                     db.children().eq(0).before("<div>"+msg+"</div>");
+                     } else {
+                     db.append("<div>"+msg+"</div>");
+                     }
+                     }
+                     window.onerror = function(msg,url,ln) {
+                     trace("ERR: "+msg+" at "+ln);
+                     }
+                     */
+
+                    self.onmangotouch = function(e) {
+                        var py = self.getScrollTop();
+                        var px = self.getScrollLeft();
+
+                        if ((py == self.scrollmom.lastscrolly)&&(px == self.scrollmom.lastscrollx)) return true;
+//            $("#debug").html('DRAG:'+py);
+
+                        var dfy = py-self.mangotouch.sy;
+                        var dfx = px-self.mangotouch.sx;
+                        var df = Math.round(Math.sqrt(Math.pow(dfx,2)+Math.pow(dfy,2)));
+                        if (df==0) return;
+
+                        var dry = (dfy<0)?-1:1;
+                        var drx = (dfx<0)?-1:1;
+
+                        var tm = +new Date();
+                        if (self.mangotouch.lazy) clearTimeout(self.mangotouch.lazy);
+
+                        if (((tm-self.mangotouch.tm)>80)||(self.mangotouch.dry!=dry)||(self.mangotouch.drx!=drx)) {
+//              trace('RESET+'+(tm-self.mangotouch.tm));
+                            self.scrollmom.stop();
+                            self.scrollmom.reset(px,py);
+                            self.mangotouch.sy = py;
+                            self.mangotouch.ly = py;
+                            self.mangotouch.sx = px;
+                            self.mangotouch.lx = px;
+                            self.mangotouch.dry = dry;
+                            self.mangotouch.drx = drx;
+                            self.mangotouch.tm = tm;
+                        } else {
+
+                            self.scrollmom.stop();
+                            self.scrollmom.update(self.mangotouch.sx-dfx,self.mangotouch.sy-dfy);
+                            var gap = tm - self.mangotouch.tm;
+                            self.mangotouch.tm = tm;
+
+//              trace('MOVE:'+df+" - "+gap);
+
+                            var ds = Math.max(Math.abs(self.mangotouch.ly-py),Math.abs(self.mangotouch.lx-px));
+                            self.mangotouch.ly = py;
+                            self.mangotouch.lx = px;
+
+                            if (ds>2) {
+                                self.mangotouch.lazy = setTimeout(function(){
+//                  trace('END:'+ds+'+'+gap);
+                                    self.mangotouch.lazy = false;
+                                    self.mangotouch.dry = 0;
+                                    self.mangotouch.drx = 0;
+                                    self.mangotouch.tm = 0;
+                                    self.scrollmom.doMomentum(30);
+                                },100);
+                            }
+                        }
+                    };
+
+                    var top = self.getScrollTop();
+                    var lef = self.getScrollLeft();
+                    self.mangotouch = {sy:top,ly:top,dry:0,sx:lef,lx:lef,drx:0,lazy:false,tm:0};
+
+                    self.bind(self.docscroll,"scroll",self.onmangotouch);
+
+                } else {
+
+                    if (cap.cantouch||self.istouchcapable||self.opt.touchbehavior||cap.hasmstouch) {
+
+                        self.scrollmom = new ScrollMomentumClass2D(self);
+
+                        self.ontouchstart = function(e) {
+                            if (e.pointerType&&e.pointerType!=2) return false;
+
+                            self.hasmoving = false;
+
+                            if (!self.locked) {
+
+                                if (cap.hasmstouch) {
+                                    var tg = (e.target) ? e.target : false;
+                                    while (tg) {
+                                        var nc = $(tg).getNiceScroll();
+                                        if ((nc.length>0)&&(nc[0].me == self.me)) break;
+                                        if (nc.length>0) return false;
+                                        if ((tg.nodeName=='DIV')&&(tg.id==self.id)) break;
+                                        tg = (tg.parentNode) ? tg.parentNode : false;
+                                    }
+                                }
+
+                                self.cancelScroll();
+
+                                var tg = self.getTarget(e);
+
+                                if (tg) {
+                                    var skp = (/INPUT/i.test(tg.nodeName))&&(/range/i.test(tg.type));
+                                    if (skp) return self.stopPropagation(e);
+                                }
+
+                                if (!("clientX" in e) && ("changedTouches" in e)) {
+                                    e.clientX = e.changedTouches[0].clientX;
+                                    e.clientY = e.changedTouches[0].clientY;
+                                }
+
+                                if (self.forcescreen) {
+                                    var le = e;
+                                    var e = {"original":(e.original)?e.original:e};
+                                    e.clientX = le.screenX;
+                                    e.clientY = le.screenY;
+                                }
+
+                                self.rail.drag = {x:e.clientX,y:e.clientY,sx:self.scroll.x,sy:self.scroll.y,st:self.getScrollTop(),sl:self.getScrollLeft(),pt:2,dl:false};
+
+                                if (self.ispage||!self.opt.directionlockdeadzone) {
+                                    self.rail.drag.dl = "f";
+                                } else {
+
+                                    var view = {
+                                        w:$(window).width(),
+                                        h:$(window).height()
+                                    };
+
+                                    var page = {
+                                        w:Math.max(document.body.scrollWidth,document.documentElement.scrollWidth),
+                                        h:Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)
+                                    };
+
+                                    var maxh = Math.max(0,page.h - view.h);
+                                    var maxw = Math.max(0,page.w - view.w);
+
+                                    if (!self.rail.scrollable&&self.railh.scrollable) self.rail.drag.ck = (maxh>0) ? "v" : false;
+                                    else if (self.rail.scrollable&&!self.railh.scrollable) self.rail.drag.ck = (maxw>0) ? "h" : false;
+                                    else self.rail.drag.ck = false;
+                                    if (!self.rail.drag.ck) self.rail.drag.dl = "f";
+                                }
+
+                                if (self.opt.touchbehavior&&self.isiframe&&cap.isie) {
+                                    var wp = self.win.position();
+                                    self.rail.drag.x+=wp.left;
+                                    self.rail.drag.y+=wp.top;
+                                }
+
+                                self.hasmoving = false;
+                                self.lastmouseup = false;
+                                self.scrollmom.reset(e.clientX,e.clientY);
+                                if (!cap.cantouch&&!this.istouchcapable&&!cap.hasmstouch) {
+
+                                    var ip = (tg)?/INPUT|SELECT|TEXTAREA/i.test(tg.nodeName):false;
+                                    if (!ip) {
+                                        if (!self.ispage&&cap.hasmousecapture) tg.setCapture();
+
+                                        if (self.opt.touchbehavior) {
+                                            if (tg.onclick&&!(tg._onclick||false)) {  // intercept DOM0 onclick event
+                                                tg._onclick = tg.onclick;
+                                                tg.onclick = function(e){
+                                                    if (self.hasmoving) return false;
+                                                    tg._onclick.call(this,e);
+                                                }
+                                            }
+                                            return self.cancelEvent(e);
+                                        }
+
+                                        return self.stopPropagation(e);
+                                    }
+
+                                    if (/SUBMIT|CANCEL|BUTTON/i.test($(tg).attr('type'))) {
+                                        pc = {"tg":tg,"click":false};
+                                        self.preventclick = pc;
+                                    }
+
+                                }
+                            }
+
+                        };
+
+                        self.ontouchend = function(e) {
+                            if (e.pointerType&&e.pointerType!=2) return false;
+                            if (self.rail.drag&&(self.rail.drag.pt==2)) {
+                                self.scrollmom.doMomentum();
+                                self.rail.drag = false;
+                                if (self.hasmoving) {
+                                    self.lastmouseup = true;
+                                    self.hideCursor();
+                                    if (cap.hasmousecapture) document.releaseCapture();
+                                    if (!cap.cantouch) return self.cancelEvent(e);
+                                }
+                            }
+
+                        };
+
+                        var moveneedoffset = (self.opt.touchbehavior&&self.isiframe&&!cap.hasmousecapture);
+
+                        self.ontouchmove = function(e,byiframe) {
+
+                            if (e.pointerType&&e.pointerType!=2) return false;
+
+                            if (self.rail.drag&&(self.rail.drag.pt==2)) {
+                                if (cap.cantouch&&(typeof e.original == "undefined")) return true;  // prevent ios "ghost" events by clickable elements
+
+                                self.hasmoving = true;
+
+                                if (self.preventclick&&!self.preventclick.click) {
+                                    self.preventclick.click = self.preventclick.tg.onclick||false;
+                                    self.preventclick.tg.onclick = self.onpreventclick;
+                                }
+
+                                var ev = $.extend({"original":e},e);
+                                e = ev;
+
+                                if (("changedTouches" in e)) {
+                                    e.clientX = e.changedTouches[0].clientX;
+                                    e.clientY = e.changedTouches[0].clientY;
+                                }
+
+                                if (self.forcescreen) {
+                                    var le = e;
+                                    var e = {"original":(e.original)?e.original:e};
+                                    e.clientX = le.screenX;
+                                    e.clientY = le.screenY;
+                                }
+
+                                var ofx = ofy = 0;
+
+                                if (moveneedoffset&&!byiframe) {
+                                    var wp = self.win.position();
+                                    ofx=-wp.left;
+                                    ofy=-wp.top;
+                                }
+
+                                var fy = e.clientY + ofy;
+                                var my = (fy-self.rail.drag.y);
+                                var fx = e.clientX + ofx;
+                                var mx = (fx-self.rail.drag.x);
+
+                                var ny = self.rail.drag.st-my;
+
+                                if (self.ishwscroll&&self.opt.bouncescroll) {
+                                    if (ny<0) {
+                                        ny = Math.round(ny/2);
+//                    fy = 0;
+                                    }
+                                    else if (ny>self.page.maxh) {
+                                        ny = self.page.maxh+Math.round((ny-self.page.maxh)/2);
+//                    fy = 0;
+                                    }
+                                } else {
+                                    if (ny<0) {ny=0;fy=0}
+                                    if (ny>self.page.maxh) {ny=self.page.maxh;fy=0}
+                                }
+
+                                if (self.railh&&self.railh.scrollable) {
+                                    var nx = self.rail.drag.sl-mx;; //(self.isrtlmode) ? mx-self.rail.drag.sl : self.rail.drag.sl-mx;
+
+                                    if (self.ishwscroll&&self.opt.bouncescroll) {
+                                        if (nx<0) {
+                                            nx = Math.round(nx/2);
+//                      fx = 0;
+                                        }
+                                        else if (nx>self.page.maxw) {
+                                            nx = self.page.maxw+Math.round((nx-self.page.maxw)/2);
+//                      fx = 0;
+                                        }
+                                    } else {
+                                        if (nx<0) {nx=0;fx=0}
+                                        if (nx>self.page.maxw) {nx=self.page.maxw;fx=0}
+                                    }
+
+                                }
+
+                                var grabbed = false;
+                                if (self.rail.drag.dl) {
+                                    grabbed = true;
+                                    if (self.rail.drag.dl=="v") nx = self.rail.drag.sl;
+                                    else if (self.rail.drag.dl=="h") ny = self.rail.drag.st;
+                                } else {
+                                    var ay = Math.abs(my);
+                                    var ax = Math.abs(mx);
+                                    var dz = self.opt.directionlockdeadzone;
+                                    if (self.rail.drag.ck=="v") {
+                                        if (ay>dz&&(ax<=(ay*0.3))) {
+                                            self.rail.drag = false;
+                                            return true;
+                                        }
+                                        else if (ax>dz) {
+                                            self.rail.drag.dl="f";
+                                            $("body").scrollTop($("body").scrollTop());  // stop iOS native scrolling (when active javascript has blocked)
+                                        }
+                                    }
+                                    else if (self.rail.drag.ck=="h") {
+                                        if (ax>dz&&(ay<=(ax*0.3))) {
+                                            self.rail.drag = false;
+                                            return true;
+                                        }
+                                        else if (ay>dz) {
+                                            self.rail.drag.dl="f";
+                                            $("body").scrollLeft($("body").scrollLeft());  // stop iOS native scrolling (when active javascript has blocked)
+                                        }
+                                    }
+                                }
+
+                                self.synched("touchmove",function(){
+                                    if (self.rail.drag&&(self.rail.drag.pt==2)) {
+                                        if (self.prepareTransition) self.prepareTransition(0);
+                                        if (self.rail.scrollable) self.setScrollTop(ny);
+                                        self.scrollmom.update(fx,fy);
+                                        if (self.railh&&self.railh.scrollable) {
+                                            self.setScrollLeft(nx);
+                                            self.showCursor(ny,nx);
+                                        } else {
+                                            self.showCursor(ny);
+                                        }
+                                        if (cap.isie10) document.selection.clear();
+                                    }
+                                });
+
+                                if (cap.ischrome&&self.istouchcapable) grabbed=false;  //chrome touch emulation doesn't like!
+                                if (grabbed) return self.cancelEvent(e);
+                            }
+
+                        };
+
+                    }
+
+                    self.onmousedown = function(e,hronly) {
+                        if (self.rail.drag&&self.rail.drag.pt!=1) return;
+                        if (self.locked) return self.cancelEvent(e);
+                        self.cancelScroll();
+                        self.rail.drag = {x:e.clientX,y:e.clientY,sx:self.scroll.x,sy:self.scroll.y,pt:1,hr:(!!hronly)};
+                        var tg = self.getTarget(e);
+                        if (!self.ispage&&cap.hasmousecapture) tg.setCapture();
+                        if (self.isiframe&&!cap.hasmousecapture) {
+                            self.saved["csspointerevents"] = self.doc.css("pointer-events");
+                            self.css(self.doc,{"pointer-events":"none"});
+                        }
+                        self.hasmoving=false;
+                        return self.cancelEvent(e);
+                    };
+
+                    self.onmouseup = function(e) {
+                        if (self.rail.drag) {
+                            if (cap.hasmousecapture) document.releaseCapture();
+                            if (self.isiframe&&!cap.hasmousecapture) self.doc.css("pointer-events",self.saved["csspointerevents"]);
+                            if(self.rail.drag.pt!=1)return;
+                            self.rail.drag = false;
+                            //if (!self.rail.active) self.hideCursor();
+                            if (self.hasmoving) self.triggerScrollEnd();  // TODO - check &&!self.scrollrunning
+                            return self.cancelEvent(e);
+                        }
+                    };
+
+                    self.onmousemove = function(e) {
+                        if (self.rail.drag) {
+                            if(self.rail.drag.pt!=1)return;
+
+                            if (cap.ischrome&&e.which==0) return self.onmouseup(e);
+
+                            self.cursorfreezed = true;
+                            self.hasmoving = true;
+
+                            if (self.rail.drag.hr) {
+                                self.scroll.x = self.rail.drag.sx + (e.clientX-self.rail.drag.x);
+                                if (self.scroll.x<0) self.scroll.x=0;
+                                var mw = self.scrollvaluemaxw;
+                                if (self.scroll.x>mw) self.scroll.x=mw;
+                            } else {
+                                self.scroll.y = self.rail.drag.sy + (e.clientY-self.rail.drag.y);
+                                if (self.scroll.y<0) self.scroll.y=0;
+                                var my = self.scrollvaluemax;
+                                if (self.scroll.y>my) self.scroll.y=my;
+                            }
+
+                            self.synched('mousemove',function(){
+                                if (self.rail.drag&&(self.rail.drag.pt==1)) {
+                                    self.showCursor();
+                                    if (self.rail.drag.hr) self.doScrollLeft(Math.round(self.scroll.x*self.scrollratio.x),self.opt.cursordragspeed);
+                                    else self.doScrollTop(Math.round(self.scroll.y*self.scrollratio.y),self.opt.cursordragspeed);
+                                }
+                            });
+
+                            return self.cancelEvent(e);
+                        }
+                        /*
+                         else {
+                         self.checkarea = true;
+                         }
+                         */
+                    };
+
+                    if (cap.cantouch||self.opt.touchbehavior) {
+
+                        self.onpreventclick = function(e) {
+                            if (self.preventclick) {
+                                self.preventclick.tg.onclick = self.preventclick.click;
+                                self.preventclick = false;
+                                return self.cancelEvent(e);
+                            }
+                        }
+
+//            self.onmousedown = self.ontouchstart;
+//            self.onmouseup = self.ontouchend;
+//            self.onmousemove = self.ontouchmove;
+
+                        self.bind(self.win,"mousedown",self.ontouchstart);  // control content dragging
+
+                        self.onclick = (cap.isios) ? false : function(e) {
+                            if (self.lastmouseup) {
+                                self.lastmouseup = false;
+                                return self.cancelEvent(e);
+                            } else {
+                                return true;
+                            }
+                        };
+
+                        if (self.opt.grabcursorenabled&&cap.cursorgrabvalue) {
+                            self.css((self.ispage)?self.doc:self.win,{'cursor':cap.cursorgrabvalue});
+                            self.css(self.rail,{'cursor':cap.cursorgrabvalue});
+                        }
+
+                    } else {
+
+                        function checkSelectionScroll(e) {
+                            if (!self.selectiondrag) return;
+
+                            if (e) {
+                                var ww = self.win.outerHeight();
+                                var df = (e.pageY - self.selectiondrag.top);
+                                if (df>0&&df<ww) df=0;
+                                if (df>=ww) df-=ww;
+                                self.selectiondrag.df = df;
+                            }
+                            if (self.selectiondrag.df==0) return;
+
+                            var rt = -Math.floor(self.selectiondrag.df/6)*2;
+//              self.doScrollTop(self.getScrollTop(true)+rt);
+                            self.doScrollBy(rt);
+
+                            self.debounced("doselectionscroll",function(){checkSelectionScroll()},50);
+                        };
+
+                        if ("getSelection" in document) {  // A grade - Major browsers
+                            self.hasTextSelected = function() {
+                                return (document.getSelection().rangeCount>0);
+                            };
+                        }
+                        else if ("selection" in document) {  //IE9-
+                            self.hasTextSelected = function() {
+                                return (document.selection.type != "None");
+                            };
+                        }
+                        else {
+                            self.hasTextSelected = function() {  // no support
+                                return false;
+                            };
+                        }
+
+                        self.onselectionstart = function(e) {
+                            if (self.ispage) return;
+                            self.selectiondrag = self.win.offset();
+                        };
+                        self.onselectionend = function(e) {
+                            self.selectiondrag = false;
+                        };
+                        self.onselectiondrag = function(e) {
+                            if (!self.selectiondrag) return;
+                            if (self.hasTextSelected()) self.debounced("selectionscroll",function(){checkSelectionScroll(e)},250);
+                        };
+
+
+                    }
+
+                    if (cap.hasmstouch) {
+                        self.css(self.rail,{'-ms-touch-action':'none'});
+                        self.css(self.cursor,{'-ms-touch-action':'none'});
+
+                        self.bind(self.win,"MSPointerDown",self.ontouchstart);
+                        self.bind(document,"MSPointerUp",self.ontouchend);
+                        self.bind(document,"MSPointerMove",self.ontouchmove);
+                        self.bind(self.cursor,"MSGestureHold",function(e){e.preventDefault()});
+                        self.bind(self.cursor,"contextmenu",function(e){e.preventDefault()});
+                    }
+
+                    if (this.istouchcapable) {  //desktop with screen touch enabled
+                        self.bind(self.win,"touchstart",self.ontouchstart);
+                        self.bind(document,"touchend",self.ontouchend);
+                        self.bind(document,"touchcancel",self.ontouchend);
+                        self.bind(document,"touchmove",self.ontouchmove);
+                    }
+
+                    self.bind(self.cursor,"mousedown",self.onmousedown);
+                    self.bind(self.cursor,"mouseup",self.onmouseup);
+
+                    if (self.railh) {
+                        self.bind(self.cursorh,"mousedown",function(e){self.onmousedown(e,true)});
+
+                        self.bind(self.cursorh,"mouseup",self.onmouseup);
+
+
+                        /*
+                         self.bind(self.cursorh,"mouseup",function(e){
+                         if (self.rail.drag&&self.rail.drag.pt==2) return;
+                         self.rail.drag = false;
+                         self.hasmoving = false;
+                         self.hideCursor();
+                         if (cap.hasmousecapture) document.releaseCapture();
+                         return self.cancelEvent(e);
+                         });
+                         */
+
+                    }
+
+                    if (self.opt.cursordragontouch||!cap.cantouch&&!self.opt.touchbehavior) {
+
+                        self.rail.css({"cursor":"default"});
+                        self.railh&&self.railh.css({"cursor":"default"});
+
+                        self.jqbind(self.rail,"mouseenter",function() {
+                            if (!self.win.is(":visible")) return false;
+                            if (self.canshowonmouseevent) self.showCursor();
+                            self.rail.active = true;
+                        });
+                        self.jqbind(self.rail,"mouseleave",function() {
+                            self.rail.active = false;
+                            if (!self.rail.drag) self.hideCursor();
+                        });
+
+                        if (self.opt.sensitiverail) {
+                            self.bind(self.rail,"click",function(e){self.doRailClick(e,false,false)});
+                            self.bind(self.rail,"dblclick",function(e){self.doRailClick(e,true,false)});
+                            self.bind(self.cursor,"click",function(e){self.cancelEvent(e)});
+                            self.bind(self.cursor,"dblclick",function(e){self.cancelEvent(e)});
+                        }
+
+                        if (self.railh) {
+                            self.jqbind(self.railh,"mouseenter",function() {
+                                if (!self.win.is(":visible")) return false;
+                                if (self.canshowonmouseevent) self.showCursor();
+                                self.rail.active = true;
+                            });
+                            self.jqbind(self.railh,"mouseleave",function() {
+                                self.rail.active = false;
+                                if (!self.rail.drag) self.hideCursor();
+                            });
+
+                            if (self.opt.sensitiverail) {
+                                self.bind(self.railh, "click", function(e){self.doRailClick(e,false,true)});
+                                self.bind(self.railh, "dblclick", function(e){self.doRailClick(e, true, true) });
+                                self.bind(self.cursorh, "click", function (e) { self.cancelEvent(e) });
+                                self.bind(self.cursorh, "dblclick", function (e) { self.cancelEvent(e) });
+                            }
+
+                        }
+
+                    }
+
+                    if (!cap.cantouch&&!self.opt.touchbehavior) {
+
+                        self.bind((cap.hasmousecapture)?self.win:document,"mouseup",self.onmouseup);
+                        self.bind(document,"mousemove",self.onmousemove);
+                        if (self.onclick) self.bind(document,"click",self.onclick);
+
+                        if (!self.ispage&&self.opt.enablescrollonselection) {
+                            self.bind(self.win[0],"mousedown",self.onselectionstart);
+                            self.bind(document,"mouseup",self.onselectionend);
+                            self.bind(self.cursor,"mouseup",self.onselectionend);
+                            if (self.cursorh) self.bind(self.cursorh,"mouseup",self.onselectionend);
+                            self.bind(document,"mousemove",self.onselectiondrag);
+                        }
+
+                        if (self.zoom) {
+                            self.jqbind(self.zoom,"mouseenter",function() {
+                                if (self.canshowonmouseevent) self.showCursor();
+                                self.rail.active = true;
+                            });
+                            self.jqbind(self.zoom,"mouseleave",function() {
+                                self.rail.active = false;
+                                if (!self.rail.drag) self.hideCursor();
+                            });
+                        }
+
+                    } else {
+
+                        self.bind((cap.hasmousecapture)?self.win:document,"mouseup",self.ontouchend);
+                        self.bind(document,"mousemove",self.ontouchmove);
+                        if (self.onclick) self.bind(document,"click",self.onclick);
+
+                        if (self.opt.cursordragontouch) {
+                            self.bind(self.cursor,"mousedown",self.onmousedown);
+                            self.bind(self.cursor,"mousemove",self.onmousemove);
+                            self.cursorh&&self.bind(self.cursorh,"mousedown",function(e){self.onmousedown(e,true)});
+                            self.cursorh&&self.bind(self.cursorh,"mousemove",self.onmousemove);
+                        }
+
+                    }
+
+                    if (self.opt.enablemousewheel) {
+                        if (!self.isiframe) self.bind((cap.isie&&self.ispage) ? document : self.win /*self.docscroll*/ ,"mousewheel",self.onmousewheel);
+                        self.bind(self.rail,"mousewheel",self.onmousewheel);
+                        if (self.railh) self.bind(self.railh,"mousewheel",self.onmousewheelhr);
+                    }
+
+                    if (!self.ispage&&!cap.cantouch&&!(/HTML|^BODY/.test(self.win[0].nodeName))) {
+                        if (!self.win.attr("tabindex")) self.win.attr({"tabindex":tabindexcounter++});
+
+                        self.jqbind(self.win,"focus",function(e) {
+                            domfocus = (self.getTarget(e)).id||true;
+                            self.hasfocus = true;
+                            if (self.canshowonmouseevent) self.noticeCursor();
+                        });
+                        self.jqbind(self.win,"blur",function(e) {
+                            domfocus = false;
+                            self.hasfocus = false;
+                        });
+
+                        self.jqbind(self.win,"mouseenter",function(e) {
+                            mousefocus = (self.getTarget(e)).id||true;
+                            self.hasmousefocus = true;
+                            if (self.canshowonmouseevent) self.noticeCursor();
+                        });
+                        self.jqbind(self.win,"mouseleave",function() {
+                            mousefocus = false;
+                            self.hasmousefocus = false;
+                            if (!self.rail.drag) self.hideCursor();
+                        });
+
+                    };
+
+                }  // !ie9mobile
+
+                //Thanks to http://www.quirksmode.org !!
+                self.onkeypress = function(e) {
+                    if (self.locked&&self.page.maxh==0) return true;
+
+                    e = (e) ? e : window.e;
+                    var tg = self.getTarget(e);
+                    if (tg&&/INPUT|TEXTAREA|SELECT|OPTION/.test(tg.nodeName)) {
+                        var tp = tg.getAttribute('type')||tg.type||false;
+                        if ((!tp)||!(/submit|button|cancel/i.tp)) return true;
+                    }
+
+                    if ($(tg).attr('contenteditable')) return true;
+
+                    if (self.hasfocus||(self.hasmousefocus&&!domfocus)||(self.ispage&&!domfocus&&!mousefocus)) {
+                        var key = e.keyCode;
+
+                        if (self.locked&&key!=27) return self.cancelEvent(e);
+
+                        var ctrl = e.ctrlKey||false;
+                        var shift = e.shiftKey || false;
+
+                        var ret = false;
+                        switch (key) {
+                            case 38:
+                            case 63233: //safari
+                                self.doScrollBy(24*3);
+                                ret = true;
+                                break;
+                            case 40:
+                            case 63235: //safari
+                                self.doScrollBy(-24*3);
+                                ret = true;
+                                break;
+                            case 37:
+                            case 63232: //safari
+                                if (self.railh) {
+                                    (ctrl) ? self.doScrollLeft(0) : self.doScrollLeftBy(24*3);
+                                    ret = true;
+                                }
+                                break;
+                            case 39:
+                            case 63234: //safari
+                                if (self.railh) {
+                                    (ctrl) ? self.doScrollLeft(self.page.maxw) : self.doScrollLeftBy(-24*3);
+                                    ret = true;
+                                }
+                                break;
+                            case 33:
+                            case 63276: // safari
+                                self.doScrollBy(self.view.h);
+                                ret = true;
+                                break;
+                            case 34:
+                            case 63277: // safari
+                                self.doScrollBy(-self.view.h);
+                                ret = true;
+                                break;
+                            case 36:
+                            case 63273: // safari
+                                (self.railh&&ctrl) ? self.doScrollPos(0,0) : self.doScrollTo(0);
+                                ret = true;
+                                break;
+                            case 35:
+                            case 63275: // safari
+                                (self.railh&&ctrl) ? self.doScrollPos(self.page.maxw,self.page.maxh) : self.doScrollTo(self.page.maxh);
+                                ret = true;
+                                break;
+                            case 32:
+                                if (self.opt.spacebarenabled) {
+                                    (shift) ? self.doScrollBy(self.view.h) : self.doScrollBy(-self.view.h);
+                                    ret = true;
+                                }
+                                break;
+                            case 27: // ESC
+                                if (self.zoomactive) {
+                                    self.doZoom();
+                                    ret = true;
+                                }
+                                break;
+                        }
+                        if (ret) return self.cancelEvent(e);
+                    }
+                };
+
+                if (self.opt.enablekeyboard) self.bind(document,(cap.isopera&&!cap.isopera12)?"keypress":"keydown",self.onkeypress);
+
+                self.bind(document,"keydown",function(e){
+                    var ctrl = e.ctrlKey||false;
+                    if (ctrl) self.wheelprevented = true;
+                });
+                self.bind(document,"keyup",function(e){
+                    var ctrl = e.ctrlKey||false;
+                    if (!ctrl) self.wheelprevented = false;
+                });
+
+                self.bind(window,'resize',self.lazyResize);
+                self.bind(window,'orientationchange',self.lazyResize);
+
+                self.bind(window,"load",self.lazyResize);
+
+                if (cap.ischrome&&!self.ispage&&!self.haswrapper) { //chrome void scrollbar bug - it persists in version 26
+                    var tmp=self.win.attr("style");
+                    var ww = parseFloat(self.win.css("width"))+1;
+                    self.win.css('width',ww);
+                    self.synched("chromefix",function(){self.win.attr("style",tmp)});
+                }
+
+
+// Trying a cross-browser implementation - good luck!
+
+                self.onAttributeChange = function(e) {
+                    self.lazyResize(250);
+                };
+
+                if (!self.ispage&&!self.haswrapper) {
+                    // redesigned MutationObserver for Chrome18+/Firefox14+/iOS6+ with support for: remove div, add/remove content
+                    if (clsMutationObserver !== false) {
+                        self.observer = new clsMutationObserver(function(mutations) {
+                            mutations.forEach(self.onAttributeChange);
+                        });
+                        self.observer.observe(self.win[0],{childList: true, characterData: false, attributes: true, subtree: false});
+
+                        self.observerremover = new clsMutationObserver(function(mutations) {
+                            mutations.forEach(function(mo){
+                                if (mo.removedNodes.length>0) {
+                                    for (var dd in mo.removedNodes) {
+                                        if (mo.removedNodes[dd]==self.win[0]) return self.remove();
+                                    }
+                                }
+                            });
+                        });
+                        self.observerremover.observe(self.win[0].parentNode,{childList: true, characterData: false, attributes: false, subtree: false});
+
+                    } else {
+                        self.bind(self.win,(cap.isie&&!cap.isie9)?"propertychange":"DOMAttrModified",self.onAttributeChange);
+                        if (cap.isie9) self.win[0].attachEvent("onpropertychange",self.onAttributeChange); //IE9 DOMAttrModified bug
+                        self.bind(self.win,"DOMNodeRemoved",function(e){
+                            if (e.target==self.win[0]) self.remove();
+                        });
+                    }
+                }
+
+//
+
+                if (!self.ispage&&self.opt.boxzoom) self.bind(window,"resize",self.resizeZoom);
+                if (self.istextarea) self.bind(self.win,"mouseup",self.lazyResize);
+
+//        self.checkrtlmode = true;
+                self.lazyResize(30);
+
+            }
+
+            if (this.doc[0].nodeName == 'IFRAME') {
+                function oniframeload(e) {
+                    self.iframexd = false;
+                    try {
+                        var doc = 'contentDocument' in this ? this.contentDocument : this.contentWindow.document;
+                        var a = doc.domain;
+                    } catch(e){self.iframexd = true;doc=false};
+
+                    if (self.iframexd) {
+                        if ("console" in window) console.log('NiceScroll error: policy restriced iframe');
+                        return true;  //cross-domain - I can't manage this
+                    }
+
+                    self.forcescreen = true;
+
+                    if (self.isiframe) {
+                        self.iframe = {
+                            "doc":$(doc),
+                            "html":self.doc.contents().find('html')[0],
+                            "body":self.doc.contents().find('body')[0]
+                        };
+                        self.getContentSize = function(){
+                            return {
+                                w:Math.max(self.iframe.html.scrollWidth,self.iframe.body.scrollWidth),
+                                h:Math.max(self.iframe.html.scrollHeight,self.iframe.body.scrollHeight)
+                            };
+                        };
+                        self.docscroll = $(self.iframe.body);//$(this.contentWindow);
+                    }
+
+                    if (!cap.isios&&self.opt.iframeautoresize&&!self.isiframe) {
+                        self.win.scrollTop(0); // reset position
+                        self.doc.height("");  //reset height to fix browser bug
+                        var hh=Math.max(doc.getElementsByTagName('html')[0].scrollHeight,doc.body.scrollHeight);
+                        self.doc.height(hh);
+                    }
+                    self.lazyResize(30);
+
+                    if (cap.isie7) self.css($(self.iframe.html),{'overflow-y':'hidden'});
+                    //self.css($(doc.body),{'overflow-y':'hidden'});
+                    self.css($(self.iframe.body),{'overflow-y':'hidden'});
+
+                    if (cap.isios&&self.haswrapper) {
+                        self.css($(doc.body),{'-webkit-transform':'translate3d(0,0,0)'});  // avoid iFrame content clipping - thanks to http://blog.derraab.com/2012/04/02/avoid-iframe-content-clipping-with-css-transform-on-ios/
+                    }
+
+                    if ('contentWindow' in this) {
+                        self.bind(this.contentWindow,"scroll",self.onscroll);  //IE8 & minor
+                    } else {
+                        self.bind(doc,"scroll",self.onscroll);
+                    }
+
+                    if (self.opt.enablemousewheel) {
+                        self.bind(doc,"mousewheel",self.onmousewheel);
+                    }
+
+                    if (self.opt.enablekeyboard) self.bind(doc,(cap.isopera)?"keypress":"keydown",self.onkeypress);
+
+                    if (cap.cantouch||self.opt.touchbehavior) {
+                        self.bind(doc,"mousedown",self.ontouchstart);
+                        self.bind(doc,"mousemove",function(e){self.ontouchmove(e,true)});
+                        if (self.opt.grabcursorenabled&&cap.cursorgrabvalue) self.css($(doc.body),{'cursor':cap.cursorgrabvalue});
+                    }
+
+                    self.bind(doc,"mouseup",self.ontouchend);
+
+                    if (self.zoom) {
+                        if (self.opt.dblclickzoom) self.bind(doc,'dblclick',self.doZoom);
+                        if (self.ongesturezoom) self.bind(doc,"gestureend",self.ongesturezoom);
+                    }
+                };
+
+                if (this.doc[0].readyState&&this.doc[0].readyState=="complete"){
+                    setTimeout(function(){oniframeload.call(self.doc[0],false)},500);
+                }
+                self.bind(this.doc,"load",oniframeload);
+
+            }
+
+        };
+
+        this.showCursor = function(py,px) {
+            if (self.cursortimeout) {
+                clearTimeout(self.cursortimeout);
+                self.cursortimeout = 0;
+            }
+            if (!self.rail) return;
+            if (self.autohidedom) {
+                self.autohidedom.stop().css({opacity:self.opt.cursoropacitymax});
+                self.cursoractive = true;
+            }
+
+            if (!self.rail.drag||self.rail.drag.pt!=1) {
+                if ((typeof py != "undefined")&&(py!==false)) {
+                    self.scroll.y = Math.round(py * 1/self.scrollratio.y);
+                }
+                if (typeof px != "undefined") {
+                    self.scroll.x = Math.round(px * 1/self.scrollratio.x);  //-cxscrollleft * Math.round(px * 1/self.scrollratio.x);
+                }
+            }
+
+            self.cursor.css({height:self.cursorheight,top:self.scroll.y});
+            if (self.cursorh) {
+                (!self.rail.align&&self.rail.visibility) ? self.cursorh.css({width:self.cursorwidth,left:self.scroll.x+self.rail.width}) : self.cursorh.css({width:self.cursorwidth,left:self.scroll.x});
+                self.cursoractive = true;
+            }
+
+            if (self.zoom) self.zoom.stop().css({opacity:self.opt.cursoropacitymax});
+        };
+
+        this.hideCursor = function(tm) {
+            if (self.cursortimeout) return;
+            if (!self.rail) return;
+            if (!self.autohidedom) return;
+            if (self.hasmousefocus&&self.opt.autohidemode=="leave") return;
+            self.cursortimeout = setTimeout(function() {
+                if (!self.rail.active||!self.showonmouseevent) {
+                    self.autohidedom.stop().animate({opacity:self.opt.cursoropacitymin});
+                    if (self.zoom) self.zoom.stop().animate({opacity:self.opt.cursoropacitymin});
+                    self.cursoractive = false;
+                }
+                self.cursortimeout = 0;
+            },tm||self.opt.hidecursordelay);
+        };
+
+        this.noticeCursor = function(tm,py,px) {
+            self.showCursor(py,px);
+            if (!self.rail.active) self.hideCursor(tm);
+        };
+
+        this.getContentSize =
+            (self.ispage) ?
+                function(){
+                    return {
+                        w:Math.max(document.body.scrollWidth,document.documentElement.scrollWidth),
+                        h:Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)
+                    }
+                }
+                : (self.haswrapper) ?
+                function(){
+                    return {
+                        w:self.doc.outerWidth()+parseInt(self.win.css('paddingLeft'))+parseInt(self.win.css('paddingRight')),
+                        h:self.doc.outerHeight()+parseInt(self.win.css('paddingTop'))+parseInt(self.win.css('paddingBottom'))
+                    }
+                }
+                : function() {
+                return {
+                    w:self.docscroll[0].scrollWidth,
+                    h:self.docscroll[0].scrollHeight
+                }
+            };
+
+        this.onResize = function(e,page) {
+
+            if (!self||!self.win) return false;
+
+            if (!self.haswrapper&&!self.ispage) {
+                if (self.win.css('display')=='none') {
+                    if (self.visibility) self.hideRail().hideRailHr();
+                    return false;
+                } else {
+                    if (!self.hidden&&!self.visibility) self.showRail().showRailHr();
+                }
+            }
+
+            var premaxh = self.page.maxh;
+            var premaxw = self.page.maxw;
+
+            var preview = {h:self.view.h,w:self.view.w};
+
+            self.view = {
+                w:(self.ispage) ? self.win.width() : parseInt(self.win[0].clientWidth),
+                h:(self.ispage) ? self.win.height() : parseInt(self.win[0].clientHeight)
+            };
+
+            self.page = (page) ? page : self.getContentSize();
+
+            self.page.maxh = Math.max(0,self.page.h - self.view.h);
+            self.page.maxw = Math.max(0,self.page.w - self.view.w);
+
+            if ((self.page.maxh==premaxh)&&(self.page.maxw==premaxw)&&(self.view.w==preview.w)) {
+                // test position
+                if (!self.ispage) {
+                    var pos = self.win.offset();
+                    if (self.lastposition) {
+                        var lst = self.lastposition;
+                        if ((lst.top==pos.top)&&(lst.left==pos.left)) return self; //nothing to do
+                    }
+                    self.lastposition = pos;
+                } else {
+                    return self; //nothing to do
+                }
+            }
+
+            if (self.page.maxh==0) {
+                self.hideRail();
+                self.scrollvaluemax = 0;
+                self.scroll.y = 0;
+                self.scrollratio.y = 0;
+                self.cursorheight = 0;
+                self.setScrollTop(0);
+                self.rail.scrollable = false;
+            } else {
+                self.rail.scrollable = true;
+            }
+
+            if (self.page.maxw==0) {
+                self.hideRailHr();
+                self.scrollvaluemaxw = 0;
+                self.scroll.x = 0;
+                self.scrollratio.x = 0;
+                self.cursorwidth = 0;
+                self.setScrollLeft(0);
+                self.railh.scrollable = false;
+            } else {
+                self.railh.scrollable = true;
+            }
+
+            self.locked = (self.page.maxh==0)&&(self.page.maxw==0);
+            if (self.locked) {
+                if (!self.ispage) self.updateScrollBar(self.view);
+                return false;
+            }
+
+            if (!self.hidden&&!self.visibility) {
+                self.showRail().showRailHr();
+            }
+            else if (!self.hidden&&!self.railh.visibility) self.showRailHr();
+
+            if (self.istextarea&&self.win.css('resize')&&self.win.css('resize')!='none') self.view.h-=20;
+
+            self.cursorheight = Math.min(self.view.h,Math.round(self.view.h * (self.view.h / self.page.h)));
+            self.cursorheight = (self.opt.cursorfixedheight) ? self.opt.cursorfixedheight : Math.max(self.opt.cursorminheight,self.cursorheight);
+
+            self.cursorwidth = Math.min(self.view.w,Math.round(self.view.w * (self.view.w / self.page.w)));
+            self.cursorwidth = (self.opt.cursorfixedheight) ? self.opt.cursorfixedheight : Math.max(self.opt.cursorminheight,self.cursorwidth);
+
+            self.scrollvaluemax = self.view.h-self.cursorheight-self.cursor.hborder;
+
+            if (self.railh) {
+                self.railh.width = (self.page.maxh>0) ? (self.view.w-self.rail.width) : self.view.w;
+                self.scrollvaluemaxw = self.railh.width-self.cursorwidth-self.cursorh.wborder;
+            }
+
+            /*
+             if (self.checkrtlmode&&self.railh) {
+             self.checkrtlmode = false;
+             if (self.opt.rtlmode&&self.scroll.x==0) self.setScrollLeft(self.page.maxw);
+             }
+             */
+
+            if (!self.ispage) self.updateScrollBar(self.view);
+
+            self.scrollratio = {
+                x:(self.page.maxw/self.scrollvaluemaxw),
+                y:(self.page.maxh/self.scrollvaluemax)
+            };
+
+            var sy = self.getScrollTop();
+            if (sy>self.page.maxh) {
+                self.doScrollTop(self.page.maxh);
+            } else {
+                self.scroll.y = Math.round(self.getScrollTop() * (1/self.scrollratio.y));
+                self.scroll.x = Math.round(self.getScrollLeft() * (1/self.scrollratio.x));
+                if (self.cursoractive) self.noticeCursor();
+            }
+
+            if (self.scroll.y&&(self.getScrollTop()==0)) self.doScrollTo(Math.floor(self.scroll.y*self.scrollratio.y));
+
+            return self;
+        };
+
+        this.resize = self.onResize;
+
+        this.lazyResize = function(tm) {   // event debounce
+            tm = (isNaN(tm)) ? 30 : tm;
+            self.delayed('resize',self.resize,tm);
+            return self;
+        };
+
+// modified by MDN https://developer.mozilla.org/en-US/docs/DOM/Mozilla_event_reference/wheel
+        function _modernWheelEvent(dom,name,fn,bubble) {
+            self._bind(dom,name,function(e){
+                var  e = (e) ? e : window.event;
+                var event = {
+                    original: e,
+                    target: e.target || e.srcElement,
+                    type: "wheel",
+                    deltaMode: e.type == "MozMousePixelScroll" ? 0 : 1,
+                    deltaX: 0,
+                    deltaZ: 0,
+                    preventDefault: function() {
+                        e.preventDefault ? e.preventDefault() : e.returnValue = false;
+                        return false;
+                    },
+                    stopImmediatePropagation: function() {
+                        (e.stopImmediatePropagation) ? e.stopImmediatePropagation() : e.cancelBubble = true;
+                    }
+                };
+
+                if (name=="mousewheel") {
+                    event.deltaY = - 1/40 * e.wheelDelta;
+                    e.wheelDeltaX && (event.deltaX = - 1/40 * e.wheelDeltaX);
+                } else {
+                    event.deltaY = e.detail;
+                }
+
+                return fn.call(dom,event);
+            },bubble);
+        };
+
+        this._bind = function(el,name,fn,bubble) {  // primitive bind
+            self.events.push({e:el,n:name,f:fn,b:bubble,q:false});
+            if (el.addEventListener) {
+                el.addEventListener(name,fn,bubble||false);
+            }
+            else if (el.attachEvent) {
+                el.attachEvent("on"+name,fn);
+            }
+            else {
+                el["on"+name] = fn;
+            }
+        };
+
+        this.jqbind = function(dom,name,fn) {  // use jquery bind for non-native events (mouseenter/mouseleave)
+            self.events.push({e:dom,n:name,f:fn,q:true});
+            $(dom).bind(name,fn);
+        };
+
+        this.bind = function(dom,name,fn,bubble) {  // touch-oriented & fixing jquery bind
+            var el = ("jquery" in dom) ? dom[0] : dom;
+
+            if (name=='mousewheel') {
+                if ("onwheel" in self.win) {
+                    self._bind(el,"wheel",fn,bubble||false);
+                } else {
+                    var wname = (typeof document.onmousewheel != "undefined") ? "mousewheel" : "DOMMouseScroll";  // older IE/Firefox
+                    _modernWheelEvent(el,wname,fn,bubble||false);
+                    if (wname=="DOMMouseScroll") _modernWheelEvent(el,"MozMousePixelScroll",fn,bubble||false);  // Firefox legacy
+                }
+            }
+            else if (el.addEventListener) {
+                if (cap.cantouch && /mouseup|mousedown|mousemove/.test(name)) {  // touch device support
+                    var tt=(name=='mousedown')?'touchstart':(name=='mouseup')?'touchend':'touchmove';
+                    self._bind(el,tt,function(e){
+                        if (e.touches) {
+                            if (e.touches.length<2) {var ev=(e.touches.length)?e.touches[0]:e;ev.original=e;fn.call(this,ev);}
+                        }
+                        else if (e.changedTouches) {var ev=e.changedTouches[0];ev.original=e;fn.call(this,ev);}  //blackberry
+                    },bubble||false);
+                }
+                self._bind(el,name,fn,bubble||false);
+                if (cap.cantouch && name=="mouseup") self._bind(el,"touchcancel",fn,bubble||false);
+            }
+            else {
+                self._bind(el,name,function(e) {
+                    e = e||window.event||false;
+                    if (e) {
+                        if (e.srcElement) e.target=e.srcElement;
+                    }
+                    if (!("pageY" in e)) {
+                        e.pageX = e.clientX + document.documentElement.scrollLeft;
+                        e.pageY = e.clientY + document.documentElement.scrollTop;
+                    }
+                    return ((fn.call(el,e)===false)||bubble===false) ? self.cancelEvent(e) : true;
+                });
+            }
+        };
+
+        this._unbind = function(el,name,fn,bub) {  // primitive unbind
+            if (el.removeEventListener) {
+                el.removeEventListener(name,fn,bub);
+            }
+            else if (el.detachEvent) {
+                el.detachEvent('on'+name,fn);
+            } else {
+                el['on'+name] = false;
+            }
+        };
+
+        this.unbindAll = function() {
+            for(var a=0;a<self.events.length;a++) {
+                var r = self.events[a];
+                (r.q) ? r.e.unbind(r.n,r.f) : self._unbind(r.e,r.n,r.f,r.b);
+            }
+        };
+
+        // Thanks to http://www.switchonthecode.com !!
+        this.cancelEvent = function(e) {
+            var e = (e.original) ? e.original : (e) ? e : window.event||false;
+            if (!e) return false;
+            if(e.preventDefault) e.preventDefault();
+            if(e.stopPropagation) e.stopPropagation();
+            if(e.preventManipulation) e.preventManipulation();  //IE10
+            e.cancelBubble = true;
+            e.cancel = true;
+            e.returnValue = false;
+            return false;
+        };
+
+        this.stopPropagation = function(e) {
+            var e = (e.original) ? e.original : (e) ? e : window.event||false;
+            if (!e) return false;
+            if (e.stopPropagation) return e.stopPropagation();
+            if (e.cancelBubble) e.cancelBubble=true;
+            return false;
+        };
+
+        this.showRail = function() {
+            if ((self.page.maxh!=0)&&(self.ispage||self.win.css('display')!='none')) {
+                self.visibility = true;
+                self.rail.visibility = true;
+                self.rail.css('display','block');
+            }
+            return self;
+        };
+
+        this.showRailHr = function() {
+            if (!self.railh) return self;
+            if ((self.page.maxw!=0)&&(self.ispage||self.win.css('display')!='none')) {
+                self.railh.visibility = true;
+                self.railh.css('display','block');
+            }
+            return self;
+        };
+
+        this.hideRail = function() {
+            self.visibility = false;
+            self.rail.visibility = false;
+            self.rail.css('display','none');
+            return self;
+        };
+
+        this.hideRailHr = function() {
+            if (!self.railh) return self;
+            self.railh.visibility = false;
+            self.railh.css('display','none');
+            return self;
+        };
+
+        this.show = function() {
+            self.hidden = false;
+            self.locked = false;
+            return self.showRail().showRailHr();
+        };
+
+        this.hide = function() {
+            self.hidden = true;
+            self.locked = true;
+            return self.hideRail().hideRailHr();
+        };
+
+        this.toggle = function() {
+            return (self.hidden) ? self.show() : self.hide();
+        };
+
+        this.remove = function() {
+            self.stop();
+            if (self.cursortimeout) clearTimeout(self.cursortimeout);
+            self.doZoomOut();
+            self.unbindAll();
+
+            if (cap.isie9) self.win[0].detachEvent("onpropertychange",self.onAttributeChange); //IE9 DOMAttrModified bug
+
+            if (self.observer !== false) self.observer.disconnect();
+            if (self.observerremover !== false) self.observerremover.disconnect();
+
+            self.events = null;
+
+            if (self.cursor) {
+                self.cursor.remove();
+            }
+            if (self.cursorh) {
+                self.cursorh.remove();
+            }
+            if (self.rail) {
+                self.rail.remove();
+            }
+            if (self.railh) {
+                self.railh.remove();
+            }
+            if (self.zoom) {
+                self.zoom.remove();
+            }
+            for(var a=0;a<self.saved.css.length;a++) {
+                var d=self.saved.css[a];
+                d[0].css(d[1],(typeof d[2]=="undefined") ? '' : d[2]);
+            }
+            self.saved = false;
+            self.me.data('__nicescroll',''); //erase all traces
+
+            // memory leak fixed by GianlucaGuarini - thanks a lot!
+            // remove the current nicescroll from the $.nicescroll array & normalize array
+            var lst = $.nicescroll;
+            lst.each(function(i){
+                if (!this) return;
+                if(this.id === self.id) {
+                    delete lst[i];
+                    for(var b=++i;b<lst.length;b++,i++) lst[i]=lst[b];
+                    lst.length--;
+                    if (lst.length) delete lst[lst.length];
+                }
+            });
+
+            for (var i in self) {
+                self[i] = null;
+                delete self[i];
+            }
+
+            self = null;
+
+        };
+
+        this.scrollstart = function(fn) {
+            this.onscrollstart = fn;
+            return self;
+        };
+        this.scrollend = function(fn) {
+            this.onscrollend = fn;
+            return self;
+        };
+        this.scrollcancel = function(fn) {
+            this.onscrollcancel = fn;
+            return self;
+        };
+
+        this.zoomin = function(fn) {
+            this.onzoomin = fn;
+            return self;
+        };
+        this.zoomout = function(fn) {
+            this.onzoomout = fn;
+            return self;
+        };
+
+        this.isScrollable = function(e) {
+            var dom = (e.target) ? e.target : e;
+            if (dom.nodeName == 'OPTION') return true;
+            while (dom&&(dom.nodeType==1)&&!(/^BODY|HTML/.test(dom.nodeName))) {
+                var dd = $(dom);
+                var ov = dd.css('overflowY')||dd.css('overflowX')||dd.css('overflow')||'';
+                if (/scroll|auto/.test(ov)) return (dom.clientHeight!=dom.scrollHeight);
+                dom = (dom.parentNode) ? dom.parentNode : false;
+            }
+            return false;
+        };
+
+        this.getViewport = function(me) {
+            var dom = (me&&me.parentNode) ? me.parentNode : false;
+            while (dom&&(dom.nodeType==1)&&!(/^BODY|HTML/.test(dom.nodeName))) {
+                var dd = $(dom);
+                if (/fixed|absolute/.test(dd.css("position"))) return dd;
+                var ov = dd.css('overflowY')||dd.css('overflowX')||dd.css('overflow')||'';
+                if ((/scroll|auto/.test(ov))&&(dom.clientHeight!=dom.scrollHeight)) return dd;
+                if (dd.getNiceScroll().length>0) return dd;
+                dom = (dom.parentNode) ? dom.parentNode : false;
+            }
+            return (dom) ? $(dom) : false;
+        };
+
+        this.triggerScrollEnd = function() {
+            if (!self.onscrollend) return;
+
+            var px = self.getScrollLeft();
+            var py = self.getScrollTop();
+
+            var info = {"type":"scrollend","current":{"x":px,"y":py},"end":{"x":px,"y":py}};
+            self.onscrollend.call(self,info);
+        }
+
+        function execScrollWheel(e,hr,chkscroll) {
+            var px,py;
+            var rt = 1;
+
+            if (e.deltaMode==0) {  // PIXEL
+                px = -Math.floor(e.deltaX*(self.opt.mousescrollstep/(18*3)));
+                py = -Math.floor(e.deltaY*(self.opt.mousescrollstep/(18*3)));
+            }
+            else if (e.deltaMode==1) {  // LINE
+                px = -Math.floor(e.deltaX*self.opt.mousescrollstep);
+                py = -Math.floor(e.deltaY*self.opt.mousescrollstep);
+            }
+
+            if (hr&&self.opt.oneaxismousemode&&(px==0)&&py) {  // classic vertical-only mousewheel + browser with x/y support
+                px = py;
+                py = 0;
+            }
+
+            if (px) {
+                if (self.scrollmom) {self.scrollmom.stop()}
+                self.lastdeltax+=px;
+                self.debounced("mousewheelx",function(){var dt=self.lastdeltax;self.lastdeltax=0;if(!self.rail.drag){self.doScrollLeftBy(dt)}},15);
+            }
+            if (py) {
+                if (self.opt.nativeparentscrolling&&chkscroll&&!self.ispage&&!self.zoomactive) {
+                    if (py<0) {
+                        if (self.getScrollTop()>=self.page.maxh) return true;
+                    } else {
+                        if (self.getScrollTop()<=0) return true;
+                    }
+                }
+                if (self.scrollmom) {self.scrollmom.stop()}
+                self.lastdeltay+=py;
+                self.debounced("mousewheely",function(){var dt=self.lastdeltay;self.lastdeltay=0;if(!self.rail.drag){self.doScrollBy(dt)}},15);
+            }
+
+            e.stopImmediatePropagation();
+            return e.preventDefault();
+//      return self.cancelEvent(e);
+        };
+
+        this.onmousewheel = function(e) {
+            if (self.wheelprevented) return;
+            if (self.locked) {
+                self.debounced("checkunlock",self.resize,250);
+                return true;
+            }
+            if (self.rail.drag) return self.cancelEvent(e);
+
+            if (self.opt.oneaxismousemode=="auto"&&e.deltaX!=0) self.opt.oneaxismousemode = false;  // check two-axis mouse support (not very elegant)
+
+            if (self.opt.oneaxismousemode&&e.deltaX==0) {
+                if (!self.rail.scrollable) {
+                    if (self.railh&&self.railh.scrollable) {
+                        return self.onmousewheelhr(e);
+                    } else {
+                        return true;
+                    }
+                }
+            }
+
+            var nw = +(new Date());
+            var chk = false;
+            if (self.opt.preservenativescrolling&&((self.checkarea+600)<nw)) {
+//        self.checkarea = false;
+                self.nativescrollingarea = self.isScrollable(e);
+                chk = true;
+            }
+            self.checkarea = nw;
+            if (self.nativescrollingarea) return true; // this isn't my business
+//      if (self.locked) return self.cancelEvent(e);
+            var ret = execScrollWheel(e,false,chk);
+            if (ret) self.checkarea = 0;
+            return ret;
+        };
+
+        this.onmousewheelhr = function(e) {
+            if (self.wheelprevented) return;
+            if (self.locked||!self.railh.scrollable) return true;
+            if (self.rail.drag) return self.cancelEvent(e);
+
+            var nw = +(new Date());
+            var chk = false;
+            if (self.opt.preservenativescrolling&&((self.checkarea+600)<nw)) {
+//        self.checkarea = false;
+                self.nativescrollingarea = self.isScrollable(e);
+                chk = true;
+            }
+            self.checkarea = nw;
+            if (self.nativescrollingarea) return true; // this isn't my business
+            if (self.locked) return self.cancelEvent(e);
+
+            return execScrollWheel(e,true,chk);
+        };
+
+        this.stop = function() {
+            self.cancelScroll();
+            if (self.scrollmon) self.scrollmon.stop();
+            self.cursorfreezed = false;
+            self.scroll.y = Math.round(self.getScrollTop() * (1/self.scrollratio.y));
+            self.noticeCursor();
+            return self;
+        };
+
+        this.getTransitionSpeed = function(dif) {
+            var sp = Math.round(self.opt.scrollspeed*10);
+            var ex = Math.min(sp,Math.round((dif / 20) * self.opt.scrollspeed));
+            return (ex>20) ? ex : 0;
+        };
+
+        if (!self.opt.smoothscroll) {
+            this.doScrollLeft = function(x,spd) {  //direct
+                var y = self.getScrollTop();
+                self.doScrollPos(x,y,spd);
+            };
+            this.doScrollTop = function(y,spd) {   //direct
+                var x = self.getScrollLeft();
+                self.doScrollPos(x,y,spd);
+            };
+            this.doScrollPos = function(x,y,spd) {  //direct
+                var nx = (x>self.page.maxw) ? self.page.maxw : x;
+                if (nx<0) nx=0;
+                var ny = (y>self.page.maxh) ? self.page.maxh : y;
+                if (ny<0) ny=0;
+                self.synched('scroll',function(){
+                    self.setScrollTop(ny);
+                    self.setScrollLeft(nx);
+                });
+            };
+            this.cancelScroll = function() {}; // direct
+        }
+        else if (self.ishwscroll&&cap.hastransition&&self.opt.usetransition) {
+            this.prepareTransition = function(dif,istime) {
+                var ex = (istime) ? ((dif>20)?dif:0) : self.getTransitionSpeed(dif);
+                var trans = (ex) ? cap.prefixstyle+'transform '+ex+'ms ease-out' : '';
+                if (!self.lasttransitionstyle||self.lasttransitionstyle!=trans) {
+                    self.lasttransitionstyle = trans;
+                    self.doc.css(cap.transitionstyle,trans);
+                }
+                return ex;
+            };
+
+            this.doScrollLeft = function(x,spd) {  //trans
+                var y = (self.scrollrunning) ? self.newscrolly : self.getScrollTop();
+                self.doScrollPos(x,y,spd);
+            };
+
+            this.doScrollTop = function(y,spd) {   //trans
+                var x = (self.scrollrunning) ? self.newscrollx : self.getScrollLeft();
+                self.doScrollPos(x,y,spd);
+            };
+
+            this.doScrollPos = function(x,y,spd) {  //trans
+
+                var py = self.getScrollTop();
+                var px = self.getScrollLeft();
+
+                if (((self.newscrolly-py)*(y-py)<0)||((self.newscrollx-px)*(x-px)<0)) self.cancelScroll();  //inverted movement detection
+
+                if (self.opt.bouncescroll==false) {
+                    if (y<0) y=0;
+                    else if (y>self.page.maxh) y=self.page.maxh;
+                    if (x<0) x=0;
+                    else if (x>self.page.maxw) x=self.page.maxw;
+                }
+
+                if (self.scrollrunning&&x==self.newscrollx&&y==self.newscrolly) return false;
+
+                self.newscrolly = y;
+                self.newscrollx = x;
+
+                self.newscrollspeed = spd||false;
+
+                if (self.timer) return false;
+
+                self.timer = setTimeout(function(){
+
+                    var top = self.getScrollTop();
+                    var lft = self.getScrollLeft();
+
+                    var dst = {};
+                    dst.x = x-lft;
+                    dst.y = y-top;
+                    dst.px = lft;
+                    dst.py = top;
+
+                    var dd = Math.round(Math.sqrt(Math.pow(dst.x,2)+Math.pow(dst.y,2)));
+
+//          var df = (self.newscrollspeed) ? self.newscrollspeed : dd;
+
+                    var ms = (self.newscrollspeed && self.newscrollspeed>1) ? self.newscrollspeed : self.getTransitionSpeed(dd);
+                    if (self.newscrollspeed&&self.newscrollspeed<=1) ms*=self.newscrollspeed;
+
+                    self.prepareTransition(ms,true);
+
+                    if (self.timerscroll&&self.timerscroll.tm) clearInterval(self.timerscroll.tm);
+
+                    if (ms>0) {
+
+                        if (!self.scrollrunning&&self.onscrollstart) {
+                            var info = {"type":"scrollstart","current":{"x":lft,"y":top},"request":{"x":x,"y":y},"end":{"x":self.newscrollx,"y":self.newscrolly},"speed":ms};
+                            self.onscrollstart.call(self,info);
+                        }
+
+                        if (cap.transitionend) {
+                            if (!self.scrollendtrapped) {
+                                self.scrollendtrapped = true;
+                                self.bind(self.doc,cap.transitionend,self.onScrollTransitionEnd,false); //I have got to do something usefull!!
+                            }
+                        } else {
+                            if (self.scrollendtrapped) clearTimeout(self.scrollendtrapped);
+                            self.scrollendtrapped = setTimeout(self.onScrollTransitionEnd,ms);  // simulate transitionend event
+                        }
+
+                        var py = top;
+                        var px = lft;
+                        self.timerscroll = {
+                            bz: new BezierClass(py,self.newscrolly,ms,0,0,0.58,1),
+                            bh: new BezierClass(px,self.newscrollx,ms,0,0,0.58,1)
+                        };
+                        if (!self.cursorfreezed) self.timerscroll.tm=setInterval(function(){self.showCursor(self.getScrollTop(),self.getScrollLeft())},60);
+
+                    }
+
+                    self.synched("doScroll-set",function(){
+                        self.timer = 0;
+                        if (self.scrollendtrapped) self.scrollrunning = true;
+                        self.setScrollTop(self.newscrolly);
+                        self.setScrollLeft(self.newscrollx);
+                        if (!self.scrollendtrapped) self.onScrollTransitionEnd();
+                    });
+
+
+                },50);
+
+            };
+
+            this.cancelScroll = function() {
+                if (!self.scrollendtrapped) return true;
+                var py = self.getScrollTop();
+                var px = self.getScrollLeft();
+                self.scrollrunning = false;
+                if (!cap.transitionend) clearTimeout(cap.transitionend);
+                self.scrollendtrapped = false;
+                self._unbind(self.doc,cap.transitionend,self.onScrollTransitionEnd);
+                self.prepareTransition(0);
+                self.setScrollTop(py); // fire event onscroll
+                if (self.railh) self.setScrollLeft(px);
+                if (self.timerscroll&&self.timerscroll.tm) clearInterval(self.timerscroll.tm);
+                self.timerscroll = false;
+
+                self.cursorfreezed = false;
+
+                //self.noticeCursor(false,py,px);
+                self.showCursor(py,px);
+                return self;
+            };
+            this.onScrollTransitionEnd = function() {
+                if (self.scrollendtrapped) self._unbind(self.doc,cap.transitionend,self.onScrollTransitionEnd);
+                self.scrollendtrapped = false;
+                self.prepareTransition(0);
+                if (self.timerscroll&&self.timerscroll.tm) clearInterval(self.timerscroll.tm);
+                self.timerscroll = false;
+                var py = self.getScrollTop();
+                var px = self.getScrollLeft();
+                self.setScrollTop(py);  // fire event onscroll
+                if (self.railh) self.setScrollLeft(px);  // fire event onscroll left
+
+                self.noticeCursor(false,py,px);
+
+                self.cursorfreezed = false;
+
+                if (py<0) py=0
+                else if (py>self.page.maxh) py=self.page.maxh;
+                if (px<0) px=0
+                else if (px>self.page.maxw) px=self.page.maxw;
+                if((py!=self.newscrolly)||(px!=self.newscrollx)) return self.doScrollPos(px,py,self.opt.snapbackspeed);
+
+                if (self.onscrollend&&self.scrollrunning) {
+//          var info = {"type":"scrollend","current":{"x":px,"y":py},"end":{"x":self.newscrollx,"y":self.newscrolly}};
+//          self.onscrollend.call(self,info);
+                    self.triggerScrollEnd();
+                }
+                self.scrollrunning = false;
+
+            };
+
+        } else {
+
+            this.doScrollLeft = function(x,spd) {  //no-trans
+                var y = (self.scrollrunning) ? self.newscrolly : self.getScrollTop();
+                self.doScrollPos(x,y,spd);
+            };
+
+            this.doScrollTop = function(y,spd) {  //no-trans
+                var x = (self.scrollrunning) ? self.newscrollx : self.getScrollLeft();
+                self.doScrollPos(x,y,spd);
+            };
+
+            this.doScrollPos = function(x,y,spd) {  //no-trans
+                var y = ((typeof y == "undefined")||(y===false)) ? self.getScrollTop(true) : y;
+
+                if  ((self.timer)&&(self.newscrolly==y)&&(self.newscrollx==x)) return true;
+
+                if (self.timer) clearAnimationFrame(self.timer);
+                self.timer = 0;
+
+                var py = self.getScrollTop();
+                var px = self.getScrollLeft();
+
+                if (((self.newscrolly-py)*(y-py)<0)||((self.newscrollx-px)*(x-px)<0)) self.cancelScroll();  //inverted movement detection
+
+                self.newscrolly = y;
+                self.newscrollx = x;
+
+                if (!self.bouncescroll||!self.rail.visibility) {
+                    if (self.newscrolly<0) {
+                        self.newscrolly = 0;
+                    }
+                    else if (self.newscrolly>self.page.maxh) {
+                        self.newscrolly = self.page.maxh;
+                    }
+                }
+                if (!self.bouncescroll||!self.railh.visibility) {
+                    if (self.newscrollx<0) {
+                        self.newscrollx = 0;
+                    }
+                    else if (self.newscrollx>self.page.maxw) {
+                        self.newscrollx = self.page.maxw;
+                    }
+                }
+
+                self.dst = {};
+                self.dst.x = x-px;
+                self.dst.y = y-py;
+                self.dst.px = px;
+                self.dst.py = py;
+
+                var dst = Math.round(Math.sqrt(Math.pow(self.dst.x,2)+Math.pow(self.dst.y,2)));
+
+                self.dst.ax = self.dst.x / dst;
+                self.dst.ay = self.dst.y / dst;
+
+                var pa = 0;
+                var pe = dst;
+
+                if (self.dst.x==0) {
+                    pa = py;
+                    pe = y;
+                    self.dst.ay = 1;
+                    self.dst.py = 0;
+                } else if (self.dst.y==0) {
+                    pa = px;
+                    pe = x;
+                    self.dst.ax = 1;
+                    self.dst.px = 0;
+                }
+
+                var ms = self.getTransitionSpeed(dst);
+                if (spd&&spd<=1) ms*=spd;
+                if (ms>0) {
+                    self.bzscroll = (self.bzscroll) ? self.bzscroll.update(pe,ms) : new BezierClass(pa,pe,ms,0,1,0,1);
+                } else {
+                    self.bzscroll = false;
+                }
+
+                if (self.timer) return;
+
+                if ((py==self.page.maxh&&y>=self.page.maxh)||(px==self.page.maxw&&x>=self.page.maxw)) self.checkContentSize();
+
+                var sync = 1;
+
+                function scrolling() {
+                    if (self.cancelAnimationFrame) return true;
+
+                    self.scrollrunning = true;
+
+                    sync = 1-sync;
+                    if (sync) return (self.timer = setAnimationFrame(scrolling)||1);
+
+                    var done = 0;
+
+                    var sc = sy = self.getScrollTop();
+                    if (self.dst.ay) {
+                        sc = (self.bzscroll) ? self.dst.py + (self.bzscroll.getNow()*self.dst.ay) : self.newscrolly;
+                        var dr=sc-sy;
+                        if ((dr<0&&sc<self.newscrolly)||(dr>0&&sc>self.newscrolly)) sc = self.newscrolly;
+                        self.setScrollTop(sc);
+                        if (sc == self.newscrolly) done=1;
+                    } else {
+                        done=1;
+                    }
+
+                    var scx = sx = self.getScrollLeft();
+                    if (self.dst.ax) {
+                        scx = (self.bzscroll) ? self.dst.px + (self.bzscroll.getNow()*self.dst.ax) : self.newscrollx;
+                        var dr=scx-sx;
+                        if ((dr<0&&scx<self.newscrollx)||(dr>0&&scx>self.newscrollx)) scx = self.newscrollx;
+                        self.setScrollLeft(scx);
+                        if (scx == self.newscrollx) done+=1;
+                    } else {
+                        done+=1;
+                    }
+
+                    if (done==2) {
+                        self.timer = 0;
+                        self.cursorfreezed = false;
+                        self.bzscroll = false;
+                        self.scrollrunning = false;
+                        if (sc<0) sc=0;
+                        else if (sc>self.page.maxh) sc=self.page.maxh;
+                        if (scx<0) scx=0;
+                        else if (scx>self.page.maxw) scx=self.page.maxw;
+                        if ((scx!=self.newscrollx)||(sc!=self.newscrolly)) self.doScrollPos(scx,sc);
+                        else {
+                            if (self.onscrollend) {
+                                /*
+                                 var info = {"type":"scrollend","current":{"x":sx,"y":sy},"end":{"x":self.newscrollx,"y":self.newscrolly}};
+                                 self.onscrollend.call(self,info);
+                                 */
+                                self.triggerScrollEnd();
+                            }
+                        }
+                    } else {
+                        self.timer = setAnimationFrame(scrolling)||1;
+                    }
+                };
+                self.cancelAnimationFrame=false;
+                self.timer = 1;
+
+                if (self.onscrollstart&&!self.scrollrunning) {
+                    var info = {"type":"scrollstart","current":{"x":px,"y":py},"request":{"x":x,"y":y},"end":{"x":self.newscrollx,"y":self.newscrolly},"speed":ms};
+                    self.onscrollstart.call(self,info);
+                }
+
+                scrolling();
+
+                if ((py==self.page.maxh&&y>=py)||(px==self.page.maxw&&x>=px)) self.checkContentSize();
+
+                self.noticeCursor();
+            };
+
+            this.cancelScroll = function() {
+                if (self.timer) clearAnimationFrame(self.timer);
+                self.timer = 0;
+                self.bzscroll = false;
+                self.scrollrunning = false;
+                return self;
+            };
+
+        }
+
+        this.doScrollBy = function(stp,relative) {
+            var ny = 0;
+            if (relative) {
+                ny = Math.floor((self.scroll.y-stp)*self.scrollratio.y)
+            } else {
+                var sy = (self.timer) ? self.newscrolly : self.getScrollTop(true);
+                ny = sy-stp;
+            }
+            if (self.bouncescroll) {
+                var haf = Math.round(self.view.h/2);
+                if (ny<-haf) ny=-haf
+                else if (ny>(self.page.maxh+haf)) ny = (self.page.maxh+haf);
+            }
+            self.cursorfreezed = false;
+
+            py = self.getScrollTop(true);
+            if (ny<0&&py<=0) return self.noticeCursor();
+            else if (ny>self.page.maxh&&py>=self.page.maxh) {
+                self.checkContentSize();
+                return self.noticeCursor();
+            }
+
+            self.doScrollTop(ny);
+        };
+
+        this.doScrollLeftBy = function(stp,relative) {
+            var nx = 0;
+            if (relative) {
+                nx = Math.floor((self.scroll.x-stp)*self.scrollratio.x)
+            } else {
+                var sx = (self.timer) ? self.newscrollx : self.getScrollLeft(true);
+                nx = sx-stp;
+            }
+            if (self.bouncescroll) {
+                var haf = Math.round(self.view.w/2);
+                if (nx<-haf) nx=-haf;
+                else if (nx>(self.page.maxw+haf)) nx = (self.page.maxw+haf);
+            }
+            self.cursorfreezed = false;
+
+            px = self.getScrollLeft(true);
+            if (nx<0&&px<=0) return self.noticeCursor();
+            else if (nx>self.page.maxw&&px>=self.page.maxw) return self.noticeCursor();
+
+            self.doScrollLeft(nx);
+        };
+
+        this.doScrollTo = function(pos,relative) {
+            var ny = (relative) ? Math.round(pos*self.scrollratio.y) : pos;
+            if (ny<0) ny=0;
+            else if (ny>self.page.maxh) ny = self.page.maxh;
+            self.cursorfreezed = false;
+            self.doScrollTop(pos);
+        };
+
+        this.checkContentSize = function() {
+            var pg = self.getContentSize();
+            if ((pg.h!=self.page.h)||(pg.w!=self.page.w)) self.resize(false,pg);
+        };
+
+        self.onscroll = function(e) {
+            if (self.rail.drag) return;
+            if (!self.cursorfreezed) {
+                self.synched('scroll',function(){
+                    self.scroll.y = Math.round(self.getScrollTop() * (1/self.scrollratio.y));
+                    if (self.railh) self.scroll.x = Math.round(self.getScrollLeft() * (1/self.scrollratio.x));
+                    self.noticeCursor();
+                });
+            }
+        };
+        self.bind(self.docscroll,"scroll",self.onscroll);
+
+        this.doZoomIn = function(e) {
+            if (self.zoomactive) return;
+            self.zoomactive = true;
+
+            self.zoomrestore = {
+                style:{}
+            };
+            var lst = ['position','top','left','zIndex','backgroundColor','marginTop','marginBottom','marginLeft','marginRight'];
+            var win = self.win[0].style;
+            for(var a in lst) {
+                var pp = lst[a];
+                self.zoomrestore.style[pp] = (typeof win[pp] != "undefined") ? win[pp] : '';
+            }
+
+            self.zoomrestore.style.width = self.win.css('width');
+            self.zoomrestore.style.height = self.win.css('height');
+
+            self.zoomrestore.padding = {
+                w:self.win.outerWidth()-self.win.width(),
+                h:self.win.outerHeight()-self.win.height()
+            };
+
+            if (cap.isios4) {
+                self.zoomrestore.scrollTop = $(window).scrollTop();
+                $(window).scrollTop(0);
+            }
+
+            self.win.css({
+                "position":(cap.isios4)?"absolute":"fixed",
+                "top":0,
+                "left":0,
+                "z-index":globalmaxzindex+100,
+                "margin":"0px"
+            });
+            var bkg = self.win.css("backgroundColor");
+            if (bkg==""||/transparent|rgba\(0, 0, 0, 0\)|rgba\(0,0,0,0\)/.test(bkg)) self.win.css("backgroundColor","#fff");
+            self.rail.css({"z-index":globalmaxzindex+101});
+            self.zoom.css({"z-index":globalmaxzindex+102});
+            self.zoom.css('backgroundPosition','0px -18px');
+            self.resizeZoom();
+
+            if (self.onzoomin) self.onzoomin.call(self);
+
+            return self.cancelEvent(e);
+        };
+
+        this.doZoomOut = function(e) {
+            if (!self.zoomactive) return;
+            self.zoomactive = false;
+
+            self.win.css("margin","");
+            self.win.css(self.zoomrestore.style);
+
+            if (cap.isios4) {
+                $(window).scrollTop(self.zoomrestore.scrollTop);
+            }
+
+            self.rail.css({"z-index":self.zindex});
+            self.zoom.css({"z-index":self.zindex});
+            self.zoomrestore = false;
+            self.zoom.css('backgroundPosition','0px 0px');
+            self.onResize();
+
+            if (self.onzoomout) self.onzoomout.call(self);
+
+            return self.cancelEvent(e);
+        };
+
+        this.doZoom = function(e) {
+            return (self.zoomactive) ? self.doZoomOut(e) : self.doZoomIn(e);
+        };
+
+        this.resizeZoom = function() {
+            if (!self.zoomactive) return;
+
+            var py = self.getScrollTop(); //preserve scrolling position
+            self.win.css({
+                width:$(window).width()-self.zoomrestore.padding.w+"px",
+                height:$(window).height()-self.zoomrestore.padding.h+"px"
+            });
+            self.onResize();
+
+            self.setScrollTop(Math.min(self.page.maxh,py));
+        };
+
+        this.init();
+
+        $.nicescroll.push(this);
+
+    };
+
+// Inspired by the work of Kin Blas
+// http://webpro.host.adobe.com/people/jblas/momentum/includes/jquery.momentum.0.7.js
+
+
+    var ScrollMomentumClass2D = function(nc) {
+        var self = this;
+        this.nc = nc;
+
+        this.lastx = 0;
+        this.lasty = 0;
+        this.speedx = 0;
+        this.speedy = 0;
+        this.lasttime = 0;
+        this.steptime = 0;
+        this.snapx = false;
+        this.snapy = false;
+        this.demulx = 0;
+        this.demuly = 0;
+
+        this.lastscrollx = -1;
+        this.lastscrolly = -1;
+
+        this.chkx = 0;
+        this.chky = 0;
+
+        this.timer = 0;
+
+        this.time = function() {
+            return +new Date();//beautifull hack
+        };
+
+        this.reset = function(px,py) {
+            self.stop();
+            var now = self.time();
+            self.steptime = 0;
+            self.lasttime = now;
+            self.speedx = 0;
+            self.speedy = 0;
+            self.lastx = px;
+            self.lasty = py;
+            self.lastscrollx = -1;
+            self.lastscrolly = -1;
+        };
+
+        this.update = function(px,py) {
+            var now = self.time();
+            self.steptime = now - self.lasttime;
+            self.lasttime = now;
+            var dy = py - self.lasty;
+            var dx = px - self.lastx;
+            var sy = self.nc.getScrollTop();
+            var sx = self.nc.getScrollLeft();
+            var newy = sy + dy;
+            var newx = sx + dx;
+            self.snapx = (newx<0)||(newx>self.nc.page.maxw);
+            self.snapy = (newy<0)||(newy>self.nc.page.maxh);
+            self.speedx = dx;
+            self.speedy = dy;
+            self.lastx = px;
+            self.lasty = py;
+        };
+
+        this.stop = function() {
+            self.nc.unsynched("domomentum2d");
+            if (self.timer) clearTimeout(self.timer);
+            self.timer = 0;
+            self.lastscrollx = -1;
+            self.lastscrolly = -1;
+        };
+
+        this.doSnapy = function(nx,ny) {
+            var snap = false;
+
+            if (ny<0) {
+                ny=0;
+                snap=true;
+            }
+            else if (ny>self.nc.page.maxh) {
+                ny=self.nc.page.maxh;
+                snap=true;
+            }
+
+            if (nx<0) {
+                nx=0;
+                snap=true;
+            }
+            else if (nx>self.nc.page.maxw) {
+                nx=self.nc.page.maxw;
+                snap=true;
+            }
+
+            (snap) ? self.nc.doScrollPos(nx,ny,self.nc.opt.snapbackspeed) : self.nc.triggerScrollEnd();
+        };
+
+        this.doMomentum = function(gp) {
+            var t = self.time();
+            var l = (gp) ? t+gp : self.lasttime;
+
+            var sl = self.nc.getScrollLeft();
+            var st = self.nc.getScrollTop();
+
+            var pageh = self.nc.page.maxh;
+            var pagew = self.nc.page.maxw;
+
+            self.speedx = (pagew>0) ? Math.min(60,self.speedx) : 0;
+            self.speedy = (pageh>0) ? Math.min(60,self.speedy) : 0;
+
+            var chk = l && (t - l) <= 60;
+
+            if ((st<0)||(st>pageh)||(sl<0)||(sl>pagew)) chk = false;
+
+            var sy = (self.speedy && chk) ? self.speedy : false;
+            var sx = (self.speedx && chk) ? self.speedx : false;
+
+            if (sy||sx) {
+                var tm = Math.max(16,self.steptime); //timeout granularity
+
+                if (tm>50) {  // do smooth
+                    var xm = tm/50;
+                    self.speedx*=xm;
+                    self.speedy*=xm;
+                    tm = 50;
+                }
+
+                self.demulxy = 0;
+
+                self.lastscrollx = self.nc.getScrollLeft();
+                self.chkx = self.lastscrollx;
+                self.lastscrolly = self.nc.getScrollTop();
+                self.chky = self.lastscrolly;
+
+                var nx = self.lastscrollx;
+                var ny = self.lastscrolly;
+
+                var onscroll = function(){
+                    var df = ((self.time()-t)>600) ? 0.04 : 0.02;
+
+                    if (self.speedx) {
+                        nx = Math.floor(self.lastscrollx - (self.speedx*(1-self.demulxy)));
+                        self.lastscrollx = nx;
+                        if ((nx<0)||(nx>pagew)) df=0.10;
+                    }
+
+                    if (self.speedy) {
+                        ny = Math.floor(self.lastscrolly - (self.speedy*(1-self.demulxy)));
+                        self.lastscrolly = ny;
+                        if ((ny<0)||(ny>pageh)) df=0.10;
+                    }
+
+                    self.demulxy = Math.min(1,self.demulxy+df);
+
+                    self.nc.synched("domomentum2d",function(){
+
+                        if (self.speedx) {
+                            var scx = self.nc.getScrollLeft();
+                            if (scx!=self.chkx) self.stop();
+                            self.chkx=nx;
+                            self.nc.setScrollLeft(nx);
+                        }
+
+                        if (self.speedy) {
+                            var scy = self.nc.getScrollTop();
+                            if (scy!=self.chky) self.stop();
+                            self.chky=ny;
+                            self.nc.setScrollTop(ny);
+                        }
+
+                        if(!self.timer) {
+                            self.nc.hideCursor();
+                            self.doSnapy(nx,ny);
+                        }
+
+                    });
+
+                    if (self.demulxy<1) {
+                        self.timer = setTimeout(onscroll,tm);
+                    } else {
+                        self.stop();
+                        self.nc.hideCursor();
+                        self.doSnapy(nx,ny);
+                    }
+                };
+
+                onscroll();
+
+            } else {
+                self.doSnapy(self.nc.getScrollLeft(),self.nc.getScrollTop());
+            }
+
+        }
+
+    };
+
+
+// override jQuery scrollTop
+
+    var _scrollTop = jQuery.fn.scrollTop; // preserve original function
+
+    jQuery.cssHooks["pageYOffset"] = {
+        get: function(elem,computed,extra) {
+            var nice = $.data(elem,'__nicescroll')||false;
+            return (nice&&nice.ishwscroll) ? nice.getScrollTop() : _scrollTop.call(elem);
+        },
+        set: function(elem,value) {
+            var nice = $.data(elem,'__nicescroll')||false;
+            (nice&&nice.ishwscroll) ? nice.setScrollTop(parseInt(value)) : _scrollTop.call(elem,value);
+            return this;
+        }
+    };
+
+    /*
+     $.fx.step["scrollTop"] = function(fx){
+     $.cssHooks["scrollTop"].set( fx.elem, fx.now + fx.unit );
+     };
+     */
+
+    jQuery.fn.scrollTop = function(value) {
+        if (typeof value == "undefined") {
+            var nice = (this[0]) ? $.data(this[0],'__nicescroll')||false : false;
+            return (nice&&nice.ishwscroll) ? nice.getScrollTop() : _scrollTop.call(this);
+        } else {
+            return this.each(function() {
+                var nice = $.data(this,'__nicescroll')||false;
+                (nice&&nice.ishwscroll) ? nice.setScrollTop(parseInt(value)) : _scrollTop.call($(this),value);
+            });
+        }
+    };
+
+// override jQuery scrollLeft
+
+    var _scrollLeft = jQuery.fn.scrollLeft; // preserve original function
+
+    $.cssHooks.pageXOffset = {
+        get: function(elem,computed,extra) {
+            var nice = $.data(elem,'__nicescroll')||false;
+            return (nice&&nice.ishwscroll) ? nice.getScrollLeft() : _scrollLeft.call(elem);
+        },
+        set: function(elem,value) {
+            var nice = $.data(elem,'__nicescroll')||false;
+            (nice&&nice.ishwscroll) ? nice.setScrollLeft(parseInt(value)) : _scrollLeft.call(elem,value);
+            return this;
+        }
+    };
+
+    /*
+     $.fx.step["scrollLeft"] = function(fx){
+     $.cssHooks["scrollLeft"].set( fx.elem, fx.now + fx.unit );
+     };
+     */
+
+    jQuery.fn.scrollLeft = function(value) {
+        if (typeof value == "undefined") {
+            var nice = (this[0]) ? $.data(this[0],'__nicescroll')||false : false;
+            return (nice&&nice.ishwscroll) ? nice.getScrollLeft() : _scrollLeft.call(this);
+        } else {
+            return this.each(function() {
+                var nice = $.data(this,'__nicescroll')||false;
+                (nice&&nice.ishwscroll) ? nice.setScrollLeft(parseInt(value)) : _scrollLeft.call($(this),value);
+            });
+        }
+    };
+
+    var NiceScrollArray = function(doms) {
+        var self = this;
+        this.length = 0;
+        this.name = "nicescrollarray";
+
+        this.each = function(fn) {
+            for(var a=0,i=0;a<self.length;a++) fn.call(self[a],i++);
+            return self;
+        };
+
+        this.push = function(nice) {
+            self[self.length]=nice;
+            self.length++;
+        };
+
+        this.eq = function(idx) {
+            return self[idx];
+        };
+
+        if (doms) {
+            for(var a=0;a<doms.length;a++) {
+                var nice = $.data(doms[a],'__nicescroll')||false;
+                if (nice) {
+                    this[this.length]=nice;
+                    this.length++;
+                }
+            };
+        }
+
+        return this;
+    };
+
+    function mplex(el,lst,fn) {
+        for(var a=0;a<lst.length;a++) fn(el,lst[a]);
+    };
+    mplex(
+        NiceScrollArray.prototype,
+        ['show','hide','toggle','onResize','resize','remove','stop','doScrollPos'],
+        function(e,n) {
+            e[n] = function(){
+                var args = arguments;
+                return this.each(function(){
+                    this[n].apply(this,args);
+                });
+            };
+        }
+    );
+
+    jQuery.fn.getNiceScroll = function(index) {
+        if (typeof index == "undefined") {
+            return new NiceScrollArray(this);
+        } else {
+            var nice = this[index]&&$.data(this[index],'__nicescroll')||false;
+            return nice;
+        }
+    };
+
+    jQuery.extend(jQuery.expr[':'], {
+        nicescroll: function(a) {
+            return ($.data(a,'__nicescroll'))?true:false;
+        }
+    });
+
+    $.fn.niceScroll = function(wrapper,opt) {
+        if (typeof opt=="undefined") {
+            if ((typeof wrapper=="object")&&!("jquery" in wrapper)) {
+                opt = wrapper;
+                wrapper = false;
+            }
+        }
+        var ret = new NiceScrollArray();
+        if (typeof opt=="undefined") opt = {};
+
+        if (wrapper||false) {
+            opt.doc = $(wrapper);
+            opt.win = $(this);
+        }
+        var docundef = !("doc" in opt);
+        if (!docundef&&!("win" in opt)) opt.win = $(this);
+
+        this.each(function() {
+            var nice = $(this).data('__nicescroll')||false;
+            if (!nice) {
+                opt.doc = (docundef) ? $(this) : opt.doc;
+                nice = new NiceScrollClass(opt,$(this));
+                $(this).data('__nicescroll',nice);
+            }
+            ret.push(nice);
+        });
+        return (ret.length==1) ? ret[0] : ret;
+    };
+
+    window.NiceScroll = {
+        getjQuery:function(){return jQuery}
+    };
+
+    if (!$.nicescroll) {
+        $.nicescroll = new NiceScrollArray();
+        $.nicescroll.options = _globaloptions;
+    }
+
+}));
+  
 /*
 jed.js
 v0.5.0beta
@@ -31884,9 +36039,8 @@ define('text!zh',[],function () { return '{\n   "domain": "converse",\n   "local
             });
 
             converse.ChatBoxView = Backbone.View.extend({
-                length: 200,
                 tagName: 'div',
-                className: 'chatbox',
+                className: 'chat',
                 is_chatroom: false,  // This is not a multi-user chatroom
 
                 events: {
@@ -31896,6 +36050,7 @@ define('text!zh',[],function () { return '{\n   "domain": "converse",\n   "local
                     'click .toggle-smiley ul li': 'insertEmoticon',
                     'click .toggle-clear': 'clearMessages',
                     'click .toggle-call': 'toggleCall',
+                    'scroll .messages': 'scrollContent',
                     'click .new-msgs-indicator': 'viewUnreadMessages'
                 },
 
@@ -31910,37 +36065,34 @@ define('text!zh',[],function () { return '{\n   "domain": "converse",\n   "local
                     this.model.on('change:status', this.onStatusChanged, this);
                     this.model.on('showHelpMessages', this.showHelpMessages, this);
                     this.model.on('sendMessage', this.sendMessage, this);
-                    this.render().fetchMessages().insertIntoDOM().hide();
+                    this.$content = this.$el.find('.messages');
+                    // this.render().fetchMessages().insertIntoDOM().hide();
+                    // this.render().insertIntoDOM();
                     // XXX: adding the event below to the events map above doesn't work.
                     // The code that gets executed because of that looks like this:
                     //      this.$el.on('scroll', '.chat-content', this.markScrolled.bind(this));
                     // Which for some reason doesn't work.
                     // So working around that fact here:
-                    this.$el.find('.chat-content').on('scroll', this.markScrolled.bind(this));
+                    // this.$el.find('.chat-content').on('scroll', this.markScrolled.bind(this));
                     converse.emit('chatBoxInitialized', this);
                 },
-
+                
                 render: function () {
                     this.$el.attr('id', this.model.get('box_id'))
-                        .html(converse.templates.chatbox(
-                                _.extend(this.model.toJSON(), {
-                                        show_toolbar: converse.show_toolbar,
-                                        show_textarea: true,
-                                        title: this.model.get('fullname'),
-                                        unread_msgs: __('You have unread messages'),
-                                        info_close: __('Close this chat box'),
-                                        label_personal_message: __('Personal message')
-                                    }
-                                )
-                            )
-                        );
-                    this.$content = this.$el.find('.chat-content');
-                    this.renderToolbar().renderAvatar();
+                        .html(converse.templates.chatbox_messenger(this.model.toJSON()));
+                    this.$content = this.$el.find('.messages');
+                    this.$content.scroll(function() {
+                        console.log('scroll');
+                    });
+                    // this.renderToolbar().renderAvatar();
                     converse.emit('chatBoxOpened', this);
-                    window.setTimeout(utils.refreshWebkit, 50);
-                    return this.showStatusMessage();
+                    // window.setTimeout(utils.refreshWebkit, 50);
+                    // return this.showStatusMessage();
+                    return this;
                 },
-
+                scrollContent: function(){
+                    return;  
+                },
                 afterMessagesFetched: function () {
                     // Provides a hook for plugins, such as converse-mam.
                     return;
@@ -32012,14 +36164,67 @@ define('text!zh',[],function () { return '{\n   "domain": "converse",\n   "local
                      */
                     var insert = prepend ? this.$content.prepend : this.$content.append;
                     _.compose(
-                        this.scrollDownMessageHeight.bind(this),
+                        // this.scrollDownMessageHeight.bind(this),
                         function ($el) {
                             insert.call(this.$content, $el);
                             return $el;
                         }.bind(this)
                     )(this.renderMessage(attrs));
+                    // this.renderMessage(attrs);
                 },
 
+                insertMessageSend: function (attrs, prepend) {
+                    /* Helper method which appends a message (or prepends if the
+                     * 2nd parameter is set to true) to the end of the chat box's
+                     * content area.
+                     *
+                     * Parameters:
+                     *  (Object) attrs: An object containing the message attributes.
+                     */
+                    var insert = prepend ? this.$content.prepend : this.$content.append;
+                    _.compose(
+                        this.scrollDownMessageHeight.bind(this),
+                        function ($el) {
+                            insert.call(this.$content, $el);
+                            return $el;
+                        }.bind(this)
+                    )(this.renderMessageSend(attrs));
+                },
+
+                insertMessageReceive: function (attrs, prepend) {
+                    /* Helper method which appends a message (or prepends if the
+                     * 2nd parameter is set to true) to the end of the chat box's
+                     * content area.
+                     *
+                     * Parameters:
+                     *  (Object) attrs: An object containing the message attributes.
+                     */
+                    var insert = prepend ? this.$content.prepend : this.$content.append;
+                    _.compose(
+                        // this.scrollDownMessageHeight.bind(this),
+                        function ($el) {
+                            insert.call(this.$content, $el);
+                            return $el;
+                        }.bind(this)
+                    )(this.renderMessageReceive(attrs));
+                },
+                insertMessageReceiveStore: function (attrs, prepend) {
+                    /* Helper method which appends a message (or prepends if the
+                     * 2nd parameter is set to true) to the end of the chat box's
+                     * content area.
+                     *
+                     * Parameters:
+                     *  (Object) attrs: An object containing the message attributes.
+                     */
+                    var insert = prepend ? this.$content.prepend : this.$content.append;
+                    _.compose(
+                        // this.scrollDownMessageHeight.bind(this),
+                        function ($el) {
+                            insert.call(this.$content, $el);
+                            return $el;
+                        }.bind(this)
+                    )(this.renderMessageReceiveStore(attrs));
+                },
                 showMessage: function (attrs) {
                     /* Inserts a chat message into the content area of the chat box.
                      * Will also insert a new day indicator if the message is on a
@@ -32031,16 +36236,37 @@ define('text!zh',[],function () { return '{\n   "domain": "converse",\n   "local
                      * Parameters:
                      *  (Object) attrs: An object containing the message attributes.
                      */
+                    var $currentRoster = $('.list-friends').find('.open-image[data-msgid="contact_'+attrs.to+'"]').parent();
+                    $('.list-friends').prepend($currentRoster);
+
+
+                    /*
+                     *  sort contact update recent list here
+                     */
+                    this.$content = this.$el.find('.messages');
+                    var hasMsg = this.$content.find('.chat-message[data-msgid="'+attrs.msgid+'"]');
+                    if(hasMsg.length > 0){
+                        return;
+                    }
+                    // var hasMsg1 = this.$content.find('.chat-message[data-msgid="'+Strophe.getNodeFromJid(converse.connection.jid)+attrs.msgid+'"]');
+                    // if(hasMsg1.length > 0){
+                    //     return;
+                    // }
+                    // var hasMsg2 = this.$content.find('.chat-message[data-msgid="'+attrs.msgid.replace(Strophe.getNodeFromJid(converse.connection.jid),"")+'"]');
+                    // if(hasMsg2.length > 0){
+                    //     return;
+                    // }
                     var msg_dates, idx,
                         $first_msg = this.$content.children('.chat-message:first'),
                         first_msg_date = $first_msg.data('isodate'),
-                        current_msg_date = moment(attrs.time) || moment,
+                        timeMsg = Math.floor(attrs.time/1000)*1000,
+                        current_msg_date = moment(timeMsg) || moment,
                         last_msg_date = this.$content.children('.chat-message:last').data('isodate');
-
+                    converse.log(attrs.message);
                     if (!first_msg_date) {
                         // This is the first received message, so we insert a
                         // date indicator before it.
-                        this.insertDayIndicator(current_msg_date);
+                        // this.insertDayIndicator(current_msg_date);
                         this.insertMessage(attrs);
                         return;
                     }
@@ -32080,7 +36306,104 @@ define('text!zh',[],function () { return '{\n   "domain": "converse",\n   "local
                             }.bind(this)
                         )(this.renderMessage(attrs));
                 },
+                showMessageSend: function (attrs) {
 
+                    var msg_dates, idx,
+                        $first_msg = this.$content.children('.chat-message:first'),  //get first message
+                        first_msg_date = $first_msg.data('isodate'),                 //first message date
+                        timeMsg = attrs.timesend,
+                        current_msg_date = timeMsg,             //current date
+                        last_msg_date = this.$content.children('.chat-message:last').data('isodate');  //last message date
+
+                    this.insertMessageSend(attrs);
+                },
+                showMessageReceive: function (attrs) {
+
+                    var msg_dates, idx,
+                        $first_msg = this.$content.children('.chat-message:first'),  //get first message
+                        first_msg_date = $first_msg.data('isodate'),                 //first message date
+                        timeMsg = Number(attrs.time),
+                    // current_msg_date = Date.now(),             //current date
+                        last_msg_date = this.$content.children('.chat-message:last').data('isodate');  //last message date
+
+                    if (!first_msg_date) {            //if first message
+                        // This is the first received message, so we insert a
+                        // date indicator before it.
+                        // this.insertDayIndicator(current_msg_date);
+                        this.insertMessageReceive(attrs);
+                        return;
+                    }
+                    if (timeMsg >= last_msg_date) {  //insert last message date
+                        // The new message is after the last message
+                        // if (current_msg_date.isAfter(last_msg_date, 'day')) {
+                        //     // Append a new day indicator
+                        //     this.insertDayIndicator(current_msg_date);
+                        // }
+                        this.insertMessageReceive(attrs);
+                        return;
+                    }
+                    if (timeMsg <= first_msg_date) { //
+                        this.insertMessageReceive(attrs, 'prepend');
+                        return;
+                    }
+                    // Find the correct place to position the message
+                    msg_dates = _.map(this.$content.children('.chat-message'), function (el) {
+                        return $(el).data('isodate');
+                    });
+                    msg_dates.push(timeMsg);
+                    msg_dates.sort();
+                    idx = msg_dates.indexOf(timeMsg)-1;
+                    _.compose(
+                        // this.scrollDownMessageHeight.bind(this),
+                        function ($el) {
+                            $el.insertAfter(this.$content.find('.chat-message[data-isodate="'+msg_dates[idx]+'"]'));
+                            return $el;
+                        }.bind(this)
+                    )(this.renderMessageReceive(attrs));
+                },
+                showMessageReceiveStore: function (attrs) {
+                    var msg_dates, idx,
+                        $first_msg = this.$content.children('.chat-message:first'),  //get first message
+                        first_msg_date = $first_msg.data('isodate'),                 //first message date
+                        timeMsg = Number(attrs.time),
+                    // current_msg_date = Date.now(),             //current date
+                        last_msg_date = this.$content.children('.chat-message:last').data('isodate');  //last message date
+
+                    if (!first_msg_date) {            //if first message
+                        // This is the first received message, so we insert a
+                        // date indicator before it.
+                        // this.insertDayIndicator(current_msg_date);
+                        this.insertMessageReceiveStore(attrs);
+                        return;
+                    }
+                    if (timeMsg >= last_msg_date) {  //insert last message date
+                        // The new message is after the last message
+                        // if (current_msg_date.isAfter(last_msg_date, 'day')) {
+                        //     // Append a new day indicator
+                        //     this.insertDayIndicator(current_msg_date);
+                        // }
+                        this.insertMessageReceiveStore(attrs);
+                        return;
+                    }
+                    if (timeMsg <= first_msg_date) { //
+                        this.insertMessageReceiveStore(attrs, 'prepend');
+                        return;
+                    }
+                    // Find the correct place to position the message
+                    msg_dates = _.map(this.$content.children('.chat-message'), function (el) {
+                        return $(el).data('isodate');
+                    });
+                    msg_dates.push(timeMsg);
+                    msg_dates.sort();
+                    idx = msg_dates.indexOf(timeMsg)-1;
+                    _.compose(
+                        // this.scrollDownMessageHeight.bind(this),
+                        function ($el) {
+                            $el.insertAfter(this.$content.find('.chat-message[data-isodate="'+msg_dates[idx]+'"]'));
+                            return $el;
+                        }.bind(this)
+                    )(this.renderMessageReceiveStore(attrs));
+                },
                 getExtraMessageTemplateAttributes: function (attrs) {
                     // Provides a hook for sending more attributes to the
                     // message template.
@@ -32103,15 +36426,40 @@ define('text!zh',[],function () { return '{\n   "domain": "converse",\n   "local
                         extra_classes = attrs.delayed && 'delayed' || '',
                         template, username;
 
-                    if ((match) && (match[1] === converse.sky_myname)) {
-                        text = text.replace(/^\/me/, '');
-                        template = converse.templates.action;
-                        username = fullname;
-                    } else  {
-                        template = converse.templates.message;
+                    // if ((match) && (match[1] === converse.sky_myname)) {
+                    //kiem tra cac message de hien thi
+                    var room =  Strophe.getNodeFromJid(this.model.get('id')),
+                        myNode = Strophe.getNodeFromJid(converse.connection.jid);
+                    if (attrs.sender == converse.sky_myname) {
+                        template = converse.templates.chatbox_message_me;
                         username = attrs.sender === converse.sky_myname && __(converse.sky_myname) || fullname;
+
+                    }else{
+                        if(!attrs.jidsend) { // this is customer
+                            template = converse.templates.chatbox_message;
+                            var customername = Strophe.getNodeFromJid(attrs.to);
+                            var nameShow = customername.substr((customername.length -15), 6);
+                            username = nameShow;
+                        }else if(myNode == attrs.jidsend){
+                            text = text.replace(/^\/me/, '');
+                            // template = converse.templates.action;
+                            template = converse.templates.chatbox_message_me;
+                            username =  converse.sky_myname;
+                        }else{
+                            template = converse.templates.chatbox_message_me;
+                            username = attrs.fullname;
+                        }
                     }
-                    this.$content.find('div.chat-event').remove();
+                    // if (attrs.sender != converse.sky_myname) {
+                    //     text = text.replace(/^\/me/, '');
+                    //     // template = converse.templates.action;
+                    //     template = converse.templates.chatbox_message;
+                    //     username = fullname;
+                    // } else  {
+                    //     template = converse.templates.chatbox_message_me;
+                    //     username = attrs.sender === converse.sky_myname && __(converse.sky_myname) || fullname;
+                    // }
+                    // this.$content.find('div.chat-event').remove();
 
                     // FIXME: leaky abstraction from MUC
                     if (this.is_chatroom && attrs.sender === 'them' && (new RegExp("\\b"+this.model.get('nick')+"\\b")).test(text)) {
@@ -32130,8 +36478,183 @@ define('text!zh',[],function () { return '{\n   "domain": "converse",\n   "local
                                 'extra_classes': extra_classes
                             })
                         )).children('.chat-msg-content').first().text(text)
-                            .addHyperlinks()
-                            .addEmoticons(converse.visible_toolbar_buttons.emoticons).parent();
+                        .addHyperlinks()
+                        .addEmoticons(converse.visible_toolbar_buttons.emoticons).parent();
+                },
+                
+                renderMessageSend: function (attrs) {
+                    /* Renders a chat message based on the passed in attributes.
+                     *
+                     * Parameters:
+                     *  (Object) attrs: An object containing the message attributes.
+                     *
+                     *  Returns:
+                     *      The DOM element representing the message.
+                     */
+                    var msg_time = moment(attrs.time) || moment,
+                        text = attrs.message,
+                        match = text.match(/^\/(.*?)(?: (.*))?$/),
+                        fullname = this.model.get('fullname') || attrs.fullname,
+                        extra_classes = attrs.delayed && 'delayed' || '',
+                        template, username;
+
+                    // if ((match) && (match[1] === converse.sky_myname)) {
+                    //kiem tra cac message de hien thi
+                    var room =  Strophe.getNodeFromJid(this.model.get('id')),
+                        myNode = Strophe.getNodeFromJid(converse.connection.jid);
+                    if (attrs.sender == converse.sky_myname) {
+                        template = converse.templates.chatbox_message_me;
+                        username = attrs.sender === converse.sky_myname && __(converse.sky_myname) || fullname;
+
+                    }else{
+                        if(!attrs.jidsend) { // this is customer
+                            template = converse.templates.chatbox_message;
+                            var customername = Strophe.getNodeFromJid(attrs.to);
+                            var nameShow = customername.substr((customername.length -15), 6);
+                            username = nameShow;
+                        }else if(myNode == attrs.jidsend){
+                            text = text.replace(/^\/me/, '');
+                            // template = converse.templates.action;
+                            template = converse.templates.chatbox_message_me;
+                            username =  converse.sky_myname;
+                        }else{
+                            template = converse.templates.chatbox_message_me;
+                            username = attrs.fullname;
+                        }
+                    }
+                    this.$content.find('div.chat-event').remove();
+
+                    // FIXME: leaky abstraction from MUC
+                    if (this.is_chatroom && attrs.sender === 'them' && (new RegExp("\\b"+this.model.get('nick')+"\\b")).test(text)) {
+                        // Add special class to mark groupchat messages in which we
+                        // are mentioned.
+                        extra_classes += ' mentioned';
+                    }
+                    converse.log("CHAT BOT" + username);
+                    return $(template(
+                        _.extend(this.getExtraMessageTemplateAttributes(attrs), {
+                            'msgid': attrs.msgid,
+                            'sender': attrs.sender,
+                            'time': msg_time.format('hh:mm'),
+                            'isodate': attrs.timesend,
+                            'username': username,
+                            'message': '',
+                            'extra_classes': extra_classes
+                        })
+                    )).children('.chat-msg-content').first().text(text)
+                        .addHyperlinks()
+                        .addEmoticons(converse.visible_toolbar_buttons.emoticons).parent();
+                },
+
+                renderMessageReceive: function (attrs) {
+                    var msg_time = moment(attrs.time) || moment,
+                        text = attrs.message,
+                        match = text.match(/^\/(.*?)(?: (.*))?$/),
+                        fullname = this.model.get('fullname') || attrs.fullname,
+                        extra_classes = attrs.delayed && 'delayed' || '',
+                        template, username;
+
+                    // if ((match) && (match[1] === converse.sky_myname)) {
+                    //kiem tra cac message de hien thi
+                    var room =  Strophe.getNodeFromJid(this.model.get('id')),
+                        myNode = Strophe.getNodeFromJid(converse.connection.jid);
+                    if (attrs.sender == converse.sky_myname) {
+                        template = converse.templates.chatbox_message_me;
+                        username = attrs.sender === converse.sky_myname && __(converse.sky_myname) || fullname;
+
+                    }else{
+                        if(!attrs.jidsend) { // this is customer
+                            template = converse.templates.chatbox_message;
+                            // var customername = Strophe.getNodeFromJid(attrs.to);
+                            var customername = room;
+                            var nameShow = customername.substr((customername.length -6), 6);
+                            username = nameShow;
+                        }else if(myNode == attrs.jidsend){
+                            text = text.replace(/^\/me/, '');
+                            // template = converse.templates.action;
+                            template = converse.templates.chatbox_message_me;
+                            username =  converse.sky_myname;
+                        }else{
+                            template = converse.templates.chatbox_message_me;
+                            username = attrs.fullname;
+                        }
+                    }
+
+                    // FIXME: leaky abstraction from MUC
+                    if (this.is_chatroom && attrs.sender === 'them' && (new RegExp("\\b"+this.model.get('nick')+"\\b")).test(text)) {
+                        // Add special class to mark groupchat messages in which we
+                        // are mentioned.
+                        extra_classes += ' mentioned';
+                    }
+                    converse.log("CHAT BOT" + username);
+                    return $(template(
+                        _.extend(this.getExtraMessageTemplateAttributes(attrs), {
+                            'msgid': attrs.msgid,
+                            'sender': attrs.sender,
+                            'time': msg_time.format('hh:mm'),
+                            'isodate': attrs.timesend,
+                            'username': username,
+                            'message': '',
+                            'extra_classes': extra_classes
+                        })
+                    )).children('.chat-msg-content').first().text(text)
+                        .addHyperlinks()
+                        .addEmoticons(converse.visible_toolbar_buttons.emoticons).parent();
+                },
+                renderMessageReceiveStore: function (attrs) {
+                    var msg_time = moment(attrs.time) || moment,
+                        text = attrs.message,
+                        match = text.match(/^\/(.*?)(?: (.*))?$/),
+                        fullname = this.model.get('fullname') || attrs.fullname,
+                        extra_classes = attrs.delayed && 'delayed' || '',
+                        template, username;
+
+                    // if ((match) && (match[1] === converse.sky_myname)) {
+                    //kiem tra cac message de hien thi
+                    var room =  Strophe.getNodeFromJid(this.model.get('id')),
+                        myNode = Strophe.getNodeFromJid(converse.connection.jid);
+                    if (attrs.sender == converse.sky_myname) {
+                        template = converse.templates.chatbox_message_me;
+                        username = attrs.sender === converse.sky_myname && __(converse.sky_myname) || fullname;
+
+                    }else{
+                        if(!attrs.jidsend) { // this is customer
+                            template = converse.templates.chatbox_message;
+                            // var customername = Strophe.getNodeFromJid(attrs.to);
+                            var customername = room;
+                            var nameShow = customername.substr((customername.length -6), 6);
+                            username = nameShow;
+                        }else if(myNode == attrs.jidsend){
+                            text = text.replace(/^\/me/, '');
+                            // template = converse.templates.action;
+                            template = converse.templates.chatbox_message_me;
+                            username =  converse.sky_myname;
+                        }else{
+                            template = converse.templates.chatbox_message_me;
+                            username = attrs.fullname;
+                        }
+                    }
+
+                    // FIXME: leaky abstraction from MUC
+                    if (this.is_chatroom && attrs.sender === 'them' && (new RegExp("\\b"+this.model.get('nick')+"\\b")).test(text)) {
+                        // Add special class to mark groupchat messages in which we
+                        // are mentioned.
+                        extra_classes += ' mentioned';
+                    }
+                    converse.log("CHAT BOT" + username);
+                    return $(template(
+                        _.extend(this.getExtraMessageTemplateAttributes(attrs), {
+                            'msgid': attrs.msgid,
+                            'sender': attrs.sender,
+                            'time': msg_time.format('hh:mm'),
+                            'isodate': attrs.timesend,
+                            'username': username,
+                            'message': '',
+                            'extra_classes': extra_classes
+                        })
+                    )).children('.chat-msg-content').first().text(text)
+                        .addHyperlinks()
+                        .addEmoticons(converse.visible_toolbar_buttons.emoticons).parent();
                 },
 
                 showHelpMessages: function (msgs, type, spinner) {
@@ -32184,7 +36707,14 @@ define('text!zh',[],function () { return '{\n   "domain": "converse",\n   "local
                 },
 
                 handleTextMessage: function (message) {
-                    this.showMessage(_.clone(message.attributes));
+                    // this.showMessage(_.clone(message.attributes));
+                    if(message.attributes.sendtype == 'presskey'){
+                        this.showMessageSend(_.clone(message.attributes));
+                    }else if(message.attributes.sendtype == 'storemsg'){
+                        this.showMessageReceiveStore(_.clone(message.attributes));
+                    }else{
+                        this.showMessageReceive(_.clone(message.attributes));
+                    }
                     if (message.get('sender') !== converse.sky_myname) {
                         this.updateNewMessageIndicators(message);
                     } else {
@@ -32195,9 +36725,14 @@ define('text!zh',[],function () { return '{\n   "domain": "converse",\n   "local
                         this.model.set('scrolled', false);
                     }
                     if (this.shouldShowOnTextMessage()) {
-                        this.show();
+                        if(converse.chatboxviewsmessenger.$el.length > 0){
+
+                            // this.scrollDown();
+                        }else{
+                            this.show();
+                        }
                     } else {
-                        this.scrollDown();
+                        // this.scrollDown();
                     }
                 },
 
@@ -32504,6 +37039,20 @@ define('text!zh',[],function () { return '{\n   "domain": "converse",\n   "local
                 },
 
                 hide: function () {
+                    if (this.model.get('is_opened')) {
+                        return this;
+                    }
+                    this.$el.hide();
+                    utils.refreshWebkit();
+                    return this;
+                },
+
+                hideAll: function () {
+                    this.model.save({
+                        'minimized': false,
+                        'time_minimized': moment().format(),
+                        'is_opened': false
+                    });
                     this.$el.hide();
                     utils.refreshWebkit();
                     return this;
@@ -35563,7 +40112,18 @@ define('text!zh',[],function () { return '{\n   "domain": "converse",\n   "local
                 }
             },
 
-            ChatBoxViews: {
+            // ChatBoxViews: {
+            //     onChatBoxAdded: function (item) {
+            //         var view = this.get(item.get('id'));
+            //         if (!view && item.get('type') === 'chatroom') {
+            //             view = new converse.ChatRoomView({'model': item});
+            //             return this.add(item.get('id'), view);
+            //         } else {
+            //             return this._super.onChatBoxAdded.apply(this, arguments);
+            //         }
+            //     }
+            // }
+            ChatBoxViewsMessenger: {
                 onChatBoxAdded: function (item) {
                     var view = this.get(item.get('id'));
                     if (!view && item.get('type') === 'chatroom') {
@@ -35574,6 +40134,7 @@ define('text!zh',[],function () { return '{\n   "domain": "converse",\n   "local
                     }
                 }
             }
+
         },
 
         initialize: function () {
@@ -35599,9 +40160,8 @@ define('text!zh',[],function () { return '{\n   "domain": "converse",\n   "local
                 /* Backbone View which renders a chat room, based upon the view
                  * for normal one-on-one chat boxes.
                  */
-                length: 300,
                 tagName: 'div',
-                className: 'chatbox chatroom',
+                className: 'chat',
                 is_chatroom: true,
                 events: {
                     'click .close-chatbox-button': 'close',
@@ -35626,34 +40186,93 @@ define('text!zh',[],function () { return '{\n   "domain": "converse",\n   "local
                     var id = b64_sha1('converse.occupants'+converse.bare_jid+this.model.get('id')+this.model.get('nick'));
                     // this.occupantsview.model.browserStorage = new Backbone.BrowserStorage[converse.storage](id);
                     // this.occupantsview.chatroomview = this;
-                    this.render().$el.hide();
+                    // this.render().$el.hide();
+                    converse.chatboxviewsmessenger.closeAllChatBoxes();
+                    this.render();
                     // this.occupantsview.model.fetch({add:true});
                     // this.join(null, {'maxstanzas': converse.muc_history_max_stanzas});
                     this.registerHandleMessage(null, {'maxstanzas': converse.muc_history_max_stanzas});
-                    this.fetchMessages().insertIntoDOM();
+                    this.insertIntoDOM();
+                    this.fetchMessagesOffline(0, 20);
                     // XXX: adding the event below to the events map above doesn't work.
                     // The code that gets executed because of that looks like this:
                     //      this.$el.on('scroll', '.chat-content', this.markScrolled.bind(this));
                     // Which for some reason doesn't work.
                     // So working around that fact here:
-                    this.$el.find('.chat-content').on('scroll', this.markScrolled.bind(this));
+                    // this.$el.find('.chat-content').on('scroll', this.markScrolled.bind(this));
                     converse.emit('chatRoomOpened', this);
                 },
 
                 insertIntoDOM: function () {
-                    var view = converse.chatboxviews.get("controlbox");
-                    if (view) {
-                        this.$el.insertAfter(view.$el);
-                    } else {
-                        $('#conversejs').prepend(this.$el);
-                    }
+                    $('.ui').append(this.$el);
+                    var lol = {
+                        cursorcolor: "#cdd2d6",
+                        cursorwidth: "4px",
+                        cursorborder: "none"
+                    };
+                    var contentScroll = this.$content;
+                    this.$content.niceScroll(lol);
+                    this.$content.getNiceScroll(0).scrollend(function(info, cc){
+                        if(info.current.y < 100) {
+                            var first = this.$content.children('.chat-message:first').data('isodate');
+                            // var unixtime = Date.parse(first);
+                            this.fetchMessagesOffline(first, 20);
+
+                        }
+                    }.bind(this));
+                    //     .scrollstart(function(info){
+                    //     console.log("start");
+                    //     $(".messages").scrollTop();
+                    // }).scrollend(function(info){
+                    //     console.log("end");
+                    //     $(".messages").scrollTop();
+                    // });
+
+                    // var view = converse.chatboxviews.get("controlbox");
+                    // if (view) {
+                    //     this.$el.insertAfter(view.$el);
+                    // } else {
+                    //     $('#conversejs').prepend(this.$el);
+                    // }
                     return this;
                 },
-
+                fetchMessagesOffline: function (beginTime, sizeMsg) {
+                    // this.$content.empty();
+                    var from = converse.connection.jid;
+                    from = Strophe.getNodeFromJid(from);
+                    var to = this.model.get('jid');
+                    to = Strophe.getNodeFromJid(to);
+                    converse.log("From "+from+" To "+ to);
+                    var infoUser = JSON.stringify({"room_name":to,"unix_start":"0","unix_end":beginTime,"size_msg":20});
+                    //post data to
+                    var xhr = new XMLHttpRequest();
+                    var url = converse.sky_apiserver+"storemessage";
+                    xhr.open("POST", url, true);
+                    var that = this;
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState == 4 && xhr.status == 200) {
+                            var json = JSON.parse(xhr.responseText);
+                            if(json.code == 200){
+                                var msgJson = json.msg;
+                                if(msgJson.length == 0){
+                                    return this;
+                                }
+                                _.each(msgJson, function(msgJ){
+                                    converse.log(msgJ.packet);
+                                    var msgPacket = msgJ.packet;
+                                    // var stanza  = $.parseXML(msgPacket);
+                                    that.onChatRoomMessageOffline(msgPacket, json.timereceive);
+                                });
+                            }
+                        }
+                    }
+                    xhr.send(infoUser);
+                    return this;
+                },
                 render: function () {
-                    this.$el.attr('id', this.model.get('box_id'))
-                            .html(converse.templates.chatroom(this.model.toJSON()));
-                    this.renderChatArea();
+                    this.$el.html(converse.templates.chatbox_messenger(this.model.toJSON()));
+                    // this.renderChatArea();
+                    this.$content = this.$el.find('.messages');
                     window.setTimeout(converse.refreshWebkit, 50);
                     return this;
                 },
@@ -35678,14 +40297,30 @@ define('text!zh',[],function () { return '{\n   "domain": "converse",\n   "local
                     // converse.connection.deleteHandler(this.handler);
                     // this.leave();
                     // converse.ChatBoxView.prototype.close.apply(this, arguments);
-                    this.$el.hide('fast', function () {
-                        converse.emit('chatBoxClosed', this);
+                    // this.$el.hide('fast', function () {
+                        // converse.emit('chatBoxClosed', this);
                         // converse.controlboxtoggle.show(function () {
                         //     if (typeof callback === "function") {
                         //         callback();
                         //     }
                         // });
-                    });
+                    // });
+                    this.$el.hide();
+                    return this;
+                },
+                show: function (ev) {
+                    // converse.connection.deleteHandler(this.handler);
+                    // this.leave();
+                    // converse.ChatBoxView.prototype.close.apply(this, arguments);
+                    // this.$el.show('fast', function () {
+                        // converse.emit('chatBoxOpened', this);
+                        // converse.controlboxtoggle.show(function () {
+                        //     if (typeof callback === "function") {
+                        //         callback();
+                        //     }
+                        // });
+                    // });
+                    this.$el.show();
                     return this;
                 },
 
@@ -35746,14 +40381,25 @@ define('text!zh',[],function () { return '{\n   "domain": "converse",\n   "local
                         id: msgid
                     }).c("body").t(text).up()
                     .c("x", {xmlns: "jabber:x:event"}).c("composing");
-                    converse.connection.send(msg);
+
+                    // this.model.messages.create({
+                    //     fullname: this.model.get('nick'),
+                    //     sender: converse.sky_myname,
+                    //     to: this.model.get('jid'),
+                    //     time: moment().format(),
+                    //     message: text,
+                    //     msgid: msgid
+                    // });
                     this.model.messages.create({
                         fullname: this.model.get('nick'),
                         sender: converse.sky_myname,
                         time: moment().format(),
                         message: text,
+                        timesend: Date.now(),
+                        sendtype: 'presskey',
                         msgid: msgid
                     });
+                    converse.connection.send(msg);
                 },
 
                 setAffiliation: function(room, jid, affiliation, reason, onSuccess, onError) {
@@ -35930,16 +40576,33 @@ define('text!zh',[],function () { return '{\n   "domain": "converse",\n   "local
                         var subtype = stanza.getAttribute('subtype');
                         converse.log("[HUYNHDC create room aa] "+ subtype);
                         if(subtype == 'create'){
-                            var jid = from;
+                            var jid = from,
+                            $message = $(stanza),
+                            type = $message.attr('type'),
+                            $forwarded = $message.find('forwarded');
                             converse.log("[HUYNHDC create room aa] "+ jid);
-                            var chatroom = converse.chatboxviews.showChat({
+                            converse.rostermessenger.addNewContact(Strophe.getNodeFromJid(jid));
+                            var chatroom = converse.chatboxviewsmessenger.showChatCreate({
                                 'id': jid,
                                 'jid': jid,
                                 'name': Strophe.unescapeNode(Strophe.getNodeFromJid(jid)),
                                 'nick': 'PHòng chat',
+                                'is_create':'create',
                                 'type': 'chatroom',
                                 'box_id': b64_sha1(jid)
-                            });
+                            },'create');
+                            if (!$forwarded.length) {
+                                converse.connection.send(
+                                    $msg({to: jid, type: type, id: Math.random().toString(36).substr(2, 10)})
+                                        .c("x", {
+                                            xmlns: "jabber:x:event"
+                                        })
+                                        .c("deleted").up()
+                                        .c("msgid").t($message.attr('id'))
+                                );
+                            }
+
+
                         }
                         return true;
 
@@ -36410,6 +41073,51 @@ define('text!zh',[],function () { return '{\n   "domain": "converse",\n   "local
                         }
                     }
 
+                    return true;
+                },
+                onChatRoomMessageOffline: function (message, timereceive) {
+                    converse.log("[ON MESSAGE GROUP ]" +message);
+                    var $message = $(message),
+                        $forwarded = $message.find('forwarded'),
+                        $delay;
+                    if ($forwarded.length) {
+                        var jid = $message.attr('to');
+                        var myJid = converse.connection.jid;
+                        $message = $forwarded.children('message');
+                        $delay = $forwarded.children('delay');
+                        //check if resource is not same
+                        converse.log("Check if same id when continue: " + jid + " My: "+myJid);
+                        if(jid != myJid){
+                            return true;
+                        }
+                        //TODO
+                    }
+                    var jid = $message.attr('from'),
+                        msgid = $message.attr('id'),
+                        sender = $message.attr('member'),
+                    // subject = $message.children('subject').text(),
+                    // subject = "Hỗ trợ khách hàng",
+                        dupes = msgid && this.model.messages.filter(function (msg) {
+                                // Find duplicates.
+                                // Some bots (like HAL in the prosody chatroom)
+                                // respond to commands with the same ID as the
+                                // original message. So we also check the sender.
+                                return msg.get('msgid') === msgid && msg.get('fullname') === sender;
+                            });
+                    if (dupes && dupes.length) {
+                        return true;
+                    }
+                    // if (subject) {
+                    //     this.setChatRoomSubject(sender, subject);
+                    // }
+                    if (sender === '') {
+                        return true;
+                    }
+                    this.model.createMessageStore($message, $delay, message, timereceive);
+                    if (sender !== this.model.get('nick')) {
+                        // We only emit an event if it's not our own message
+                        converse.emit('message', message);
+                    }
                     return true;
                 },
 
@@ -36946,379 +41654,6 @@ define('text!zh',[],function () { return '{\n   "domain": "converse",\n   "local
     });
 }));
 
-// http://xmpp.org/extensions/xep-0059.html
-
-(function (root, factory) {
-    if (typeof define === 'function' && define.amd) {
-        // AMD. Register as an anonymous module.
-        define("strophe.rsm", [
-            "strophe"
-        ], function (Strophe) {
-            factory(
-                Strophe.Strophe,
-                Strophe.$build,
-                Strophe.$iq ,
-                Strophe.$msg,
-                Strophe.$pres
-            );
-            return Strophe;
-        });
-    } else {
-        // Browser globals
-        factory(
-            root.Strophe,
-            root.$build,
-            root.$iq ,
-            root.$msg,
-            root.$pres
-        );
-    }
-}(this, function (Strophe, $build, $iq, $msg, $pres) {
-
-Strophe.addNamespace('RSM', 'http://jabber.org/protocol/rsm');
-   
-Strophe.RSM = function(options) {
-  this.attribs = ['max', 'first', 'last', 'after', 'before', 'index', 'count'];
-
-  if (typeof options.xml != 'undefined') {
-    this.fromXMLElement(options.xml);
-  } else {
-    for (var ii = 0; ii < this.attribs.length; ii++) {
-      var attrib = this.attribs[ii];
-      this[attrib] = options[attrib];
-    }
-  }
-};
-
-Strophe.RSM.prototype = {
-  toXML: function() {
-    var xml = $build('set', {xmlns: Strophe.NS.RSM});
-    for (var ii = 0; ii < this.attribs.length; ii++) {
-      var attrib = this.attribs[ii];
-      if (typeof this[attrib] != 'undefined') {
-        xml = xml.c(attrib).t(this[attrib].toString()).up();
-      }
-    }
-    return xml.tree();
-  },
-
-  next: function(max) {
-    var newSet = new Strophe.RSM({max: max, after: this.last});
-    return newSet;
-  },
-
-  previous: function(max) {
-    var newSet = new Strophe.RSM({max: max, before: this.first});
-    return newSet;
-  },
-
-  fromXMLElement: function(xmlElement) {
-    for (var ii = 0; ii < this.attribs.length; ii++) {
-      var attrib = this.attribs[ii];
-      var elem = xmlElement.getElementsByTagName(attrib)[0];
-      if (typeof elem != 'undefined' && elem !== null) {
-        this[attrib] = Strophe.getText(elem);
-        if (attrib == 'first') {
-          this.index = elem.getAttribute('index');
-        }
-      }
-    }
-  }
-};
-}));
-
-// Converse.js (A browser based XMPP chat client)
-// http://conversejs.org
-//
-// Copyright (c) 2012-2016, Jan-Carel Brand <jc@opkode.com>
-// Licensed under the Mozilla Public License (MPLv2)
-//
-/*global define */
-
-// XEP-0059 Result Set Management
-
-(function (root, factory) {
-    define("converse-mam", [
-            "converse-core",
-            "converse-api",
-            "converse-chatview", // Could be made a soft dependency
-            "converse-muc", // Could be made a soft dependency
-            "strophe.rsm"
-    ], factory);
-}(this, function (converse, converse_api) {
-    "use strict";
-    var $ = converse_api.env.jQuery,
-        Strophe = converse_api.env.Strophe,
-        $iq = converse_api.env.$iq,
-        _ = converse_api.env._,
-        moment = converse_api.env.moment;
-
-    var RSM_ATTRIBUTES = ['max', 'first', 'last', 'after', 'before', 'index', 'count'];
-    // XEP-0313 Message Archive Management
-    var MAM_ATTRIBUTES = ['with', 'start', 'end'];
-
-    Strophe.addNamespace('MAM', 'urn:xmpp:mam:0');
-    Strophe.addNamespace('RSM', 'http://jabber.org/protocol/rsm');
-
-
-    converse_api.plugins.add('converse-mam', {
-
-        overrides: {
-            // Overrides mentioned here will be picked up by converse.js's
-            // plugin architecture they will replace existing methods on the
-            // relevant objects or classes.
-            //
-            // New functions which don't exist yet can also be added.
-
-            Features: {
-                addClientFeatures: function () {
-                    converse.connection.disco.addFeature(Strophe.NS.MAM);
-                    return this._super.addClientFeatures.apply(this, arguments);
-                }
-            },
-
-            ChatBox: {
-                getMessageAttributes: function ($message, $delay, original_stanza) {
-                    var attrs = this._super.getMessageAttributes.apply(this, arguments);
-                    attrs.archive_id = $(original_stanza).find('result[xmlns="'+Strophe.NS.MAM+'"]').attr('id');
-                    return attrs;
-                }
-            },
-
-            ChatBoxView: {
-                render: function () {
-                    var result = this._super.render.apply(this, arguments);
-                    if (!this.disable_mam) {
-                        this.$content.on('scroll', _.debounce(this.onScroll.bind(this), 100));
-                    }
-                    return result;
-                },
-
-                afterMessagesFetched: function () {
-                    if (this.disable_mam || !converse.features.findWhere({'var': Strophe.NS.MAM})) {
-                        return this._super.afterMessagesFetched.apply(this, arguments);
-                    }
-                    if (this.model.messages.length < converse.archived_messages_page_size) {
-                        this.fetchArchivedMessages({
-                            'before': '', // Page backwards from the most recent message
-                            'with': this.model.get('jid'),
-                            'max': converse.archived_messages_page_size
-                        });
-                    }
-                    return this._super.afterMessagesFetched.apply(this, arguments);
-                },
-
-                fetchArchivedMessages: function (options) {
-                    /* Fetch archived chat messages from the XMPP server.
-                     *
-                     * Then, upon receiving them, call onMessage on the chat box,
-                     * so that they are displayed inside it.
-                     */
-                    if (!converse.features.findWhere({'var': Strophe.NS.MAM})) {
-                        converse.log("Attempted to fetch archived messages but this user's server doesn't support XEP-0313");
-                        return;
-                    }
-                    if (this.disable_mam) {
-                        return;
-                    }
-                    this.addSpinner();
-                    converse.queryForArchivedMessages(options, function (messages) {
-                            this.clearSpinner();
-                            if (messages.length) {
-                                _.map(messages, converse.chatboxes.onMessage.bind(converse.chatboxes));
-                            }
-                        }.bind(this),
-                        function () {
-                            this.clearSpinner();
-                            converse.log("Error or timeout while trying to fetch archived messages", "error");
-                        }.bind(this)
-                    );
-                },
-
-                onScroll: function (ev) {
-                    if ($(ev.target).scrollTop() === 0 && this.model.messages.length) {
-                        this.fetchArchivedMessages({
-                            'before': this.model.messages.at(0).get('archive_id'),
-                            'with': this.model.get('jid'),
-                            'max': converse.archived_messages_page_size
-                        });
-                    }
-                },
-            },
-
-            ChatRoomView: {
-                render: function () {
-                    var result = this._super.render.apply(this, arguments);
-                    if (!this.disable_mam) {
-                        this.$content.on('scroll', _.debounce(this.onScroll.bind(this), 100));
-                    }
-                    return result;
-                },
-
-            }
-
-        },
-
-
-        initialize: function () {
-            /* The initialize function gets called as soon as the plugin is
-             * loaded by converse.js's plugin machinery.
-             */
-            this.updateSettings({
-                archived_messages_page_size: '20',
-                message_archiving: 'never', // Supported values are 'always', 'never', 'roster' (https://xmpp.org/extensions/xep-0313.html#prefs)
-                message_archiving_timeout: 8000, // Time (in milliseconds) to wait before aborting MAM request
-            });
-
-            converse.queryForArchivedMessages = function (options, callback, errback) {
-                /* Do a MAM (XEP-0313) query for archived messages.
-                 *
-                 * Parameters:
-                 *    (Object) options - Query parameters, either MAM-specific or also for Result Set Management.
-                 *    (Function) callback - A function to call whenever we receive query-relevant stanza.
-                 *    (Function) errback - A function to call when an error stanza is received.
-                 *
-                 * The options parameter can also be an instance of
-                 * Strophe.RSM to enable easy querying between results pages.
-                 *
-                 * The callback function may be called multiple times, first
-                 * for the initial IQ result and then for each message
-                 * returned. The last time the callback is called, a
-                 * Strophe.RSM object is returned on which "next" or "previous"
-                 * can be called before passing it in again to this method, to
-                 * get the next or previous page in the result set.
-                 */
-                var date, messages = [];
-                if (typeof options === "function") {
-                    callback = options;
-                    errback = callback;
-                }
-                if (!converse.features.findWhere({'var': Strophe.NS.MAM})) {
-                    converse.log('This server does not support XEP-0313, Message Archive Management');
-                    errback(null);
-                    return;
-                }
-                var queryid = converse.connection.getUniqueId();
-                var attrs = {'type':'set'};
-                if (typeof options !== "undefined" && options.groupchat) {
-                    if (!options['with']) {
-                        throw new Error('You need to specify a "with" value containing the chat room JID, when querying groupchat messages.');
-                    }
-                    attrs.to = options['with'];
-                }
-                var stanza = $iq(attrs).c('query', {'xmlns':Strophe.NS.MAM, 'queryid':queryid});
-                if (typeof options !== "undefined") {
-                    stanza.c('x', {'xmlns':Strophe.NS.XFORM, 'type': 'submit'})
-                            .c('field', {'var':'FORM_TYPE', 'type': 'hidden'})
-                            .c('value').t(Strophe.NS.MAM).up().up();
-
-                    if (options['with'] && !options.groupchat) {
-                        stanza.c('field', {'var':'with'}).c('value').t(options['with']).up().up();
-                    }
-                    _.each(['start', 'end'], function (t) {
-                        if (options[t]) {
-                            date = moment(options[t]);
-                            if (date.isValid()) {
-                                stanza.c('field', {'var':t}).c('value').t(date.format()).up().up();
-                            } else {
-                                throw new TypeError('archive.query: invalid date provided for: '+t);
-                            }
-                        }
-                    });
-                    stanza.up();
-                    if (options instanceof Strophe.RSM) {
-                        stanza.cnode(options.toXML());
-                    } else if (_.intersection(RSM_ATTRIBUTES, _.keys(options)).length) {
-                        stanza.cnode(new Strophe.RSM(options).toXML());
-                    }
-                }
-                converse.connection.addHandler(function (message) {
-                    var $msg = $(message), $fin, rsm;
-                    if (typeof callback === "function") {
-                        $fin = $msg.find('fin[xmlns="'+Strophe.NS.MAM+'"]');
-                        if ($fin.length) {
-                            rsm = new Strophe.RSM({xml: $fin.find('set')[0]});
-                            _.extend(rsm, _.pick(options, ['max']));
-                            _.extend(rsm, _.pick(options, MAM_ATTRIBUTES));
-                            callback(messages, rsm);
-                            return false; // We've received all messages, decommission this handler
-                        } else if (queryid === $msg.find('result').attr('queryid')) {
-                            messages.push(message);
-                        }
-                        return true;
-                    } else {
-                        return false; // There's no callback, so no use in continuing this handler.
-                    }
-                }, Strophe.NS.MAM);
-                converse.connection.sendIQ(stanza, null, errback, converse.message_archiving_timeout);
-            };
-
-            _.extend(converse_api, {
-                /* Extend default converse.js API to add methods specific to MAM
-                 */
-                'archive': {
-                    'query': converse.queryForArchivedMessages.bind(converse)
-                }
-            });
-
-            converse.onMAMError = function (iq) {
-                if ($(iq).find('feature-not-implemented').length) {
-                    converse.log("Message Archive Management (XEP-0313) not supported by this browser");
-                } else {
-                    converse.log("An error occured while trying to set archiving preferences.");
-                    converse.log(iq);
-                }
-            };
-
-            converse.onMAMPreferences = function (feature, iq) {
-                /* Handle returned IQ stanza containing Message Archive
-                 * Management (XEP-0313) preferences.
-                 *
-                 * XXX: For now we only handle the global default preference.
-                 * The XEP also provides for per-JID preferences, which is
-                 * currently not supported in converse.js.
-                 *
-                 * Per JID preferences will be set in chat boxes, so it'll
-                 * probbaly be handled elsewhere in any case.
-                 */
-                var $prefs = $(iq).find('prefs[xmlns="'+Strophe.NS.MAM+'"]');
-                var default_pref = $prefs.attr('default');
-                var stanza;
-                if (default_pref !== converse.message_archiving) {
-                    stanza = $iq({'type': 'set'}).c('prefs', {'xmlns':Strophe.NS.MAM, 'default':converse.message_archiving});
-                    $prefs.children().each(function (idx, child) {
-                        stanza.cnode(child).up();
-                    });
-                    converse.connection.sendIQ(stanza, _.partial(function (feature, iq) {
-                            // XXX: Strictly speaking, the server should respond with the updated prefs
-                            // (see example 18: https://xmpp.org/extensions/xep-0313.html#config)
-                            // but Prosody doesn't do this, so we don't rely on it.
-                            feature.save({'preferences': {'default':converse.message_archiving}});
-                        }, feature),
-                        converse.onMAMError
-                    );
-                } else {
-                    feature.save({'preferences': {'default':converse.message_archiving}});
-                }
-            };
-
-
-            var onFeatureAdded = function (evt, feature) {
-                var prefs = feature.get('preferences') || {};
-                if (feature.get('var') === Strophe.NS.MAM && prefs['default'] !== converse.message_archiving) {
-                    // Ask the server for archiving preferences
-                    converse.connection.sendIQ(
-                        $iq({'type': 'get'}).c('prefs', {'xmlns': Strophe.NS.MAM}),
-                        _.partial(converse.onMAMPreferences, feature),
-                        _.partial(converse.onMAMError, feature)
-                    );
-                }
-            };
-            converse.on('serviceDiscovered', onFeatureAdded.bind(converse.features));
-        }
-    });
-}));
-
 // Converse.js (A browser based XMPP chat client)
 // http://conversejs.org
 //
@@ -37405,31 +41740,27 @@ Strophe.RSM.prototype = {
                     // converse.log('[HUYNHDC create IQ room ]');
                     var converse = this._super.converse;
                     this._super.onConnected.apply(this, arguments);
+                    //
+                    // var infoUser = JSON.stringify({"uid":Strophe.getNodeFromJid(converse.connection.jid)});
+                    // //post data to
+                    // var that = this;
+                    // var xhr = new XMLHttpRequest();
+                    // var url = converse.sky_apiserver+"webclient/allroom";
+                    // xhr.open("POST", url, true);
+                    // xhr.onreadystatechange = function () {
+                    //     if (xhr.readyState == 4 && xhr.status == 200) {
+                    //         var json = JSON.parse(xhr.responseText);
+                    //         if(json.room.length == 0){
+                    //             //create room default create
+                    //             that.updateContact("defaultroom");
+                    //         }else{
+                    //
+                    //         }
+                    //     }
+                    // }
 
-                    var infoUser = JSON.stringify({"uid":Strophe.getNodeFromJid(converse.connection.jid)});
-                    //post data to
-                    var that = this;
-                    var xhr = new XMLHttpRequest();
-                    var url = converse.sky_apiserver+"webclient/allroom";
-                    xhr.open("POST", url, true);
-                    xhr.onreadystatechange = function () {
-                        if (xhr.readyState == 4 && xhr.status == 200) {
-                            var json = JSON.parse(xhr.responseText);
-                            if(json.room.length == 0){
-                                that.createRoomSuccess("defaultroom");
-                            }else{
-                                var allRoom = json.room;
-                                _.each(allRoom, function(roomx){
-                                    converse.log(roomx.room);
-                                    that.createRoomSuccess(roomx.room);
-                                });
-                            }
-                        }
-                    }
-                    xhr.send(infoUser);
-
-                    $('#toggle-controlbox').css("display", "none");
-                    $('#controlbox').css("display", "none");
+                    // $('#toggle-controlbox').css("display", "none");
+                    // $('#controlbox').css("display", "none");
                     // this.createRoomSuccess();
                     // $('#toggle-controlbox').hide();
 
@@ -37448,8393 +41779,6 @@ Strophe.RSM.prototype = {
     });
 }));
 
-/* Plugin to implement the vCard extension.
- *  http://xmpp.org/extensions/xep-0054.html
- *
- *  Author: Nathan Zorn (nathan.zorn@gmail.com)
- *  AMD support by JC Brand
- */
-
-(function (root, factory) {
-    if (typeof define === 'function' && define.amd) {
-        // AMD. Register as an anonymous module.
-        define('strophe.vcard',[
-            "strophe"
-        ], function (Strophe) {
-            factory(
-                Strophe.Strophe,
-                Strophe.$build,
-                Strophe.$iq ,
-                Strophe.$msg,
-                Strophe.$pres
-            );
-            return Strophe;
-        });
-    } else {
-        // Browser globals
-        factory(
-            root.Strophe,
-            root.$build,
-            root.$iq ,
-            root.$msg,
-            root.$pres
-        );
-    }
-}(this, function (Strophe, $build, $iq, $msg, $pres) {
-
-    var buildIq = function(type, jid, vCardEl) {
-        var iq = $iq(jid ? {type: type, to: jid} : {type: type});
-        iq.c("vCard", {xmlns: Strophe.NS.VCARD});
-        if (vCardEl) {
-            iq.cnode(vCardEl);
-        }
-        return iq;
-    };
-
-    Strophe.addConnectionPlugin('vcard', {
-        _connection: null,
-        init: function(conn) {
-            this._connection = conn;
-            return Strophe.addNamespace('VCARD', 'vcard-temp');
-        },
-
-        /*Function
-        Retrieve a vCard for a JID/Entity
-        Parameters:
-        (Function) handler_cb - The callback function used to handle the request.
-        (String) jid - optional - The name of the entity to request the vCard
-            If no jid is given, this function retrieves the current user's vcard.
-        */
-        get: function(handler_cb, jid, error_cb) {
-            var iq = buildIq("get", jid);
-            return this._connection.sendIQ(iq, handler_cb, error_cb);
-        },
-
-        /* Function
-            Set an entity's vCard.
-        */
-        set: function(handler_cb, vCardEl, jid, error_cb) {
-            var iq = buildIq("set", jid, vCardEl);
-            return this._connection.sendIQ(iq, handler_cb, error_cb);
-        }
-    });
-}));
-
-// Converse.js (A browser based XMPP chat client)
-// http://conversejs.org
-//
-// Copyright (c) 2012-2016, Jan-Carel Brand <jc@opkode.com>
-// Licensed under the Mozilla Public License (MPLv2)
-//
-/*global define */
-
-(function (root, factory) {
-    define("converse-vcard", [
-            "converse-core",
-            "converse-api",
-            "strophe.vcard",
-    ], factory);
-}(this, function (converse, converse_api) {
-    "use strict";
-    var Strophe = converse_api.env.Strophe,
-        $ = converse_api.env.jQuery,
-        _ = converse_api.env._,
-        moment = converse_api.env.moment;
-
-
-    converse_api.plugins.add('converse-vcard', {
-
-        overrides: {
-            // Overrides mentioned here will be picked up by converse.js's
-            // plugin architecture they will replace existing methods on the
-            // relevant objects or classes.
-            //
-            // New functions which don't exist yet can also be added.
-
-            Features: {
-                addClientFeatures: function () {
-                    this._super.addClientFeatures.apply(this, arguments);
-                    if (converse.use_vcards) {
-                        converse.connection.disco.addFeature(Strophe.NS.VCARD);
-                    }
-                }
-            },
-
-            RosterContacts: {
-                createRequestingContact: function (presence) {
-                    var bare_jid = Strophe.getBareJidFromJid(presence.getAttribute('from'));
-                    converse.getVCard(
-                        bare_jid,
-                        _.partial(converse.createRequestingContactFromVCard, presence),
-                        function (iq, jid) {
-                            converse.log("Error while retrieving vcard for "+jid);
-                            converse.createRequestingContactFromVCard(presence, iq, jid);
-                        }
-                    );
-                }
-            }
-        },
-
-
-        initialize: function () {
-            /* The initialize function gets called as soon as the plugin is
-             * loaded by converse.js's plugin machinery.
-             */
-            this.updateSettings({
-                use_vcards: true,
-            });
-
-            converse.createRequestingContactFromVCard = function (presence, iq, jid, fullname, img, img_type, url) {
-                var bare_jid = Strophe.getBareJidFromJid(jid);
-                var nick = $(presence).children('nick[xmlns="'+Strophe.NS.NICK+'"]').text();
-                var user_data = {
-                    jid: bare_jid,
-                    subscription: 'none',
-                    ask: null,
-                    requesting: true,
-                    fullname: fullname || nick || bare_jid,
-                    image: img,
-                    image_type: img_type,
-                    url: url,
-                    vcard_updated: moment().format()
-                };
-                converse.roster.create(user_data);
-                converse.emit('contactRequest', user_data);
-            };
-
-            converse.onVCardError = function (jid, iq, errback) {
-                var contact = converse.roster.get(jid);
-                if (contact) {
-                    contact.save({ 'vcard_updated': moment().format() });
-                }
-                if (errback) { errback(iq, jid); }
-            };
-
-            converse.onVCardData = function (jid, iq, callback) {
-                var $vcard = $(iq).find('vCard'),
-                    fullname = $vcard.find('FN').text(),
-                    img = $vcard.find('BINVAL').text(),
-                    img_type = $vcard.find('TYPE').text(),
-                    url = $vcard.find('URL').text();
-                if (jid) {
-                    var contact = converse.roster.get(jid);
-                    if (contact) {
-                        fullname = _.isEmpty(fullname)? contact.get('fullname') || jid: fullname;
-                        contact.save({
-                            'fullname': fullname,
-                            'image_type': img_type,
-                            'image': img,
-                            'url': url,
-                            'vcard_updated': moment().format()
-                        });
-                    }
-                }
-                if (callback) {
-                    callback(iq, jid, fullname, img, img_type, url);
-                }
-            };
-
-            converse.getVCard = function (jid, callback, errback) {
-                /* Request the VCard of another user.
-                 *
-                 * Parameters:
-                 *    (String) jid - The Jabber ID of the user whose VCard
-                 *      is being requested.
-                 *    (Function) callback - A function to call once the VCard is
-                 *      returned.
-                 *    (Function) errback - A function to call if an error occured
-                 *      while trying to fetch the VCard.
-                 */
-                if (!converse.use_vcards) {
-                    if (callback) { callback(null, jid); }
-                } else {
-                    converse.connection.vcard.get(
-                        _.partial(converse.onVCardData, jid, _, callback),
-                        jid,
-                        _.partial(converse.onVCardError, jid, _, errback));
-                }
-            };
-
-            var updateVCardForChatBox = function (evt, chatbox) {
-                if (!converse.use_vcards) { return; }
-                var jid = chatbox.model.get('jid'),
-                    contact = converse.roster.get(jid);
-                if ((contact) && (!contact.get('vcard_updated'))) {
-                    converse.getVCard(
-                        jid,
-                        function (iq, jid, fullname, image, image_type, url) {
-                            chatbox.model.save({
-                                'fullname' : fullname || jid,
-                                'url': url,
-                                'image_type': image_type,
-                                'image': image
-                            });
-                        },
-                        function () {
-                            converse.log(
-                                "updateVCardForChatBox: Error occured while fetching vcard"
-                            );
-                        }
-                    );
-                }
-            };
-            converse.on('chatBoxInitialized', updateVCardForChatBox);
-
-
-            var onContactAdd = function (contact) {
-                if (!contact.get('vcard_updated')) {
-                    // This will update the vcard, which triggers a change
-                    // request which will rerender the roster contact.
-                    converse.getVCard(contact.get('jid'));
-                }
-            };
-            converse.on('initialized', function () {
-                converse.roster.on("add", onContactAdd);
-            });
-
-            var fetchOwnVCard = function () {
-                if (converse.xmppstatus.get('fullname') === undefined) {
-                    converse.getVCard(
-                        null, // No 'to' attr when getting one's own vCard
-                        function (iq, jid, fullname) {
-                            converse.xmppstatus.save({'fullname': fullname});
-                        }
-                    );
-                }
-            };
-            converse.on('statusInitialized', fetchOwnVCard);
-        }
-    });
-}));
-
-/*
-CryptoJS v3.1.2
-code.google.com/p/crypto-js
-(c) 2009-2013 by Jeff Mott. All rights reserved.
-code.google.com/p/crypto-js/wiki/License
-*/
-/**
- * CryptoJS core components.
- */
-var CryptoJS = CryptoJS || (function (Math, undefined) {
-    /**
-     * CryptoJS namespace.
-     */
-    var C = {};
-
-    /**
-     * Library namespace.
-     */
-    var C_lib = C.lib = {};
-
-    /**
-     * Base object for prototypal inheritance.
-     */
-    var Base = C_lib.Base = (function () {
-        function F() {}
-
-        return {
-            /**
-             * Creates a new object that inherits from this object.
-             *
-             * @param {Object} overrides Properties to copy into the new object.
-             *
-             * @return {Object} The new object.
-             *
-             * @static
-             *
-             * @example
-             *
-             *     var MyType = CryptoJS.lib.Base.extend({
-             *         field: 'value',
-             *
-             *         method: function () {
-             *         }
-             *     });
-             */
-            extend: function (overrides) {
-                // Spawn
-                F.prototype = this;
-                var subtype = new F();
-
-                // Augment
-                if (overrides) {
-                    subtype.mixIn(overrides);
-                }
-
-                // Create default initializer
-                if (!subtype.hasOwnProperty('init')) {
-                    subtype.init = function () {
-                        subtype.$super.init.apply(this, arguments);
-                    };
-                }
-
-                // Initializer's prototype is the subtype object
-                subtype.init.prototype = subtype;
-
-                // Reference supertype
-                subtype.$super = this;
-
-                return subtype;
-            },
-
-            /**
-             * Extends this object and runs the init method.
-             * Arguments to create() will be passed to init().
-             *
-             * @return {Object} The new object.
-             *
-             * @static
-             *
-             * @example
-             *
-             *     var instance = MyType.create();
-             */
-            create: function () {
-                var instance = this.extend();
-                instance.init.apply(instance, arguments);
-
-                return instance;
-            },
-
-            /**
-             * Initializes a newly created object.
-             * Override this method to add some logic when your objects are created.
-             *
-             * @example
-             *
-             *     var MyType = CryptoJS.lib.Base.extend({
-             *         init: function () {
-             *             // ...
-             *         }
-             *     });
-             */
-            init: function () {
-            },
-
-            /**
-             * Copies properties into this object.
-             *
-             * @param {Object} properties The properties to mix in.
-             *
-             * @example
-             *
-             *     MyType.mixIn({
-             *         field: 'value'
-             *     });
-             */
-            mixIn: function (properties) {
-                for (var propertyName in properties) {
-                    if (properties.hasOwnProperty(propertyName)) {
-                        this[propertyName] = properties[propertyName];
-                    }
-                }
-
-                // IE won't copy toString using the loop above
-                if (properties.hasOwnProperty('toString')) {
-                    this.toString = properties.toString;
-                }
-            },
-
-            /**
-             * Creates a copy of this object.
-             *
-             * @return {Object} The clone.
-             *
-             * @example
-             *
-             *     var clone = instance.clone();
-             */
-            clone: function () {
-                return this.init.prototype.extend(this);
-            }
-        };
-    }());
-
-    /**
-     * An array of 32-bit words.
-     *
-     * @property {Array} words The array of 32-bit words.
-     * @property {number} sigBytes The number of significant bytes in this word array.
-     */
-    var WordArray = C_lib.WordArray = Base.extend({
-        /**
-         * Initializes a newly created word array.
-         *
-         * @param {Array} words (Optional) An array of 32-bit words.
-         * @param {number} sigBytes (Optional) The number of significant bytes in the words.
-         *
-         * @example
-         *
-         *     var wordArray = CryptoJS.lib.WordArray.create();
-         *     var wordArray = CryptoJS.lib.WordArray.create([0x00010203, 0x04050607]);
-         *     var wordArray = CryptoJS.lib.WordArray.create([0x00010203, 0x04050607], 6);
-         */
-        init: function (words, sigBytes) {
-            words = this.words = words || [];
-
-            if (sigBytes != undefined) {
-                this.sigBytes = sigBytes;
-            } else {
-                this.sigBytes = words.length * 4;
-            }
-        },
-
-        /**
-         * Converts this word array to a string.
-         *
-         * @param {Encoder} encoder (Optional) The encoding strategy to use. Default: CryptoJS.enc.Hex
-         *
-         * @return {string} The stringified word array.
-         *
-         * @example
-         *
-         *     var string = wordArray + '';
-         *     var string = wordArray.toString();
-         *     var string = wordArray.toString(CryptoJS.enc.Utf8);
-         */
-        toString: function (encoder) {
-            return (encoder || Hex).stringify(this);
-        },
-
-        /**
-         * Concatenates a word array to this word array.
-         *
-         * @param {WordArray} wordArray The word array to append.
-         *
-         * @return {WordArray} This word array.
-         *
-         * @example
-         *
-         *     wordArray1.concat(wordArray2);
-         */
-        concat: function (wordArray) {
-            // Shortcuts
-            var thisWords = this.words;
-            var thatWords = wordArray.words;
-            var thisSigBytes = this.sigBytes;
-            var thatSigBytes = wordArray.sigBytes;
-
-            // Clamp excess bits
-            this.clamp();
-
-            // Concat
-            if (thisSigBytes % 4) {
-                // Copy one byte at a time
-                for (var i = 0; i < thatSigBytes; i++) {
-                    var thatByte = (thatWords[i >>> 2] >>> (24 - (i % 4) * 8)) & 0xff;
-                    thisWords[(thisSigBytes + i) >>> 2] |= thatByte << (24 - ((thisSigBytes + i) % 4) * 8);
-                }
-            } else if (thatWords.length > 0xffff) {
-                // Copy one word at a time
-                for (var i = 0; i < thatSigBytes; i += 4) {
-                    thisWords[(thisSigBytes + i) >>> 2] = thatWords[i >>> 2];
-                }
-            } else {
-                // Copy all words at once
-                thisWords.push.apply(thisWords, thatWords);
-            }
-            this.sigBytes += thatSigBytes;
-
-            // Chainable
-            return this;
-        },
-
-        /**
-         * Removes insignificant bits.
-         *
-         * @example
-         *
-         *     wordArray.clamp();
-         */
-        clamp: function () {
-            // Shortcuts
-            var words = this.words;
-            var sigBytes = this.sigBytes;
-
-            // Clamp
-            words[sigBytes >>> 2] &= 0xffffffff << (32 - (sigBytes % 4) * 8);
-            words.length = Math.ceil(sigBytes / 4);
-        },
-
-        /**
-         * Creates a copy of this word array.
-         *
-         * @return {WordArray} The clone.
-         *
-         * @example
-         *
-         *     var clone = wordArray.clone();
-         */
-        clone: function () {
-            var clone = Base.clone.call(this);
-            clone.words = this.words.slice(0);
-
-            return clone;
-        },
-
-        /**
-         * Creates a word array filled with random bytes.
-         *
-         * @param {number} nBytes The number of random bytes to generate.
-         *
-         * @return {WordArray} The random word array.
-         *
-         * @static
-         *
-         * @example
-         *
-         *     var wordArray = CryptoJS.lib.WordArray.random(16);
-         */
-        random: function (nBytes) {
-            var words = [];
-            for (var i = 0; i < nBytes; i += 4) {
-                words.push((Math.random() * 0x100000000) | 0);
-            }
-
-            return new WordArray.init(words, nBytes);
-        }
-    });
-
-    /**
-     * Encoder namespace.
-     */
-    var C_enc = C.enc = {};
-
-    /**
-     * Hex encoding strategy.
-     */
-    var Hex = C_enc.Hex = {
-        /**
-         * Converts a word array to a hex string.
-         *
-         * @param {WordArray} wordArray The word array.
-         *
-         * @return {string} The hex string.
-         *
-         * @static
-         *
-         * @example
-         *
-         *     var hexString = CryptoJS.enc.Hex.stringify(wordArray);
-         */
-        stringify: function (wordArray) {
-            // Shortcuts
-            var words = wordArray.words;
-            var sigBytes = wordArray.sigBytes;
-
-            // Convert
-            var hexChars = [];
-            for (var i = 0; i < sigBytes; i++) {
-                var bite = (words[i >>> 2] >>> (24 - (i % 4) * 8)) & 0xff;
-                hexChars.push((bite >>> 4).toString(16));
-                hexChars.push((bite & 0x0f).toString(16));
-            }
-
-            return hexChars.join('');
-        },
-
-        /**
-         * Converts a hex string to a word array.
-         *
-         * @param {string} hexStr The hex string.
-         *
-         * @return {WordArray} The word array.
-         *
-         * @static
-         *
-         * @example
-         *
-         *     var wordArray = CryptoJS.enc.Hex.parse(hexString);
-         */
-        parse: function (hexStr) {
-            // Shortcut
-            var hexStrLength = hexStr.length;
-
-            // Convert
-            var words = [];
-            for (var i = 0; i < hexStrLength; i += 2) {
-                words[i >>> 3] |= parseInt(hexStr.substr(i, 2), 16) << (24 - (i % 8) * 4);
-            }
-
-            return new WordArray.init(words, hexStrLength / 2);
-        }
-    };
-
-    /**
-     * Latin1 encoding strategy.
-     */
-    var Latin1 = C_enc.Latin1 = {
-        /**
-         * Converts a word array to a Latin1 string.
-         *
-         * @param {WordArray} wordArray The word array.
-         *
-         * @return {string} The Latin1 string.
-         *
-         * @static
-         *
-         * @example
-         *
-         *     var latin1String = CryptoJS.enc.Latin1.stringify(wordArray);
-         */
-        stringify: function (wordArray) {
-            // Shortcuts
-            var words = wordArray.words;
-            var sigBytes = wordArray.sigBytes;
-
-            // Convert
-            var latin1Chars = [];
-            for (var i = 0; i < sigBytes; i++) {
-                var bite = (words[i >>> 2] >>> (24 - (i % 4) * 8)) & 0xff;
-                latin1Chars.push(String.fromCharCode(bite));
-            }
-
-            return latin1Chars.join('');
-        },
-
-        /**
-         * Converts a Latin1 string to a word array.
-         *
-         * @param {string} latin1Str The Latin1 string.
-         *
-         * @return {WordArray} The word array.
-         *
-         * @static
-         *
-         * @example
-         *
-         *     var wordArray = CryptoJS.enc.Latin1.parse(latin1String);
-         */
-        parse: function (latin1Str) {
-            // Shortcut
-            var latin1StrLength = latin1Str.length;
-
-            // Convert
-            var words = [];
-            for (var i = 0; i < latin1StrLength; i++) {
-                words[i >>> 2] |= (latin1Str.charCodeAt(i) & 0xff) << (24 - (i % 4) * 8);
-            }
-
-            return new WordArray.init(words, latin1StrLength);
-        }
-    };
-
-    /**
-     * UTF-8 encoding strategy.
-     */
-    var Utf8 = C_enc.Utf8 = {
-        /**
-         * Converts a word array to a UTF-8 string.
-         *
-         * @param {WordArray} wordArray The word array.
-         *
-         * @return {string} The UTF-8 string.
-         *
-         * @static
-         *
-         * @example
-         *
-         *     var utf8String = CryptoJS.enc.Utf8.stringify(wordArray);
-         */
-        stringify: function (wordArray) {
-            try {
-                return decodeURIComponent(escape(Latin1.stringify(wordArray)));
-            } catch (e) {
-                throw new Error('Malformed UTF-8 data');
-            }
-        },
-
-        /**
-         * Converts a UTF-8 string to a word array.
-         *
-         * @param {string} utf8Str The UTF-8 string.
-         *
-         * @return {WordArray} The word array.
-         *
-         * @static
-         *
-         * @example
-         *
-         *     var wordArray = CryptoJS.enc.Utf8.parse(utf8String);
-         */
-        parse: function (utf8Str) {
-            return Latin1.parse(unescape(encodeURIComponent(utf8Str)));
-        }
-    };
-
-    /**
-     * Abstract buffered block algorithm template.
-     *
-     * The property blockSize must be implemented in a concrete subtype.
-     *
-     * @property {number} _minBufferSize The number of blocks that should be kept unprocessed in the buffer. Default: 0
-     */
-    var BufferedBlockAlgorithm = C_lib.BufferedBlockAlgorithm = Base.extend({
-        /**
-         * Resets this block algorithm's data buffer to its initial state.
-         *
-         * @example
-         *
-         *     bufferedBlockAlgorithm.reset();
-         */
-        reset: function () {
-            // Initial values
-            this._data = new WordArray.init();
-            this._nDataBytes = 0;
-        },
-
-        /**
-         * Adds new data to this block algorithm's buffer.
-         *
-         * @param {WordArray|string} data The data to append. Strings are converted to a WordArray using UTF-8.
-         *
-         * @example
-         *
-         *     bufferedBlockAlgorithm._append('data');
-         *     bufferedBlockAlgorithm._append(wordArray);
-         */
-        _append: function (data) {
-            // Convert string to WordArray, else assume WordArray already
-            if (typeof data == 'string') {
-                data = Utf8.parse(data);
-            }
-
-            // Append
-            this._data.concat(data);
-            this._nDataBytes += data.sigBytes;
-        },
-
-        /**
-         * Processes available data blocks.
-         *
-         * This method invokes _doProcessBlock(offset), which must be implemented by a concrete subtype.
-         *
-         * @param {boolean} doFlush Whether all blocks and partial blocks should be processed.
-         *
-         * @return {WordArray} The processed data.
-         *
-         * @example
-         *
-         *     var processedData = bufferedBlockAlgorithm._process();
-         *     var processedData = bufferedBlockAlgorithm._process(!!'flush');
-         */
-        _process: function (doFlush) {
-            // Shortcuts
-            var data = this._data;
-            var dataWords = data.words;
-            var dataSigBytes = data.sigBytes;
-            var blockSize = this.blockSize;
-            var blockSizeBytes = blockSize * 4;
-
-            // Count blocks ready
-            var nBlocksReady = dataSigBytes / blockSizeBytes;
-            if (doFlush) {
-                // Round up to include partial blocks
-                nBlocksReady = Math.ceil(nBlocksReady);
-            } else {
-                // Round down to include only full blocks,
-                // less the number of blocks that must remain in the buffer
-                nBlocksReady = Math.max((nBlocksReady | 0) - this._minBufferSize, 0);
-            }
-
-            // Count words ready
-            var nWordsReady = nBlocksReady * blockSize;
-
-            // Count bytes ready
-            var nBytesReady = Math.min(nWordsReady * 4, dataSigBytes);
-
-            // Process blocks
-            if (nWordsReady) {
-                for (var offset = 0; offset < nWordsReady; offset += blockSize) {
-                    // Perform concrete-algorithm logic
-                    this._doProcessBlock(dataWords, offset);
-                }
-
-                // Remove processed words
-                var processedWords = dataWords.splice(0, nWordsReady);
-                data.sigBytes -= nBytesReady;
-            }
-
-            // Return processed words
-            return new WordArray.init(processedWords, nBytesReady);
-        },
-
-        /**
-         * Creates a copy of this object.
-         *
-         * @return {Object} The clone.
-         *
-         * @example
-         *
-         *     var clone = bufferedBlockAlgorithm.clone();
-         */
-        clone: function () {
-            var clone = Base.clone.call(this);
-            clone._data = this._data.clone();
-
-            return clone;
-        },
-
-        _minBufferSize: 0
-    });
-
-    /**
-     * Abstract hasher template.
-     *
-     * @property {number} blockSize The number of 32-bit words this hasher operates on. Default: 16 (512 bits)
-     */
-    var Hasher = C_lib.Hasher = BufferedBlockAlgorithm.extend({
-        /**
-         * Configuration options.
-         */
-        cfg: Base.extend(),
-
-        /**
-         * Initializes a newly created hasher.
-         *
-         * @param {Object} cfg (Optional) The configuration options to use for this hash computation.
-         *
-         * @example
-         *
-         *     var hasher = CryptoJS.algo.SHA256.create();
-         */
-        init: function (cfg) {
-            // Apply config defaults
-            this.cfg = this.cfg.extend(cfg);
-
-            // Set initial values
-            this.reset();
-        },
-
-        /**
-         * Resets this hasher to its initial state.
-         *
-         * @example
-         *
-         *     hasher.reset();
-         */
-        reset: function () {
-            // Reset data buffer
-            BufferedBlockAlgorithm.reset.call(this);
-
-            // Perform concrete-hasher logic
-            this._doReset();
-        },
-
-        /**
-         * Updates this hasher with a message.
-         *
-         * @param {WordArray|string} messageUpdate The message to append.
-         *
-         * @return {Hasher} This hasher.
-         *
-         * @example
-         *
-         *     hasher.update('message');
-         *     hasher.update(wordArray);
-         */
-        update: function (messageUpdate) {
-            // Append
-            this._append(messageUpdate);
-
-            // Update the hash
-            this._process();
-
-            // Chainable
-            return this;
-        },
-
-        /**
-         * Finalizes the hash computation.
-         * Note that the finalize operation is effectively a destructive, read-once operation.
-         *
-         * @param {WordArray|string} messageUpdate (Optional) A final message update.
-         *
-         * @return {WordArray} The hash.
-         *
-         * @example
-         *
-         *     var hash = hasher.finalize();
-         *     var hash = hasher.finalize('message');
-         *     var hash = hasher.finalize(wordArray);
-         */
-        finalize: function (messageUpdate) {
-            // Final message update
-            if (messageUpdate) {
-                this._append(messageUpdate);
-            }
-
-            // Perform concrete-hasher logic
-            var hash = this._doFinalize();
-
-            return hash;
-        },
-
-        blockSize: 512/32,
-
-        /**
-         * Creates a shortcut function to a hasher's object interface.
-         *
-         * @param {Hasher} hasher The hasher to create a helper for.
-         *
-         * @return {Function} The shortcut function.
-         *
-         * @static
-         *
-         * @example
-         *
-         *     var SHA256 = CryptoJS.lib.Hasher._createHelper(CryptoJS.algo.SHA256);
-         */
-        _createHelper: function (hasher) {
-            return function (message, cfg) {
-                return new hasher.init(cfg).finalize(message);
-            };
-        },
-
-        /**
-         * Creates a shortcut function to the HMAC's object interface.
-         *
-         * @param {Hasher} hasher The hasher to use in this HMAC helper.
-         *
-         * @return {Function} The shortcut function.
-         *
-         * @static
-         *
-         * @example
-         *
-         *     var HmacSHA256 = CryptoJS.lib.Hasher._createHmacHelper(CryptoJS.algo.SHA256);
-         */
-        _createHmacHelper: function (hasher) {
-            return function (message, key) {
-                return new C_algo.HMAC.init(hasher, key).finalize(message);
-            };
-        }
-    });
-
-    /**
-     * Algorithm namespace.
-     */
-    var C_algo = C.algo = {};
-
-    return C;
-}(Math));
-
-define("crypto.core", function(){});
-
-/*
-CryptoJS v3.1.2
-code.google.com/p/crypto-js
-(c) 2009-2013 by Jeff Mott. All rights reserved.
-code.google.com/p/crypto-js/wiki/License
-*/
-(function () {
-    // Shortcuts
-    var C = CryptoJS;
-    var C_lib = C.lib;
-    var WordArray = C_lib.WordArray;
-    var C_enc = C.enc;
-
-    /**
-     * Base64 encoding strategy.
-     */
-    var Base64 = C_enc.Base64 = {
-        /**
-         * Converts a word array to a Base64 string.
-         *
-         * @param {WordArray} wordArray The word array.
-         *
-         * @return {string} The Base64 string.
-         *
-         * @static
-         *
-         * @example
-         *
-         *     var base64String = CryptoJS.enc.Base64.stringify(wordArray);
-         */
-        stringify: function (wordArray) {
-            // Shortcuts
-            var words = wordArray.words;
-            var sigBytes = wordArray.sigBytes;
-            var map = this._map;
-
-            // Clamp excess bits
-            wordArray.clamp();
-
-            // Convert
-            var base64Chars = [];
-            for (var i = 0; i < sigBytes; i += 3) {
-                var byte1 = (words[i >>> 2]       >>> (24 - (i % 4) * 8))       & 0xff;
-                var byte2 = (words[(i + 1) >>> 2] >>> (24 - ((i + 1) % 4) * 8)) & 0xff;
-                var byte3 = (words[(i + 2) >>> 2] >>> (24 - ((i + 2) % 4) * 8)) & 0xff;
-
-                var triplet = (byte1 << 16) | (byte2 << 8) | byte3;
-
-                for (var j = 0; (j < 4) && (i + j * 0.75 < sigBytes); j++) {
-                    base64Chars.push(map.charAt((triplet >>> (6 * (3 - j))) & 0x3f));
-                }
-            }
-
-            // Add padding
-            var paddingChar = map.charAt(64);
-            if (paddingChar) {
-                while (base64Chars.length % 4) {
-                    base64Chars.push(paddingChar);
-                }
-            }
-
-            return base64Chars.join('');
-        },
-
-        /**
-         * Converts a Base64 string to a word array.
-         *
-         * @param {string} base64Str The Base64 string.
-         *
-         * @return {WordArray} The word array.
-         *
-         * @static
-         *
-         * @example
-         *
-         *     var wordArray = CryptoJS.enc.Base64.parse(base64String);
-         */
-        parse: function (base64Str) {
-            // Shortcuts
-            var base64StrLength = base64Str.length;
-            var map = this._map;
-
-            // Ignore padding
-            var paddingChar = map.charAt(64);
-            if (paddingChar) {
-                var paddingIndex = base64Str.indexOf(paddingChar);
-                if (paddingIndex != -1) {
-                    base64StrLength = paddingIndex;
-                }
-            }
-
-            // Convert
-            var words = [];
-            var nBytes = 0;
-            for (var i = 0; i < base64StrLength; i++) {
-                if (i % 4) {
-                    var bits1 = map.indexOf(base64Str.charAt(i - 1)) << ((i % 4) * 2);
-                    var bits2 = map.indexOf(base64Str.charAt(i)) >>> (6 - (i % 4) * 2);
-                    words[nBytes >>> 2] |= (bits1 | bits2) << (24 - (nBytes % 4) * 8);
-                    nBytes++;
-                }
-            }
-
-            return WordArray.create(words, nBytes);
-        },
-
-        _map: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/='
-    };
-}());
-
-define("crypto.enc-base64", ["crypto.core"], function(){});
-
-(function (Math) {
-    // Shortcuts
-    var C = CryptoJS;
-    var C_lib = C.lib;
-    var WordArray = C_lib.WordArray;
-    var Hasher = C_lib.Hasher;
-    var C_algo = C.algo;
-
-    // Constants table
-    var T = [];
-
-    // Compute constants
-    (function () {
-        for (var i = 0; i < 64; i++) {
-            T[i] = (Math.abs(Math.sin(i + 1)) * 0x100000000) | 0;
-        }
-    }());
-
-    /**
-     * MD5 hash algorithm.
-     */
-    var MD5 = C_algo.MD5 = Hasher.extend({
-        _doReset: function () {
-            this._hash = new WordArray.init([
-                0x67452301, 0xefcdab89,
-                0x98badcfe, 0x10325476
-            ]);
-        },
-
-        _doProcessBlock: function (M, offset) {
-            // Swap endian
-            for (var i = 0; i < 16; i++) {
-                // Shortcuts
-                var offset_i = offset + i;
-                var M_offset_i = M[offset_i];
-
-                M[offset_i] = (
-                    (((M_offset_i << 8)  | (M_offset_i >>> 24)) & 0x00ff00ff) |
-                    (((M_offset_i << 24) | (M_offset_i >>> 8))  & 0xff00ff00)
-                );
-            }
-
-            // Shortcuts
-            var H = this._hash.words;
-
-            var M_offset_0  = M[offset + 0];
-            var M_offset_1  = M[offset + 1];
-            var M_offset_2  = M[offset + 2];
-            var M_offset_3  = M[offset + 3];
-            var M_offset_4  = M[offset + 4];
-            var M_offset_5  = M[offset + 5];
-            var M_offset_6  = M[offset + 6];
-            var M_offset_7  = M[offset + 7];
-            var M_offset_8  = M[offset + 8];
-            var M_offset_9  = M[offset + 9];
-            var M_offset_10 = M[offset + 10];
-            var M_offset_11 = M[offset + 11];
-            var M_offset_12 = M[offset + 12];
-            var M_offset_13 = M[offset + 13];
-            var M_offset_14 = M[offset + 14];
-            var M_offset_15 = M[offset + 15];
-
-            // Working varialbes
-            var a = H[0];
-            var b = H[1];
-            var c = H[2];
-            var d = H[3];
-
-            // Computation
-            a = FF(a, b, c, d, M_offset_0,  7,  T[0]);
-            d = FF(d, a, b, c, M_offset_1,  12, T[1]);
-            c = FF(c, d, a, b, M_offset_2,  17, T[2]);
-            b = FF(b, c, d, a, M_offset_3,  22, T[3]);
-            a = FF(a, b, c, d, M_offset_4,  7,  T[4]);
-            d = FF(d, a, b, c, M_offset_5,  12, T[5]);
-            c = FF(c, d, a, b, M_offset_6,  17, T[6]);
-            b = FF(b, c, d, a, M_offset_7,  22, T[7]);
-            a = FF(a, b, c, d, M_offset_8,  7,  T[8]);
-            d = FF(d, a, b, c, M_offset_9,  12, T[9]);
-            c = FF(c, d, a, b, M_offset_10, 17, T[10]);
-            b = FF(b, c, d, a, M_offset_11, 22, T[11]);
-            a = FF(a, b, c, d, M_offset_12, 7,  T[12]);
-            d = FF(d, a, b, c, M_offset_13, 12, T[13]);
-            c = FF(c, d, a, b, M_offset_14, 17, T[14]);
-            b = FF(b, c, d, a, M_offset_15, 22, T[15]);
-
-            a = GG(a, b, c, d, M_offset_1,  5,  T[16]);
-            d = GG(d, a, b, c, M_offset_6,  9,  T[17]);
-            c = GG(c, d, a, b, M_offset_11, 14, T[18]);
-            b = GG(b, c, d, a, M_offset_0,  20, T[19]);
-            a = GG(a, b, c, d, M_offset_5,  5,  T[20]);
-            d = GG(d, a, b, c, M_offset_10, 9,  T[21]);
-            c = GG(c, d, a, b, M_offset_15, 14, T[22]);
-            b = GG(b, c, d, a, M_offset_4,  20, T[23]);
-            a = GG(a, b, c, d, M_offset_9,  5,  T[24]);
-            d = GG(d, a, b, c, M_offset_14, 9,  T[25]);
-            c = GG(c, d, a, b, M_offset_3,  14, T[26]);
-            b = GG(b, c, d, a, M_offset_8,  20, T[27]);
-            a = GG(a, b, c, d, M_offset_13, 5,  T[28]);
-            d = GG(d, a, b, c, M_offset_2,  9,  T[29]);
-            c = GG(c, d, a, b, M_offset_7,  14, T[30]);
-            b = GG(b, c, d, a, M_offset_12, 20, T[31]);
-
-            a = HH(a, b, c, d, M_offset_5,  4,  T[32]);
-            d = HH(d, a, b, c, M_offset_8,  11, T[33]);
-            c = HH(c, d, a, b, M_offset_11, 16, T[34]);
-            b = HH(b, c, d, a, M_offset_14, 23, T[35]);
-            a = HH(a, b, c, d, M_offset_1,  4,  T[36]);
-            d = HH(d, a, b, c, M_offset_4,  11, T[37]);
-            c = HH(c, d, a, b, M_offset_7,  16, T[38]);
-            b = HH(b, c, d, a, M_offset_10, 23, T[39]);
-            a = HH(a, b, c, d, M_offset_13, 4,  T[40]);
-            d = HH(d, a, b, c, M_offset_0,  11, T[41]);
-            c = HH(c, d, a, b, M_offset_3,  16, T[42]);
-            b = HH(b, c, d, a, M_offset_6,  23, T[43]);
-            a = HH(a, b, c, d, M_offset_9,  4,  T[44]);
-            d = HH(d, a, b, c, M_offset_12, 11, T[45]);
-            c = HH(c, d, a, b, M_offset_15, 16, T[46]);
-            b = HH(b, c, d, a, M_offset_2,  23, T[47]);
-
-            a = II(a, b, c, d, M_offset_0,  6,  T[48]);
-            d = II(d, a, b, c, M_offset_7,  10, T[49]);
-            c = II(c, d, a, b, M_offset_14, 15, T[50]);
-            b = II(b, c, d, a, M_offset_5,  21, T[51]);
-            a = II(a, b, c, d, M_offset_12, 6,  T[52]);
-            d = II(d, a, b, c, M_offset_3,  10, T[53]);
-            c = II(c, d, a, b, M_offset_10, 15, T[54]);
-            b = II(b, c, d, a, M_offset_1,  21, T[55]);
-            a = II(a, b, c, d, M_offset_8,  6,  T[56]);
-            d = II(d, a, b, c, M_offset_15, 10, T[57]);
-            c = II(c, d, a, b, M_offset_6,  15, T[58]);
-            b = II(b, c, d, a, M_offset_13, 21, T[59]);
-            a = II(a, b, c, d, M_offset_4,  6,  T[60]);
-            d = II(d, a, b, c, M_offset_11, 10, T[61]);
-            c = II(c, d, a, b, M_offset_2,  15, T[62]);
-            b = II(b, c, d, a, M_offset_9,  21, T[63]);
-
-            // Intermediate hash value
-            H[0] = (H[0] + a) | 0;
-            H[1] = (H[1] + b) | 0;
-            H[2] = (H[2] + c) | 0;
-            H[3] = (H[3] + d) | 0;
-        },
-
-        _doFinalize: function () {
-            // Shortcuts
-            var data = this._data;
-            var dataWords = data.words;
-
-            var nBitsTotal = this._nDataBytes * 8;
-            var nBitsLeft = data.sigBytes * 8;
-
-            // Add padding
-            dataWords[nBitsLeft >>> 5] |= 0x80 << (24 - nBitsLeft % 32);
-
-            var nBitsTotalH = Math.floor(nBitsTotal / 0x100000000);
-            var nBitsTotalL = nBitsTotal;
-            dataWords[(((nBitsLeft + 64) >>> 9) << 4) + 15] = (
-                (((nBitsTotalH << 8)  | (nBitsTotalH >>> 24)) & 0x00ff00ff) |
-                (((nBitsTotalH << 24) | (nBitsTotalH >>> 8))  & 0xff00ff00)
-            );
-            dataWords[(((nBitsLeft + 64) >>> 9) << 4) + 14] = (
-                (((nBitsTotalL << 8)  | (nBitsTotalL >>> 24)) & 0x00ff00ff) |
-                (((nBitsTotalL << 24) | (nBitsTotalL >>> 8))  & 0xff00ff00)
-            );
-
-            data.sigBytes = (dataWords.length + 1) * 4;
-
-            // Hash final blocks
-            this._process();
-
-            // Shortcuts
-            var hash = this._hash;
-            var H = hash.words;
-
-            // Swap endian
-            for (var i = 0; i < 4; i++) {
-                // Shortcut
-                var H_i = H[i];
-
-                H[i] = (((H_i << 8)  | (H_i >>> 24)) & 0x00ff00ff) |
-                       (((H_i << 24) | (H_i >>> 8))  & 0xff00ff00);
-            }
-
-            // Return final computed hash
-            return hash;
-        },
-
-        clone: function () {
-            var clone = Hasher.clone.call(this);
-            clone._hash = this._hash.clone();
-
-            return clone;
-        }
-    });
-
-    function FF(a, b, c, d, x, s, t) {
-        var n = a + ((b & c) | (~b & d)) + x + t;
-        return ((n << s) | (n >>> (32 - s))) + b;
-    }
-
-    function GG(a, b, c, d, x, s, t) {
-        var n = a + ((b & d) | (c & ~d)) + x + t;
-        return ((n << s) | (n >>> (32 - s))) + b;
-    }
-
-    function HH(a, b, c, d, x, s, t) {
-        var n = a + (b ^ c ^ d) + x + t;
-        return ((n << s) | (n >>> (32 - s))) + b;
-    }
-
-    function II(a, b, c, d, x, s, t) {
-        var n = a + (c ^ (b | ~d)) + x + t;
-        return ((n << s) | (n >>> (32 - s))) + b;
-    }
-
-    /**
-     * Shortcut function to the hasher's object interface.
-     *
-     * @param {WordArray|string} message The message to hash.
-     *
-     * @return {WordArray} The hash.
-     *
-     * @static
-     *
-     * @example
-     *
-     *     var hash = CryptoJS.MD5('message');
-     *     var hash = CryptoJS.MD5(wordArray);
-     */
-    C.MD5 = Hasher._createHelper(MD5);
-
-    /**
-     * Shortcut function to the HMAC's object interface.
-     *
-     * @param {WordArray|string} message The message to hash.
-     * @param {WordArray|string} key The secret key.
-     *
-     * @return {WordArray} The HMAC.
-     *
-     * @static
-     *
-     * @example
-     *
-     *     var hmac = CryptoJS.HmacMD5(message, key);
-     */
-    C.HmacMD5 = Hasher._createHmacHelper(MD5);
-}(Math));
-
-define("crypto.md5", ["crypto.core"], function(){});
-
-(function () {
-    // Shortcuts
-    var C = CryptoJS;
-    var C_lib = C.lib;
-    var Base = C_lib.Base;
-    var WordArray = C_lib.WordArray;
-    var C_algo = C.algo;
-    var MD5 = C_algo.MD5;
-
-    /**
-     * This key derivation function is meant to conform with EVP_BytesToKey.
-     * www.openssl.org/docs/crypto/EVP_BytesToKey.html
-     */
-    var EvpKDF = C_algo.EvpKDF = Base.extend({
-        /**
-         * Configuration options.
-         *
-         * @property {number} keySize The key size in words to generate. Default: 4 (128 bits)
-         * @property {Hasher} hasher The hash algorithm to use. Default: MD5
-         * @property {number} iterations The number of iterations to perform. Default: 1
-         */
-        cfg: Base.extend({
-            keySize: 128/32,
-            hasher: MD5,
-            iterations: 1
-        }),
-
-        /**
-         * Initializes a newly created key derivation function.
-         *
-         * @param {Object} cfg (Optional) The configuration options to use for the derivation.
-         *
-         * @example
-         *
-         *     var kdf = CryptoJS.algo.EvpKDF.create();
-         *     var kdf = CryptoJS.algo.EvpKDF.create({ keySize: 8 });
-         *     var kdf = CryptoJS.algo.EvpKDF.create({ keySize: 8, iterations: 1000 });
-         */
-        init: function (cfg) {
-            this.cfg = this.cfg.extend(cfg);
-        },
-
-        /**
-         * Derives a key from a password.
-         *
-         * @param {WordArray|string} password The password.
-         * @param {WordArray|string} salt A salt.
-         *
-         * @return {WordArray} The derived key.
-         *
-         * @example
-         *
-         *     var key = kdf.compute(password, salt);
-         */
-        compute: function (password, salt) {
-            // Shortcut
-            var cfg = this.cfg;
-
-            // Init hasher
-            var hasher = cfg.hasher.create();
-
-            // Initial values
-            var derivedKey = WordArray.create();
-
-            // Shortcuts
-            var derivedKeyWords = derivedKey.words;
-            var keySize = cfg.keySize;
-            var iterations = cfg.iterations;
-
-            // Generate key
-            while (derivedKeyWords.length < keySize) {
-                if (block) {
-                    hasher.update(block);
-                }
-                var block = hasher.update(password).finalize(salt);
-                hasher.reset();
-
-                // Iterations
-                for (var i = 1; i < iterations; i++) {
-                    block = hasher.finalize(block);
-                    hasher.reset();
-                }
-
-                derivedKey.concat(block);
-            }
-            derivedKey.sigBytes = keySize * 4;
-
-            return derivedKey;
-        }
-    });
-
-    /**
-     * Derives a key from a password.
-     *
-     * @param {WordArray|string} password The password.
-     * @param {WordArray|string} salt A salt.
-     * @param {Object} cfg (Optional) The configuration options to use for this computation.
-     *
-     * @return {WordArray} The derived key.
-     *
-     * @static
-     *
-     * @example
-     *
-     *     var key = CryptoJS.EvpKDF(password, salt);
-     *     var key = CryptoJS.EvpKDF(password, salt, { keySize: 8 });
-     *     var key = CryptoJS.EvpKDF(password, salt, { keySize: 8, iterations: 1000 });
-     */
-    C.EvpKDF = function (password, salt, cfg) {
-        return EvpKDF.create(cfg).compute(password, salt);
-    };
-}());
-
-define("crypto.evpkdf", ["crypto.md5"], function(){});
-
-/*
-CryptoJS v3.1.2
-code.google.com/p/crypto-js
-(c) 2009-2013 by Jeff Mott. All rights reserved.
-code.google.com/p/crypto-js/wiki/License
-*/
-/**
- * Cipher core components.
- */
-CryptoJS.lib.Cipher || (function (undefined) {
-    // Shortcuts
-    var C = CryptoJS;
-    var C_lib = C.lib;
-    var Base = C_lib.Base;
-    var WordArray = C_lib.WordArray;
-    var BufferedBlockAlgorithm = C_lib.BufferedBlockAlgorithm;
-    var C_enc = C.enc;
-    var Utf8 = C_enc.Utf8;
-    var Base64 = C_enc.Base64;
-    var C_algo = C.algo;
-    var EvpKDF = C_algo.EvpKDF;
-
-    /**
-     * Abstract base cipher template.
-     *
-     * @property {number} keySize This cipher's key size. Default: 4 (128 bits)
-     * @property {number} ivSize This cipher's IV size. Default: 4 (128 bits)
-     * @property {number} _ENC_XFORM_MODE A constant representing encryption mode.
-     * @property {number} _DEC_XFORM_MODE A constant representing decryption mode.
-     */
-    var Cipher = C_lib.Cipher = BufferedBlockAlgorithm.extend({
-        /**
-         * Configuration options.
-         *
-         * @property {WordArray} iv The IV to use for this operation.
-         */
-        cfg: Base.extend(),
-
-        /**
-         * Creates this cipher in encryption mode.
-         *
-         * @param {WordArray} key The key.
-         * @param {Object} cfg (Optional) The configuration options to use for this operation.
-         *
-         * @return {Cipher} A cipher instance.
-         *
-         * @static
-         *
-         * @example
-         *
-         *     var cipher = CryptoJS.algo.AES.createEncryptor(keyWordArray, { iv: ivWordArray });
-         */
-        createEncryptor: function (key, cfg) {
-            return this.create(this._ENC_XFORM_MODE, key, cfg);
-        },
-
-        /**
-         * Creates this cipher in decryption mode.
-         *
-         * @param {WordArray} key The key.
-         * @param {Object} cfg (Optional) The configuration options to use for this operation.
-         *
-         * @return {Cipher} A cipher instance.
-         *
-         * @static
-         *
-         * @example
-         *
-         *     var cipher = CryptoJS.algo.AES.createDecryptor(keyWordArray, { iv: ivWordArray });
-         */
-        createDecryptor: function (key, cfg) {
-            return this.create(this._DEC_XFORM_MODE, key, cfg);
-        },
-
-        /**
-         * Initializes a newly created cipher.
-         *
-         * @param {number} xformMode Either the encryption or decryption transormation mode constant.
-         * @param {WordArray} key The key.
-         * @param {Object} cfg (Optional) The configuration options to use for this operation.
-         *
-         * @example
-         *
-         *     var cipher = CryptoJS.algo.AES.create(CryptoJS.algo.AES._ENC_XFORM_MODE, keyWordArray, { iv: ivWordArray });
-         */
-        init: function (xformMode, key, cfg) {
-            // Apply config defaults
-            this.cfg = this.cfg.extend(cfg);
-
-            // Store transform mode and key
-            this._xformMode = xformMode;
-            this._key = key;
-
-            // Set initial values
-            this.reset();
-        },
-
-        /**
-         * Resets this cipher to its initial state.
-         *
-         * @example
-         *
-         *     cipher.reset();
-         */
-        reset: function () {
-            // Reset data buffer
-            BufferedBlockAlgorithm.reset.call(this);
-
-            // Perform concrete-cipher logic
-            this._doReset();
-        },
-
-        /**
-         * Adds data to be encrypted or decrypted.
-         *
-         * @param {WordArray|string} dataUpdate The data to encrypt or decrypt.
-         *
-         * @return {WordArray} The data after processing.
-         *
-         * @example
-         *
-         *     var encrypted = cipher.process('data');
-         *     var encrypted = cipher.process(wordArray);
-         */
-        process: function (dataUpdate) {
-            // Append
-            this._append(dataUpdate);
-
-            // Process available blocks
-            return this._process();
-        },
-
-        /**
-         * Finalizes the encryption or decryption process.
-         * Note that the finalize operation is effectively a destructive, read-once operation.
-         *
-         * @param {WordArray|string} dataUpdate The final data to encrypt or decrypt.
-         *
-         * @return {WordArray} The data after final processing.
-         *
-         * @example
-         *
-         *     var encrypted = cipher.finalize();
-         *     var encrypted = cipher.finalize('data');
-         *     var encrypted = cipher.finalize(wordArray);
-         */
-        finalize: function (dataUpdate) {
-            // Final data update
-            if (dataUpdate) {
-                this._append(dataUpdate);
-            }
-
-            // Perform concrete-cipher logic
-            var finalProcessedData = this._doFinalize();
-
-            return finalProcessedData;
-        },
-
-        keySize: 128/32,
-
-        ivSize: 128/32,
-
-        _ENC_XFORM_MODE: 1,
-
-        _DEC_XFORM_MODE: 2,
-
-        /**
-         * Creates shortcut functions to a cipher's object interface.
-         *
-         * @param {Cipher} cipher The cipher to create a helper for.
-         *
-         * @return {Object} An object with encrypt and decrypt shortcut functions.
-         *
-         * @static
-         *
-         * @example
-         *
-         *     var AES = CryptoJS.lib.Cipher._createHelper(CryptoJS.algo.AES);
-         */
-        _createHelper: (function () {
-            function selectCipherStrategy(key) {
-                if (typeof key == 'string') {
-                    return PasswordBasedCipher;
-                } else {
-                    return SerializableCipher;
-                }
-            }
-
-            return function (cipher) {
-                return {
-                    encrypt: function (message, key, cfg) {
-                        return selectCipherStrategy(key).encrypt(cipher, message, key, cfg);
-                    },
-
-                    decrypt: function (ciphertext, key, cfg) {
-                        return selectCipherStrategy(key).decrypt(cipher, ciphertext, key, cfg);
-                    }
-                };
-            };
-        }())
-    });
-
-    /**
-     * Abstract base stream cipher template.
-     *
-     * @property {number} blockSize The number of 32-bit words this cipher operates on. Default: 1 (32 bits)
-     */
-    var StreamCipher = C_lib.StreamCipher = Cipher.extend({
-        _doFinalize: function () {
-            // Process partial blocks
-            var finalProcessedBlocks = this._process(!!'flush');
-
-            return finalProcessedBlocks;
-        },
-
-        blockSize: 1
-    });
-
-    /**
-     * Mode namespace.
-     */
-    var C_mode = C.mode = {};
-
-    /**
-     * Abstract base block cipher mode template.
-     */
-    var BlockCipherMode = C_lib.BlockCipherMode = Base.extend({
-        /**
-         * Creates this mode for encryption.
-         *
-         * @param {Cipher} cipher A block cipher instance.
-         * @param {Array} iv The IV words.
-         *
-         * @static
-         *
-         * @example
-         *
-         *     var mode = CryptoJS.mode.CBC.createEncryptor(cipher, iv.words);
-         */
-        createEncryptor: function (cipher, iv) {
-            return this.Encryptor.create(cipher, iv);
-        },
-
-        /**
-         * Creates this mode for decryption.
-         *
-         * @param {Cipher} cipher A block cipher instance.
-         * @param {Array} iv The IV words.
-         *
-         * @static
-         *
-         * @example
-         *
-         *     var mode = CryptoJS.mode.CBC.createDecryptor(cipher, iv.words);
-         */
-        createDecryptor: function (cipher, iv) {
-            return this.Decryptor.create(cipher, iv);
-        },
-
-        /**
-         * Initializes a newly created mode.
-         *
-         * @param {Cipher} cipher A block cipher instance.
-         * @param {Array} iv The IV words.
-         *
-         * @example
-         *
-         *     var mode = CryptoJS.mode.CBC.Encryptor.create(cipher, iv.words);
-         */
-        init: function (cipher, iv) {
-            this._cipher = cipher;
-            this._iv = iv;
-        }
-    });
-
-    /**
-     * Cipher Block Chaining mode.
-     */
-    var CBC = C_mode.CBC = (function () {
-        /**
-         * Abstract base CBC mode.
-         */
-        var CBC = BlockCipherMode.extend();
-
-        /**
-         * CBC encryptor.
-         */
-        CBC.Encryptor = CBC.extend({
-            /**
-             * Processes the data block at offset.
-             *
-             * @param {Array} words The data words to operate on.
-             * @param {number} offset The offset where the block starts.
-             *
-             * @example
-             *
-             *     mode.processBlock(data.words, offset);
-             */
-            processBlock: function (words, offset) {
-                // Shortcuts
-                var cipher = this._cipher;
-                var blockSize = cipher.blockSize;
-
-                // XOR and encrypt
-                xorBlock.call(this, words, offset, blockSize);
-                cipher.encryptBlock(words, offset);
-
-                // Remember this block to use with next block
-                this._prevBlock = words.slice(offset, offset + blockSize);
-            }
-        });
-
-        /**
-         * CBC decryptor.
-         */
-        CBC.Decryptor = CBC.extend({
-            /**
-             * Processes the data block at offset.
-             *
-             * @param {Array} words The data words to operate on.
-             * @param {number} offset The offset where the block starts.
-             *
-             * @example
-             *
-             *     mode.processBlock(data.words, offset);
-             */
-            processBlock: function (words, offset) {
-                // Shortcuts
-                var cipher = this._cipher;
-                var blockSize = cipher.blockSize;
-
-                // Remember this block to use with next block
-                var thisBlock = words.slice(offset, offset + blockSize);
-
-                // Decrypt and XOR
-                cipher.decryptBlock(words, offset);
-                xorBlock.call(this, words, offset, blockSize);
-
-                // This block becomes the previous block
-                this._prevBlock = thisBlock;
-            }
-        });
-
-        function xorBlock(words, offset, blockSize) {
-            // Shortcut
-            var iv = this._iv;
-
-            // Choose mixing block
-            if (iv) {
-                var block = iv;
-
-                // Remove IV for subsequent blocks
-                this._iv = undefined;
-            } else {
-                var block = this._prevBlock;
-            }
-
-            // XOR blocks
-            for (var i = 0; i < blockSize; i++) {
-                words[offset + i] ^= block[i];
-            }
-        }
-
-        return CBC;
-    }());
-
-    /**
-     * Padding namespace.
-     */
-    var C_pad = C.pad = {};
-
-    /**
-     * PKCS #5/7 padding strategy.
-     */
-    var Pkcs7 = C_pad.Pkcs7 = {
-        /**
-         * Pads data using the algorithm defined in PKCS #5/7.
-         *
-         * @param {WordArray} data The data to pad.
-         * @param {number} blockSize The multiple that the data should be padded to.
-         *
-         * @static
-         *
-         * @example
-         *
-         *     CryptoJS.pad.Pkcs7.pad(wordArray, 4);
-         */
-        pad: function (data, blockSize) {
-            // Shortcut
-            var blockSizeBytes = blockSize * 4;
-
-            // Count padding bytes
-            var nPaddingBytes = blockSizeBytes - data.sigBytes % blockSizeBytes;
-
-            // Create padding word
-            var paddingWord = (nPaddingBytes << 24) | (nPaddingBytes << 16) | (nPaddingBytes << 8) | nPaddingBytes;
-
-            // Create padding
-            var paddingWords = [];
-            for (var i = 0; i < nPaddingBytes; i += 4) {
-                paddingWords.push(paddingWord);
-            }
-            var padding = WordArray.create(paddingWords, nPaddingBytes);
-
-            // Add padding
-            data.concat(padding);
-        },
-
-        /**
-         * Unpads data that had been padded using the algorithm defined in PKCS #5/7.
-         *
-         * @param {WordArray} data The data to unpad.
-         *
-         * @static
-         *
-         * @example
-         *
-         *     CryptoJS.pad.Pkcs7.unpad(wordArray);
-         */
-        unpad: function (data) {
-            // Get number of padding bytes from last byte
-            var nPaddingBytes = data.words[(data.sigBytes - 1) >>> 2] & 0xff;
-
-            // Remove padding
-            data.sigBytes -= nPaddingBytes;
-        }
-    };
-
-    /**
-     * Abstract base block cipher template.
-     *
-     * @property {number} blockSize The number of 32-bit words this cipher operates on. Default: 4 (128 bits)
-     */
-    var BlockCipher = C_lib.BlockCipher = Cipher.extend({
-        /**
-         * Configuration options.
-         *
-         * @property {Mode} mode The block mode to use. Default: CBC
-         * @property {Padding} padding The padding strategy to use. Default: Pkcs7
-         */
-        cfg: Cipher.cfg.extend({
-            mode: CBC,
-            padding: Pkcs7
-        }),
-
-        reset: function () {
-            // Reset cipher
-            Cipher.reset.call(this);
-
-            // Shortcuts
-            var cfg = this.cfg;
-            var iv = cfg.iv;
-            var mode = cfg.mode;
-
-            // Reset block mode
-            if (this._xformMode == this._ENC_XFORM_MODE) {
-                var modeCreator = mode.createEncryptor;
-            } else /* if (this._xformMode == this._DEC_XFORM_MODE) */ {
-                var modeCreator = mode.createDecryptor;
-
-                // Keep at least one block in the buffer for unpadding
-                this._minBufferSize = 1;
-            }
-            this._mode = modeCreator.call(mode, this, iv && iv.words);
-        },
-
-        _doProcessBlock: function (words, offset) {
-            this._mode.processBlock(words, offset);
-        },
-
-        _doFinalize: function () {
-            // Shortcut
-            var padding = this.cfg.padding;
-
-            // Finalize
-            if (this._xformMode == this._ENC_XFORM_MODE) {
-                // Pad data
-                padding.pad(this._data, this.blockSize);
-
-                // Process final blocks
-                var finalProcessedBlocks = this._process(!!'flush');
-            } else /* if (this._xformMode == this._DEC_XFORM_MODE) */ {
-                // Process final blocks
-                var finalProcessedBlocks = this._process(!!'flush');
-
-                // Unpad data
-                padding.unpad(finalProcessedBlocks);
-            }
-
-            return finalProcessedBlocks;
-        },
-
-        blockSize: 128/32
-    });
-
-    /**
-     * A collection of cipher parameters.
-     *
-     * @property {WordArray} ciphertext The raw ciphertext.
-     * @property {WordArray} key The key to this ciphertext.
-     * @property {WordArray} iv The IV used in the ciphering operation.
-     * @property {WordArray} salt The salt used with a key derivation function.
-     * @property {Cipher} algorithm The cipher algorithm.
-     * @property {Mode} mode The block mode used in the ciphering operation.
-     * @property {Padding} padding The padding scheme used in the ciphering operation.
-     * @property {number} blockSize The block size of the cipher.
-     * @property {Format} formatter The default formatting strategy to convert this cipher params object to a string.
-     */
-    var CipherParams = C_lib.CipherParams = Base.extend({
-        /**
-         * Initializes a newly created cipher params object.
-         *
-         * @param {Object} cipherParams An object with any of the possible cipher parameters.
-         *
-         * @example
-         *
-         *     var cipherParams = CryptoJS.lib.CipherParams.create({
-         *         ciphertext: ciphertextWordArray,
-         *         key: keyWordArray,
-         *         iv: ivWordArray,
-         *         salt: saltWordArray,
-         *         algorithm: CryptoJS.algo.AES,
-         *         mode: CryptoJS.mode.CBC,
-         *         padding: CryptoJS.pad.PKCS7,
-         *         blockSize: 4,
-         *         formatter: CryptoJS.format.OpenSSL
-         *     });
-         */
-        init: function (cipherParams) {
-            this.mixIn(cipherParams);
-        },
-
-        /**
-         * Converts this cipher params object to a string.
-         *
-         * @param {Format} formatter (Optional) The formatting strategy to use.
-         *
-         * @return {string} The stringified cipher params.
-         *
-         * @throws Error If neither the formatter nor the default formatter is set.
-         *
-         * @example
-         *
-         *     var string = cipherParams + '';
-         *     var string = cipherParams.toString();
-         *     var string = cipherParams.toString(CryptoJS.format.OpenSSL);
-         */
-        toString: function (formatter) {
-            return (formatter || this.formatter).stringify(this);
-        }
-    });
-
-    /**
-     * Format namespace.
-     */
-    var C_format = C.format = {};
-
-    /**
-     * OpenSSL formatting strategy.
-     */
-    var OpenSSLFormatter = C_format.OpenSSL = {
-        /**
-         * Converts a cipher params object to an OpenSSL-compatible string.
-         *
-         * @param {CipherParams} cipherParams The cipher params object.
-         *
-         * @return {string} The OpenSSL-compatible string.
-         *
-         * @static
-         *
-         * @example
-         *
-         *     var openSSLString = CryptoJS.format.OpenSSL.stringify(cipherParams);
-         */
-        stringify: function (cipherParams) {
-            // Shortcuts
-            var ciphertext = cipherParams.ciphertext;
-            var salt = cipherParams.salt;
-
-            // Format
-            if (salt) {
-                var wordArray = WordArray.create([0x53616c74, 0x65645f5f]).concat(salt).concat(ciphertext);
-            } else {
-                var wordArray = ciphertext;
-            }
-
-            return wordArray.toString(Base64);
-        },
-
-        /**
-         * Converts an OpenSSL-compatible string to a cipher params object.
-         *
-         * @param {string} openSSLStr The OpenSSL-compatible string.
-         *
-         * @return {CipherParams} The cipher params object.
-         *
-         * @static
-         *
-         * @example
-         *
-         *     var cipherParams = CryptoJS.format.OpenSSL.parse(openSSLString);
-         */
-        parse: function (openSSLStr) {
-            // Parse base64
-            var ciphertext = Base64.parse(openSSLStr);
-
-            // Shortcut
-            var ciphertextWords = ciphertext.words;
-
-            // Test for salt
-            if (ciphertextWords[0] == 0x53616c74 && ciphertextWords[1] == 0x65645f5f) {
-                // Extract salt
-                var salt = WordArray.create(ciphertextWords.slice(2, 4));
-
-                // Remove salt from ciphertext
-                ciphertextWords.splice(0, 4);
-                ciphertext.sigBytes -= 16;
-            }
-
-            return CipherParams.create({ ciphertext: ciphertext, salt: salt });
-        }
-    };
-
-    /**
-     * A cipher wrapper that returns ciphertext as a serializable cipher params object.
-     */
-    var SerializableCipher = C_lib.SerializableCipher = Base.extend({
-        /**
-         * Configuration options.
-         *
-         * @property {Formatter} format The formatting strategy to convert cipher param objects to and from a string. Default: OpenSSL
-         */
-        cfg: Base.extend({
-            format: OpenSSLFormatter
-        }),
-
-        /**
-         * Encrypts a message.
-         *
-         * @param {Cipher} cipher The cipher algorithm to use.
-         * @param {WordArray|string} message The message to encrypt.
-         * @param {WordArray} key The key.
-         * @param {Object} cfg (Optional) The configuration options to use for this operation.
-         *
-         * @return {CipherParams} A cipher params object.
-         *
-         * @static
-         *
-         * @example
-         *
-         *     var ciphertextParams = CryptoJS.lib.SerializableCipher.encrypt(CryptoJS.algo.AES, message, key);
-         *     var ciphertextParams = CryptoJS.lib.SerializableCipher.encrypt(CryptoJS.algo.AES, message, key, { iv: iv });
-         *     var ciphertextParams = CryptoJS.lib.SerializableCipher.encrypt(CryptoJS.algo.AES, message, key, { iv: iv, format: CryptoJS.format.OpenSSL });
-         */
-        encrypt: function (cipher, message, key, cfg) {
-            // Apply config defaults
-            cfg = this.cfg.extend(cfg);
-
-            // Encrypt
-            var encryptor = cipher.createEncryptor(key, cfg);
-            var ciphertext = encryptor.finalize(message);
-
-            // Shortcut
-            var cipherCfg = encryptor.cfg;
-
-            // Create and return serializable cipher params
-            return CipherParams.create({
-                ciphertext: ciphertext,
-                key: key,
-                iv: cipherCfg.iv,
-                algorithm: cipher,
-                mode: cipherCfg.mode,
-                padding: cipherCfg.padding,
-                blockSize: cipher.blockSize,
-                formatter: cfg.format
-            });
-        },
-
-        /**
-         * Decrypts serialized ciphertext.
-         *
-         * @param {Cipher} cipher The cipher algorithm to use.
-         * @param {CipherParams|string} ciphertext The ciphertext to decrypt.
-         * @param {WordArray} key The key.
-         * @param {Object} cfg (Optional) The configuration options to use for this operation.
-         *
-         * @return {WordArray} The plaintext.
-         *
-         * @static
-         *
-         * @example
-         *
-         *     var plaintext = CryptoJS.lib.SerializableCipher.decrypt(CryptoJS.algo.AES, formattedCiphertext, key, { iv: iv, format: CryptoJS.format.OpenSSL });
-         *     var plaintext = CryptoJS.lib.SerializableCipher.decrypt(CryptoJS.algo.AES, ciphertextParams, key, { iv: iv, format: CryptoJS.format.OpenSSL });
-         */
-        decrypt: function (cipher, ciphertext, key, cfg) {
-            // Apply config defaults
-            cfg = this.cfg.extend(cfg);
-
-            // Convert string to CipherParams
-            ciphertext = this._parse(ciphertext, cfg.format);
-
-            // Decrypt
-            var plaintext = cipher.createDecryptor(key, cfg).finalize(ciphertext.ciphertext);
-
-            return plaintext;
-        },
-
-        /**
-         * Converts serialized ciphertext to CipherParams,
-         * else assumed CipherParams already and returns ciphertext unchanged.
-         *
-         * @param {CipherParams|string} ciphertext The ciphertext.
-         * @param {Formatter} format The formatting strategy to use to parse serialized ciphertext.
-         *
-         * @return {CipherParams} The unserialized ciphertext.
-         *
-         * @static
-         *
-         * @example
-         *
-         *     var ciphertextParams = CryptoJS.lib.SerializableCipher._parse(ciphertextStringOrParams, format);
-         */
-        _parse: function (ciphertext, format) {
-            if (typeof ciphertext == 'string') {
-                return format.parse(ciphertext, this);
-            } else {
-                return ciphertext;
-            }
-        }
-    });
-
-    /**
-     * Key derivation function namespace.
-     */
-    var C_kdf = C.kdf = {};
-
-    /**
-     * OpenSSL key derivation function.
-     */
-    var OpenSSLKdf = C_kdf.OpenSSL = {
-        /**
-         * Derives a key and IV from a password.
-         *
-         * @param {string} password The password to derive from.
-         * @param {number} keySize The size in words of the key to generate.
-         * @param {number} ivSize The size in words of the IV to generate.
-         * @param {WordArray|string} salt (Optional) A 64-bit salt to use. If omitted, a salt will be generated randomly.
-         *
-         * @return {CipherParams} A cipher params object with the key, IV, and salt.
-         *
-         * @static
-         *
-         * @example
-         *
-         *     var derivedParams = CryptoJS.kdf.OpenSSL.execute('Password', 256/32, 128/32);
-         *     var derivedParams = CryptoJS.kdf.OpenSSL.execute('Password', 256/32, 128/32, 'saltsalt');
-         */
-        execute: function (password, keySize, ivSize, salt) {
-            // Generate random salt
-            if (!salt) {
-                salt = WordArray.random(64/8);
-            }
-
-            // Derive key and IV
-            var key = EvpKDF.create({ keySize: keySize + ivSize }).compute(password, salt);
-
-            // Separate key and IV
-            var iv = WordArray.create(key.words.slice(keySize), ivSize * 4);
-            key.sigBytes = keySize * 4;
-
-            // Return params
-            return CipherParams.create({ key: key, iv: iv, salt: salt });
-        }
-    };
-
-    /**
-     * A serializable cipher wrapper that derives the key from a password,
-     * and returns ciphertext as a serializable cipher params object.
-     */
-    var PasswordBasedCipher = C_lib.PasswordBasedCipher = SerializableCipher.extend({
-        /**
-         * Configuration options.
-         *
-         * @property {KDF} kdf The key derivation function to use to generate a key and IV from a password. Default: OpenSSL
-         */
-        cfg: SerializableCipher.cfg.extend({
-            kdf: OpenSSLKdf
-        }),
-
-        /**
-         * Encrypts a message using a password.
-         *
-         * @param {Cipher} cipher The cipher algorithm to use.
-         * @param {WordArray|string} message The message to encrypt.
-         * @param {string} password The password.
-         * @param {Object} cfg (Optional) The configuration options to use for this operation.
-         *
-         * @return {CipherParams} A cipher params object.
-         *
-         * @static
-         *
-         * @example
-         *
-         *     var ciphertextParams = CryptoJS.lib.PasswordBasedCipher.encrypt(CryptoJS.algo.AES, message, 'password');
-         *     var ciphertextParams = CryptoJS.lib.PasswordBasedCipher.encrypt(CryptoJS.algo.AES, message, 'password', { format: CryptoJS.format.OpenSSL });
-         */
-        encrypt: function (cipher, message, password, cfg) {
-            // Apply config defaults
-            cfg = this.cfg.extend(cfg);
-
-            // Derive key and other params
-            var derivedParams = cfg.kdf.execute(password, cipher.keySize, cipher.ivSize);
-
-            // Add IV to config
-            cfg.iv = derivedParams.iv;
-
-            // Encrypt
-            var ciphertext = SerializableCipher.encrypt.call(this, cipher, message, derivedParams.key, cfg);
-
-            // Mix in derived params
-            ciphertext.mixIn(derivedParams);
-
-            return ciphertext;
-        },
-
-        /**
-         * Decrypts serialized ciphertext using a password.
-         *
-         * @param {Cipher} cipher The cipher algorithm to use.
-         * @param {CipherParams|string} ciphertext The ciphertext to decrypt.
-         * @param {string} password The password.
-         * @param {Object} cfg (Optional) The configuration options to use for this operation.
-         *
-         * @return {WordArray} The plaintext.
-         *
-         * @static
-         *
-         * @example
-         *
-         *     var plaintext = CryptoJS.lib.PasswordBasedCipher.decrypt(CryptoJS.algo.AES, formattedCiphertext, 'password', { format: CryptoJS.format.OpenSSL });
-         *     var plaintext = CryptoJS.lib.PasswordBasedCipher.decrypt(CryptoJS.algo.AES, ciphertextParams, 'password', { format: CryptoJS.format.OpenSSL });
-         */
-        decrypt: function (cipher, ciphertext, password, cfg) {
-            // Apply config defaults
-            cfg = this.cfg.extend(cfg);
-
-            // Convert string to CipherParams
-            ciphertext = this._parse(ciphertext, cfg.format);
-
-            // Derive key and other params
-            var derivedParams = cfg.kdf.execute(password, cipher.keySize, cipher.ivSize, ciphertext.salt);
-
-            // Add IV to config
-            cfg.iv = derivedParams.iv;
-
-            // Decrypt
-            var plaintext = SerializableCipher.decrypt.call(this, cipher, ciphertext, derivedParams.key, cfg);
-
-            return plaintext;
-        }
-    });
-}());
-
-define("crypto.cipher-core", ["crypto.enc-base64","crypto.evpkdf"], function(){});
-
-/*
-CryptoJS v3.1.2
-code.google.com/p/crypto-js
-(c) 2009-2013 by Jeff Mott. All rights reserved.
-code.google.com/p/crypto-js/wiki/License
-*/
-(function () {
-    // Shortcuts
-    var C = CryptoJS;
-    var C_lib = C.lib;
-    var BlockCipher = C_lib.BlockCipher;
-    var C_algo = C.algo;
-
-    // Lookup tables
-    var SBOX = [];
-    var INV_SBOX = [];
-    var SUB_MIX_0 = [];
-    var SUB_MIX_1 = [];
-    var SUB_MIX_2 = [];
-    var SUB_MIX_3 = [];
-    var INV_SUB_MIX_0 = [];
-    var INV_SUB_MIX_1 = [];
-    var INV_SUB_MIX_2 = [];
-    var INV_SUB_MIX_3 = [];
-
-    // Compute lookup tables
-    (function () {
-        // Compute double table
-        var d = [];
-        for (var i = 0; i < 256; i++) {
-            if (i < 128) {
-                d[i] = i << 1;
-            } else {
-                d[i] = (i << 1) ^ 0x11b;
-            }
-        }
-
-        // Walk GF(2^8)
-        var x = 0;
-        var xi = 0;
-        for (var i = 0; i < 256; i++) {
-            // Compute sbox
-            var sx = xi ^ (xi << 1) ^ (xi << 2) ^ (xi << 3) ^ (xi << 4);
-            sx = (sx >>> 8) ^ (sx & 0xff) ^ 0x63;
-            SBOX[x] = sx;
-            INV_SBOX[sx] = x;
-
-            // Compute multiplication
-            var x2 = d[x];
-            var x4 = d[x2];
-            var x8 = d[x4];
-
-            // Compute sub bytes, mix columns tables
-            var t = (d[sx] * 0x101) ^ (sx * 0x1010100);
-            SUB_MIX_0[x] = (t << 24) | (t >>> 8);
-            SUB_MIX_1[x] = (t << 16) | (t >>> 16);
-            SUB_MIX_2[x] = (t << 8)  | (t >>> 24);
-            SUB_MIX_3[x] = t;
-
-            // Compute inv sub bytes, inv mix columns tables
-            var t = (x8 * 0x1010101) ^ (x4 * 0x10001) ^ (x2 * 0x101) ^ (x * 0x1010100);
-            INV_SUB_MIX_0[sx] = (t << 24) | (t >>> 8);
-            INV_SUB_MIX_1[sx] = (t << 16) | (t >>> 16);
-            INV_SUB_MIX_2[sx] = (t << 8)  | (t >>> 24);
-            INV_SUB_MIX_3[sx] = t;
-
-            // Compute next counter
-            if (!x) {
-                x = xi = 1;
-            } else {
-                x = x2 ^ d[d[d[x8 ^ x2]]];
-                xi ^= d[d[xi]];
-            }
-        }
-    }());
-
-    // Precomputed Rcon lookup
-    var RCON = [0x00, 0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80, 0x1b, 0x36];
-
-    /**
-     * AES block cipher algorithm.
-     */
-    var AES = C_algo.AES = BlockCipher.extend({
-        _doReset: function () {
-            // Shortcuts
-            var key = this._key;
-            var keyWords = key.words;
-            var keySize = key.sigBytes / 4;
-
-            // Compute number of rounds
-            var nRounds = this._nRounds = keySize + 6
-
-            // Compute number of key schedule rows
-            var ksRows = (nRounds + 1) * 4;
-
-            // Compute key schedule
-            var keySchedule = this._keySchedule = [];
-            for (var ksRow = 0; ksRow < ksRows; ksRow++) {
-                if (ksRow < keySize) {
-                    keySchedule[ksRow] = keyWords[ksRow];
-                } else {
-                    var t = keySchedule[ksRow - 1];
-
-                    if (!(ksRow % keySize)) {
-                        // Rot word
-                        t = (t << 8) | (t >>> 24);
-
-                        // Sub word
-                        t = (SBOX[t >>> 24] << 24) | (SBOX[(t >>> 16) & 0xff] << 16) | (SBOX[(t >>> 8) & 0xff] << 8) | SBOX[t & 0xff];
-
-                        // Mix Rcon
-                        t ^= RCON[(ksRow / keySize) | 0] << 24;
-                    } else if (keySize > 6 && ksRow % keySize == 4) {
-                        // Sub word
-                        t = (SBOX[t >>> 24] << 24) | (SBOX[(t >>> 16) & 0xff] << 16) | (SBOX[(t >>> 8) & 0xff] << 8) | SBOX[t & 0xff];
-                    }
-
-                    keySchedule[ksRow] = keySchedule[ksRow - keySize] ^ t;
-                }
-            }
-
-            // Compute inv key schedule
-            var invKeySchedule = this._invKeySchedule = [];
-            for (var invKsRow = 0; invKsRow < ksRows; invKsRow++) {
-                var ksRow = ksRows - invKsRow;
-
-                if (invKsRow % 4) {
-                    var t = keySchedule[ksRow];
-                } else {
-                    var t = keySchedule[ksRow - 4];
-                }
-
-                if (invKsRow < 4 || ksRow <= 4) {
-                    invKeySchedule[invKsRow] = t;
-                } else {
-                    invKeySchedule[invKsRow] = INV_SUB_MIX_0[SBOX[t >>> 24]] ^ INV_SUB_MIX_1[SBOX[(t >>> 16) & 0xff]] ^
-                                               INV_SUB_MIX_2[SBOX[(t >>> 8) & 0xff]] ^ INV_SUB_MIX_3[SBOX[t & 0xff]];
-                }
-            }
-        },
-
-        encryptBlock: function (M, offset) {
-            this._doCryptBlock(M, offset, this._keySchedule, SUB_MIX_0, SUB_MIX_1, SUB_MIX_2, SUB_MIX_3, SBOX);
-        },
-
-        decryptBlock: function (M, offset) {
-            // Swap 2nd and 4th rows
-            var t = M[offset + 1];
-            M[offset + 1] = M[offset + 3];
-            M[offset + 3] = t;
-
-            this._doCryptBlock(M, offset, this._invKeySchedule, INV_SUB_MIX_0, INV_SUB_MIX_1, INV_SUB_MIX_2, INV_SUB_MIX_3, INV_SBOX);
-
-            // Inv swap 2nd and 4th rows
-            var t = M[offset + 1];
-            M[offset + 1] = M[offset + 3];
-            M[offset + 3] = t;
-        },
-
-        _doCryptBlock: function (M, offset, keySchedule, SUB_MIX_0, SUB_MIX_1, SUB_MIX_2, SUB_MIX_3, SBOX) {
-            // Shortcut
-            var nRounds = this._nRounds;
-
-            // Get input, add round key
-            var s0 = M[offset]     ^ keySchedule[0];
-            var s1 = M[offset + 1] ^ keySchedule[1];
-            var s2 = M[offset + 2] ^ keySchedule[2];
-            var s3 = M[offset + 3] ^ keySchedule[3];
-
-            // Key schedule row counter
-            var ksRow = 4;
-
-            // Rounds
-            for (var round = 1; round < nRounds; round++) {
-                // Shift rows, sub bytes, mix columns, add round key
-                var t0 = SUB_MIX_0[s0 >>> 24] ^ SUB_MIX_1[(s1 >>> 16) & 0xff] ^ SUB_MIX_2[(s2 >>> 8) & 0xff] ^ SUB_MIX_3[s3 & 0xff] ^ keySchedule[ksRow++];
-                var t1 = SUB_MIX_0[s1 >>> 24] ^ SUB_MIX_1[(s2 >>> 16) & 0xff] ^ SUB_MIX_2[(s3 >>> 8) & 0xff] ^ SUB_MIX_3[s0 & 0xff] ^ keySchedule[ksRow++];
-                var t2 = SUB_MIX_0[s2 >>> 24] ^ SUB_MIX_1[(s3 >>> 16) & 0xff] ^ SUB_MIX_2[(s0 >>> 8) & 0xff] ^ SUB_MIX_3[s1 & 0xff] ^ keySchedule[ksRow++];
-                var t3 = SUB_MIX_0[s3 >>> 24] ^ SUB_MIX_1[(s0 >>> 16) & 0xff] ^ SUB_MIX_2[(s1 >>> 8) & 0xff] ^ SUB_MIX_3[s2 & 0xff] ^ keySchedule[ksRow++];
-
-                // Update state
-                s0 = t0;
-                s1 = t1;
-                s2 = t2;
-                s3 = t3;
-            }
-
-            // Shift rows, sub bytes, add round key
-            var t0 = ((SBOX[s0 >>> 24] << 24) | (SBOX[(s1 >>> 16) & 0xff] << 16) | (SBOX[(s2 >>> 8) & 0xff] << 8) | SBOX[s3 & 0xff]) ^ keySchedule[ksRow++];
-            var t1 = ((SBOX[s1 >>> 24] << 24) | (SBOX[(s2 >>> 16) & 0xff] << 16) | (SBOX[(s3 >>> 8) & 0xff] << 8) | SBOX[s0 & 0xff]) ^ keySchedule[ksRow++];
-            var t2 = ((SBOX[s2 >>> 24] << 24) | (SBOX[(s3 >>> 16) & 0xff] << 16) | (SBOX[(s0 >>> 8) & 0xff] << 8) | SBOX[s1 & 0xff]) ^ keySchedule[ksRow++];
-            var t3 = ((SBOX[s3 >>> 24] << 24) | (SBOX[(s0 >>> 16) & 0xff] << 16) | (SBOX[(s1 >>> 8) & 0xff] << 8) | SBOX[s2 & 0xff]) ^ keySchedule[ksRow++];
-
-            // Set output
-            M[offset]     = t0;
-            M[offset + 1] = t1;
-            M[offset + 2] = t2;
-            M[offset + 3] = t3;
-        },
-
-        keySize: 256/32
-    });
-
-    /**
-     * Shortcut functions to the cipher's object interface.
-     *
-     * @example
-     *
-     *     var ciphertext = CryptoJS.AES.encrypt(message, key, cfg);
-     *     var plaintext  = CryptoJS.AES.decrypt(ciphertext, key, cfg);
-     */
-    C.AES = BlockCipher._createHelper(AES);
-}());
-
-define("crypto.aes", ["crypto.cipher-core"], function(){});
-
-/*
-CryptoJS v3.1.2
-code.google.com/p/crypto-js
-(c) 2009-2013 by Jeff Mott. All rights reserved.
-code.google.com/p/crypto-js/wiki/License
-*/
-(function () {
-    // Shortcuts
-    var C = CryptoJS;
-    var C_lib = C.lib;
-    var WordArray = C_lib.WordArray;
-    var Hasher = C_lib.Hasher;
-    var C_algo = C.algo;
-
-    // Reusable object
-    var W = [];
-
-    /**
-     * SHA-1 hash algorithm.
-     */
-    var SHA1 = C_algo.SHA1 = Hasher.extend({
-        _doReset: function () {
-            this._hash = new WordArray.init([
-                0x67452301, 0xefcdab89,
-                0x98badcfe, 0x10325476,
-                0xc3d2e1f0
-            ]);
-        },
-
-        _doProcessBlock: function (M, offset) {
-            // Shortcut
-            var H = this._hash.words;
-
-            // Working variables
-            var a = H[0];
-            var b = H[1];
-            var c = H[2];
-            var d = H[3];
-            var e = H[4];
-
-            // Computation
-            for (var i = 0; i < 80; i++) {
-                if (i < 16) {
-                    W[i] = M[offset + i] | 0;
-                } else {
-                    var n = W[i - 3] ^ W[i - 8] ^ W[i - 14] ^ W[i - 16];
-                    W[i] = (n << 1) | (n >>> 31);
-                }
-
-                var t = ((a << 5) | (a >>> 27)) + e + W[i];
-                if (i < 20) {
-                    t += ((b & c) | (~b & d)) + 0x5a827999;
-                } else if (i < 40) {
-                    t += (b ^ c ^ d) + 0x6ed9eba1;
-                } else if (i < 60) {
-                    t += ((b & c) | (b & d) | (c & d)) - 0x70e44324;
-                } else /* if (i < 80) */ {
-                    t += (b ^ c ^ d) - 0x359d3e2a;
-                }
-
-                e = d;
-                d = c;
-                c = (b << 30) | (b >>> 2);
-                b = a;
-                a = t;
-            }
-
-            // Intermediate hash value
-            H[0] = (H[0] + a) | 0;
-            H[1] = (H[1] + b) | 0;
-            H[2] = (H[2] + c) | 0;
-            H[3] = (H[3] + d) | 0;
-            H[4] = (H[4] + e) | 0;
-        },
-
-        _doFinalize: function () {
-            // Shortcuts
-            var data = this._data;
-            var dataWords = data.words;
-
-            var nBitsTotal = this._nDataBytes * 8;
-            var nBitsLeft = data.sigBytes * 8;
-
-            // Add padding
-            dataWords[nBitsLeft >>> 5] |= 0x80 << (24 - nBitsLeft % 32);
-            dataWords[(((nBitsLeft + 64) >>> 9) << 4) + 14] = Math.floor(nBitsTotal / 0x100000000);
-            dataWords[(((nBitsLeft + 64) >>> 9) << 4) + 15] = nBitsTotal;
-            data.sigBytes = dataWords.length * 4;
-
-            // Hash final blocks
-            this._process();
-
-            // Return final computed hash
-            return this._hash;
-        },
-
-        clone: function () {
-            var clone = Hasher.clone.call(this);
-            clone._hash = this._hash.clone();
-
-            return clone;
-        }
-    });
-
-    /**
-     * Shortcut function to the hasher's object interface.
-     *
-     * @param {WordArray|string} message The message to hash.
-     *
-     * @return {WordArray} The hash.
-     *
-     * @static
-     *
-     * @example
-     *
-     *     var hash = CryptoJS.SHA1('message');
-     *     var hash = CryptoJS.SHA1(wordArray);
-     */
-    C.SHA1 = Hasher._createHelper(SHA1);
-
-    /**
-     * Shortcut function to the HMAC's object interface.
-     *
-     * @param {WordArray|string} message The message to hash.
-     * @param {WordArray|string} key The secret key.
-     *
-     * @return {WordArray} The HMAC.
-     *
-     * @static
-     *
-     * @example
-     *
-     *     var hmac = CryptoJS.HmacSHA1(message, key);
-     */
-    C.HmacSHA1 = Hasher._createHmacHelper(SHA1);
-}());
-
-define("crypto.sha1", ["crypto.core"], function(){});
-
-/*
-CryptoJS v3.1.2
-code.google.com/p/crypto-js
-(c) 2009-2013 by Jeff Mott. All rights reserved.
-code.google.com/p/crypto-js/wiki/License
-*/
-(function (Math) {
-    // Shortcuts
-    var C = CryptoJS;
-    var C_lib = C.lib;
-    var WordArray = C_lib.WordArray;
-    var Hasher = C_lib.Hasher;
-    var C_algo = C.algo;
-
-    // Initialization and round constants tables
-    var H = [];
-    var K = [];
-
-    // Compute constants
-    (function () {
-        function isPrime(n) {
-            var sqrtN = Math.sqrt(n);
-            for (var factor = 2; factor <= sqrtN; factor++) {
-                if (!(n % factor)) {
-                    return false;
-                }
-            }
-
-            return true;
-        }
-
-        function getFractionalBits(n) {
-            return ((n - (n | 0)) * 0x100000000) | 0;
-        }
-
-        var n = 2;
-        var nPrime = 0;
-        while (nPrime < 64) {
-            if (isPrime(n)) {
-                if (nPrime < 8) {
-                    H[nPrime] = getFractionalBits(Math.pow(n, 1 / 2));
-                }
-                K[nPrime] = getFractionalBits(Math.pow(n, 1 / 3));
-
-                nPrime++;
-            }
-
-            n++;
-        }
-    }());
-
-    // Reusable object
-    var W = [];
-
-    /**
-     * SHA-256 hash algorithm.
-     */
-    var SHA256 = C_algo.SHA256 = Hasher.extend({
-        _doReset: function () {
-            this._hash = new WordArray.init(H.slice(0));
-        },
-
-        _doProcessBlock: function (M, offset) {
-            // Shortcut
-            var H = this._hash.words;
-
-            // Working variables
-            var a = H[0];
-            var b = H[1];
-            var c = H[2];
-            var d = H[3];
-            var e = H[4];
-            var f = H[5];
-            var g = H[6];
-            var h = H[7];
-
-            // Computation
-            for (var i = 0; i < 64; i++) {
-                if (i < 16) {
-                    W[i] = M[offset + i] | 0;
-                } else {
-                    var gamma0x = W[i - 15];
-                    var gamma0  = ((gamma0x << 25) | (gamma0x >>> 7))  ^
-                                  ((gamma0x << 14) | (gamma0x >>> 18)) ^
-                                   (gamma0x >>> 3);
-
-                    var gamma1x = W[i - 2];
-                    var gamma1  = ((gamma1x << 15) | (gamma1x >>> 17)) ^
-                                  ((gamma1x << 13) | (gamma1x >>> 19)) ^
-                                   (gamma1x >>> 10);
-
-                    W[i] = gamma0 + W[i - 7] + gamma1 + W[i - 16];
-                }
-
-                var ch  = (e & f) ^ (~e & g);
-                var maj = (a & b) ^ (a & c) ^ (b & c);
-
-                var sigma0 = ((a << 30) | (a >>> 2)) ^ ((a << 19) | (a >>> 13)) ^ ((a << 10) | (a >>> 22));
-                var sigma1 = ((e << 26) | (e >>> 6)) ^ ((e << 21) | (e >>> 11)) ^ ((e << 7)  | (e >>> 25));
-
-                var t1 = h + sigma1 + ch + K[i] + W[i];
-                var t2 = sigma0 + maj;
-
-                h = g;
-                g = f;
-                f = e;
-                e = (d + t1) | 0;
-                d = c;
-                c = b;
-                b = a;
-                a = (t1 + t2) | 0;
-            }
-
-            // Intermediate hash value
-            H[0] = (H[0] + a) | 0;
-            H[1] = (H[1] + b) | 0;
-            H[2] = (H[2] + c) | 0;
-            H[3] = (H[3] + d) | 0;
-            H[4] = (H[4] + e) | 0;
-            H[5] = (H[5] + f) | 0;
-            H[6] = (H[6] + g) | 0;
-            H[7] = (H[7] + h) | 0;
-        },
-
-        _doFinalize: function () {
-            // Shortcuts
-            var data = this._data;
-            var dataWords = data.words;
-
-            var nBitsTotal = this._nDataBytes * 8;
-            var nBitsLeft = data.sigBytes * 8;
-
-            // Add padding
-            dataWords[nBitsLeft >>> 5] |= 0x80 << (24 - nBitsLeft % 32);
-            dataWords[(((nBitsLeft + 64) >>> 9) << 4) + 14] = Math.floor(nBitsTotal / 0x100000000);
-            dataWords[(((nBitsLeft + 64) >>> 9) << 4) + 15] = nBitsTotal;
-            data.sigBytes = dataWords.length * 4;
-
-            // Hash final blocks
-            this._process();
-
-            // Return final computed hash
-            return this._hash;
-        },
-
-        clone: function () {
-            var clone = Hasher.clone.call(this);
-            clone._hash = this._hash.clone();
-
-            return clone;
-        }
-    });
-
-    /**
-     * Shortcut function to the hasher's object interface.
-     *
-     * @param {WordArray|string} message The message to hash.
-     *
-     * @return {WordArray} The hash.
-     *
-     * @static
-     *
-     * @example
-     *
-     *     var hash = CryptoJS.SHA256('message');
-     *     var hash = CryptoJS.SHA256(wordArray);
-     */
-    C.SHA256 = Hasher._createHelper(SHA256);
-
-    /**
-     * Shortcut function to the HMAC's object interface.
-     *
-     * @param {WordArray|string} message The message to hash.
-     * @param {WordArray|string} key The secret key.
-     *
-     * @return {WordArray} The HMAC.
-     *
-     * @static
-     *
-     * @example
-     *
-     *     var hmac = CryptoJS.HmacSHA256(message, key);
-     */
-    C.HmacSHA256 = Hasher._createHmacHelper(SHA256);
-}(Math));
-
-define("crypto.sha256", ["crypto.core"], function(){});
-
-/*
-CryptoJS v3.1.2
-code.google.com/p/crypto-js
-(c) 2009-2013 by Jeff Mott. All rights reserved.
-code.google.com/p/crypto-js/wiki/License
-*/
-(function () {
-    // Shortcuts
-    var C = CryptoJS;
-    var C_lib = C.lib;
-    var Base = C_lib.Base;
-    var C_enc = C.enc;
-    var Utf8 = C_enc.Utf8;
-    var C_algo = C.algo;
-
-    /**
-     * HMAC algorithm.
-     */
-    var HMAC = C_algo.HMAC = Base.extend({
-        /**
-         * Initializes a newly created HMAC.
-         *
-         * @param {Hasher} hasher The hash algorithm to use.
-         * @param {WordArray|string} key The secret key.
-         *
-         * @example
-         *
-         *     var hmacHasher = CryptoJS.algo.HMAC.create(CryptoJS.algo.SHA256, key);
-         */
-        init: function (hasher, key) {
-            // Init hasher
-            hasher = this._hasher = new hasher.init();
-
-            // Convert string to WordArray, else assume WordArray already
-            if (typeof key == 'string') {
-                key = Utf8.parse(key);
-            }
-
-            // Shortcuts
-            var hasherBlockSize = hasher.blockSize;
-            var hasherBlockSizeBytes = hasherBlockSize * 4;
-
-            // Allow arbitrary length keys
-            if (key.sigBytes > hasherBlockSizeBytes) {
-                key = hasher.finalize(key);
-            }
-
-            // Clamp excess bits
-            key.clamp();
-
-            // Clone key for inner and outer pads
-            var oKey = this._oKey = key.clone();
-            var iKey = this._iKey = key.clone();
-
-            // Shortcuts
-            var oKeyWords = oKey.words;
-            var iKeyWords = iKey.words;
-
-            // XOR keys with pad constants
-            for (var i = 0; i < hasherBlockSize; i++) {
-                oKeyWords[i] ^= 0x5c5c5c5c;
-                iKeyWords[i] ^= 0x36363636;
-            }
-            oKey.sigBytes = iKey.sigBytes = hasherBlockSizeBytes;
-
-            // Set initial values
-            this.reset();
-        },
-
-        /**
-         * Resets this HMAC to its initial state.
-         *
-         * @example
-         *
-         *     hmacHasher.reset();
-         */
-        reset: function () {
-            // Shortcut
-            var hasher = this._hasher;
-
-            // Reset
-            hasher.reset();
-            hasher.update(this._iKey);
-        },
-
-        /**
-         * Updates this HMAC with a message.
-         *
-         * @param {WordArray|string} messageUpdate The message to append.
-         *
-         * @return {HMAC} This HMAC instance.
-         *
-         * @example
-         *
-         *     hmacHasher.update('message');
-         *     hmacHasher.update(wordArray);
-         */
-        update: function (messageUpdate) {
-            this._hasher.update(messageUpdate);
-
-            // Chainable
-            return this;
-        },
-
-        /**
-         * Finalizes the HMAC computation.
-         * Note that the finalize operation is effectively a destructive, read-once operation.
-         *
-         * @param {WordArray|string} messageUpdate (Optional) A final message update.
-         *
-         * @return {WordArray} The HMAC.
-         *
-         * @example
-         *
-         *     var hmac = hmacHasher.finalize();
-         *     var hmac = hmacHasher.finalize('message');
-         *     var hmac = hmacHasher.finalize(wordArray);
-         */
-        finalize: function (messageUpdate) {
-            // Shortcut
-            var hasher = this._hasher;
-
-            // Compute HMAC
-            var innerHash = hasher.finalize(messageUpdate);
-            hasher.reset();
-            var hmac = hasher.finalize(this._oKey.clone().concat(innerHash));
-
-            return hmac;
-        }
-    });
-}());
-
-define("crypto.hmac", ["crypto.core"], function(){});
-
-/*
-CryptoJS v3.1.2
-code.google.com/p/crypto-js
-(c) 2009-2013 by Jeff Mott. All rights reserved.
-code.google.com/p/crypto-js/wiki/License
-*/
-/**
- * A noop padding strategy.
- */
-CryptoJS.pad.NoPadding = {
-    pad: function () {
-    },
-
-    unpad: function () {
-    }
-};
-
-define("crypto.pad-nopadding", ["crypto.cipher-core"], function(){});
-
-/*
-CryptoJS v3.1.2
-code.google.com/p/crypto-js
-(c) 2009-2013 by Jeff Mott. All rights reserved.
-code.google.com/p/crypto-js/wiki/License
-*/
-/**
- * Counter block mode.
- */
-CryptoJS.mode.CTR = (function () {
-    var CTR = CryptoJS.lib.BlockCipherMode.extend();
-
-    var Encryptor = CTR.Encryptor = CTR.extend({
-        processBlock: function (words, offset) {
-            // Shortcuts
-            var cipher = this._cipher
-            var blockSize = cipher.blockSize;
-            var iv = this._iv;
-            var counter = this._counter;
-
-            // Generate keystream
-            if (iv) {
-                counter = this._counter = iv.slice(0);
-
-                // Remove IV for subsequent blocks
-                this._iv = undefined;
-            }
-            var keystream = counter.slice(0);
-            cipher.encryptBlock(keystream, 0);
-
-            // Increment counter
-            counter[blockSize - 1] = (counter[blockSize - 1] + 1) | 0
-
-            // Encrypt
-            for (var i = 0; i < blockSize; i++) {
-                words[offset + i] ^= keystream[i];
-            }
-        }
-    });
-
-    CTR.Decryptor = Encryptor;
-
-    return CTR;
-}());
-
-define("crypto.mode-ctr", ["crypto.cipher-core"], function(){});
-
-;(function (root, factory) {
-    if (typeof define === "function" && define.amd) {
-        define('crypto',[
-            "crypto.core",
-            "crypto.enc-base64",
-            "crypto.md5",
-            "crypto.evpkdf",
-            "crypto.cipher-core",
-            "crypto.aes",
-            "crypto.sha1",
-            "crypto.sha256",
-            "crypto.hmac",
-            "crypto.pad-nopadding",
-            "crypto.mode-ctr"
-            ], function() {
-                return CryptoJS;
-            }
-        );
-    } else {
-        root.CryptoJS = factory();
-    }
-}(this));
-
-;(function (root, factory) {
-
-  if (typeof define === 'function' && define.amd) {
-    define('bigint',[], factory.bind(root, root.crypto || root.msCrypto))
-  } else if (typeof module !== 'undefined' && module.exports) {
-    module.exports = factory(require('crypto'))
-  } else {
-    root.BigInt = factory(root.crypto || root.msCrypto)
-  }
-
-}(this, function (crypto) {
-
-  ////////////////////////////////////////////////////////////////////////////////////////
-  // Big Integer Library v. 5.5
-  // Created 2000, last modified 2013
-  // Leemon Baird
-  // www.leemon.com
-  //
-  // Version history:
-  // v 5.5  17 Mar 2013
-  //   - two lines of a form like "if (x<0) x+=n" had the "if" changed to "while" to
-  //     handle the case when x<-n. (Thanks to James Ansell for finding that bug)
-  // v 5.4  3 Oct 2009
-  //   - added "var i" to greaterShift() so i is not global. (Thanks to Péter Szabó for finding that bug)
-  //
-  // v 5.3  21 Sep 2009
-  //   - added randProbPrime(k) for probable primes
-  //   - unrolled loop in mont_ (slightly faster)
-  //   - millerRabin now takes a bigInt parameter rather than an int
-  //
-  // v 5.2  15 Sep 2009
-  //   - fixed capitalization in call to int2bigInt in randBigInt
-  //     (thanks to Emili Evripidou, Reinhold Behringer, and Samuel Macaleese for finding that bug)
-  //
-  // v 5.1  8 Oct 2007 
-  //   - renamed inverseModInt_ to inverseModInt since it doesn't change its parameters
-  //   - added functions GCD and randBigInt, which call GCD_ and randBigInt_
-  //   - fixed a bug found by Rob Visser (see comment with his name below)
-  //   - improved comments
-  //
-  // This file is public domain.   You can use it for any purpose without restriction.
-  // I do not guarantee that it is correct, so use it at your own risk.  If you use 
-  // it for something interesting, I'd appreciate hearing about it.  If you find 
-  // any bugs or make any improvements, I'd appreciate hearing about those too.
-  // It would also be nice if my name and URL were left in the comments.  But none 
-  // of that is required.
-  //
-  // This code defines a bigInt library for arbitrary-precision integers.
-  // A bigInt is an array of integers storing the value in chunks of bpe bits, 
-  // little endian (buff[0] is the least significant word).
-  // Negative bigInts are stored two's complement.  Almost all the functions treat
-  // bigInts as nonnegative.  The few that view them as two's complement say so
-  // in their comments.  Some functions assume their parameters have at least one 
-  // leading zero element. Functions with an underscore at the end of the name put
-  // their answer into one of the arrays passed in, and have unpredictable behavior 
-  // in case of overflow, so the caller must make sure the arrays are big enough to 
-  // hold the answer.  But the average user should never have to call any of the 
-  // underscored functions.  Each important underscored function has a wrapper function 
-  // of the same name without the underscore that takes care of the details for you.  
-  // For each underscored function where a parameter is modified, that same variable 
-  // must not be used as another argument too.  So, you cannot square x by doing 
-  // multMod_(x,x,n).  You must use squareMod_(x,n) instead, or do y=dup(x); multMod_(x,y,n).
-  // Or simply use the multMod(x,x,n) function without the underscore, where
-  // such issues never arise, because non-underscored functions never change
-  // their parameters; they always allocate new memory for the answer that is returned.
-  //
-  // These functions are designed to avoid frequent dynamic memory allocation in the inner loop.
-  // For most functions, if it needs a BigInt as a local variable it will actually use
-  // a global, and will only allocate to it only when it's not the right size.  This ensures
-  // that when a function is called repeatedly with same-sized parameters, it only allocates
-  // memory on the first call.
-  //
-  // Note that for cryptographic purposes, the calls to Math.random() must 
-  // be replaced with calls to a better pseudorandom number generator.
-  //
-  // In the following, "bigInt" means a bigInt with at least one leading zero element,
-  // and "integer" means a nonnegative integer less than radix.  In some cases, integer 
-  // can be negative.  Negative bigInts are 2s complement.
-  // 
-  // The following functions do not modify their inputs.
-  // Those returning a bigInt, string, or Array will dynamically allocate memory for that value.
-  // Those returning a boolean will return the integer 0 (false) or 1 (true).
-  // Those returning boolean or int will not allocate memory except possibly on the first 
-  // time they're called with a given parameter size.
-  // 
-  // bigInt  add(x,y)               //return (x+y) for bigInts x and y.  
-  // bigInt  addInt(x,n)            //return (x+n) where x is a bigInt and n is an integer.
-  // string  bigInt2str(x,base)     //return a string form of bigInt x in a given base, with 2 <= base <= 95
-  // int     bitSize(x)             //return how many bits long the bigInt x is, not counting leading zeros
-  // bigInt  dup(x)                 //return a copy of bigInt x
-  // boolean equals(x,y)            //is the bigInt x equal to the bigint y?
-  // boolean equalsInt(x,y)         //is bigint x equal to integer y?
-  // bigInt  expand(x,n)            //return a copy of x with at least n elements, adding leading zeros if needed
-  // Array   findPrimes(n)          //return array of all primes less than integer n
-  // bigInt  GCD(x,y)               //return greatest common divisor of bigInts x and y (each with same number of elements).
-  // boolean greater(x,y)           //is x>y?  (x and y are nonnegative bigInts)
-  // boolean greaterShift(x,y,shift)//is (x <<(shift*bpe)) > y?
-  // bigInt  int2bigInt(t,n,m)      //return a bigInt equal to integer t, with at least n bits and m array elements
-  // bigInt  inverseMod(x,n)        //return (x**(-1) mod n) for bigInts x and n.  If no inverse exists, it returns null
-  // int     inverseModInt(x,n)     //return x**(-1) mod n, for integers x and n.  Return 0 if there is no inverse
-  // boolean isZero(x)              //is the bigInt x equal to zero?
-  // boolean millerRabin(x,b)       //does one round of Miller-Rabin base integer b say that bigInt x is possibly prime? (b is bigInt, 1<b<x)
-  // boolean millerRabinInt(x,b)    //does one round of Miller-Rabin base integer b say that bigInt x is possibly prime? (b is int,    1<b<x)
-  // bigInt  mod(x,n)               //return a new bigInt equal to (x mod n) for bigInts x and n.
-  // int     modInt(x,n)            //return x mod n for bigInt x and integer n.
-  // bigInt  mult(x,y)              //return x*y for bigInts x and y. This is faster when y<x.
-  // bigInt  multMod(x,y,n)         //return (x*y mod n) for bigInts x,y,n.  For greater speed, let y<x.
-  // boolean negative(x)            //is bigInt x negative?
-  // bigInt  powMod(x,y,n)          //return (x**y mod n) where x,y,n are bigInts and ** is exponentiation.  0**0=1. Faster for odd n.
-  // bigInt  randBigInt(n,s)        //return an n-bit random BigInt (n>=1).  If s=1, then the most significant of those n bits is set to 1.
-  // bigInt  randTruePrime(k)       //return a new, random, k-bit, true prime bigInt using Maurer's algorithm.
-  // bigInt  randProbPrime(k)       //return a new, random, k-bit, probable prime bigInt (probability it's composite less than 2^-80).
-  // bigInt  str2bigInt(s,b,n,m)    //return a bigInt for number represented in string s in base b with at least n bits and m array elements
-  // bigInt  sub(x,y)               //return (x-y) for bigInts x and y.  Negative answers will be 2s complement
-  // bigInt  trim(x,k)              //return a copy of x with exactly k leading zero elements
-  //
-  //
-  // The following functions each have a non-underscored version, which most users should call instead.
-  // These functions each write to a single parameter, and the caller is responsible for ensuring the array 
-  // passed in is large enough to hold the result. 
-  //
-  // void    addInt_(x,n)          //do x=x+n where x is a bigInt and n is an integer
-  // void    add_(x,y)             //do x=x+y for bigInts x and y
-  // void    copy_(x,y)            //do x=y on bigInts x and y
-  // void    copyInt_(x,n)         //do x=n on bigInt x and integer n
-  // void    GCD_(x,y)             //set x to the greatest common divisor of bigInts x and y, (y is destroyed).  (This never overflows its array).
-  // boolean inverseMod_(x,n)      //do x=x**(-1) mod n, for bigInts x and n. Returns 1 (0) if inverse does (doesn't) exist
-  // void    mod_(x,n)             //do x=x mod n for bigInts x and n. (This never overflows its array).
-  // void    mult_(x,y)            //do x=x*y for bigInts x and y.
-  // void    multMod_(x,y,n)       //do x=x*y  mod n for bigInts x,y,n.
-  // void    powMod_(x,y,n)        //do x=x**y mod n, where x,y,n are bigInts (n is odd) and ** is exponentiation.  0**0=1.
-  // void    randBigInt_(b,n,s)    //do b = an n-bit random BigInt. if s=1, then nth bit (most significant bit) is set to 1. n>=1.
-  // void    randTruePrime_(ans,k) //do ans = a random k-bit true random prime (not just probable prime) with 1 in the msb.
-  // void    sub_(x,y)             //do x=x-y for bigInts x and y. Negative answers will be 2s complement.
-  //
-  // The following functions do NOT have a non-underscored version. 
-  // They each write a bigInt result to one or more parameters.  The caller is responsible for
-  // ensuring the arrays passed in are large enough to hold the results. 
-  //
-  // void addShift_(x,y,ys)       //do x=x+(y<<(ys*bpe))
-  // void carry_(x)               //do carries and borrows so each element of the bigInt x fits in bpe bits.
-  // void divide_(x,y,q,r)        //divide x by y giving quotient q and remainder r
-  // int  divInt_(x,n)            //do x=floor(x/n) for bigInt x and integer n, and return the remainder. (This never overflows its array).
-  // int  eGCD_(x,y,d,a,b)        //sets a,b,d to positive bigInts such that d = GCD_(x,y) = a*x-b*y
-  // void halve_(x)               //do x=floor(|x|/2)*sgn(x) for bigInt x in 2's complement.  (This never overflows its array).
-  // void leftShift_(x,n)         //left shift bigInt x by n bits.  n<bpe.
-  // void linComb_(x,y,a,b)       //do x=a*x+b*y for bigInts x and y and integers a and b
-  // void linCombShift_(x,y,b,ys) //do x=x+b*(y<<(ys*bpe)) for bigInts x and y, and integers b and ys
-  // void mont_(x,y,n,np)         //Montgomery multiplication (see comments where the function is defined)
-  // void multInt_(x,n)           //do x=x*n where x is a bigInt and n is an integer.
-  // void rightShift_(x,n)        //right shift bigInt x by n bits. (This never overflows its array).
-  // void squareMod_(x,n)         //do x=x*x  mod n for bigInts x,n
-  // void subShift_(x,y,ys)       //do x=x-(y<<(ys*bpe)). Negative answers will be 2s complement.
-  //
-  // The following functions are based on algorithms from the _Handbook of Applied Cryptography_
-  //    powMod_()           = algorithm 14.94, Montgomery exponentiation
-  //    eGCD_,inverseMod_() = algorithm 14.61, Binary extended GCD_
-  //    GCD_()              = algorothm 14.57, Lehmer's algorithm
-  //    mont_()             = algorithm 14.36, Montgomery multiplication
-  //    divide_()           = algorithm 14.20  Multiple-precision division
-  //    squareMod_()        = algorithm 14.16  Multiple-precision squaring
-  //    randTruePrime_()    = algorithm  4.62, Maurer's algorithm
-  //    millerRabin()       = algorithm  4.24, Miller-Rabin algorithm
-  //
-  // Profiling shows:
-  //     randTruePrime_() spends:
-  //         10% of its time in calls to powMod_()
-  //         85% of its time in calls to millerRabin()
-  //     millerRabin() spends:
-  //         99% of its time in calls to powMod_()   (always with a base of 2)
-  //     powMod_() spends:
-  //         94% of its time in calls to mont_()  (almost always with x==y)
-  //
-  // This suggests there are several ways to speed up this library slightly:
-  //     - convert powMod_ to use a Montgomery form of k-ary window (or maybe a Montgomery form of sliding window)
-  //         -- this should especially focus on being fast when raising 2 to a power mod n
-  //     - convert randTruePrime_() to use a minimum r of 1/3 instead of 1/2 with the appropriate change to the test
-  //     - tune the parameters in randTruePrime_(), including c, m, and recLimit
-  //     - speed up the single loop in mont_() that takes 95% of the runtime, perhaps by reducing checking
-  //       within the loop when all the parameters are the same length.
-  //
-  // There are several ideas that look like they wouldn't help much at all:
-  //     - replacing trial division in randTruePrime_() with a sieve (that speeds up something taking almost no time anyway)
-  //     - increase bpe from 15 to 30 (that would help if we had a 32*32->64 multiplier, but not with JavaScript's 32*32->32)
-  //     - speeding up mont_(x,y,n,np) when x==y by doing a non-modular, non-Montgomery square
-  //       followed by a Montgomery reduction.  The intermediate answer will be twice as long as x, so that
-  //       method would be slower.  This is unfortunate because the code currently spends almost all of its time
-  //       doing mont_(x,x,...), both for randTruePrime_() and powMod_().  A faster method for Montgomery squaring
-  //       would have a large impact on the speed of randTruePrime_() and powMod_().  HAC has a couple of poorly-worded
-  //       sentences that seem to imply it's faster to do a non-modular square followed by a single
-  //       Montgomery reduction, but that's obviously wrong.
-  ////////////////////////////////////////////////////////////////////////////////////////
-
-  //globals
-
-  // The number of significant bits in the fraction of a JavaScript
-  // floating-point number is 52, independent of platform.
-  // See: https://github.com/arlolra/otr/issues/41
-
-  var bpe = 26;          // bits stored per array element
-  var radix = 1 << bpe;  // equals 2^bpe
-  var mask = radix - 1;  // AND this with an array element to chop it down to bpe bits
-
-  //the digits for converting to different bases
-  var digitsStr='0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_=!@#$%^&*()[]{}|;:,.<>/?`~ \\\'\"+-';
-
-  var one=int2bigInt(1,1,1);     //constant used in powMod_()
-
-  //the following global variables are scratchpad memory to 
-  //reduce dynamic memory allocation in the inner loop
-  var t=new Array(0);
-  var ss=t;       //used in mult_()
-  var s0=t;       //used in multMod_(), squareMod_()
-  var s1=t;       //used in powMod_(), multMod_(), squareMod_()
-  var s2=t;       //used in powMod_(), multMod_()
-  var s3=t;       //used in powMod_()
-  var s4=t, s5=t; //used in mod_()
-  var s6=t;       //used in bigInt2str()
-  var s7=t;       //used in powMod_()
-  var T=t;        //used in GCD_()
-  var sa=t;       //used in mont_()
-  var mr_x1=t, mr_r=t, mr_a=t;                                      //used in millerRabin()
-  var eg_v=t, eg_u=t, eg_A=t, eg_B=t, eg_C=t, eg_D=t;               //used in eGCD_(), inverseMod_()
-  var md_q1=t, md_q2=t, md_q3=t, md_r=t, md_r1=t, md_r2=t, md_tt=t; //used in mod_()
-
-  var primes=t, pows=t, s_i=t, s_i2=t, s_R=t, s_rm=t, s_q=t, s_n1=t;
-  var s_a=t, s_r2=t, s_n=t, s_b=t, s_d=t, s_x1=t, s_x2=t, s_aa=t; //used in randTruePrime_()
-    
-  var rpprb=t; //used in randProbPrimeRounds() (which also uses "primes")
-
-  ////////////////////////////////////////////////////////////////////////////////////////
-
-
-  //return array of all primes less than integer n
-  function findPrimes(n) {
-    var i,s,p,ans;
-    s=new Array(n);
-    for (i=0;i<n;i++)
-      s[i]=0;
-    s[0]=2;
-    p=0;    //first p elements of s are primes, the rest are a sieve
-    for(;s[p]<n;) {                  //s[p] is the pth prime
-      for(i=s[p]*s[p]; i<n; i+=s[p]) //mark multiples of s[p]
-        s[i]=1;
-      p++;
-      s[p]=s[p-1]+1;
-      for(; s[p]<n && s[s[p]]; s[p]++); //find next prime (where s[p]==0)
-    }
-    ans=new Array(p);
-    for(i=0;i<p;i++)
-      ans[i]=s[i];
-    return ans;
-  }
-
-
-  //does a single round of Miller-Rabin base b consider x to be a possible prime?
-  //x is a bigInt, and b is an integer, with b<x
-  function millerRabinInt(x,b) {
-    if (mr_x1.length!=x.length) {
-      mr_x1=dup(x);
-      mr_r=dup(x);
-      mr_a=dup(x);
-    }
-
-    copyInt_(mr_a,b);
-    return millerRabin(x,mr_a);
-  }
-
-  //does a single round of Miller-Rabin base b consider x to be a possible prime?
-  //x and b are bigInts with b<x
-  function millerRabin(x,b) {
-    var i,j,k,s;
-
-    if (mr_x1.length!=x.length) {
-      mr_x1=dup(x);
-      mr_r=dup(x);
-      mr_a=dup(x);
-    }
-
-    copy_(mr_a,b);
-    copy_(mr_r,x);
-    copy_(mr_x1,x);
-
-    addInt_(mr_r,-1);
-    addInt_(mr_x1,-1);
-
-    //s=the highest power of two that divides mr_r
-
-    /*
-    k=0;
-    for (i=0;i<mr_r.length;i++)
-      for (j=1;j<mask;j<<=1)
-        if (x[i] & j) {
-          s=(k<mr_r.length+bpe ? k : 0); 
-           i=mr_r.length;
-           j=mask;
-        } else
-          k++;
-    */
-
-    /* http://www.javascripter.net/math/primes/millerrabinbug-bigint54.htm */
-    if (isZero(mr_r)) return 0;
-    for (k=0; mr_r[k]==0; k++);
-    for (i=1,j=2; mr_r[k]%j==0; j*=2,i++ );
-    s = k*bpe + i - 1;
-    /* end */
-
-    if (s)                
-      rightShift_(mr_r,s);
-
-    powMod_(mr_a,mr_r,x);
-
-    if (!equalsInt(mr_a,1) && !equals(mr_a,mr_x1)) {
-      j=1;
-      while (j<=s-1 && !equals(mr_a,mr_x1)) {
-        squareMod_(mr_a,x);
-        if (equalsInt(mr_a,1)) {
-          return 0;
-        }
-        j++;
-      }
-      if (!equals(mr_a,mr_x1)) {
-        return 0;
-      }
-    }
-    return 1;  
-  }
-
-  //returns how many bits long the bigInt is, not counting leading zeros.
-  function bitSize(x) {
-    var j,z,w;
-    for (j=x.length-1; (x[j]==0) && (j>0); j--);
-    for (z=0,w=x[j]; w; (w>>=1),z++);
-    z+=bpe*j;
-    return z;
-  }
-
-  //return a copy of x with at least n elements, adding leading zeros if needed
-  function expand(x,n) {
-    var ans=int2bigInt(0,(x.length>n ? x.length : n)*bpe,0);
-    copy_(ans,x);
-    return ans;
-  }
-
-  //return a k-bit true random prime using Maurer's algorithm.
-  function randTruePrime(k) {
-    var ans=int2bigInt(0,k,0);
-    randTruePrime_(ans,k);
-    return trim(ans,1);
-  }
-
-  //return a k-bit random probable prime with probability of error < 2^-80
-  function randProbPrime(k) {
-    if (k>=600) return randProbPrimeRounds(k,2); //numbers from HAC table 4.3
-    if (k>=550) return randProbPrimeRounds(k,4);
-    if (k>=500) return randProbPrimeRounds(k,5);
-    if (k>=400) return randProbPrimeRounds(k,6);
-    if (k>=350) return randProbPrimeRounds(k,7);
-    if (k>=300) return randProbPrimeRounds(k,9);
-    if (k>=250) return randProbPrimeRounds(k,12); //numbers from HAC table 4.4
-    if (k>=200) return randProbPrimeRounds(k,15);
-    if (k>=150) return randProbPrimeRounds(k,18);
-    if (k>=100) return randProbPrimeRounds(k,27);
-                return randProbPrimeRounds(k,40); //number from HAC remark 4.26 (only an estimate)
-  }
-
-  //return a k-bit probable random prime using n rounds of Miller Rabin (after trial division with small primes)
-  function randProbPrimeRounds(k,n) {
-    var ans, i, divisible, B; 
-    B=30000;  //B is largest prime to use in trial division
-    ans=int2bigInt(0,k,0);
-    
-    //optimization: try larger and smaller B to find the best limit.
-    
-    if (primes.length==0)
-      primes=findPrimes(30000);  //check for divisibility by primes <=30000
-
-    if (rpprb.length!=ans.length)
-      rpprb=dup(ans);
-
-    for (;;) { //keep trying random values for ans until one appears to be prime
-      //optimization: pick a random number times L=2*3*5*...*p, plus a 
-      //   random element of the list of all numbers in [0,L) not divisible by any prime up to p.
-      //   This can reduce the amount of random number generation.
-      
-      randBigInt_(ans,k,0); //ans = a random odd number to check
-      ans[0] |= 1; 
-      divisible=0;
-    
-      //check ans for divisibility by small primes up to B
-      for (i=0; (i<primes.length) && (primes[i]<=B); i++)
-        if (modInt(ans,primes[i])==0 && !equalsInt(ans,primes[i])) {
-          divisible=1;
-          break;
-        }      
-      
-      //optimization: change millerRabin so the base can be bigger than the number being checked, then eliminate the while here.
-      
-      //do n rounds of Miller Rabin, with random bases less than ans
-      for (i=0; i<n && !divisible; i++) {
-        randBigInt_(rpprb,k,0);
-        while(!greater(ans,rpprb)) //pick a random rpprb that's < ans
-          randBigInt_(rpprb,k,0);
-        if (!millerRabin(ans,rpprb))
-          divisible=1;
-      }
-      
-      if(!divisible)
-        return ans;
-    }  
-  }
-
-  //return a new bigInt equal to (x mod n) for bigInts x and n.
-  function mod(x,n) {
-    var ans=dup(x);
-    mod_(ans,n);
-    return trim(ans,1);
-  }
-
-  //return (x+n) where x is a bigInt and n is an integer.
-  function addInt(x,n) {
-    var ans=expand(x,x.length+1);
-    addInt_(ans,n);
-    return trim(ans,1);
-  }
-
-  //return x*y for bigInts x and y. This is faster when y<x.
-  function mult(x,y) {
-    var ans=expand(x,x.length+y.length);
-    mult_(ans,y);
-    return trim(ans,1);
-  }
-
-  //return (x**y mod n) where x,y,n are bigInts and ** is exponentiation.  0**0=1. Faster for odd n.
-  function powMod(x,y,n) {
-    var ans=expand(x,n.length);  
-    powMod_(ans,trim(y,2),trim(n,2),0);  //this should work without the trim, but doesn't
-    return trim(ans,1);
-  }
-
-  //return (x-y) for bigInts x and y.  Negative answers will be 2s complement
-  function sub(x,y) {
-    var ans=expand(x,(x.length>y.length ? x.length+1 : y.length+1)); 
-    sub_(ans,y);
-    return trim(ans,1);
-  }
-
-  //return (x+y) for bigInts x and y.  
-  function add(x,y) {
-    var ans=expand(x,(x.length>y.length ? x.length+1 : y.length+1)); 
-    add_(ans,y);
-    return trim(ans,1);
-  }
-
-  //return (x**(-1) mod n) for bigInts x and n.  If no inverse exists, it returns null
-  function inverseMod(x,n) {
-    var ans=expand(x,n.length); 
-    var s;
-    s=inverseMod_(ans,n);
-    return s ? trim(ans,1) : null;
-  }
-
-  //return (x*y mod n) for bigInts x,y,n.  For greater speed, let y<x.
-  function multMod(x,y,n) {
-    var ans=expand(x,n.length);
-    multMod_(ans,y,n);
-    return trim(ans,1);
-  }
-
-  //generate a k-bit true random prime using Maurer's algorithm,
-  //and put it into ans.  The bigInt ans must be large enough to hold it.
-  function randTruePrime_(ans,k) {
-    var c,w,m,pm,dd,j,r,B,divisible,z,zz,recSize,recLimit;
-
-    if (primes.length==0)
-      primes=findPrimes(30000);  //check for divisibility by primes <=30000
-
-    if (pows.length==0) {
-      pows=new Array(512);
-      for (j=0;j<512;j++) {
-        pows[j]=Math.pow(2,j/511.0-1.0);
-      }
-    }
-
-    //c and m should be tuned for a particular machine and value of k, to maximize speed
-    c=0.1;  //c=0.1 in HAC
-    m=20;   //generate this k-bit number by first recursively generating a number that has between k/2 and k-m bits
-    recLimit=20; //stop recursion when k <=recLimit.  Must have recLimit >= 2
-
-    if (s_i2.length!=ans.length) {
-      s_i2=dup(ans);
-      s_R =dup(ans);
-      s_n1=dup(ans);
-      s_r2=dup(ans);
-      s_d =dup(ans);
-      s_x1=dup(ans);
-      s_x2=dup(ans);
-      s_b =dup(ans);
-      s_n =dup(ans);
-      s_i =dup(ans);
-      s_rm=dup(ans);
-      s_q =dup(ans);
-      s_a =dup(ans);
-      s_aa=dup(ans);
-    }
-
-    if (k <= recLimit) {  //generate small random primes by trial division up to its square root
-      pm=(1<<((k+2)>>1))-1; //pm is binary number with all ones, just over sqrt(2^k)
-      copyInt_(ans,0);
-      for (dd=1;dd;) {
-        dd=0;
-        ans[0]= 1 | (1<<(k-1)) | randomBitInt(k);  //random, k-bit, odd integer, with msb 1
-        for (j=1;(j<primes.length) && ((primes[j]&pm)==primes[j]);j++) { //trial division by all primes 3...sqrt(2^k)
-          if (0==(ans[0]%primes[j])) {
-            dd=1;
-            break;
-          }
-        }
-      }
-      carry_(ans);
-      return;
-    }
-
-    B=c*k*k;    //try small primes up to B (or all the primes[] array if the largest is less than B).
-    if (k>2*m)  //generate this k-bit number by first recursively generating a number that has between k/2 and k-m bits
-      for (r=1; k-k*r<=m; )
-        r=pows[randomBitInt(9)];   //r=Math.pow(2,Math.random()-1);
-    else
-      r=0.5;
-
-    //simulation suggests the more complex algorithm using r=.333 is only slightly faster.
-
-    recSize=Math.floor(r*k)+1;
-
-    randTruePrime_(s_q,recSize);
-    copyInt_(s_i2,0);
-    s_i2[Math.floor((k-2)/bpe)] |= (1<<((k-2)%bpe));   //s_i2=2^(k-2)
-    divide_(s_i2,s_q,s_i,s_rm);                        //s_i=floor((2^(k-1))/(2q))
-
-    z=bitSize(s_i);
-
-    for (;;) {
-      for (;;) {  //generate z-bit numbers until one falls in the range [0,s_i-1]
-        randBigInt_(s_R,z,0);
-        if (greater(s_i,s_R))
-          break;
-      }                //now s_R is in the range [0,s_i-1]
-      addInt_(s_R,1);  //now s_R is in the range [1,s_i]
-      add_(s_R,s_i);   //now s_R is in the range [s_i+1,2*s_i]
-
-      copy_(s_n,s_q);
-      mult_(s_n,s_R); 
-      multInt_(s_n,2);
-      addInt_(s_n,1);    //s_n=2*s_R*s_q+1
-      
-      copy_(s_r2,s_R);
-      multInt_(s_r2,2);  //s_r2=2*s_R
-
-      //check s_n for divisibility by small primes up to B
-      for (divisible=0,j=0; (j<primes.length) && (primes[j]<B); j++)
-        if (modInt(s_n,primes[j])==0 && !equalsInt(s_n,primes[j])) {
-          divisible=1;
-          break;
-        }      
-
-      if (!divisible)    //if it passes small primes check, then try a single Miller-Rabin base 2
-        if (!millerRabinInt(s_n,2)) //this line represents 75% of the total runtime for randTruePrime_ 
-          divisible=1;
-
-      if (!divisible) {  //if it passes that test, continue checking s_n
-        addInt_(s_n,-3);
-        for (j=s_n.length-1;(s_n[j]==0) && (j>0); j--);  //strip leading zeros
-        for (zz=0,w=s_n[j]; w; (w>>=1),zz++);
-        zz+=bpe*j;                             //zz=number of bits in s_n, ignoring leading zeros
-        for (;;) {  //generate z-bit numbers until one falls in the range [0,s_n-1]
-          randBigInt_(s_a,zz,0);
-          if (greater(s_n,s_a))
-            break;
-        }                //now s_a is in the range [0,s_n-1]
-        addInt_(s_n,3);  //now s_a is in the range [0,s_n-4]
-        addInt_(s_a,2);  //now s_a is in the range [2,s_n-2]
-        copy_(s_b,s_a);
-        copy_(s_n1,s_n);
-        addInt_(s_n1,-1);
-        powMod_(s_b,s_n1,s_n);   //s_b=s_a^(s_n-1) modulo s_n
-        addInt_(s_b,-1);
-        if (isZero(s_b)) {
-          copy_(s_b,s_a);
-          powMod_(s_b,s_r2,s_n);
-          addInt_(s_b,-1);
-          copy_(s_aa,s_n);
-          copy_(s_d,s_b);
-          GCD_(s_d,s_n);  //if s_b and s_n are relatively prime, then s_n is a prime
-          if (equalsInt(s_d,1)) {
-            copy_(ans,s_aa);
-            return;     //if we've made it this far, then s_n is absolutely guaranteed to be prime
-          }
-        }
-      }
-    }
-  }
-
-  //Return an n-bit random BigInt (n>=1).  If s=1, then the most significant of those n bits is set to 1.
-  function randBigInt(n,s) {
-    var a,b;
-    a=Math.floor((n-1)/bpe)+2; //# array elements to hold the BigInt with a leading 0 element
-    b=int2bigInt(0,0,a);
-    randBigInt_(b,n,s);
-    return b;
-  }
-
-  //Set b to an n-bit random BigInt.  If s=1, then the most significant of those n bits is set to 1.
-  //Array b must be big enough to hold the result. Must have n>=1
-  function randBigInt_(b,n,s) {
-    var i,a;
-    for (i=0;i<b.length;i++)
-      b[i]=0;
-    a=Math.floor((n-1)/bpe)+1; //# array elements to hold the BigInt
-    for (i=0;i<a;i++) {
-      b[i]=randomBitInt(bpe);
-    }
-    b[a-1] &= (2<<((n-1)%bpe))-1;
-    if (s==1)
-      b[a-1] |= (1<<((n-1)%bpe));
-  }
-
-  //Return the greatest common divisor of bigInts x and y (each with same number of elements).
-  function GCD(x,y) {
-    var xc,yc;
-    xc=dup(x);
-    yc=dup(y);
-    GCD_(xc,yc);
-    return xc;
-  }
-
-  //set x to the greatest common divisor of bigInts x and y (each with same number of elements).
-  //y is destroyed.
-  function GCD_(x,y) {
-    var i,xp,yp,A,B,C,D,q,sing,qp;
-    if (T.length!=x.length)
-      T=dup(x);
-
-    sing=1;
-    while (sing) { //while y has nonzero elements other than y[0]
-      sing=0;
-      for (i=1;i<y.length;i++) //check if y has nonzero elements other than 0
-        if (y[i]) {
-          sing=1;
-          break;
-        }
-      if (!sing) break; //quit when y all zero elements except possibly y[0]
-
-      for (i=x.length;!x[i] && i>=0;i--);  //find most significant element of x
-      xp=x[i];
-      yp=y[i];
-      A=1; B=0; C=0; D=1;
-      while ((yp+C) && (yp+D)) {
-        q =Math.floor((xp+A)/(yp+C));
-        qp=Math.floor((xp+B)/(yp+D));
-        if (q!=qp)
-          break;
-        t= A-q*C;   A=C;   C=t;    //  do (A,B,xp, C,D,yp) = (C,D,yp, A,B,xp) - q*(0,0,0, C,D,yp)      
-        t= B-q*D;   B=D;   D=t;
-        t=xp-q*yp; xp=yp; yp=t;
-      }
-      if (B) {
-        copy_(T,x);
-        linComb_(x,y,A,B); //x=A*x+B*y
-        linComb_(y,T,D,C); //y=D*y+C*T
-      } else {
-        mod_(x,y);
-        copy_(T,x);
-        copy_(x,y);
-        copy_(y,T);
-      } 
-    }
-    if (y[0]==0)
-      return;
-    t=modInt(x,y[0]);
-    copyInt_(x,y[0]);
-    y[0]=t;
-    while (y[0]) {
-      x[0]%=y[0];
-      t=x[0]; x[0]=y[0]; y[0]=t;
-    }
-  }
-
-  //do x=x**(-1) mod n, for bigInts x and n.
-  //If no inverse exists, it sets x to zero and returns 0, else it returns 1.
-  //The x array must be at least as large as the n array.
-  function inverseMod_(x,n) {
-    var k=1+2*Math.max(x.length,n.length);
-
-    if(!(x[0]&1)  && !(n[0]&1)) {  //if both inputs are even, then inverse doesn't exist
-      copyInt_(x,0);
-      return 0;
-    }
-
-    if (eg_u.length!=k) {
-      eg_u=new Array(k);
-      eg_v=new Array(k);
-      eg_A=new Array(k);
-      eg_B=new Array(k);
-      eg_C=new Array(k);
-      eg_D=new Array(k);
-    }
-
-    copy_(eg_u,x);
-    copy_(eg_v,n);
-    copyInt_(eg_A,1);
-    copyInt_(eg_B,0);
-    copyInt_(eg_C,0);
-    copyInt_(eg_D,1);
-    for (;;) {
-      while(!(eg_u[0]&1)) {  //while eg_u is even
-        halve_(eg_u);
-        if (!(eg_A[0]&1) && !(eg_B[0]&1)) { //if eg_A==eg_B==0 mod 2
-          halve_(eg_A);
-          halve_(eg_B);      
-        } else {
-          add_(eg_A,n);  halve_(eg_A);
-          sub_(eg_B,x);  halve_(eg_B);
-        }
-      }
-
-      while (!(eg_v[0]&1)) {  //while eg_v is even
-        halve_(eg_v);
-        if (!(eg_C[0]&1) && !(eg_D[0]&1)) { //if eg_C==eg_D==0 mod 2
-          halve_(eg_C);
-          halve_(eg_D);      
-        } else {
-          add_(eg_C,n);  halve_(eg_C);
-          sub_(eg_D,x);  halve_(eg_D);
-        }
-      }
-
-      if (!greater(eg_v,eg_u)) { //eg_v <= eg_u
-        sub_(eg_u,eg_v);
-        sub_(eg_A,eg_C);
-        sub_(eg_B,eg_D);
-      } else {                   //eg_v > eg_u
-        sub_(eg_v,eg_u);
-        sub_(eg_C,eg_A);
-        sub_(eg_D,eg_B);
-      }
-
-      if (equalsInt(eg_u,0)) {
-        while (negative(eg_C)) //make sure answer is nonnegative
-          add_(eg_C,n);
-        copy_(x,eg_C);
-
-        if (!equalsInt(eg_v,1)) { //if GCD_(x,n)!=1, then there is no inverse
-          copyInt_(x,0);
-          return 0;
-        }
-        return 1;
-      }
-    }
-  }
-
-  //return x**(-1) mod n, for integers x and n.  Return 0 if there is no inverse
-  function inverseModInt(x,n) {
-    var a=1,b=0,t;
-    for (;;) {
-      if (x==1) return a;
-      if (x==0) return 0;
-      b-=a*Math.floor(n/x);
-      n%=x;
-
-      if (n==1) return b; //to avoid negatives, change this b to n-b, and each -= to +=
-      if (n==0) return 0;
-      a-=b*Math.floor(x/n);
-      x%=n;
-    }
-  }
-
-  //this deprecated function is for backward compatibility only. 
-  function inverseModInt_(x,n) {
-     return inverseModInt(x,n);
-  }
-
-
-  //Given positive bigInts x and y, change the bigints v, a, and b to positive bigInts such that:
-  //     v = GCD_(x,y) = a*x-b*y
-  //The bigInts v, a, b, must have exactly as many elements as the larger of x and y.
-  function eGCD_(x,y,v,a,b) {
-    var g=0;
-    var k=Math.max(x.length,y.length);
-    if (eg_u.length!=k) {
-      eg_u=new Array(k);
-      eg_A=new Array(k);
-      eg_B=new Array(k);
-      eg_C=new Array(k);
-      eg_D=new Array(k);
-    }
-    while(!(x[0]&1)  && !(y[0]&1)) {  //while x and y both even
-      halve_(x);
-      halve_(y);
-      g++;
-    }
-    copy_(eg_u,x);
-    copy_(v,y);
-    copyInt_(eg_A,1);
-    copyInt_(eg_B,0);
-    copyInt_(eg_C,0);
-    copyInt_(eg_D,1);
-    for (;;) {
-      while(!(eg_u[0]&1)) {  //while u is even
-        halve_(eg_u);
-        if (!(eg_A[0]&1) && !(eg_B[0]&1)) { //if A==B==0 mod 2
-          halve_(eg_A);
-          halve_(eg_B);      
-        } else {
-          add_(eg_A,y);  halve_(eg_A);
-          sub_(eg_B,x);  halve_(eg_B);
-        }
-      }
-
-      while (!(v[0]&1)) {  //while v is even
-        halve_(v);
-        if (!(eg_C[0]&1) && !(eg_D[0]&1)) { //if C==D==0 mod 2
-          halve_(eg_C);
-          halve_(eg_D);      
-        } else {
-          add_(eg_C,y);  halve_(eg_C);
-          sub_(eg_D,x);  halve_(eg_D);
-        }
-      }
-
-      if (!greater(v,eg_u)) { //v<=u
-        sub_(eg_u,v);
-        sub_(eg_A,eg_C);
-        sub_(eg_B,eg_D);
-      } else {                //v>u
-        sub_(v,eg_u);
-        sub_(eg_C,eg_A);
-        sub_(eg_D,eg_B);
-      }
-      if (equalsInt(eg_u,0)) {
-        while (negative(eg_C)) {   //make sure a (C) is nonnegative
-          add_(eg_C,y);
-          sub_(eg_D,x);
-        }
-        multInt_(eg_D,-1);  ///make sure b (D) is nonnegative
-        copy_(a,eg_C);
-        copy_(b,eg_D);
-        leftShift_(v,g);
-        return;
-      }
-    }
-  }
-
-
-  //is bigInt x negative?
-  function negative(x) {
-    return ((x[x.length-1]>>(bpe-1))&1);
-  }
-
-
-  //is (x << (shift*bpe)) > y?
-  //x and y are nonnegative bigInts
-  //shift is a nonnegative integer
-  function greaterShift(x,y,shift) {
-    var i, kx=x.length, ky=y.length;
-    var k=((kx+shift)<ky) ? (kx+shift) : ky;
-    for (i=ky-1-shift; i<kx && i>=0; i++) 
-      if (x[i]>0)
-        return 1; //if there are nonzeros in x to the left of the first column of y, then x is bigger
-    for (i=kx-1+shift; i<ky; i++)
-      if (y[i]>0)
-        return 0; //if there are nonzeros in y to the left of the first column of x, then x is not bigger
-    for (i=k-1; i>=shift; i--)
-      if      (x[i-shift]>y[i]) return 1;
-      else if (x[i-shift]<y[i]) return 0;
-    return 0;
-  }
-
-  //is x > y? (x and y both nonnegative)
-  function greater(x,y) {
-    var i;
-    var k=(x.length<y.length) ? x.length : y.length;
-
-    for (i=x.length;i<y.length;i++)
-      if (y[i])
-        return 0;  //y has more digits
-
-    for (i=y.length;i<x.length;i++)
-      if (x[i])
-        return 1;  //x has more digits
-
-    for (i=k-1;i>=0;i--)
-      if (x[i]>y[i])
-        return 1;
-      else if (x[i]<y[i])
-        return 0;
-    return 0;
-  }
-
-  //divide x by y giving quotient q and remainder r.  (q=floor(x/y),  r=x mod y).  All 4 are bigints.
-  //x must have at least one leading zero element.
-  //y must be nonzero.
-  //q and r must be arrays that are exactly the same length as x. (Or q can have more).
-  //Must have x.length >= y.length >= 2.
-  function divide_(x,y,q,r) {
-    var kx, ky;
-    var i,j,y1,y2,c,a,b;
-    copy_(r,x);
-    for (ky=y.length;y[ky-1]==0;ky--); //ky is number of elements in y, not including leading zeros
-
-    //normalize: ensure the most significant element of y has its highest bit set  
-    b=y[ky-1];
-    for (a=0; b; a++)
-      b>>=1;  
-    a=bpe-a;  //a is how many bits to shift so that the high order bit of y is leftmost in its array element
-    leftShift_(y,a);  //multiply both by 1<<a now, then divide both by that at the end
-    leftShift_(r,a);
-
-    //Rob Visser discovered a bug: the following line was originally just before the normalization.
-    for (kx=r.length;r[kx-1]==0 && kx>ky;kx--); //kx is number of elements in normalized x, not including leading zeros
-
-    copyInt_(q,0);                      // q=0
-    while (!greaterShift(y,r,kx-ky)) {  // while (leftShift_(y,kx-ky) <= r) {
-      subShift_(r,y,kx-ky);             //   r=r-leftShift_(y,kx-ky)
-      q[kx-ky]++;                       //   q[kx-ky]++;
-    }                                   // }
-
-    for (i=kx-1; i>=ky; i--) {
-      if (r[i]==y[ky-1])
-        q[i-ky]=mask;
-      else
-        q[i-ky]=Math.floor((r[i]*radix+r[i-1])/y[ky-1]);
-
-      //The following for(;;) loop is equivalent to the commented while loop, 
-      //except that the uncommented version avoids overflow.
-      //The commented loop comes from HAC, which assumes r[-1]==y[-1]==0
-      //  while (q[i-ky]*(y[ky-1]*radix+y[ky-2]) > r[i]*radix*radix+r[i-1]*radix+r[i-2])
-      //    q[i-ky]--;    
-      for (;;) {
-        y2=(ky>1 ? y[ky-2] : 0)*q[i-ky];
-        c=y2;
-        y2=y2 & mask;
-        c = (c - y2) / radix;
-        y1=c+q[i-ky]*y[ky-1];
-        c=y1;
-        y1=y1 & mask;
-        c = (c - y1) / radix;
-
-        if (c==r[i] ? y1==r[i-1] ? y2>(i>1 ? r[i-2] : 0) : y1>r[i-1] : c>r[i]) 
-          q[i-ky]--;
-        else
-          break;
-      }
-
-      linCombShift_(r,y,-q[i-ky],i-ky);    //r=r-q[i-ky]*leftShift_(y,i-ky)
-      if (negative(r)) {
-        addShift_(r,y,i-ky);         //r=r+leftShift_(y,i-ky)
-        q[i-ky]--;
-      }
-    }
-
-    rightShift_(y,a);  //undo the normalization step
-    rightShift_(r,a);  //undo the normalization step
-  }
-
-  //do carries and borrows so each element of the bigInt x fits in bpe bits.
-  function carry_(x) {
-    var i,k,c,b;
-    k=x.length;
-    c=0;
-    for (i=0;i<k;i++) {
-      c+=x[i];
-      b=0;
-      if (c<0) {
-        b = c & mask;
-        b = -((c - b) / radix);
-        c+=b*radix;
-      }
-      x[i]=c & mask;
-      c = ((c - x[i]) / radix) - b;
-    }
-  }
-
-  //return x mod n for bigInt x and integer n.
-  function modInt(x,n) {
-    var i,c=0;
-    for (i=x.length-1; i>=0; i--)
-      c=(c*radix+x[i])%n;
-    return c;
-  }
-
-  //convert the integer t into a bigInt with at least the given number of bits.
-  //the returned array stores the bigInt in bpe-bit chunks, little endian (buff[0] is least significant word)
-  //Pad the array with leading zeros so that it has at least minSize elements.
-  //There will always be at least one leading 0 element.
-  function int2bigInt(t,bits,minSize) {   
-    var i,k, buff;
-    k=Math.ceil(bits/bpe)+1;
-    k=minSize>k ? minSize : k;
-    buff=new Array(k);
-    copyInt_(buff,t);
-    return buff;
-  }
-
-  //return the bigInt given a string representation in a given base.  
-  //Pad the array with leading zeros so that it has at least minSize elements.
-  //If base=-1, then it reads in a space-separated list of array elements in decimal.
-  //The array will always have at least one leading zero, unless base=-1.
-  function str2bigInt(s,base,minSize) {
-    var d, i, j, x, y, kk;
-    var k=s.length;
-    if (base==-1) { //comma-separated list of array elements in decimal
-      x=new Array(0);
-      for (;;) {
-        y=new Array(x.length+1);
-        for (i=0;i<x.length;i++)
-          y[i+1]=x[i];
-        y[0]=parseInt(s,10);
-        x=y;
-        d=s.indexOf(',',0);
-        if (d<1) 
-          break;
-        s=s.substring(d+1);
-        if (s.length==0)
-          break;
-      }
-      if (x.length<minSize) {
-        y=new Array(minSize);
-        copy_(y,x);
-        return y;
-      }
-      return x;
-    }
-
-    // log2(base)*k
-    var bb = base, p = 0;
-    var b = base == 1 ? k : 0;
-    while (bb > 1) {
-      if (bb & 1) p = 1;
-      b += k;
-      bb >>= 1;
-    }
-    b += p*k;
-
-    x=int2bigInt(0,b,0);
-    for (i=0;i<k;i++) {
-      d=digitsStr.indexOf(s.substring(i,i+1),0);
-      if (base<=36 && d>=36)  //convert lowercase to uppercase if base<=36
-        d-=26;
-      if (d>=base || d<0) {   //stop at first illegal character
-        break;
-      }
-      multInt_(x,base);
-      addInt_(x,d);
-    }
-
-    for (k=x.length;k>0 && !x[k-1];k--); //strip off leading zeros
-    k=minSize>k+1 ? minSize : k+1;
-    y=new Array(k);
-    kk=k<x.length ? k : x.length;
-    for (i=0;i<kk;i++)
-      y[i]=x[i];
-    for (;i<k;i++)
-      y[i]=0;
-    return y;
-  }
-
-  //is bigint x equal to integer y?
-  //y must have less than bpe bits
-  function equalsInt(x,y) {
-    var i;
-    if (x[0]!=y)
-      return 0;
-    for (i=1;i<x.length;i++)
-      if (x[i])
-        return 0;
-    return 1;
-  }
-
-  //are bigints x and y equal?
-  //this works even if x and y are different lengths and have arbitrarily many leading zeros
-  function equals(x,y) {
-    var i;
-    var k=x.length<y.length ? x.length : y.length;
-    for (i=0;i<k;i++)
-      if (x[i]!=y[i])
-        return 0;
-    if (x.length>y.length) {
-      for (;i<x.length;i++)
-        if (x[i])
-          return 0;
-    } else {
-      for (;i<y.length;i++)
-        if (y[i])
-          return 0;
-    }
-    return 1;
-  }
-
-  //is the bigInt x equal to zero?
-  function isZero(x) {
-    var i;
-    for (i=0;i<x.length;i++)
-      if (x[i])
-        return 0;
-    return 1;
-  }
-
-  //convert a bigInt into a string in a given base, from base 2 up to base 95.
-  //Base -1 prints the contents of the array representing the number.
-  function bigInt2str(x,base) {
-    var i,t,s="";
-
-    if (s6.length!=x.length) 
-      s6=dup(x);
-    else
-      copy_(s6,x);
-
-    if (base==-1) { //return the list of array contents
-      for (i=x.length-1;i>0;i--)
-        s+=x[i]+',';
-      s+=x[0];
-    }
-    else { //return it in the given base
-      while (!isZero(s6)) {
-        t=divInt_(s6,base);  //t=s6 % base; s6=floor(s6/base);
-        s=digitsStr.substring(t,t+1)+s;
-      }
-    }
-    if (s.length==0)
-      s="0";
-    return s;
-  }
-
-  //returns a duplicate of bigInt x
-  function dup(x) {
-    var i, buff;
-    buff=new Array(x.length);
-    copy_(buff,x);
-    return buff;
-  }
-
-  //do x=y on bigInts x and y.  x must be an array at least as big as y (not counting the leading zeros in y).
-  function copy_(x,y) {
-    var i;
-    var k=x.length<y.length ? x.length : y.length;
-    for (i=0;i<k;i++)
-      x[i]=y[i];
-    for (i=k;i<x.length;i++)
-      x[i]=0;
-  }
-
-  //do x=y on bigInt x and integer y.  
-  function copyInt_(x,n) {
-    var i,c;
-    for (c=n,i=0;i<x.length;i++) {
-      x[i]=c & mask;
-      c>>=bpe;
-    }
-  }
-
-  //do x=x+n where x is a bigInt and n is an integer.
-  //x must be large enough to hold the result.
-  function addInt_(x,n) {
-    var i,k,c,b;
-    x[0]+=n;
-    k=x.length;
-    c=0;
-    for (i=0;i<k;i++) {
-      c+=x[i];
-      b=0;
-      if (c<0) {
-        b = c & mask;
-        b = -((c - b) / radix);
-        c+=b*radix;
-      }
-      x[i]=c & mask;
-      c = ((c - x[i]) / radix) - b;
-      if (!c) return; //stop carrying as soon as the carry is zero
-    }
-  }
-
-  //right shift bigInt x by n bits.
-  function rightShift_(x,n) {
-    var i;
-    var k=Math.floor(n/bpe);
-    if (k) {
-      for (i=0;i<x.length-k;i++) //right shift x by k elements
-        x[i]=x[i+k];
-      for (;i<x.length;i++)
-        x[i]=0;
-      n%=bpe;
-    }
-    for (i=0;i<x.length-1;i++) {
-      x[i]=mask & ((x[i+1]<<(bpe-n)) | (x[i]>>n));
-    }
-    x[i]>>=n;
-  }
-
-  //do x=floor(|x|/2)*sgn(x) for bigInt x in 2's complement
-  function halve_(x) {
-    var i;
-    for (i=0;i<x.length-1;i++) {
-      x[i]=mask & ((x[i+1]<<(bpe-1)) | (x[i]>>1));
-    }
-    x[i]=(x[i]>>1) | (x[i] & (radix>>1));  //most significant bit stays the same
-  }
-
-  //left shift bigInt x by n bits.
-  function leftShift_(x,n) {
-    var i;
-    var k=Math.floor(n/bpe);
-    if (k) {
-      for (i=x.length; i>=k; i--) //left shift x by k elements
-        x[i]=x[i-k];
-      for (;i>=0;i--)
-        x[i]=0;  
-      n%=bpe;
-    }
-    if (!n)
-      return;
-    for (i=x.length-1;i>0;i--) {
-      x[i]=mask & ((x[i]<<n) | (x[i-1]>>(bpe-n)));
-    }
-    x[i]=mask & (x[i]<<n);
-  }
-
-  //do x=x*n where x is a bigInt and n is an integer.
-  //x must be large enough to hold the result.
-  function multInt_(x,n) {
-    var i,k,c,b;
-    if (!n)
-      return;
-    k=x.length;
-    c=0;
-    for (i=0;i<k;i++) {
-      c+=x[i]*n;
-      b=0;
-      if (c<0) {
-        b = c & mask;
-        b = -((c - b) / radix);
-        c+=b*radix;
-      }
-      x[i]=c & mask;
-      c = ((c - x[i]) / radix) - b;
-    }
-  }
-
-  //do x=floor(x/n) for bigInt x and integer n, and return the remainder
-  function divInt_(x,n) {
-    var i,r=0,s;
-    for (i=x.length-1;i>=0;i--) {
-      s=r*radix+x[i];
-      x[i]=Math.floor(s/n);
-      r=s%n;
-    }
-    return r;
-  }
-
-  //do the linear combination x=a*x+b*y for bigInts x and y, and integers a and b.
-  //x must be large enough to hold the answer.
-  function linComb_(x,y,a,b) {
-    var i,c,k,kk;
-    k=x.length<y.length ? x.length : y.length;
-    kk=x.length;
-    for (c=0,i=0;i<k;i++) {
-      c+=a*x[i]+b*y[i];
-      x[i]=c & mask;
-      c = (c - x[i]) / radix;
-    }
-    for (i=k;i<kk;i++) {
-      c+=a*x[i];
-      x[i]=c & mask;
-      c = (c - x[i]) / radix;
-    }
-  }
-
-  //do the linear combination x=a*x+b*(y<<(ys*bpe)) for bigInts x and y, and integers a, b and ys.
-  //x must be large enough to hold the answer.
-  function linCombShift_(x,y,b,ys) {
-    var i,c,k,kk;
-    k=x.length<ys+y.length ? x.length : ys+y.length;
-    kk=x.length;
-    for (c=0,i=ys;i<k;i++) {
-      c+=x[i]+b*y[i-ys];
-      x[i]=c & mask;
-      c = (c - x[i]) / radix;
-    }
-    for (i=k;c && i<kk;i++) {
-      c+=x[i];
-      x[i]=c & mask;
-      c = (c - x[i]) / radix;
-    }
-  }
-
-  //do x=x+(y<<(ys*bpe)) for bigInts x and y, and integers a,b and ys.
-  //x must be large enough to hold the answer.
-  function addShift_(x,y,ys) {
-    var i,c,k,kk;
-    k=x.length<ys+y.length ? x.length : ys+y.length;
-    kk=x.length;
-    for (c=0,i=ys;i<k;i++) {
-      c+=x[i]+y[i-ys];
-      x[i]=c & mask;
-      c = (c - x[i]) / radix;
-    }
-    for (i=k;c && i<kk;i++) {
-      c+=x[i];
-      x[i]=c & mask;
-      c = (c - x[i]) / radix;
-    }
-  }
-
-  //do x=x-(y<<(ys*bpe)) for bigInts x and y, and integers a,b and ys.
-  //x must be large enough to hold the answer.
-  function subShift_(x,y,ys) {
-    var i,c,k,kk;
-    k=x.length<ys+y.length ? x.length : ys+y.length;
-    kk=x.length;
-    for (c=0,i=ys;i<k;i++) {
-      c+=x[i]-y[i-ys];
-      x[i]=c & mask;
-      c = (c - x[i]) / radix;
-    }
-    for (i=k;c && i<kk;i++) {
-      c+=x[i];
-      x[i]=c & mask;
-      c = (c - x[i]) / radix;
-    }
-  }
-
-  //do x=x-y for bigInts x and y.
-  //x must be large enough to hold the answer.
-  //negative answers will be 2s complement
-  function sub_(x,y) {
-    var i,c,k,kk;
-    k=x.length<y.length ? x.length : y.length;
-    for (c=0,i=0;i<k;i++) {
-      c+=x[i]-y[i];
-      x[i]=c & mask;
-      c = (c - x[i]) / radix;
-    }
-    for (i=k;c && i<x.length;i++) {
-      c+=x[i];
-      x[i]=c & mask;
-      c = (c - x[i]) / radix;
-    }
-  }
-
-  //do x=x+y for bigInts x and y.
-  //x must be large enough to hold the answer.
-  function add_(x,y) {
-    var i,c,k,kk;
-    k=x.length<y.length ? x.length : y.length;
-    for (c=0,i=0;i<k;i++) {
-      c+=x[i]+y[i];
-      x[i]=c & mask;
-      c = (c - x[i]) / radix;
-    }
-    for (i=k;c && i<x.length;i++) {
-      c+=x[i];
-      x[i]=c & mask;
-      c = (c - x[i]) / radix;
-    }
-  }
-
-  //do x=x*y for bigInts x and y.  This is faster when y<x.
-  function mult_(x,y) {
-    var i;
-    if (ss.length!=2*x.length)
-      ss=new Array(2*x.length);
-    copyInt_(ss,0);
-    for (i=0;i<y.length;i++)
-      if (y[i])
-        linCombShift_(ss,x,y[i],i);   //ss=1*ss+y[i]*(x<<(i*bpe))
-    copy_(x,ss);
-  }
-
-  //do x=x mod n for bigInts x and n.
-  function mod_(x,n) {
-    if (s4.length!=x.length)
-      s4=dup(x);
-    else
-      copy_(s4,x);
-    if (s5.length!=x.length)
-      s5=dup(x);  
-    divide_(s4,n,s5,x);  //x = remainder of s4 / n
-  }
-
-  //do x=x*y mod n for bigInts x,y,n.
-  //for greater speed, let y<x.
-  function multMod_(x,y,n) {
-    var i;
-    if (s0.length!=2*x.length)
-      s0=new Array(2*x.length);
-    copyInt_(s0,0);
-    for (i=0;i<y.length;i++)
-      if (y[i])
-        linCombShift_(s0,x,y[i],i);   //s0=1*s0+y[i]*(x<<(i*bpe))
-    mod_(s0,n);
-    copy_(x,s0);
-  }
-
-  //do x=x*x mod n for bigInts x,n.
-  function squareMod_(x,n) {
-    var i,j,d,c,kx,kn,k;
-    for (kx=x.length; kx>0 && !x[kx-1]; kx--);  //ignore leading zeros in x
-    k=kx>n.length ? 2*kx : 2*n.length; //k=# elements in the product, which is twice the elements in the larger of x and n
-    if (s0.length!=k) 
-      s0=new Array(k);
-    copyInt_(s0,0);
-    for (i=0;i<kx;i++) {
-      c=s0[2*i]+x[i]*x[i];
-      s0[2*i]=c & mask;
-      c = (c - s0[2*i]) / radix;
-      for (j=i+1;j<kx;j++) {
-        c=s0[i+j]+2*x[i]*x[j]+c;
-        s0[i+j]=(c & mask);
-        c = (c - s0[i+j]) / radix;
-      }
-      s0[i+kx]=c;
-    }
-    mod_(s0,n);
-    copy_(x,s0);
-  }
-
-  //return x with exactly k leading zero elements
-  function trim(x,k) {
-    var i,y;
-    for (i=x.length; i>0 && !x[i-1]; i--);
-    y=new Array(i+k);
-    copy_(y,x);
-    return y;
-  }
-
-  //do x=x**y mod n, where x,y,n are bigInts and ** is exponentiation.  0**0=1.
-  //this is faster when n is odd.  x usually needs to have as many elements as n.
-  function powMod_(x,y,n) {
-    var k1,k2,kn,np;
-    if(s7.length!=n.length)
-      s7=dup(n);
-
-    //for even modulus, use a simple square-and-multiply algorithm,
-    //rather than using the more complex Montgomery algorithm.
-    if ((n[0]&1)==0) {
-      copy_(s7,x);
-      copyInt_(x,1);
-      while(!equalsInt(y,0)) {
-        if (y[0]&1)
-          multMod_(x,s7,n);
-        divInt_(y,2);
-        squareMod_(s7,n); 
-      }
-      return;
-    }
-
-    //calculate np from n for the Montgomery multiplications
-    copyInt_(s7,0);
-    for (kn=n.length;kn>0 && !n[kn-1];kn--);
-    np=radix-inverseModInt(modInt(n,radix),radix);
-    s7[kn]=1;
-    multMod_(x ,s7,n);   // x = x * 2**(kn*bp) mod n
-
-    if (s3.length!=x.length)
-      s3=dup(x);
-    else
-      copy_(s3,x);
-
-    for (k1=y.length-1;k1>0 & !y[k1]; k1--);  //k1=first nonzero element of y
-    if (y[k1]==0) {  //anything to the 0th power is 1
-      copyInt_(x,1);
-      return;
-    }
-    for (k2=1<<(bpe-1);k2 && !(y[k1] & k2); k2>>=1);  //k2=position of first 1 bit in y[k1]
-    for (;;) {
-      if (!(k2>>=1)) {  //look at next bit of y
-        k1--;
-        if (k1<0) {
-          mont_(x,one,n,np);
-          return;
-        }
-        k2=1<<(bpe-1);
-      }    
-      mont_(x,x,n,np);
-
-      if (k2 & y[k1]) //if next bit is a 1
-        mont_(x,s3,n,np);
-    }
-  }
-
-
-  //do x=x*y*Ri mod n for bigInts x,y,n, 
-  //  where Ri = 2**(-kn*bpe) mod n, and kn is the 
-  //  number of elements in the n array, not 
-  //  counting leading zeros.  
-  //x array must have at least as many elemnts as the n array
-  //It's OK if x and y are the same variable.
-  //must have:
-  //  x,y < n
-  //  n is odd
-  //  np = -(n^(-1)) mod radix
-  function mont_(x,y,n,np) {
-    var i,j,c,ui,t,t2,ks;
-    var kn=n.length;
-    var ky=y.length;
-
-    if (sa.length!=kn)
-      sa=new Array(kn);
-      
-    copyInt_(sa,0);
-
-    for (;kn>0 && n[kn-1]==0;kn--); //ignore leading zeros of n
-    for (;ky>0 && y[ky-1]==0;ky--); //ignore leading zeros of y
-    ks=sa.length-1; //sa will never have more than this many nonzero elements.  
-
-    //the following loop consumes 95% of the runtime for randTruePrime_() and powMod_() for large numbers
-    for (i=0; i<kn; i++) {
-      t=sa[0]+x[i]*y[0];
-      ui=((t & mask) * np) & mask;  //the inner "& mask" was needed on Safari (but not MSIE) at one time
-      c=(t+ui*n[0]);
-      c = (c - (c & mask)) / radix;
-      t=x[i];
-      
-      //do sa=(sa+x[i]*y+ui*n)/b   where b=2**bpe.  Loop is unrolled 5-fold for speed
-      j=1;
-      for (;j<ky-4;) {
-        c+=sa[j]+ui*n[j]+t*y[j]; t2=sa[j-1]=c & mask; c=(c-t2)/radix; j++;
-        c+=sa[j]+ui*n[j]+t*y[j]; t2=sa[j-1]=c & mask; c=(c-t2)/radix; j++;
-        c+=sa[j]+ui*n[j]+t*y[j]; t2=sa[j-1]=c & mask; c=(c-t2)/radix; j++;
-        c+=sa[j]+ui*n[j]+t*y[j]; t2=sa[j-1]=c & mask; c=(c-t2)/radix; j++;
-        c+=sa[j]+ui*n[j]+t*y[j]; t2=sa[j-1]=c & mask; c=(c-t2)/radix; j++;
-      }
-      for (;j<ky;)   {
-        c+=sa[j]+ui*n[j]+t*y[j]; t2=sa[j-1]=c & mask; c=(c-t2)/radix; j++;
-      }
-      for (;j<kn-4;) {
-        c+=sa[j]+ui*n[j];        t2=sa[j-1]=c & mask; c=(c-t2)/radix; j++;
-        c+=sa[j]+ui*n[j];        t2=sa[j-1]=c & mask; c=(c-t2)/radix; j++;
-        c+=sa[j]+ui*n[j];        t2=sa[j-1]=c & mask; c=(c-t2)/radix; j++;
-        c+=sa[j]+ui*n[j];        t2=sa[j-1]=c & mask; c=(c-t2)/radix; j++;
-        c+=sa[j]+ui*n[j];        t2=sa[j-1]=c & mask; c=(c-t2)/radix; j++;
-      }
-      for (;j<kn;)   {
-        c+=sa[j]+ui*n[j];        t2=sa[j-1]=c & mask; c=(c-t2)/radix; j++;
-      }
-      for (;j<ks;)   {
-        c+=sa[j];                t2=sa[j-1]=c & mask; c=(c-t2)/radix; j++;
-      }
-      sa[j-1]=c & mask;
-    }
-
-    if (!greater(n,sa))
-      sub_(sa,n);
-    copy_(x,sa);
-  }
-
-
-  // otr.js additions
-
-
-  // computes num / den mod n
-  function divMod(num, den, n) {
-    return multMod(num, inverseMod(den, n), n)
-  }
-
-  // computes one - two mod n
-  function subMod(one, two, n) {
-    one = mod(one, n)
-    two = mod(two, n)
-    if (greater(two, one)) one = add(one, n)
-    return sub(one, two)
-  }
-
-  // computes 2^m as a bigInt
-  function twoToThe(m) {
-    var b = Math.floor(m / bpe) + 2
-    var t = new Array(b)
-    for (var i = 0; i < b; i++) t[i] = 0
-    t[b - 2] = 1 << (m % bpe)
-    return t
-  }
-
-  // cache these results for faster lookup
-  var _num2bin = (function () {
-    var i = 0, _num2bin= {}
-    for (; i < 0x100; ++i) {
-      _num2bin[i] = String.fromCharCode(i)  // 0 -> "\00"
-    }
-    return _num2bin
-  }())
-
-  // serialize a bigInt to an ascii string
-  // padded up to pad length
-  function bigInt2bits(bi, pad) {
-    pad || (pad = 0)
-    bi = dup(bi)
-    var ba = ''
-    while (!isZero(bi)) {
-      ba = _num2bin[bi[0] & 0xff] + ba
-      rightShift_(bi, 8)
-    }
-    while (ba.length < pad) {
-      ba = '\x00' + ba
-    }
-    return ba
-  }
-
-  // converts a byte array to a bigInt
-  function ba2bigInt(data) {
-    var mpi = str2bigInt('0', 10, data.length)
-    data.forEach(function (d, i) {
-      if (i) leftShift_(mpi, 8)
-      mpi[0] |= d
-    })
-    return mpi
-  }
-
-  // returns a function that returns an array of n bytes
-  var randomBytes = (function () {
-
-    // in node
-    if ( typeof crypto !== 'undefined' &&
-      typeof crypto.randomBytes === 'function' ) {
-      return function (n) {
-        try {
-          var buf = crypto.randomBytes(n)
-        } catch (e) { throw e }
-        return Array.prototype.slice.call(buf, 0)
-      }
-    }
-
-    // in browser
-    else if ( typeof crypto !== 'undefined' &&
-      typeof crypto.getRandomValues === 'function' ) {
-      return function (n) {
-        var buf = new Uint8Array(n)
-        crypto.getRandomValues(buf)
-        return Array.prototype.slice.call(buf, 0)
-      }
-    }
-
-    // err
-    else {
-      console.log('Keys should not be generated without CSPRNG.');
-      return;
-      // throw new Error('Keys should not be generated without CSPRNG.')
-    }
-
-  }())
-
-  // Salsa 20 in webworker needs a 40 byte seed
-  function getSeed() {
-    return randomBytes(40)
-  }
-
-  // returns a single random byte
-  function randomByte() {
-    return randomBytes(1)[0]
-  }
-
-  // returns a k-bit random integer
-  function randomBitInt(k) {
-    if (k > 31) throw new Error("Too many bits.")
-    var i = 0, r = 0
-    var b = Math.floor(k / 8)
-    var mask = (1 << (k % 8)) - 1
-    if (mask) r = randomByte() & mask
-    for (; i < b; i++)
-      r = (256 * r) + randomByte()
-    return r
-  }
-
-  return {
-      str2bigInt    : str2bigInt
-    , bigInt2str    : bigInt2str
-    , int2bigInt    : int2bigInt
-    , multMod       : multMod
-    , powMod        : powMod
-    , inverseMod    : inverseMod
-    , randBigInt    : randBigInt
-    , randBigInt_   : randBigInt_
-    , equals        : equals
-    , equalsInt     : equalsInt
-    , sub           : sub
-    , mod           : mod
-    , modInt        : modInt
-    , mult          : mult
-    , divInt_       : divInt_
-    , rightShift_   : rightShift_
-    , dup           : dup
-    , greater       : greater
-    , add           : add
-    , isZero        : isZero
-    , bitSize       : bitSize
-    , millerRabin   : millerRabin
-    , divide_       : divide_
-    , trim          : trim
-    , primes        : primes
-    , findPrimes    : findPrimes
-    , getSeed       : getSeed
-    , divMod        : divMod
-    , subMod        : subMod
-    , twoToThe      : twoToThe
-    , bigInt2bits   : bigInt2bits
-    , ba2bigInt     : ba2bigInt
-  }
-
-}))
-;
-/*!
- * EventEmitter v4.2.3 - git.io/ee
- * Oliver Caldwell
- * MIT license
- * @preserve
- */
-
-(function () {
-	'use strict';
-
-	/**
-	 * Class for managing events.
-	 * Can be extended to provide event functionality in other classes.
-	 *
-	 * @class EventEmitter Manages event registering and emitting.
-	 */
-	function EventEmitter() {}
-
-	// Shortcuts to improve speed and size
-
-	// Easy access to the prototype
-	var proto = EventEmitter.prototype;
-
-	/**
-	 * Finds the index of the listener for the event in it's storage array.
-	 *
-	 * @param {Function[]} listeners Array of listeners to search through.
-	 * @param {Function} listener Method to look for.
-	 * @return {Number} Index of the specified listener, -1 if not found
-	 * @api private
-	 */
-	function indexOfListener(listeners, listener) {
-		var i = listeners.length;
-		while (i--) {
-			if (listeners[i].listener === listener) {
-				return i;
-			}
-		}
-
-		return -1;
-	}
-
-	/**
-	 * Alias a method while keeping the context correct, to allow for overwriting of target method.
-	 *
-	 * @param {String} name The name of the target method.
-	 * @return {Function} The aliased method
-	 * @api private
-	 */
-	function alias(name) {
-		return function aliasClosure() {
-			return this[name].apply(this, arguments);
-		};
-	}
-
-	/**
-	 * Returns the listener array for the specified event.
-	 * Will initialise the event object and listener arrays if required.
-	 * Will return an object if you use a regex search. The object contains keys for each matched event. So /ba[rz]/ might return an object containing bar and baz. But only if you have either defined them with defineEvent or added some listeners to them.
-	 * Each property in the object response is an array of listener functions.
-	 *
-	 * @param {String|RegExp} evt Name of the event to return the listeners from.
-	 * @return {Function[]|Object} All listener functions for the event.
-	 */
-	proto.getListeners = function getListeners(evt) {
-		var events = this._getEvents();
-		var response;
-		var key;
-
-		// Return a concatenated array of all matching events if
-		// the selector is a regular expression.
-		if (typeof evt === 'object') {
-			response = {};
-			for (key in events) {
-				if (events.hasOwnProperty(key) && evt.test(key)) {
-					response[key] = events[key];
-				}
-			}
-		}
-		else {
-			response = events[evt] || (events[evt] = []);
-		}
-
-		return response;
-	};
-
-	/**
-	 * Takes a list of listener objects and flattens it into a list of listener functions.
-	 *
-	 * @param {Object[]} listeners Raw listener objects.
-	 * @return {Function[]} Just the listener functions.
-	 */
-	proto.flattenListeners = function flattenListeners(listeners) {
-		var flatListeners = [];
-		var i;
-
-		for (i = 0; i < listeners.length; i += 1) {
-			flatListeners.push(listeners[i].listener);
-		}
-
-		return flatListeners;
-	};
-
-	/**
-	 * Fetches the requested listeners via getListeners but will always return the results inside an object. This is mainly for internal use but others may find it useful.
-	 *
-	 * @param {String|RegExp} evt Name of the event to return the listeners from.
-	 * @return {Object} All listener functions for an event in an object.
-	 */
-	proto.getListenersAsObject = function getListenersAsObject(evt) {
-		var listeners = this.getListeners(evt);
-		var response;
-
-		if (listeners instanceof Array) {
-			response = {};
-			response[evt] = listeners;
-		}
-
-		return response || listeners;
-	};
-
-	/**
-	 * Adds a listener function to the specified event.
-	 * The listener will not be added if it is a duplicate.
-	 * If the listener returns true then it will be removed after it is called.
-	 * If you pass a regular expression as the event name then the listener will be added to all events that match it.
-	 *
-	 * @param {String|RegExp} evt Name of the event to attach the listener to.
-	 * @param {Function} listener Method to be called when the event is emitted. If the function returns true then it will be removed after calling.
-	 * @return {Object} Current instance of EventEmitter for chaining.
-	 */
-	proto.addListener = function addListener(evt, listener) {
-		var listeners = this.getListenersAsObject(evt);
-		var listenerIsWrapped = typeof listener === 'object';
-		var key;
-
-		for (key in listeners) {
-			if (listeners.hasOwnProperty(key) && indexOfListener(listeners[key], listener) === -1) {
-				listeners[key].push(listenerIsWrapped ? listener : {
-					listener: listener,
-					once: false
-				});
-			}
-		}
-
-		return this;
-	};
-
-	/**
-	 * Alias of addListener
-	 */
-	proto.on = alias('addListener');
-
-	/**
-	 * Semi-alias of addListener. It will add a listener that will be
-	 * automatically removed after it's first execution.
-	 *
-	 * @param {String|RegExp} evt Name of the event to attach the listener to.
-	 * @param {Function} listener Method to be called when the event is emitted. If the function returns true then it will be removed after calling.
-	 * @return {Object} Current instance of EventEmitter for chaining.
-	 */
-	proto.addOnceListener = function addOnceListener(evt, listener) {
-		return this.addListener(evt, {
-			listener: listener,
-			once: true
-		});
-	};
-
-	/**
-	 * Alias of addOnceListener.
-	 */
-	proto.once = alias('addOnceListener');
-
-	/**
-	 * Defines an event name. This is required if you want to use a regex to add a listener to multiple events at once. If you don't do this then how do you expect it to know what event to add to? Should it just add to every possible match for a regex? No. That is scary and bad.
-	 * You need to tell it what event names should be matched by a regex.
-	 *
-	 * @param {String} evt Name of the event to create.
-	 * @return {Object} Current instance of EventEmitter for chaining.
-	 */
-	proto.defineEvent = function defineEvent(evt) {
-		this.getListeners(evt);
-		return this;
-	};
-
-	/**
-	 * Uses defineEvent to define multiple events.
-	 *
-	 * @param {String[]} evts An array of event names to define.
-	 * @return {Object} Current instance of EventEmitter for chaining.
-	 */
-	proto.defineEvents = function defineEvents(evts) {
-		for (var i = 0; i < evts.length; i += 1) {
-			this.defineEvent(evts[i]);
-		}
-		return this;
-	};
-
-	/**
-	 * Removes a listener function from the specified event.
-	 * When passed a regular expression as the event name, it will remove the listener from all events that match it.
-	 *
-	 * @param {String|RegExp} evt Name of the event to remove the listener from.
-	 * @param {Function} listener Method to remove from the event.
-	 * @return {Object} Current instance of EventEmitter for chaining.
-	 */
-	proto.removeListener = function removeListener(evt, listener) {
-		var listeners = this.getListenersAsObject(evt);
-		var index;
-		var key;
-
-		for (key in listeners) {
-			if (listeners.hasOwnProperty(key)) {
-				index = indexOfListener(listeners[key], listener);
-
-				if (index !== -1) {
-					listeners[key].splice(index, 1);
-				}
-			}
-		}
-
-		return this;
-	};
-
-	/**
-	 * Alias of removeListener
-	 */
-	proto.off = alias('removeListener');
-
-	/**
-	 * Adds listeners in bulk using the manipulateListeners method.
-	 * If you pass an object as the second argument you can add to multiple events at once. The object should contain key value pairs of events and listeners or listener arrays. You can also pass it an event name and an array of listeners to be added.
-	 * You can also pass it a regular expression to add the array of listeners to all events that match it.
-	 * Yeah, this function does quite a bit. That's probably a bad thing.
-	 *
-	 * @param {String|Object|RegExp} evt An event name if you will pass an array of listeners next. An object if you wish to add to multiple events at once.
-	 * @param {Function[]} [listeners] An optional array of listener functions to add.
-	 * @return {Object} Current instance of EventEmitter for chaining.
-	 */
-	proto.addListeners = function addListeners(evt, listeners) {
-		// Pass through to manipulateListeners
-		return this.manipulateListeners(false, evt, listeners);
-	};
-
-	/**
-	 * Removes listeners in bulk using the manipulateListeners method.
-	 * If you pass an object as the second argument you can remove from multiple events at once. The object should contain key value pairs of events and listeners or listener arrays.
-	 * You can also pass it an event name and an array of listeners to be removed.
-	 * You can also pass it a regular expression to remove the listeners from all events that match it.
-	 *
-	 * @param {String|Object|RegExp} evt An event name if you will pass an array of listeners next. An object if you wish to remove from multiple events at once.
-	 * @param {Function[]} [listeners] An optional array of listener functions to remove.
-	 * @return {Object} Current instance of EventEmitter for chaining.
-	 */
-	proto.removeListeners = function removeListeners(evt, listeners) {
-		// Pass through to manipulateListeners
-		return this.manipulateListeners(true, evt, listeners);
-	};
-
-	/**
-	 * Edits listeners in bulk. The addListeners and removeListeners methods both use this to do their job. You should really use those instead, this is a little lower level.
-	 * The first argument will determine if the listeners are removed (true) or added (false).
-	 * If you pass an object as the second argument you can add/remove from multiple events at once. The object should contain key value pairs of events and listeners or listener arrays.
-	 * You can also pass it an event name and an array of listeners to be added/removed.
-	 * You can also pass it a regular expression to manipulate the listeners of all events that match it.
-	 *
-	 * @param {Boolean} remove True if you want to remove listeners, false if you want to add.
-	 * @param {String|Object|RegExp} evt An event name if you will pass an array of listeners next. An object if you wish to add/remove from multiple events at once.
-	 * @param {Function[]} [listeners] An optional array of listener functions to add/remove.
-	 * @return {Object} Current instance of EventEmitter for chaining.
-	 */
-	proto.manipulateListeners = function manipulateListeners(remove, evt, listeners) {
-		var i;
-		var value;
-		var single = remove ? this.removeListener : this.addListener;
-		var multiple = remove ? this.removeListeners : this.addListeners;
-
-		// If evt is an object then pass each of it's properties to this method
-		if (typeof evt === 'object' && !(evt instanceof RegExp)) {
-			for (i in evt) {
-				if (evt.hasOwnProperty(i) && (value = evt[i])) {
-					// Pass the single listener straight through to the singular method
-					if (typeof value === 'function') {
-						single.call(this, i, value);
-					}
-					else {
-						// Otherwise pass back to the multiple function
-						multiple.call(this, i, value);
-					}
-				}
-			}
-		}
-		else {
-			// So evt must be a string
-			// And listeners must be an array of listeners
-			// Loop over it and pass each one to the multiple method
-			i = listeners.length;
-			while (i--) {
-				single.call(this, evt, listeners[i]);
-			}
-		}
-
-		return this;
-	};
-
-	/**
-	 * Removes all listeners from a specified event.
-	 * If you do not specify an event then all listeners will be removed.
-	 * That means every event will be emptied.
-	 * You can also pass a regex to remove all events that match it.
-	 *
-	 * @param {String|RegExp} [evt] Optional name of the event to remove all listeners for. Will remove from every event if not passed.
-	 * @return {Object} Current instance of EventEmitter for chaining.
-	 */
-	proto.removeEvent = function removeEvent(evt) {
-		var type = typeof evt;
-		var events = this._getEvents();
-		var key;
-
-		// Remove different things depending on the state of evt
-		if (type === 'string') {
-			// Remove all listeners for the specified event
-			delete events[evt];
-		}
-		else if (type === 'object') {
-			// Remove all events matching the regex.
-			for (key in events) {
-				if (events.hasOwnProperty(key) && evt.test(key)) {
-					delete events[key];
-				}
-			}
-		}
-		else {
-			// Remove all listeners in all events
-			delete this._events;
-		}
-
-		return this;
-	};
-
-	/**
-	 * Emits an event of your choice.
-	 * When emitted, every listener attached to that event will be executed.
-	 * If you pass the optional argument array then those arguments will be passed to every listener upon execution.
-	 * Because it uses `apply`, your array of arguments will be passed as if you wrote them out separately.
-	 * So they will not arrive within the array on the other side, they will be separate.
-	 * You can also pass a regular expression to emit to all events that match it.
-	 *
-	 * @param {String|RegExp} evt Name of the event to emit and execute listeners for.
-	 * @param {Array} [args] Optional array of arguments to be passed to each listener.
-	 * @return {Object} Current instance of EventEmitter for chaining.
-	 */
-	proto.emitEvent = function emitEvent(evt, args) {
-		var listeners = this.getListenersAsObject(evt);
-		var listener;
-		var i;
-		var key;
-		var response;
-
-		for (key in listeners) {
-			if (listeners.hasOwnProperty(key)) {
-				i = listeners[key].length;
-
-				while (i--) {
-					// If the listener returns true then it shall be removed from the event
-					// The function is executed either with a basic call or an apply if there is an args array
-					listener = listeners[key][i];
-
-					if (listener.once === true) {
-						this.removeListener(evt, listener.listener);
-					}
-
-					response = listener.listener.apply(this, args || []);
-
-					if (response === this._getOnceReturnValue()) {
-						this.removeListener(evt, listener.listener);
-					}
-				}
-			}
-		}
-
-		return this;
-	};
-
-	/**
-	 * Alias of emitEvent
-	 */
-	proto.trigger = alias('emitEvent');
-
-	/**
-	 * Subtly different from emitEvent in that it will pass its arguments on to the listeners, as opposed to taking a single array of arguments to pass on.
-	 * As with emitEvent, you can pass a regex in place of the event name to emit to all events that match it.
-	 *
-	 * @param {String|RegExp} evt Name of the event to emit and execute listeners for.
-	 * @param {...*} Optional additional arguments to be passed to each listener.
-	 * @return {Object} Current instance of EventEmitter for chaining.
-	 */
-	proto.emit = function emit(evt) {
-		var args = Array.prototype.slice.call(arguments, 1);
-		return this.emitEvent(evt, args);
-	};
-
-	/**
-	 * Sets the current value to check against when executing listeners. If a
-	 * listeners return value matches the one set here then it will be removed
-	 * after execution. This value defaults to true.
-	 *
-	 * @param {*} value The new value to check for when executing listeners.
-	 * @return {Object} Current instance of EventEmitter for chaining.
-	 */
-	proto.setOnceReturnValue = function setOnceReturnValue(value) {
-		this._onceReturnValue = value;
-		return this;
-	};
-
-	/**
-	 * Fetches the current value to check against when executing listeners. If
-	 * the listeners return value matches this one then it should be removed
-	 * automatically. It will return true by default.
-	 *
-	 * @return {*|Boolean} The current value to check for or the default, true.
-	 * @api private
-	 */
-	proto._getOnceReturnValue = function _getOnceReturnValue() {
-		if (this.hasOwnProperty('_onceReturnValue')) {
-			return this._onceReturnValue;
-		}
-		else {
-			return true;
-		}
-	};
-
-	/**
-	 * Fetches the events object and creates one if required.
-	 *
-	 * @return {Object} The events storage object.
-	 * @api private
-	 */
-	proto._getEvents = function _getEvents() {
-		return this._events || (this._events = {});
-	};
-
-	// Expose the class either via AMD, CommonJS or the global object
-	if (typeof define === 'function' && define.amd) {
-		define('eventemitter',[],function () {
-			return EventEmitter;
-		});
-	}
-	else if (typeof module === 'object' && module.exports){
-		module.exports = EventEmitter;
-	}
-	else {
-		this.EventEmitter = EventEmitter;
-	}
-}.call(this));
-
-/*!
-
-  otr.js v0.2.12 - 2014-04-15
-  (c) 2014 - Arlo Breault <arlolra@gmail.com>
-  Freely distributed under the MPL v2.0 license.
-
-  This file is concatenated for the browser.
-  Please see: https://github.com/arlolra/otr
-
-*/
-
-;(function (root, factory) {
-
-  if (typeof define === 'function' && define.amd) {
-    define('otr',[
-        "jquery",
-        "jquery.browser",
-        "bigint",
-        "crypto",
-        "eventemitter"
-    ], function ($, dummy, BigInt, CryptoJS, EventEmitter) {
-      if ($.browser.msie) {
-          return undefined;
-      }
-      var root = {
-          BigInt: BigInt
-        , CryptoJS: CryptoJS
-        , EventEmitter: EventEmitter
-        , OTR: {}
-        , DSA: {}
-      }
-      return factory.call(root)
-    })
-  } else {
-    root.OTR = {}
-    root.DSA = {}
-    factory.call(root)
-  }
-
-}(this, function () {
-
-;(function () {
-  "use strict";
-
-  var root = this
-
-  var CONST = {
-
-    // diffie-heilman
-      N : 'FFFFFFFFFFFFFFFFC90FDAA22168C234C4C6628B80DC1CD129024E088A67CC74020BBEA63B139B22514A08798E3404DDEF9519B3CD3A431B302B0A6DF25F14374FE1356D6D51C245E485B576625E7EC6F44C42E9A637ED6B0BFF5CB6F406B7EDEE386BFB5A899FA5AE9F24117C4B1FE649286651ECE45B3DC2007CB8A163BF0598DA48361C55D39A69163FA8FD24CF5F83655D23DCA3AD961C62F356208552BB9ED529077096966D670C354E4ABC9804F1746C08CA237327FFFFFFFFFFFFFFFF'
-    , G : '2'
-
-    // otr message states
-    , MSGSTATE_PLAINTEXT : 0
-    , MSGSTATE_ENCRYPTED : 1
-    , MSGSTATE_FINISHED  : 2
-
-    // otr auth states
-    , AUTHSTATE_NONE               : 0
-    , AUTHSTATE_AWAITING_DHKEY     : 1
-    , AUTHSTATE_AWAITING_REVEALSIG : 2
-    , AUTHSTATE_AWAITING_SIG       : 3
-
-    // whitespace tags
-    , WHITESPACE_TAG    : '\x20\x09\x20\x20\x09\x09\x09\x09\x20\x09\x20\x09\x20\x09\x20\x20'
-    , WHITESPACE_TAG_V2 : '\x20\x20\x09\x09\x20\x20\x09\x20'
-    , WHITESPACE_TAG_V3 : '\x20\x20\x09\x09\x20\x20\x09\x09'
-
-    // otr tags
-    , OTR_TAG       : '?OTR'
-    , OTR_VERSION_1 : '\x00\x01'
-    , OTR_VERSION_2 : '\x00\x02'
-    , OTR_VERSION_3 : '\x00\x03'
-
-    // smp machine states
-    , SMPSTATE_EXPECT0 : 0
-    , SMPSTATE_EXPECT1 : 1
-    , SMPSTATE_EXPECT2 : 2
-    , SMPSTATE_EXPECT3 : 3
-    , SMPSTATE_EXPECT4 : 4
-
-    // unstandard status codes
-    , STATUS_SEND_QUERY  : 0
-    , STATUS_AKE_INIT    : 1
-    , STATUS_AKE_SUCCESS : 2
-    , STATUS_END_OTR     : 3
-
-  }
-
-  if (typeof module !== 'undefined' && module.exports) {
-    module.exports = CONST
-  } else {
-    root.OTR.CONST = CONST
-  }
-
-}).call(this)
-;(function () {
-  "use strict";
-
-  var root = this
-
-  var HLP = {}, CryptoJS, BigInt
-  if (typeof module !== 'undefined' && module.exports) {
-    module.exports = HLP = {}
-    CryptoJS = require('../vendor/crypto.js')
-    BigInt = require('../vendor/bigint.js')
-  } else {
-    if (root.OTR) root.OTR.HLP = HLP
-    if (root.DSA) root.DSA.HLP = HLP
-    CryptoJS = root.CryptoJS
-    BigInt = root.BigInt
-  }
-
-  // data types (byte lengths)
-  var DTS = {
-      BYTE  : 1
-    , SHORT : 2
-    , INT   : 4
-    , CTR   : 8
-    , MAC   : 20
-    , SIG   : 40
-  }
-
-  // otr message wrapper begin and end
-  var WRAPPER_BEGIN = "?OTR"
-    , WRAPPER_END   = "."
-
-  var TWO = BigInt.str2bigInt('2', 10)
-
-  HLP.debug = function (msg) {
-    // used as HLP.debug.call(ctx, msg)
-    if ( this.debug &&
-         typeof this.debug !== 'function' &&
-         typeof console !== 'undefined'
-    ) console.log(msg)
-  }
-
-  HLP.extend = function (child, parent) {
-    for (var key in parent) {
-      if (Object.hasOwnProperty.call(parent, key))
-        child[key] = parent[key]
-    }
-    function Ctor() { this.constructor = child }
-    Ctor.prototype = parent.prototype
-    child.prototype = new Ctor()
-    child.__super__ = parent.prototype
-  }
-
-  // constant-time string comparison
-  HLP.compare = function (str1, str2) {
-    if (str1.length !== str2.length)
-      return false
-    var i = 0, result = 0
-    for (; i < str1.length; i++)
-      result |= str1[i].charCodeAt(0) ^ str2[i].charCodeAt(0)
-    return result === 0
-  }
-
-  HLP.randomExponent = function () {
-    return BigInt.randBigInt(1536)
-  }
-
-  HLP.smpHash = function (version, fmpi, smpi) {
-    var sha256 = CryptoJS.algo.SHA256.create()
-    sha256.update(CryptoJS.enc.Latin1.parse(HLP.packBytes(version, DTS.BYTE)))
-    sha256.update(CryptoJS.enc.Latin1.parse(HLP.packMPI(fmpi)))
-    if (smpi) sha256.update(CryptoJS.enc.Latin1.parse(HLP.packMPI(smpi)))
-    var hash = sha256.finalize()
-    return HLP.bits2bigInt(hash.toString(CryptoJS.enc.Latin1))
-  }
-
-  HLP.makeMac = function (aesctr, m) {
-    var pass = CryptoJS.enc.Latin1.parse(m)
-    var mac = CryptoJS.HmacSHA256(CryptoJS.enc.Latin1.parse(aesctr), pass)
-    return HLP.mask(mac.toString(CryptoJS.enc.Latin1), 0, 160)
-  }
-
-  HLP.make1Mac = function (aesctr, m) {
-    var pass = CryptoJS.enc.Latin1.parse(m)
-    var mac = CryptoJS.HmacSHA1(CryptoJS.enc.Latin1.parse(aesctr), pass)
-    return mac.toString(CryptoJS.enc.Latin1)
-  }
-
-  HLP.encryptAes = function (msg, c, iv) {
-    var opts = {
-        mode: CryptoJS.mode.CTR
-      , iv: CryptoJS.enc.Latin1.parse(iv)
-      , padding: CryptoJS.pad.NoPadding
-    }
-    var aesctr = CryptoJS.AES.encrypt(
-        msg
-      , CryptoJS.enc.Latin1.parse(c)
-      , opts
-    )
-    var aesctr_decoded = CryptoJS.enc.Base64.parse(aesctr.toString())
-    return CryptoJS.enc.Latin1.stringify(aesctr_decoded)
-  }
-
-  HLP.decryptAes = function (msg, c, iv) {
-    msg = CryptoJS.enc.Latin1.parse(msg)
-    var opts = {
-        mode: CryptoJS.mode.CTR
-      , iv: CryptoJS.enc.Latin1.parse(iv)
-      , padding: CryptoJS.pad.NoPadding
-    }
-    return CryptoJS.AES.decrypt(
-        CryptoJS.enc.Base64.stringify(msg)
-      , CryptoJS.enc.Latin1.parse(c)
-      , opts
-    )
-  }
-
-  HLP.multPowMod = function (a, b, c, d, e) {
-    return BigInt.multMod(BigInt.powMod(a, b, e), BigInt.powMod(c, d, e), e)
-  }
-
-  HLP.ZKP = function (v, c, d, e) {
-    return BigInt.equals(c, HLP.smpHash(v, d, e))
-  }
-
-  // greater than, or equal
-  HLP.GTOE = function (a, b) {
-    return (BigInt.equals(a, b) || BigInt.greater(a, b))
-  }
-
-  HLP.between = function (x, a, b) {
-    return (BigInt.greater(x, a) && BigInt.greater(b, x))
-  }
-
-  HLP.checkGroup = function (g, N_MINUS_2) {
-    return HLP.GTOE(g, TWO) && HLP.GTOE(N_MINUS_2, g)
-  }
-
-  HLP.h1 = function (b, secbytes) {
-    var sha1 = CryptoJS.algo.SHA1.create()
-    sha1.update(CryptoJS.enc.Latin1.parse(b))
-    sha1.update(CryptoJS.enc.Latin1.parse(secbytes))
-    return (sha1.finalize()).toString(CryptoJS.enc.Latin1)
-  }
-
-  HLP.h2 = function (b, secbytes) {
-    var sha256 = CryptoJS.algo.SHA256.create()
-    sha256.update(CryptoJS.enc.Latin1.parse(b))
-    sha256.update(CryptoJS.enc.Latin1.parse(secbytes))
-    return (sha256.finalize()).toString(CryptoJS.enc.Latin1)
-  }
-
-  HLP.mask = function (bytes, start, n) {
-    return bytes.substr(start / 8, n / 8)
-  }
-
-  var _toString = String.fromCharCode;
-  HLP.packBytes = function (val, bytes) {
-    val = val.toString(16)
-    var nex, res = ''  // big-endian, unsigned long
-    for (; bytes > 0; bytes--) {
-      nex = val.length ? val.substr(-2, 2) : '0'
-      val = val.substr(0, val.length - 2)
-      res = _toString(parseInt(nex, 16)) + res
-    }
-    return res
-  }
-
-  HLP.packINT = function (d) {
-    return HLP.packBytes(d, DTS.INT)
-  }
-
-  HLP.packCtr = function (d) {
-    return HLP.padCtr(HLP.packBytes(d, DTS.CTR))
-  }
-
-  HLP.padCtr = function (ctr) {
-    return ctr + '\x00\x00\x00\x00\x00\x00\x00\x00'
-  }
-
-  HLP.unpackCtr = function (d) {
-    d = HLP.toByteArray(d.substring(0, 8))
-    return HLP.unpack(d)
-  }
-
-  HLP.unpack = function (arr) {
-    var val = 0, i = 0, len = arr.length
-    for (; i < len; i++) {
-      val = (val * 256) + arr[i]
-    }
-    return val
-  }
-
-  HLP.packData = function (d) {
-    return HLP.packINT(d.length) + d
-  }
-
-  HLP.bits2bigInt = function (bits) {
-    bits = HLP.toByteArray(bits)
-    return BigInt.ba2bigInt(bits)
-  }
-
-  HLP.packMPI = function (mpi) {
-    return HLP.packData(BigInt.bigInt2bits(BigInt.trim(mpi, 0)))
-  }
-
-  HLP.packSHORT = function (short) {
-    return HLP.packBytes(short, DTS.SHORT)
-  }
-
-  HLP.unpackSHORT = function (short) {
-    short = HLP.toByteArray(short)
-    return HLP.unpack(short)
-  }
-
-  HLP.packTLV = function (type, value) {
-    return HLP.packSHORT(type) + HLP.packSHORT(value.length) + value
-  }
-
-  HLP.readLen = function (msg) {
-    msg = HLP.toByteArray(msg.substring(0, 4))
-    return HLP.unpack(msg)
-  }
-
-  HLP.readData = function (data) {
-    var n = HLP.unpack(data.splice(0, 4))
-    return [n, data]
-  }
-
-  HLP.readMPI = function (data) {
-    data = HLP.toByteArray(data)
-    data = HLP.readData(data)
-    return BigInt.ba2bigInt(data[1])
-  }
-
-  HLP.packMPIs = function (arr) {
-    return arr.reduce(function (prv, cur) {
-      return prv + HLP.packMPI(cur)
-    }, '')
-  }
-
-  HLP.unpackMPIs = function (num, mpis) {
-    var i = 0, arr = []
-    for (; i < num; i++) arr.push('MPI')
-    return (HLP.splitype(arr, mpis)).map(function (m) {
-      return HLP.readMPI(m)
-    })
-  }
-
-  HLP.wrapMsg = function (msg, fs, v3, our_it, their_it) {
-    msg = CryptoJS.enc.Base64.stringify(CryptoJS.enc.Latin1.parse(msg))
-    msg = WRAPPER_BEGIN + ":" + msg + WRAPPER_END
-
-    var its
-    if (v3) {
-      its = '|'
-      its += (HLP.readLen(our_it)).toString(16)
-      its += '|'
-      its += (HLP.readLen(their_it)).toString(16)
-    }
-
-    if (!fs) return [null, msg]
-
-    var n = Math.ceil(msg.length / fs)
-    if (n > 65535) return ['Too many fragments']
-    if (n == 1) return [null, msg]
-
-    var k, bi, ei, frag, mf, mfs = []
-    for (k = 1; k <= n; k++) {
-      bi = (k - 1) * fs
-      ei = k * fs
-      frag = msg.slice(bi, ei)
-      mf = WRAPPER_BEGIN
-      if (v3) mf += its
-      mf += ',' + k + ','
-      mf += n + ','
-      mf += frag + ','
-      mfs.push(mf)
-    }
-
-    return [null, mfs]
-  }
-
-  HLP.splitype = function splitype(arr, msg) {
-    var data = []
-    arr.forEach(function (a) {
-      var str
-      switch (a) {
-        case 'PUBKEY':
-          str = splitype(['SHORT', 'MPI', 'MPI', 'MPI', 'MPI'], msg).join('')
-          break
-        case 'DATA':  // falls through
-        case 'MPI':
-          str = msg.substring(0, HLP.readLen(msg) + 4)
-          break
-        default:
-          str = msg.substring(0, DTS[a])
-      }
-      data.push(str)
-      msg = msg.substring(str.length)
-    })
-    return data
-  }
-
-  // https://github.com/msgpack/msgpack-javascript/blob/master/msgpack.js
-
-  var _bin2num = (function () {
-    var i = 0, _bin2num = {}
-    for (; i < 0x100; ++i) {
-      _bin2num[String.fromCharCode(i)] = i  // "\00" -> 0x00
-    }
-    for (i = 0x80; i < 0x100; ++i) {  // [Webkit][Gecko]
-      _bin2num[String.fromCharCode(0xf700 + i)] = i  // "\f780" -> 0x80
-    }
-    return _bin2num
-  }())
-
-  HLP.toByteArray = function (data) {
-    var rv = []
-      , ary = data.split("")
-      , i = -1
-      , iz = ary.length
-      , remain = iz % 8
-
-    while (remain--) {
-      ++i
-      rv[i] = _bin2num[ary[i]]
-    }
-    remain = iz >> 3
-    while (remain--) {
-      rv.push(_bin2num[ary[++i]], _bin2num[ary[++i]],
-              _bin2num[ary[++i]], _bin2num[ary[++i]],
-              _bin2num[ary[++i]], _bin2num[ary[++i]],
-              _bin2num[ary[++i]], _bin2num[ary[++i]])
-    }
-    return rv
-  }
-
-}).call(this)
-;(function () {
-  "use strict";
-
-  var root = this
-
-  var CryptoJS, BigInt, Worker, WWPath, HLP
-  if (typeof module !== 'undefined' && module.exports) {
-    module.exports = DSA
-    CryptoJS = require('../vendor/crypto.js')
-    BigInt = require('../vendor/bigint.js')
-    WWPath = require('path').join(__dirname, '/dsa-webworker.js')
-    HLP = require('./helpers.js')
-  } else {
-    // copy over and expose internals
-    Object.keys(root.DSA).forEach(function (k) {
-      DSA[k] = root.DSA[k]
-    })
-    root.DSA = DSA
-    CryptoJS = root.CryptoJS
-    BigInt = root.BigInt
-    Worker = root.Worker
-    WWPath = 'dsa-webworker.js'
-    HLP = DSA.HLP
-  }
-
-  var ZERO = BigInt.str2bigInt('0', 10)
-    , ONE = BigInt.str2bigInt('1', 10)
-    , TWO = BigInt.str2bigInt('2', 10)
-    , KEY_TYPE = '\x00\x00'
-
-  var DEBUG = false
-  function timer() {
-    var start = (new Date()).getTime()
-    return function (s) {
-      if (!DEBUG || typeof console === 'undefined') return
-      var t = (new Date()).getTime()
-      console.log(s + ': ' + (t - start))
-      start = t
-    }
-  }
-
-  function makeRandom(min, max) {
-    var c = BigInt.randBigInt(BigInt.bitSize(max))
-    if (!HLP.between(c, min, max)) return makeRandom(min, max)
-    return c
-  }
-
-  // altered BigInt.randProbPrime()
-  // n rounds of Miller Rabin (after trial division with small primes)
-  var rpprb = []
-  function isProbPrime(k, n) {
-    var i, B = 30000, l = BigInt.bitSize(k)
-    var primes = BigInt.primes
-
-    if (primes.length === 0)
-      primes = BigInt.findPrimes(B)
-
-    if (rpprb.length != k.length)
-      rpprb = BigInt.dup(k)
-
-    // check ans for divisibility by small primes up to B
-    for (i = 0; (i < primes.length) && (primes[i] <= B); i++)
-      if (BigInt.modInt(k, primes[i]) === 0 && !BigInt.equalsInt(k, primes[i]))
-        return 0
-
-    // do n rounds of Miller Rabin, with random bases less than k
-    for (i = 0; i < n; i++) {
-      BigInt.randBigInt_(rpprb, l, 0)
-      while(!BigInt.greater(k, rpprb))  // pick a random rpprb that's < k
-        BigInt.randBigInt_(rpprb, l, 0)
-      if (!BigInt.millerRabin(k, rpprb))
-        return 0
-    }
-
-    return 1
-  }
-
-  var bit_lengths = {
-      '1024': { N: 160, repeat: 40 }  // 40x should give 2^-80 confidence
-    , '2048': { N: 224, repeat: 56 }
-  }
-
-  var primes = {}
-
-  // follows go lang http://golang.org/src/pkg/crypto/dsa/dsa.go
-  // fips version was removed in 0c99af0df3e7
-  function generatePrimes(bit_length) {
-
-    var t = timer()  // for debugging
-
-    // number of MR tests to perform
-    var repeat = bit_lengths[bit_length].repeat
-
-    var N = bit_lengths[bit_length].N
-
-    var LM1 = BigInt.twoToThe(bit_length - 1)
-    var bl4 = 4 * bit_length
-    var brk = false
-
-    var q, p, rem, counter
-    for (;;) {
-
-      q = BigInt.randBigInt(N, 1)
-      q[0] |= 1
-
-      if (!isProbPrime(q, repeat)) continue
-      t('q')
-
-      for (counter = 0; counter < bl4; counter++) {
-        p = BigInt.randBigInt(bit_length, 1)
-        p[0] |= 1
-
-        rem = BigInt.mod(p, q)
-        rem = BigInt.sub(rem, ONE)
-        p = BigInt.sub(p, rem)
-
-        if (BigInt.greater(LM1, p)) continue
-        if (!isProbPrime(p, repeat)) continue
-
-        t('p')
-        primes[bit_length] = { p: p, q: q }
-        brk = true
-        break
-      }
-
-      if (brk) break
-    }
-
-    var h = BigInt.dup(TWO)
-    var pm1 = BigInt.sub(p, ONE)
-    var e = BigInt.multMod(pm1, BigInt.inverseMod(q, p), p)
-
-    var g
-    for (;;) {
-      g = BigInt.powMod(h, e, p)
-      if (BigInt.equals(g, ONE)) {
-        h = BigInt.add(h, ONE)
-        continue
-      }
-      primes[bit_length].g = g
-      t('g')
-      return
-    }
-
-    throw new Error('Unreachable!')
-  }
-
-  function DSA(obj, opts) {
-    if (!(this instanceof DSA)) return new DSA(obj, opts)
-
-    // options
-    opts = opts || {}
-
-    // inherit
-    if (obj) {
-      var self = this
-      ;['p', 'q', 'g', 'y', 'x'].forEach(function (prop) {
-        self[prop] = obj[prop]
-      })
-      this.type = obj.type || KEY_TYPE
-      return
-    }
-
-    // default to 1024
-    var bit_length = parseInt(opts.bit_length ? opts.bit_length : 1024, 10)
-
-    if (!bit_lengths[bit_length])
-      throw new Error('Unsupported bit length.')
-
-    // set primes
-    if (!primes[bit_length])
-      generatePrimes(bit_length)
-
-    this.p = primes[bit_length].p
-    this.q = primes[bit_length].q
-    this.g = primes[bit_length].g
-
-    // key type
-    this.type = KEY_TYPE
-
-    // private key
-    this.x = makeRandom(ZERO, this.q)
-
-    // public keys (p, q, g, y)
-    this.y = BigInt.powMod(this.g, this.x, this.p)
-
-    // nocache?
-    if (opts.nocache) primes[bit_length] = null
-  }
-
-  DSA.prototype = {
-
-    constructor: DSA,
-
-    packPublic: function () {
-      var str = this.type
-      str += HLP.packMPI(this.p)
-      str += HLP.packMPI(this.q)
-      str += HLP.packMPI(this.g)
-      str += HLP.packMPI(this.y)
-      return str
-    },
-
-    packPrivate: function () {
-      var str = this.packPublic() + HLP.packMPI(this.x)
-      str = CryptoJS.enc.Latin1.parse(str)
-      return str.toString(CryptoJS.enc.Base64)
-    },
-
-    // http://www.imperialviolet.org/2013/06/15/suddendeathentropy.html
-    generateNonce: function (m) {
-      var priv = BigInt.bigInt2bits(BigInt.trim(this.x, 0))
-      var rand = BigInt.bigInt2bits(BigInt.randBigInt(256))
-
-      var sha256 = CryptoJS.algo.SHA256.create()
-      sha256.update(CryptoJS.enc.Latin1.parse(priv))
-      sha256.update(m)
-      sha256.update(CryptoJS.enc.Latin1.parse(rand))
-
-      var hash = sha256.finalize()
-      hash = HLP.bits2bigInt(hash.toString(CryptoJS.enc.Latin1))
-      BigInt.rightShift_(hash, 256 - BigInt.bitSize(this.q))
-
-      return HLP.between(hash, ZERO, this.q) ? hash : this.generateNonce(m)
-    },
-
-    sign: function (m) {
-      m = CryptoJS.enc.Latin1.parse(m)
-      var b = BigInt.str2bigInt(m.toString(CryptoJS.enc.Hex), 16)
-      var k, r = ZERO, s = ZERO
-      while (BigInt.isZero(s) || BigInt.isZero(r)) {
-        k = this.generateNonce(m)
-        r = BigInt.mod(BigInt.powMod(this.g, k, this.p), this.q)
-        if (BigInt.isZero(r)) continue
-        s = BigInt.inverseMod(k, this.q)
-        s = BigInt.mult(s, BigInt.add(b, BigInt.mult(this.x, r)))
-        s = BigInt.mod(s, this.q)
-      }
-      return [r, s]
-    },
-
-    fingerprint: function () {
-      var pk = this.packPublic()
-      if (this.type === KEY_TYPE) pk = pk.substring(2)
-      pk = CryptoJS.enc.Latin1.parse(pk)
-      return CryptoJS.SHA1(pk).toString(CryptoJS.enc.Hex)
-    }
-
-  }
-
-  DSA.parsePublic = function (str, priv) {
-    var fields = ['SHORT', 'MPI', 'MPI', 'MPI', 'MPI']
-    if (priv) fields.push('MPI')
-    str = HLP.splitype(fields, str)
-    var obj = {
-        type: str[0]
-      , p: HLP.readMPI(str[1])
-      , q: HLP.readMPI(str[2])
-      , g: HLP.readMPI(str[3])
-      , y: HLP.readMPI(str[4])
-    }
-    if (priv) obj.x = HLP.readMPI(str[5])
-    return new DSA(obj)
-  }
-
-  function tokenizeStr(str) {
-    var start, end
-
-    start = str.indexOf("(")
-    end = str.lastIndexOf(")")
-
-    if (start < 0 || end < 0)
-      throw new Error("Malformed S-Expression")
-
-    str = str.substring(start + 1, end)
-
-    var splt = str.search(/\s/)
-    var obj = {
-        type: str.substring(0, splt)
-      , val: []
-    }
-
-    str = str.substring(splt + 1, end)
-    start = str.indexOf("(")
-
-    if (start < 0) obj.val.push(str)
-    else {
-
-      var i, len, ss, es
-      while (start > -1) {
-        i = start + 1
-        len = str.length
-        for (ss = 1, es = 0; i < len && es < ss; i++) {
-          if (str[i] === "(") ss++
-          if (str[i] === ")") es++
-        }
-        obj.val.push(tokenizeStr(str.substring(start, ++i)))
-        str = str.substring(++i)
-        start = str.indexOf("(")
-      }
-
-    }
-    return obj
-  }
-
-  function parseLibotr(obj) {
-    if (!obj.type) throw new Error("Parse error.")
-
-    var o, val
-    if (obj.type === "privkeys") {
-      o = []
-      obj.val.forEach(function (i) {
-        o.push(parseLibotr(i))
-      })
-      return o
-    }
-
-    o = {}
-    obj.val.forEach(function (i) {
-
-      val = i.val[0]
-      if (typeof val === "string") {
-
-        if (val.indexOf("#") === 0) {
-          val = val.substring(1, val.lastIndexOf("#"))
-          val = BigInt.str2bigInt(val, 16)
-        }
-
-      } else {
-        val = parseLibotr(i)
-      }
-
-      o[i.type] = val
-    })
-
-    return o
-  }
-
-  DSA.parsePrivate = function (str, libotr) {
-    if (!libotr) {
-      str = CryptoJS.enc.Base64.parse(str)
-      str = str.toString(CryptoJS.enc.Latin1)
-      return DSA.parsePublic(str, true)
-    }
-    // only returning the first key found
-    return parseLibotr(tokenizeStr(str))[0]["private-key"].dsa
-  }
-
-  DSA.verify = function (key, m, r, s) {
-    if (!HLP.between(r, ZERO, key.q) || !HLP.between(s, ZERO, key.q))
-      return false
-
-    var hm = CryptoJS.enc.Latin1.parse(m)  // CryptoJS.SHA1(m)
-    hm = BigInt.str2bigInt(hm.toString(CryptoJS.enc.Hex), 16)
-
-    var w = BigInt.inverseMod(s, key.q)
-    var u1 = BigInt.multMod(hm, w, key.q)
-    var u2 = BigInt.multMod(r, w, key.q)
-
-    u1 = BigInt.powMod(key.g, u1, key.p)
-    u2 = BigInt.powMod(key.y, u2, key.p)
-
-    var v = BigInt.mod(BigInt.multMod(u1, u2, key.p), key.q)
-
-    return BigInt.equals(v, r)
-  }
-
-  DSA.createInWebWorker = function (options, cb) {
-    var opts = {
-        path: WWPath
-      , seed: BigInt.getSeed
-    }
-    if (options && typeof options === 'object')
-      Object.keys(options).forEach(function (k) {
-        opts[k] = options[k]
-      })
-
-    // load optional dep. in node
-    if (typeof module !== 'undefined' && module.exports)
-      Worker = require('webworker-threads').Worker
-
-    var worker = new Worker(opts.path)
-    worker.onmessage = function (e) {
-      var data = e.data
-      switch (data.type) {
-        case "debug":
-          if (!DEBUG || typeof console === 'undefined') return
-          console.log(data.val)
-          break;
-        case "data":
-          worker.terminate()
-          cb(DSA.parsePrivate(data.val))
-          break;
-        default:
-          throw new Error("Unrecognized type.")
-      }
-    }
-    worker.postMessage({
-        seed: opts.seed()
-      , imports: opts.imports
-      , debug: DEBUG
-    })
-  }
-
-}).call(this)
-;(function () {
-  "use strict";
-
-  var root = this
-
-  var Parse = {}, CryptoJS, CONST, HLP
-  if (typeof module !== 'undefined' && module.exports) {
-    module.exports = Parse
-    CryptoJS = require('../vendor/crypto.js')
-    CONST = require('./const.js')
-    HLP = require('./helpers.js')
-  } else {
-    root.OTR.Parse = Parse
-    CryptoJS = root.CryptoJS
-    CONST = root.OTR.CONST
-    HLP = root.OTR.HLP
-  }
-
-  // whitespace tags
-  var tags = {}
-  tags[CONST.WHITESPACE_TAG_V2] = CONST.OTR_VERSION_2
-  tags[CONST.WHITESPACE_TAG_V3] = CONST.OTR_VERSION_3
-
-  Parse.parseMsg = function (otr, msg) {
-
-    var ver = []
-
-    // is this otr?
-    var start = msg.indexOf(CONST.OTR_TAG)
-    if (!~start) {
-
-      // restart fragments
-      this.initFragment(otr)
-
-      // whitespace tags
-      ind = msg.indexOf(CONST.WHITESPACE_TAG)
-
-      if (~ind) {
-
-        msg = msg.split('')
-        msg.splice(ind, 16)
-
-        var tag, len = msg.length
-        for (; ind < len;) {
-          tag = msg.slice(ind, ind + 8).join('')
-          if (Object.hasOwnProperty.call(tags, tag)) {
-            msg.splice(ind, 8)
-            ver.push(tags[tag])
-            continue
-          }
-          ind += 8
-        }
-
-        msg = msg.join('')
-
-      }
-
-      return { msg: msg, ver: ver }
-    }
-
-    var ind = start + CONST.OTR_TAG.length
-    var com = msg[ind]
-
-    // message fragment
-    if (com === ',' || com === '|') {
-      return this.msgFragment(otr, msg.substring(ind + 1), (com === '|'))
-    }
-
-    this.initFragment(otr)
-
-    // query message
-    if (~['?', 'v'].indexOf(com)) {
-
-      // version 1
-      if (msg[ind] === '?') {
-        ver.push(CONST.OTR_VERSION_1)
-        ind += 1
-      }
-
-      // other versions
-      var vers = {
-          '2': CONST.OTR_VERSION_2
-        , '3': CONST.OTR_VERSION_3
-      }
-      var qs = msg.substring(ind + 1)
-      var qi = qs.indexOf('?')
-
-      if (qi >= 1) {
-        qs = qs.substring(0, qi).split('')
-        if (msg[ind] === 'v') {
-          qs.forEach(function (q) {
-            if (Object.hasOwnProperty.call(vers, q)) ver.push(vers[q])
-          })
-        }
-      }
-
-      return { cls: 'query', ver: ver }
-    }
-
-    // otr message
-    if (com === ':') {
-
-      ind += 1
-
-      var info = msg.substring(ind, ind + 4)
-      if (info.length < 4) return { msg: msg }
-      info = CryptoJS.enc.Base64.parse(info).toString(CryptoJS.enc.Latin1)
-
-      var version = info.substring(0, 2)
-      var type = info.substring(2)
-
-      // supporting otr versions 2 and 3
-      if (!otr['ALLOW_V' + HLP.unpackSHORT(version)]) return { msg: msg }
-
-      ind += 4
-
-      var end = msg.substring(ind).indexOf('.')
-      if (!~end) return { msg: msg }
-
-      msg = CryptoJS.enc.Base64.parse(msg.substring(ind, ind + end))
-      msg = CryptoJS.enc.Latin1.stringify(msg)
-
-      // instance tags
-      var instance_tags
-      if (version === CONST.OTR_VERSION_3) {
-        instance_tags = msg.substring(0, 8)
-        msg = msg.substring(8)
-      }
-
-      var cls
-      if (~['\x02', '\x0a', '\x11', '\x12'].indexOf(type)) {
-        cls = 'ake'
-      } else if (type === '\x03') {
-        cls = 'data'
-      }
-
-      return {
-          version: version
-        , type: type
-        , msg: msg
-        , cls: cls
-        , instance_tags: instance_tags
-      }
-    }
-
-    // error message
-    if (msg.substring(ind, ind + 7) === ' Error:') {
-      if (otr.ERROR_START_AKE) {
-        otr.sendQueryMsg()
-      }
-      return { msg: msg.substring(ind + 7), cls: 'error' }
-    }
-
-    return { msg: msg }
-  }
-
-  Parse.initFragment = function (otr) {
-    otr.fragment = { s: '', j: 0, k: 0 }
-  }
-
-  Parse.msgFragment = function (otr, msg, v3) {
-
-    msg = msg.split(',')
-
-    // instance tags
-    if (v3) {
-      var its = msg.shift().split('|')
-      var their_it = HLP.packINT(parseInt(its[0], 16))
-      var our_it = HLP.packINT(parseInt(its[1], 16))
-      if (otr.checkInstanceTags(their_it + our_it)) return  // ignore
-    }
-
-    if (msg.length < 4 ||
-      isNaN(parseInt(msg[0], 10)) ||
-      isNaN(parseInt(msg[1], 10))
-    ) return
-
-    var k = parseInt(msg[0], 10)
-    var n = parseInt(msg[1], 10)
-    msg = msg[2]
-
-    if (n < k || n === 0 || k === 0) {
-      this.initFragment(otr)
-      return
-    }
-
-    if (k === 1) {
-      this.initFragment(otr)
-      otr.fragment = { k: 1, n: n, s: msg }
-    } else if (n === otr.fragment.n && k === (otr.fragment.k + 1)) {
-      otr.fragment.s += msg
-      otr.fragment.k += 1
-    } else {
-      this.initFragment(otr)
-    }
-
-    if (n === k) {
-      msg = otr.fragment.s
-      this.initFragment(otr)
-      return this.parseMsg(otr, msg)
-    }
-
-    return
-  }
-
-}).call(this)
-;(function () {
-  "use strict";
-
-  var root = this
-
-  var CryptoJS, BigInt, CONST, HLP, DSA
-  if (typeof module !== 'undefined' && module.exports) {
-    module.exports = AKE
-    CryptoJS = require('../vendor/crypto.js')
-    BigInt = require('../vendor/bigint.js')
-    CONST = require('./const.js')
-    HLP = require('./helpers.js')
-    DSA = require('./dsa.js')
-  } else {
-    root.OTR.AKE = AKE
-    CryptoJS = root.CryptoJS
-    BigInt = root.BigInt
-    CONST = root.OTR.CONST
-    HLP = root.OTR.HLP
-    DSA = root.DSA
-  }
-
-  // diffie-hellman modulus
-  // see group 5, RFC 3526
-  var N = BigInt.str2bigInt(CONST.N, 16)
-  var N_MINUS_2 = BigInt.sub(N, BigInt.str2bigInt('2', 10))
-
-  function hMac(gx, gy, pk, kid, m) {
-    var pass = CryptoJS.enc.Latin1.parse(m)
-    var hmac = CryptoJS.algo.HMAC.create(CryptoJS.algo.SHA256, pass)
-    hmac.update(CryptoJS.enc.Latin1.parse(HLP.packMPI(gx)))
-    hmac.update(CryptoJS.enc.Latin1.parse(HLP.packMPI(gy)))
-    hmac.update(CryptoJS.enc.Latin1.parse(pk))
-    hmac.update(CryptoJS.enc.Latin1.parse(kid))
-    return (hmac.finalize()).toString(CryptoJS.enc.Latin1)
-  }
-
-  // AKE constructor
-  function AKE(otr) {
-    if (!(this instanceof AKE)) return new AKE(otr)
-
-    // otr instance
-    this.otr = otr
-
-    // our keys
-    this.our_dh = otr.our_old_dh
-    this.our_keyid = otr.our_keyid - 1
-
-    // their keys
-    this.their_y = null
-    this.their_keyid = null
-    this.their_priv_pk = null
-
-    // state
-    this.ssid = null
-    this.transmittedRS = false
-    this.r = null
-
-    // bind methods
-    var self = this
-    ;['sendMsg'].forEach(function (meth) {
-      self[meth] = self[meth].bind(self)
-    })
-  }
-
-  AKE.prototype = {
-
-    constructor: AKE,
-
-    createKeys: function(g) {
-      var s = BigInt.powMod(g, this.our_dh.privateKey, N)
-      var secbytes = HLP.packMPI(s)
-      this.ssid = HLP.mask(HLP.h2('\x00', secbytes), 0, 64)  // first 64-bits
-      var tmp = HLP.h2('\x01', secbytes)
-      this.c = HLP.mask(tmp, 0, 128)  // first 128-bits
-      this.c_prime = HLP.mask(tmp, 128, 128)  // second 128-bits
-      this.m1 = HLP.h2('\x02', secbytes)
-      this.m2 = HLP.h2('\x03', secbytes)
-      this.m1_prime = HLP.h2('\x04', secbytes)
-      this.m2_prime = HLP.h2('\x05', secbytes)
-    },
-
-    verifySignMac: function (mac, aesctr, m2, c, their_y, our_dh_pk, m1, ctr) {
-      // verify mac
-      var vmac = HLP.makeMac(aesctr, m2)
-      if (!HLP.compare(mac, vmac))
-        return ['MACs do not match.']
-
-      // decrypt x
-      var x = HLP.decryptAes(aesctr.substring(4), c, ctr)
-      x = HLP.splitype(['PUBKEY', 'INT', 'SIG'], x.toString(CryptoJS.enc.Latin1))
-
-      var m = hMac(their_y, our_dh_pk, x[0], x[1], m1)
-      var pub = DSA.parsePublic(x[0])
-
-      var r = HLP.bits2bigInt(x[2].substring(0, 20))
-      var s = HLP.bits2bigInt(x[2].substring(20))
-
-      // verify sign m
-      if (!DSA.verify(pub, m, r, s)) return ['Cannot verify signature of m.']
-
-      return [null, HLP.readLen(x[1]), pub]
-    },
-
-    makeM: function (their_y, m1, c, m2) {
-      var pk = this.otr.priv.packPublic()
-      var kid = HLP.packINT(this.our_keyid)
-      var m = hMac(this.our_dh.publicKey, their_y, pk, kid, m1)
-      m = this.otr.priv.sign(m)
-      var msg = pk + kid
-      msg += BigInt.bigInt2bits(m[0], 20)  // pad to 20 bytes
-      msg += BigInt.bigInt2bits(m[1], 20)
-      msg = CryptoJS.enc.Latin1.parse(msg)
-      var aesctr = HLP.packData(HLP.encryptAes(msg, c, HLP.packCtr(0)))
-      var mac = HLP.makeMac(aesctr, m2)
-      return aesctr + mac
-    },
-
-    akeSuccess: function (version) {
-      HLP.debug.call(this.otr, 'success')
-
-      if (BigInt.equals(this.their_y, this.our_dh.publicKey))
-        return this.otr.error('equal keys - we have a problem.', true)
-
-      this.otr.our_old_dh = this.our_dh
-      this.otr.their_priv_pk = this.their_priv_pk
-
-      if (!(
-        (this.their_keyid === this.otr.their_keyid &&
-         BigInt.equals(this.their_y, this.otr.their_y)) ||
-        (this.their_keyid === (this.otr.their_keyid - 1) &&
-         BigInt.equals(this.their_y, this.otr.their_old_y))
-      )) {
-
-        this.otr.their_y = this.their_y
-        this.otr.their_old_y = null
-        this.otr.their_keyid = this.their_keyid
-
-        // rotate keys
-        this.otr.sessKeys[0] = [ new this.otr.DHSession(
-            this.otr.our_dh
-          , this.otr.their_y
-        ), null ]
-        this.otr.sessKeys[1] = [ new this.otr.DHSession(
-            this.otr.our_old_dh
-          , this.otr.their_y
-        ), null ]
-
-      }
-
-      // ake info
-      this.otr.ssid = this.ssid
-      this.otr.transmittedRS = this.transmittedRS
-      this.otr_version = version
-
-      // go encrypted
-      this.otr.authstate = CONST.AUTHSTATE_NONE
-      this.otr.msgstate = CONST.MSGSTATE_ENCRYPTED
-
-      // null out values
-      this.r = null
-      this.myhashed = null
-      this.dhcommit = null
-      this.encrypted = null
-      this.hashed = null
-
-      this.otr.trigger('status', [CONST.STATUS_AKE_SUCCESS])
-
-      // send stored msgs
-      this.otr.sendStored()
-    },
-
-    handleAKE: function (msg) {
-      var send, vsm, type
-      var version = msg.version
-
-      switch (msg.type) {
-
-        case '\x02':
-          HLP.debug.call(this.otr, 'd-h key message')
-
-          msg = HLP.splitype(['DATA', 'DATA'], msg.msg)
-
-          if (this.otr.authstate === CONST.AUTHSTATE_AWAITING_DHKEY) {
-            var ourHash = HLP.readMPI(this.myhashed)
-            var theirHash = HLP.readMPI(msg[1])
-            if (BigInt.greater(ourHash, theirHash)) {
-              type = '\x02'
-              send = this.dhcommit
-              break  // ignore
-            } else {
-              // forget
-              this.our_dh = this.otr.dh()
-              this.otr.authstate = CONST.AUTHSTATE_NONE
-              this.r = null
-              this.myhashed = null
-            }
-          } else if (
-            this.otr.authstate === CONST.AUTHSTATE_AWAITING_SIG
-          ) this.our_dh = this.otr.dh()
-
-          this.otr.authstate = CONST.AUTHSTATE_AWAITING_REVEALSIG
-
-          this.encrypted = msg[0].substring(4)
-          this.hashed = msg[1].substring(4)
-
-          type = '\x0a'
-          send = HLP.packMPI(this.our_dh.publicKey)
-          break
-
-        case '\x0a':
-          HLP.debug.call(this.otr, 'reveal signature message')
-
-          msg = HLP.splitype(['MPI'], msg.msg)
-
-          if (this.otr.authstate !== CONST.AUTHSTATE_AWAITING_DHKEY) {
-            if (this.otr.authstate === CONST.AUTHSTATE_AWAITING_SIG) {
-              if (!BigInt.equals(this.their_y, HLP.readMPI(msg[0]))) return
-            } else {
-              return  // ignore
-            }
-          }
-
-          this.otr.authstate = CONST.AUTHSTATE_AWAITING_SIG
-
-          this.their_y = HLP.readMPI(msg[0])
-
-          // verify gy is legal 2 <= gy <= N-2
-          if (!HLP.checkGroup(this.their_y, N_MINUS_2))
-            return this.otr.error('Illegal g^y.', true)
-
-          this.createKeys(this.their_y)
-
-          type = '\x11'
-          send = HLP.packMPI(this.r)
-          send += this.makeM(this.their_y, this.m1, this.c, this.m2)
-
-          this.m1 = null
-          this.m2 = null
-          this.c = null
-          break
-
-        case '\x11':
-          HLP.debug.call(this.otr, 'signature message')
-
-          if (this.otr.authstate !== CONST.AUTHSTATE_AWAITING_REVEALSIG)
-            return  // ignore
-
-          msg = HLP.splitype(['DATA', 'DATA', 'MAC'], msg.msg)
-
-          this.r = HLP.readMPI(msg[0])
-
-          // decrypt their_y
-          var key = CryptoJS.enc.Hex.parse(BigInt.bigInt2str(this.r, 16))
-          key = CryptoJS.enc.Latin1.stringify(key)
-
-          var gxmpi = HLP.decryptAes(this.encrypted, key, HLP.packCtr(0))
-          gxmpi = gxmpi.toString(CryptoJS.enc.Latin1)
-
-          this.their_y = HLP.readMPI(gxmpi)
-
-          // verify hash
-          var hash = CryptoJS.SHA256(CryptoJS.enc.Latin1.parse(gxmpi))
-
-          if (!HLP.compare(this.hashed, hash.toString(CryptoJS.enc.Latin1)))
-            return this.otr.error('Hashed g^x does not match.', true)
-
-          // verify gx is legal 2 <= g^x <= N-2
-          if (!HLP.checkGroup(this.their_y, N_MINUS_2))
-            return this.otr.error('Illegal g^x.', true)
-
-          this.createKeys(this.their_y)
-
-          vsm = this.verifySignMac(
-              msg[2]
-            , msg[1]
-            , this.m2
-            , this.c
-            , this.their_y
-            , this.our_dh.publicKey
-            , this.m1
-            , HLP.packCtr(0)
-          )
-          if (vsm[0]) return this.otr.error(vsm[0], true)
-
-          // store their key
-          this.their_keyid = vsm[1]
-          this.their_priv_pk = vsm[2]
-
-          send = this.makeM(
-              this.their_y
-            , this.m1_prime
-            , this.c_prime
-            , this.m2_prime
-          )
-
-          this.m1 = null
-          this.m2 = null
-          this.m1_prime = null
-          this.m2_prime = null
-          this.c = null
-          this.c_prime = null
-
-          this.sendMsg(version, '\x12', send)
-          this.akeSuccess(version)
-          return
-
-        case '\x12':
-          HLP.debug.call(this.otr, 'data message')
-
-          if (this.otr.authstate !== CONST.AUTHSTATE_AWAITING_SIG)
-            return  // ignore
-
-          msg = HLP.splitype(['DATA', 'MAC'], msg.msg)
-
-          vsm = this.verifySignMac(
-              msg[1]
-            , msg[0]
-            , this.m2_prime
-            , this.c_prime
-            , this.their_y
-            , this.our_dh.publicKey
-            , this.m1_prime
-            , HLP.packCtr(0)
-          )
-          if (vsm[0]) return this.otr.error(vsm[0], true)
-
-          // store their key
-          this.their_keyid = vsm[1]
-          this.their_priv_pk = vsm[2]
-
-          this.m1_prime = null
-          this.m2_prime = null
-          this.c_prime = null
-
-          this.transmittedRS = true
-          this.akeSuccess(version)
-          return
-
-        default:
-          return  // ignore
-
-      }
-
-      this.sendMsg(version, type, send)
-    },
-
-    sendMsg: function (version, type, msg) {
-      var send = version + type
-      var v3 = (version === CONST.OTR_VERSION_3)
-
-      // instance tags for v3
-      if (v3) {
-        HLP.debug.call(this.otr, 'instance tags')
-        send += this.otr.our_instance_tag
-        send += this.otr.their_instance_tag
-      }
-
-      send += msg
-
-      // fragment message if necessary
-      send = HLP.wrapMsg(
-          send
-        , this.otr.fragment_size
-        , v3
-        , this.otr.our_instance_tag
-        , this.otr.their_instance_tag
-      )
-      if (send[0]) return this.otr.error(send[0])
-
-      this.otr.io(send[1])
-    },
-
-    initiateAKE: function (version) {
-      HLP.debug.call(this.otr, 'd-h commit message')
-
-      this.otr.trigger('status', [CONST.STATUS_AKE_INIT])
-
-      this.otr.authstate = CONST.AUTHSTATE_AWAITING_DHKEY
-
-      var gxmpi = HLP.packMPI(this.our_dh.publicKey)
-      gxmpi = CryptoJS.enc.Latin1.parse(gxmpi)
-
-      this.r = BigInt.randBigInt(128)
-      var key = CryptoJS.enc.Hex.parse(BigInt.bigInt2str(this.r, 16))
-      key = CryptoJS.enc.Latin1.stringify(key)
-
-      this.myhashed = CryptoJS.SHA256(gxmpi)
-      this.myhashed = HLP.packData(this.myhashed.toString(CryptoJS.enc.Latin1))
-
-      this.dhcommit = HLP.packData(HLP.encryptAes(gxmpi, key, HLP.packCtr(0)))
-      this.dhcommit += this.myhashed
-
-      this.sendMsg(version, '\x02', this.dhcommit)
-    }
-
-  }
-
-}).call(this)
-;(function () {
-  "use strict";
-
-  var root = this
-
-  var CryptoJS, BigInt,  EventEmitter, CONST, HLP
-  if (typeof module !== 'undefined' && module.exports) {
-    module.exports = SM
-    CryptoJS = require('../vendor/crypto.js')
-    BigInt = require('../vendor/bigint.js')
-    EventEmitter = require('../vendor/eventemitter.js')
-    CONST = require('./const.js')
-    HLP = require('./helpers.js')
-  } else {
-    root.OTR.SM = SM
-    CryptoJS = root.CryptoJS
-    BigInt = root.BigInt
-    EventEmitter = root.EventEmitter
-    CONST = root.OTR.CONST
-    HLP = root.OTR.HLP
-  }
-
-  // diffie-hellman modulus and generator
-  // see group 5, RFC 3526
-  var G = BigInt.str2bigInt(CONST.G, 10)
-  var N = BigInt.str2bigInt(CONST.N, 16)
-  var N_MINUS_2 = BigInt.sub(N, BigInt.str2bigInt('2', 10))
-
-  // to calculate D's for zero-knowledge proofs
-  var Q = BigInt.sub(N, BigInt.str2bigInt('1', 10))
-  BigInt.divInt_(Q, 2)  // meh
-
-  function SM(reqs) {
-    if (!(this instanceof SM)) return new SM(reqs)
-
-    this.version = 1
-
-    this.our_fp = reqs.our_fp
-    this.their_fp = reqs.their_fp
-    this.ssid = reqs.ssid
-
-    this.debug = !!reqs.debug
-
-    // initial state
-    this.init()
-  }
-
-  // inherit from EE
-  HLP.extend(SM, EventEmitter)
-
-  // set the initial values
-  // also used when aborting
-  SM.prototype.init = function () {
-    this.smpstate = CONST.SMPSTATE_EXPECT1
-    this.secret = null
-  }
-
-  SM.prototype.makeSecret = function (our, secret) {
-    var sha256 = CryptoJS.algo.SHA256.create()
-    sha256.update(CryptoJS.enc.Latin1.parse(HLP.packBytes(this.version, 1)))
-    sha256.update(CryptoJS.enc.Hex.parse(our ? this.our_fp : this.their_fp))
-    sha256.update(CryptoJS.enc.Hex.parse(our ? this.their_fp : this.our_fp))
-    sha256.update(CryptoJS.enc.Latin1.parse(this.ssid))
-    sha256.update(CryptoJS.enc.Latin1.parse(secret))
-    var hash = sha256.finalize()
-    this.secret = HLP.bits2bigInt(hash.toString(CryptoJS.enc.Latin1))
-  }
-
-  SM.prototype.makeG2s = function () {
-    this.a2 = HLP.randomExponent()
-    this.a3 = HLP.randomExponent()
-    this.g2a = BigInt.powMod(G, this.a2, N)
-    this.g3a = BigInt.powMod(G, this.a3, N)
-    if ( !HLP.checkGroup(this.g2a, N_MINUS_2) ||
-         !HLP.checkGroup(this.g3a, N_MINUS_2)
-    ) this.makeG2s()
-  }
-
-  SM.prototype.computeGs = function (g2a, g3a) {
-    this.g2 = BigInt.powMod(g2a, this.a2, N)
-    this.g3 = BigInt.powMod(g3a, this.a3, N)
-  }
-
-  SM.prototype.computePQ = function (r) {
-    this.p = BigInt.powMod(this.g3, r, N)
-    this.q = HLP.multPowMod(G, r, this.g2, this.secret, N)
-  }
-
-  SM.prototype.computeR = function () {
-    this.r = BigInt.powMod(this.QoQ, this.a3, N)
-  }
-
-  SM.prototype.computeRab = function (r) {
-    return BigInt.powMod(r, this.a3, N)
-  }
-
-  SM.prototype.computeC = function (v, r) {
-    return HLP.smpHash(v, BigInt.powMod(G, r, N))
-  }
-
-  SM.prototype.computeD = function (r, a, c) {
-    return BigInt.subMod(r, BigInt.multMod(a, c, Q), Q)
-  }
-
-  // the bulk of the work
-  SM.prototype.handleSM = function (msg) {
-    var send, r2, r3, r7, t1, t2, t3, t4, rab, tmp2, cR, d7, ms, trust
-
-    var expectStates = {
-        2: CONST.SMPSTATE_EXPECT1
-      , 3: CONST.SMPSTATE_EXPECT2
-      , 4: CONST.SMPSTATE_EXPECT3
-      , 5: CONST.SMPSTATE_EXPECT4
-      , 7: CONST.SMPSTATE_EXPECT1
-    }
-
-    if (msg.type === 6) {
-      this.init()
-      this.trigger('abort')
-      return
-    }
-
-    // abort! there was an error
-    if (this.smpstate !== expectStates[msg.type])
-      return this.abort()
-
-    switch (this.smpstate) {
-
-      case CONST.SMPSTATE_EXPECT1:
-        HLP.debug.call(this, 'smp tlv 2')
-
-        // user specified question
-        var ind, question
-        if (msg.type === 7) {
-          ind = msg.msg.indexOf('\x00')
-          question = msg.msg.substring(0, ind)
-          msg.msg = msg.msg.substring(ind + 1)
-        }
-
-        // 0:g2a, 1:c2, 2:d2, 3:g3a, 4:c3, 5:d3
-        ms = HLP.readLen(msg.msg.substr(0, 4))
-        if (ms !== 6) return this.abort()
-        msg = HLP.unpackMPIs(6, msg.msg.substring(4))
-
-        if ( !HLP.checkGroup(msg[0], N_MINUS_2) ||
-             !HLP.checkGroup(msg[3], N_MINUS_2)
-        ) return this.abort()
-
-        // verify znp's
-        if (!HLP.ZKP(1, msg[1], HLP.multPowMod(G, msg[2], msg[0], msg[1], N)))
-          return this.abort()
-
-        if (!HLP.ZKP(2, msg[4], HLP.multPowMod(G, msg[5], msg[3], msg[4], N)))
-          return this.abort()
-
-        this.g3ao = msg[3]  // save for later
-
-        this.makeG2s()
-
-        // zero-knowledge proof that the exponents
-        // associated with g2a & g3a are known
-        r2 = HLP.randomExponent()
-        r3 = HLP.randomExponent()
-        this.c2 = this.computeC(3, r2)
-        this.c3 = this.computeC(4, r3)
-        this.d2 = this.computeD(r2, this.a2, this.c2)
-        this.d3 = this.computeD(r3, this.a3, this.c3)
-
-        this.computeGs(msg[0], msg[3])
-
-        this.smpstate = CONST.SMPSTATE_EXPECT0
-
-        // assume utf8 question
-        question = CryptoJS.enc.Latin1
-          .parse(question)
-          .toString(CryptoJS.enc.Utf8)
-
-        // invoke question
-        this.trigger('question', [question])
-        return
-
-      case CONST.SMPSTATE_EXPECT2:
-        HLP.debug.call(this, 'smp tlv 3')
-
-        // 0:g2a, 1:c2, 2:d2, 3:g3a, 4:c3, 5:d3, 6:p, 7:q, 8:cP, 9:d5, 10:d6
-        ms = HLP.readLen(msg.msg.substr(0, 4))
-        if (ms !== 11) return this.abort()
-        msg = HLP.unpackMPIs(11, msg.msg.substring(4))
-
-        if ( !HLP.checkGroup(msg[0], N_MINUS_2) ||
-             !HLP.checkGroup(msg[3], N_MINUS_2) ||
-             !HLP.checkGroup(msg[6], N_MINUS_2) ||
-             !HLP.checkGroup(msg[7], N_MINUS_2)
-        ) return this.abort()
-
-        // verify znp of c3 / c3
-        if (!HLP.ZKP(3, msg[1], HLP.multPowMod(G, msg[2], msg[0], msg[1], N)))
-          return this.abort()
-
-        if (!HLP.ZKP(4, msg[4], HLP.multPowMod(G, msg[5], msg[3], msg[4], N)))
-          return this.abort()
-
-        this.g3ao = msg[3]  // save for later
-
-        this.computeGs(msg[0], msg[3])
-
-        // verify znp of cP
-        t1 = HLP.multPowMod(this.g3, msg[9], msg[6], msg[8], N)
-        t2 = HLP.multPowMod(G, msg[9], this.g2, msg[10], N)
-        t2 = BigInt.multMod(t2, BigInt.powMod(msg[7], msg[8], N), N)
-
-        if (!HLP.ZKP(5, msg[8], t1, t2))
-          return this.abort()
-
-        var r4 = HLP.randomExponent()
-        this.computePQ(r4)
-
-        // zero-knowledge proof that P & Q
-        // were generated according to the protocol
-        var r5 = HLP.randomExponent()
-        var r6 = HLP.randomExponent()
-        var tmp = HLP.multPowMod(G, r5, this.g2, r6, N)
-        var cP = HLP.smpHash(6, BigInt.powMod(this.g3, r5, N), tmp)
-        var d5 = this.computeD(r5, r4, cP)
-        var d6 = this.computeD(r6, this.secret, cP)
-
-        // store these
-        this.QoQ = BigInt.divMod(this.q, msg[7], N)
-        this.PoP = BigInt.divMod(this.p, msg[6], N)
-
-        this.computeR()
-
-        // zero-knowledge proof that R
-        // was generated according to the protocol
-        r7 = HLP.randomExponent()
-        tmp2 = BigInt.powMod(this.QoQ, r7, N)
-        cR = HLP.smpHash(7, BigInt.powMod(G, r7, N), tmp2)
-        d7 = this.computeD(r7, this.a3, cR)
-
-        this.smpstate = CONST.SMPSTATE_EXPECT4
-
-        send = HLP.packINT(8) + HLP.packMPIs([
-            this.p
-          , this.q
-          , cP
-          , d5
-          , d6
-          , this.r
-          , cR
-          , d7
-        ])
-
-        // TLV
-        send = HLP.packTLV(4, send)
-        break
-
-      case CONST.SMPSTATE_EXPECT3:
-        HLP.debug.call(this, 'smp tlv 4')
-
-        // 0:p, 1:q, 2:cP, 3:d5, 4:d6, 5:r, 6:cR, 7:d7
-        ms = HLP.readLen(msg.msg.substr(0, 4))
-        if (ms !== 8) return this.abort()
-        msg = HLP.unpackMPIs(8, msg.msg.substring(4))
-
-        if ( !HLP.checkGroup(msg[0], N_MINUS_2) ||
-             !HLP.checkGroup(msg[1], N_MINUS_2) ||
-             !HLP.checkGroup(msg[5], N_MINUS_2)
-        ) return this.abort()
-
-        // verify znp of cP
-        t1 = HLP.multPowMod(this.g3, msg[3], msg[0], msg[2], N)
-        t2 = HLP.multPowMod(G, msg[3], this.g2, msg[4], N)
-        t2 = BigInt.multMod(t2, BigInt.powMod(msg[1], msg[2], N), N)
-
-        if (!HLP.ZKP(6, msg[2], t1, t2))
-          return this.abort()
-
-        // verify znp of cR
-        t3 = HLP.multPowMod(G, msg[7], this.g3ao, msg[6], N)
-        this.QoQ = BigInt.divMod(msg[1], this.q, N)  // save Q over Q
-        t4 = HLP.multPowMod(this.QoQ, msg[7], msg[5], msg[6], N)
-
-        if (!HLP.ZKP(7, msg[6], t3, t4))
-          return this.abort()
-
-        this.computeR()
-
-        // zero-knowledge proof that R
-        // was generated according to the protocol
-        r7 = HLP.randomExponent()
-        tmp2 = BigInt.powMod(this.QoQ, r7, N)
-        cR = HLP.smpHash(8, BigInt.powMod(G, r7, N), tmp2)
-        d7 = this.computeD(r7, this.a3, cR)
-
-        send = HLP.packINT(3) + HLP.packMPIs([ this.r, cR, d7 ])
-        send = HLP.packTLV(5, send)
-
-        rab = this.computeRab(msg[5])
-        trust = !!BigInt.equals(rab, BigInt.divMod(msg[0], this.p, N))
-
-        this.trigger('trust', [trust, 'answered'])
-        this.init()
-        break
-
-      case CONST.SMPSTATE_EXPECT4:
-        HLP.debug.call(this, 'smp tlv 5')
-
-        // 0:r, 1:cR, 2:d7
-        ms = HLP.readLen(msg.msg.substr(0, 4))
-        if (ms !== 3) return this.abort()
-        msg = HLP.unpackMPIs(3, msg.msg.substring(4))
-
-        if (!HLP.checkGroup(msg[0], N_MINUS_2)) return this.abort()
-
-        // verify znp of cR
-        t3 = HLP.multPowMod(G, msg[2], this.g3ao, msg[1], N)
-        t4 = HLP.multPowMod(this.QoQ, msg[2], msg[0], msg[1], N)
-        if (!HLP.ZKP(8, msg[1], t3, t4))
-          return this.abort()
-
-        rab = this.computeRab(msg[0])
-        trust = !!BigInt.equals(rab, this.PoP)
-
-        this.trigger('trust', [trust, 'asked'])
-        this.init()
-        return
-
-    }
-
-    this.sendMsg(send)
-  }
-
-  // send a message
-  SM.prototype.sendMsg = function (send) {
-    this.trigger('send', [this.ssid, '\x00' + send])
-  }
-
-  SM.prototype.rcvSecret = function (secret, question) {
-    HLP.debug.call(this, 'receive secret')
-
-    var fn, our = false
-    if (this.smpstate === CONST.SMPSTATE_EXPECT0) {
-      fn = this.answer
-    } else {
-      fn = this.initiate
-      our = true
-    }
-
-    this.makeSecret(our, secret)
-    fn.call(this, question)
-  }
-
-  SM.prototype.answer = function () {
-    HLP.debug.call(this, 'smp answer')
-
-    var r4 = HLP.randomExponent()
-    this.computePQ(r4)
-
-    // zero-knowledge proof that P & Q
-    // were generated according to the protocol
-    var r5 = HLP.randomExponent()
-    var r6 = HLP.randomExponent()
-    var tmp = HLP.multPowMod(G, r5, this.g2, r6, N)
-    var cP = HLP.smpHash(5, BigInt.powMod(this.g3, r5, N), tmp)
-    var d5 = this.computeD(r5, r4, cP)
-    var d6 = this.computeD(r6, this.secret, cP)
-
-    this.smpstate = CONST.SMPSTATE_EXPECT3
-
-    var send = HLP.packINT(11) + HLP.packMPIs([
-        this.g2a
-      , this.c2
-      , this.d2
-      , this.g3a
-      , this.c3
-      , this.d3
-      , this.p
-      , this.q
-      , cP
-      , d5
-      , d6
-    ])
-
-    this.sendMsg(HLP.packTLV(3, send))
-  }
-
-  SM.prototype.initiate = function (question) {
-    HLP.debug.call(this, 'smp initiate')
-
-    if (this.smpstate !== CONST.SMPSTATE_EXPECT1)
-      this.abort()  // abort + restart
-
-    this.makeG2s()
-
-    // zero-knowledge proof that the exponents
-    // associated with g2a & g3a are known
-    var r2 = HLP.randomExponent()
-    var r3 = HLP.randomExponent()
-    this.c2 = this.computeC(1, r2)
-    this.c3 = this.computeC(2, r3)
-    this.d2 = this.computeD(r2, this.a2, this.c2)
-    this.d3 = this.computeD(r3, this.a3, this.c3)
-
-    // set the next expected state
-    this.smpstate = CONST.SMPSTATE_EXPECT2
-
-    var send = ''
-    var type = 2
-
-    if (question) {
-      send += question
-      send += '\x00'
-      type = 7
-    }
-
-    send += HLP.packINT(6) + HLP.packMPIs([
-        this.g2a
-      , this.c2
-      , this.d2
-      , this.g3a
-      , this.c3
-      , this.d3
-    ])
-
-    this.sendMsg(HLP.packTLV(type, send))
-  }
-
-  SM.prototype.abort = function () {
-    this.init()
-    this.sendMsg(HLP.packTLV(6, ''))
-    this.trigger('abort')
-  }
-
-}).call(this)
-;(function () {
-  "use strict";
-
-  var root = this
-
-  var CryptoJS, BigInt, EventEmitter, Worker, SMWPath
-    , CONST, HLP, Parse, AKE, SM, DSA
-  if (typeof module !== 'undefined' && module.exports) {
-    module.exports = OTR
-    CryptoJS = require('../vendor/crypto.js')
-    BigInt = require('../vendor/bigint.js')
-    EventEmitter = require('../vendor/eventemitter.js')
-    SMWPath = require('path').join(__dirname, '/sm-webworker.js')
-    CONST = require('./const.js')
-    HLP = require('./helpers.js')
-    Parse = require('./parse.js')
-    AKE = require('./ake.js')
-    SM = require('./sm.js')
-    DSA = require('./dsa.js')
-    // expose CONST for consistency with docs
-    OTR.CONST = CONST
-  } else {
-    // copy over and expose internals
-    Object.keys(root.OTR).forEach(function (k) {
-      OTR[k] = root.OTR[k]
-    })
-    root.OTR = OTR
-    CryptoJS = root.CryptoJS
-    BigInt = root.BigInt
-    EventEmitter = root.EventEmitter
-    Worker = root.Worker
-    SMWPath = 'sm-webworker.js'
-    CONST = OTR.CONST
-    HLP = OTR.HLP
-    Parse = OTR.Parse
-    AKE = OTR.AKE
-    SM = OTR.SM
-    DSA = root.DSA
-  }
-
-  // diffie-hellman modulus and generator
-  // see group 5, RFC 3526
-  var G = BigInt.str2bigInt(CONST.G, 10)
-  var N = BigInt.str2bigInt(CONST.N, 16)
-
-  // JavaScript integers
-  var MAX_INT = Math.pow(2, 53) - 1  // doubles
-  var MAX_UINT = Math.pow(2, 31) - 1  // bitwise operators
-
-  // OTR contructor
-  function OTR(options) {
-    if (!(this instanceof OTR)) return new OTR(options)
-
-    // options
-    options = options || {}
-
-    // private keys
-    if (options.priv && !(options.priv instanceof DSA))
-      throw new Error('Requires long-lived DSA key.')
-
-    this.priv = options.priv ? options.priv : new DSA()
-
-    this.fragment_size = options.fragment_size || 0
-    if (this.fragment_size < 0)
-      throw new Error('Fragment size must be a positive integer.')
-
-    this.send_interval = options.send_interval || 0
-    if (this.send_interval < 0)
-      throw new Error('Send interval must be a positive integer.')
-
-    this.outgoing = []
-
-    // instance tag
-    this.our_instance_tag = options.instance_tag || OTR.makeInstanceTag()
-
-    // debug
-    this.debug = !!options.debug
-
-    // smp in webworker options
-    // this is still experimental and undocumented
-    this.smw = options.smw
-
-    // init vals
-    this.init()
-
-    // bind methods
-    var self = this
-    ;['sendMsg', 'receiveMsg'].forEach(function (meth) {
-      self[meth] = self[meth].bind(self)
-    })
-
-    EventEmitter.call(this)
-  }
-
-  // inherit from EE
-  HLP.extend(OTR, EventEmitter)
-
-  // add to prototype
-  OTR.prototype.init = function () {
-
-    this.msgstate = CONST.MSGSTATE_PLAINTEXT
-    this.authstate = CONST.AUTHSTATE_NONE
-
-    this.ALLOW_V2 = true
-    this.ALLOW_V3 = true
-
-    this.REQUIRE_ENCRYPTION = false
-    this.SEND_WHITESPACE_TAG = false
-    this.WHITESPACE_START_AKE = false
-    this.ERROR_START_AKE = false
-
-    Parse.initFragment(this)
-
-    // their keys
-    this.their_y = null
-    this.their_old_y = null
-    this.their_keyid = 0
-    this.their_priv_pk = null
-    this.their_instance_tag = '\x00\x00\x00\x00'
-
-    // our keys
-    this.our_dh = this.dh()
-    this.our_old_dh = this.dh()
-    this.our_keyid = 2
-
-    // session keys
-    this.sessKeys = [ new Array(2), new Array(2) ]
-
-    // saved
-    this.storedMgs = []
-    this.oldMacKeys = []
-
-    // smp
-    this.sm = null  // initialized after AKE
-
-    // when ake is complete
-    // save their keys and the session
-    this._akeInit()
-
-    // receive plaintext message since switching to plaintext
-    // used to decide when to stop sending pt tags when SEND_WHITESPACE_TAG
-    this.receivedPlaintext = false
-
-  }
-
-  OTR.prototype._akeInit = function () {
-    this.ake = new AKE(this)
-    this.transmittedRS = false
-    this.ssid = null
-  }
-
-  // smp over webworker
-  OTR.prototype._SMW = function (otr, reqs) {
-    this.otr = otr
-    var opts = {
-        path: SMWPath
-      , seed: BigInt.getSeed
-    }
-    if (typeof otr.smw === 'object')
-      Object.keys(otr.smw).forEach(function (k) {
-        opts[k] = otr.smw[k]
-      })
-
-    // load optional dep. in node
-    if (typeof module !== 'undefined' && module.exports)
-      Worker = require('webworker-threads').Worker
-
-    this.worker = new Worker(opts.path)
-    var self = this
-    this.worker.onmessage = function (e) {
-      var d = e.data
-      if (!d) return
-      self.trigger(d.method, d.args)
-    }
-    this.worker.postMessage({
-        type: 'seed'
-      , seed: opts.seed()
-      , imports: opts.imports
-    })
-    this.worker.postMessage({
-        type: 'init'
-      , reqs: reqs
-    })
-  }
-
-  // inherit from EE
-  HLP.extend(OTR.prototype._SMW, EventEmitter)
-
-  // shim sm methods
-  ;['handleSM', 'rcvSecret', 'abort'].forEach(function (m) {
-    OTR.prototype._SMW.prototype[m] = function () {
-      this.worker.postMessage({
-          type: 'method'
-        , method: m
-        , args: Array.prototype.slice.call(arguments, 0)
-      })
-    }
-  })
-
-  OTR.prototype._smInit = function () {
-    var reqs = {
-        ssid: this.ssid
-      , our_fp: this.priv.fingerprint()
-      , their_fp: this.their_priv_pk.fingerprint()
-      , debug: this.debug
-    }
-    if (this.smw) {
-      if (this.sm) this.sm.worker.terminate()  // destroy prev webworker
-      this.sm = new this._SMW(this, reqs)
-    } else {
-      this.sm = new SM(reqs)
-    }
-    var self = this
-    ;['trust', 'abort', 'question'].forEach(function (e) {
-      self.sm.on(e, function () {
-        self.trigger('smp', [e].concat(Array.prototype.slice.call(arguments)))
-      })
-    })
-    this.sm.on('send', function (ssid, send) {
-      if (self.ssid === ssid) {
-        send = self.prepareMsg(send)
-        self.io(send)
-      }
-    })
-  }
-
-  OTR.prototype.io = function (msg, meta) {
-
-    // buffer
-    msg = ([].concat(msg)).map(function(m){
-       return { msg: m, meta: meta }
-    })
-    this.outgoing = this.outgoing.concat(msg)
-
-    var self = this
-    ;(function send(first) {
-      if (!first) {
-        if (!self.outgoing.length) return
-        var elem = self.outgoing.shift()
-        self.trigger('io', [elem.msg, elem.meta])
-      }
-      setTimeout(send, first ? 0 : self.send_interval)
-    }(true))
-
-  }
-
-  OTR.prototype.dh = function dh() {
-    var keys = { privateKey: BigInt.randBigInt(320) }
-    keys.publicKey = BigInt.powMod(G, keys.privateKey, N)
-    return keys
-  }
-
-  // session constructor
-  OTR.prototype.DHSession = function DHSession(our_dh, their_y) {
-    if (!(this instanceof DHSession)) return new DHSession(our_dh, their_y)
-
-    // shared secret
-    var s = BigInt.powMod(their_y, our_dh.privateKey, N)
-    var secbytes = HLP.packMPI(s)
-
-    // session id
-    this.id = HLP.mask(HLP.h2('\x00', secbytes), 0, 64)  // first 64-bits
-
-    // are we the high or low end of the connection?
-    var sq = BigInt.greater(our_dh.publicKey, their_y)
-    var sendbyte = sq ? '\x01' : '\x02'
-    var rcvbyte  = sq ? '\x02' : '\x01'
-
-    // sending and receiving keys
-    this.sendenc = HLP.mask(HLP.h1(sendbyte, secbytes), 0, 128)  // f16 bytes
-    this.sendmac = CryptoJS.SHA1(CryptoJS.enc.Latin1.parse(this.sendenc))
-    this.sendmac = this.sendmac.toString(CryptoJS.enc.Latin1)
-
-    this.rcvenc = HLP.mask(HLP.h1(rcvbyte, secbytes), 0, 128)
-    this.rcvmac = CryptoJS.SHA1(CryptoJS.enc.Latin1.parse(this.rcvenc))
-    this.rcvmac = this.rcvmac.toString(CryptoJS.enc.Latin1)
-    this.rcvmacused = false
-
-    // extra symmetric key
-    this.extra_symkey = HLP.h2('\xff', secbytes)
-
-    // counters
-    this.send_counter = 0
-    this.rcv_counter = 0
-  }
-
-  OTR.prototype.rotateOurKeys = function () {
-
-    // reveal old mac keys
-    var self = this
-    this.sessKeys[1].forEach(function (sk) {
-      if (sk && sk.rcvmacused) self.oldMacKeys.push(sk.rcvmac)
-    })
-
-    // rotate our keys
-    this.our_old_dh = this.our_dh
-    this.our_dh = this.dh()
-    this.our_keyid += 1
-
-    this.sessKeys[1][0] = this.sessKeys[0][0]
-    this.sessKeys[1][1] = this.sessKeys[0][1]
-    this.sessKeys[0] = [
-        this.their_y ?
-            new this.DHSession(this.our_dh, this.their_y) : null
-      , this.their_old_y ?
-            new this.DHSession(this.our_dh, this.their_old_y) : null
-    ]
-
-  }
-
-  OTR.prototype.rotateTheirKeys = function (their_y) {
-
-    // increment their keyid
-    this.their_keyid += 1
-
-    // reveal old mac keys
-    var self = this
-    this.sessKeys.forEach(function (sk) {
-      if (sk[1] && sk[1].rcvmacused) self.oldMacKeys.push(sk[1].rcvmac)
-    })
-
-    // rotate their keys / session
-    this.their_old_y = this.their_y
-    this.sessKeys[0][1] = this.sessKeys[0][0]
-    this.sessKeys[1][1] = this.sessKeys[1][0]
-
-    // new keys / sessions
-    this.their_y = their_y
-    this.sessKeys[0][0] = new this.DHSession(this.our_dh, this.their_y)
-    this.sessKeys[1][0] = new this.DHSession(this.our_old_dh, this.their_y)
-
-  }
-
-  OTR.prototype.prepareMsg = function (msg, esk) {
-    if (this.msgstate !== CONST.MSGSTATE_ENCRYPTED || this.their_keyid === 0)
-      return this.error('Not ready to encrypt.')
-
-    var sessKeys = this.sessKeys[1][0]
-
-    if (sessKeys.send_counter >= MAX_INT)
-      return this.error('Should have rekeyed by now.')
-
-    sessKeys.send_counter += 1
-
-    var ctr = HLP.packCtr(sessKeys.send_counter)
-
-    var send = this.ake.otr_version + '\x03'  // version and type
-    var v3 = (this.ake.otr_version === CONST.OTR_VERSION_3)
-
-    if (v3) {
-      send += this.our_instance_tag
-      send += this.their_instance_tag
-    }
-
-    send += '\x00'  // flag
-    send += HLP.packINT(this.our_keyid - 1)
-    send += HLP.packINT(this.their_keyid)
-    send += HLP.packMPI(this.our_dh.publicKey)
-    send += ctr.substring(0, 8)
-
-    if (Math.ceil(msg.length / 8) >= MAX_UINT)  // * 16 / 128
-      return this.error('Message is too long.')
-
-    var aes = HLP.encryptAes(
-        CryptoJS.enc.Latin1.parse(msg)
-      , sessKeys.sendenc
-      , ctr
-    )
-
-    send += HLP.packData(aes)
-    send += HLP.make1Mac(send, sessKeys.sendmac)
-    send += HLP.packData(this.oldMacKeys.splice(0).join(''))
-
-    send = HLP.wrapMsg(
-        send
-      , this.fragment_size
-      , v3
-      , this.our_instance_tag
-      , this.their_instance_tag
-    )
-    if (send[0]) return this.error(send[0])
-
-    // emit extra symmetric key
-    if (esk) this.trigger('file', ['send', sessKeys.extra_symkey, esk])
-
-    return send[1]
-  }
-
-  OTR.prototype.handleDataMsg = function (msg) {
-    var vt = msg.version + msg.type
-
-    if (this.ake.otr_version === CONST.OTR_VERSION_3)
-      vt += msg.instance_tags
-
-    var types = ['BYTE', 'INT', 'INT', 'MPI', 'CTR', 'DATA', 'MAC', 'DATA']
-    msg = HLP.splitype(types, msg.msg)
-
-    // ignore flag
-    var ign = (msg[0] === '\x01')
-
-    if (this.msgstate !== CONST.MSGSTATE_ENCRYPTED || msg.length !== 8) {
-      if (!ign) this.error('Received an unreadable encrypted message.', true)
-      return
-    }
-
-    var our_keyid = this.our_keyid - HLP.readLen(msg[2])
-    var their_keyid = this.their_keyid - HLP.readLen(msg[1])
-
-    if (our_keyid < 0 || our_keyid > 1) {
-      if (!ign) this.error('Not of our latest keys.', true)
-      return
-    }
-
-    if (their_keyid < 0 || their_keyid > 1) {
-      if (!ign) this.error('Not of your latest keys.', true)
-      return
-    }
-
-    var their_y = their_keyid ? this.their_old_y : this.their_y
-
-    if (their_keyid === 1 && !their_y) {
-      if (!ign) this.error('Do not have that key.')
-      return
-    }
-
-    var sessKeys = this.sessKeys[our_keyid][their_keyid]
-
-    var ctr = HLP.unpackCtr(msg[4])
-    if (ctr <= sessKeys.rcv_counter) {
-      if (!ign) this.error('Counter in message is not larger.')
-      return
-    }
-    sessKeys.rcv_counter = ctr
-
-    // verify mac
-    vt += msg.slice(0, 6).join('')
-    var vmac = HLP.make1Mac(vt, sessKeys.rcvmac)
-
-    if (!HLP.compare(msg[6], vmac)) {
-      if (!ign) this.error('MACs do not match.')
-      return
-    }
-    sessKeys.rcvmacused = true
-
-    var out = HLP.decryptAes(
-        msg[5].substring(4)
-      , sessKeys.rcvenc
-      , HLP.padCtr(msg[4])
-    )
-    out = out.toString(CryptoJS.enc.Latin1)
-
-    if (!our_keyid) this.rotateOurKeys()
-    if (!their_keyid) this.rotateTheirKeys(HLP.readMPI(msg[3]))
-
-    // parse TLVs
-    var ind = out.indexOf('\x00')
-    if (~ind) {
-      this.handleTLVs(out.substring(ind + 1), sessKeys)
-      out = out.substring(0, ind)
-    }
-
-    out = CryptoJS.enc.Latin1.parse(out)
-    return out.toString(CryptoJS.enc.Utf8)
-  }
-
-  OTR.prototype.handleTLVs = function (tlvs, sessKeys) {
-    var type, len, msg
-    for (; tlvs.length; ) {
-      type = HLP.unpackSHORT(tlvs.substr(0, 2))
-      len = HLP.unpackSHORT(tlvs.substr(2, 2))
-
-      msg = tlvs.substr(4, len)
-
-      // TODO: handle pathological cases better
-      if (msg.length < len) break
-
-      switch (type) {
-        case 1:
-          // Disconnected
-          this.msgstate = CONST.MSGSTATE_FINISHED
-          this.trigger('status', [CONST.STATUS_END_OTR])
-          break
-        case 2: case 3: case 4:
-        case 5: case 6: case 7:
-          // SMP
-          if (this.msgstate !== CONST.MSGSTATE_ENCRYPTED) {
-            if (this.sm) this.sm.abort()
-            return
-          }
-          if (!this.sm) this._smInit()
-          this.sm.handleSM({ msg: msg, type: type })
-          break
-        case 8:
-          // utf8 filenames
-          msg = msg.substring(4) // remove 4-byte indication
-          msg = CryptoJS.enc.Latin1.parse(msg)
-          msg = msg.toString(CryptoJS.enc.Utf8)
-
-          // Extra Symkey
-          this.trigger('file', ['receive', sessKeys.extra_symkey, msg])
-          break
-      }
-
-      tlvs = tlvs.substring(4 + len)
-    }
-  }
-
-  OTR.prototype.smpSecret = function (secret, question) {
-    if (this.msgstate !== CONST.MSGSTATE_ENCRYPTED)
-      return this.error('Must be encrypted for SMP.')
-
-    if (typeof secret !== 'string' || secret.length < 1)
-      return this.error('Secret is required.')
-
-    if (!this.sm) this._smInit()
-
-    // utf8 inputs
-    secret = CryptoJS.enc.Utf8.parse(secret).toString(CryptoJS.enc.Latin1)
-    question = CryptoJS.enc.Utf8.parse(question).toString(CryptoJS.enc.Latin1)
-
-    this.sm.rcvSecret(secret, question)
-  }
-
-  OTR.prototype.sendQueryMsg = function () {
-    var versions = {}
-      , msg = CONST.OTR_TAG
-
-    if (this.ALLOW_V2) versions['2'] = true
-    if (this.ALLOW_V3) versions['3'] = true
-
-    // but we don't allow v1
-    // if (versions['1']) msg += '?'
-
-    var vs = Object.keys(versions)
-    if (vs.length) {
-      msg += 'v'
-      vs.forEach(function (v) {
-        if (v !== '1') msg += v
-      })
-      msg += '?'
-    }
-
-    this.io(msg)
-    this.trigger('status', [CONST.STATUS_SEND_QUERY])
-  }
-
-  OTR.prototype.sendMsg = function (msg, meta) {
-    if ( this.REQUIRE_ENCRYPTION ||
-         this.msgstate !== CONST.MSGSTATE_PLAINTEXT
-    ) {
-      msg = CryptoJS.enc.Utf8.parse(msg)
-      msg = msg.toString(CryptoJS.enc.Latin1)
-    }
-
-    switch (this.msgstate) {
-      case CONST.MSGSTATE_PLAINTEXT:
-        if (this.REQUIRE_ENCRYPTION) {
-          this.storedMgs.push({msg: msg, meta: meta})
-          this.sendQueryMsg()
-          return
-        }
-        if (this.SEND_WHITESPACE_TAG && !this.receivedPlaintext) {
-          msg += CONST.WHITESPACE_TAG  // 16 byte tag
-          if (this.ALLOW_V3) msg += CONST.WHITESPACE_TAG_V3
-          if (this.ALLOW_V2) msg += CONST.WHITESPACE_TAG_V2
-        }
-        break
-      case CONST.MSGSTATE_FINISHED:
-        this.storedMgs.push({msg: msg, meta: meta})
-        this.error('Message cannot be sent at this time.')
-        return
-      case CONST.MSGSTATE_ENCRYPTED:
-        msg = this.prepareMsg(msg)
-        break
-      default:
-        throw new Error('Unknown message state.')
-    }
-
-    if (msg) this.io(msg, meta)
-  }
-
-  OTR.prototype.receiveMsg = function (msg) {
-
-    // parse type
-    msg = Parse.parseMsg(this, msg)
-
-    if (!msg) return
-
-    switch (msg.cls) {
-      case 'error':
-        this.error(msg.msg)
-        return
-      case 'ake':
-        if ( msg.version === CONST.OTR_VERSION_3 &&
-          this.checkInstanceTags(msg.instance_tags)
-        ) return  // ignore
-        this.ake.handleAKE(msg)
-        return
-      case 'data':
-        if ( msg.version === CONST.OTR_VERSION_3 &&
-          this.checkInstanceTags(msg.instance_tags)
-        ) return  // ignore
-        msg.msg = this.handleDataMsg(msg)
-        msg.encrypted = true
-        break
-      case 'query':
-        if (this.msgstate === CONST.MSGSTATE_ENCRYPTED) this._akeInit()
-        this.doAKE(msg)
-        break
-      default:
-        // check for encrypted
-        if ( this.REQUIRE_ENCRYPTION ||
-             this.msgstate !== CONST.MSGSTATE_PLAINTEXT
-        ) this.error('Received an unencrypted message.')
-
-        // received a plaintext message
-        // stop sending the whitespace tag
-        this.receivedPlaintext = true
-
-        // received a whitespace tag
-        if (this.WHITESPACE_START_AKE && msg.ver.length > 0)
-          this.doAKE(msg)
-    }
-
-    if (msg.msg) this.trigger('ui', [msg.msg, !!msg.encrypted])
-  }
-
-  OTR.prototype.checkInstanceTags = function (it) {
-    var their_it = HLP.readLen(it.substr(0, 4))
-    var our_it = HLP.readLen(it.substr(4, 4))
-
-    if (our_it && our_it !== HLP.readLen(this.our_instance_tag))
-      return true
-
-    if (HLP.readLen(this.their_instance_tag)) {
-      if (HLP.readLen(this.their_instance_tag) !== their_it) return true
-    } else {
-      if (their_it < 100) return true
-      this.their_instance_tag = HLP.packINT(their_it)
-    }
-  }
-
-  OTR.prototype.doAKE = function (msg) {
-    if (this.ALLOW_V3 && ~msg.ver.indexOf(CONST.OTR_VERSION_3)) {
-      this.ake.initiateAKE(CONST.OTR_VERSION_3)
-    } else if (this.ALLOW_V2 && ~msg.ver.indexOf(CONST.OTR_VERSION_2)) {
-      this.ake.initiateAKE(CONST.OTR_VERSION_2)
-    } else {
-      // is this an error?
-      this.error('OTR conversation requested, ' +
-        'but no compatible protocol version found.')
-    }
-  }
-
-  OTR.prototype.error = function (err, send) {
-    if (send) {
-      if (!this.debug) err = "An OTR error has occurred."
-      err = '?OTR Error:' + err
-      this.io(err)
-      return
-    }
-    this.trigger('error', [err])
-  }
-
-  OTR.prototype.sendStored = function () {
-    var self = this
-    ;(this.storedMgs.splice(0)).forEach(function (elem) {
-      var msg = self.prepareMsg(elem.msg)
-      self.io(msg, elem.meta)
-    })
-  }
-
-  OTR.prototype.sendFile = function (filename) {
-    if (this.msgstate !== CONST.MSGSTATE_ENCRYPTED)
-      return this.error('Not ready to encrypt.')
-
-    if (this.ake.otr_version !== CONST.OTR_VERSION_3)
-      return this.error('Protocol v3 required.')
-
-    if (!filename) return this.error('Please specify a filename.')
-
-    // utf8 filenames
-    var l1name = CryptoJS.enc.Utf8.parse(filename)
-    l1name = l1name.toString(CryptoJS.enc.Latin1)
-
-    if (l1name.length >= 65532) return this.error('filename is too long.')
-
-    var msg = '\x00'  // null byte
-    msg += '\x00\x08'  // type 8 tlv
-    msg += HLP.packSHORT(4 + l1name.length)  // length of value
-    msg += '\x00\x00\x00\x01'  // four bytes indicating file
-    msg += l1name
-
-    msg = this.prepareMsg(msg, filename)
-    this.io(msg)
-  }
-
-  OTR.prototype.endOtr = function () {
-    if (this.msgstate === CONST.MSGSTATE_ENCRYPTED) {
-      this.sendMsg('\x00\x00\x01\x00\x00')
-      if (this.sm) {
-        if (this.smw) this.sm.worker.terminate()  // destroy webworker
-        this.sm = null
-      }
-    }
-    this.msgstate = CONST.MSGSTATE_PLAINTEXT
-    this.receivedPlaintext = false
-    this.trigger('status', [CONST.STATUS_END_OTR])
-  }
-
-  // attach methods
-
-  OTR.makeInstanceTag = function () {
-    var num = BigInt.randBigInt(32)
-    if (BigInt.greater(BigInt.str2bigInt('100', 16), num))
-      return OTR.makeInstanceTag()
-    return HLP.packINT(parseInt(BigInt.bigInt2str(num, 10), 10))
-  }
-
-}).call(this)
-
-
-  return {
-      OTR: this.OTR
-    , DSA: this.DSA
-  }
-
-}))
-;
-// Converse.js (A browser based XMPP chat client)
-// http://conversejs.org
-//
-// Copyright (c) 2012-2016, Jan-Carel Brand <jc@opkode.com>
-// Licensed under the Mozilla Public License (MPLv2)
-//
-/*global Backbone, define, window, crypto, CryptoJS */
-
-/* This is a Converse.js plugin which add support Off-the-record (OTR)
- * encryption of one-on-one chat messages.
- */
-(function (root, factory) {
-    define("converse-otr", [
-            "otr",
-            "converse-core",
-            "converse-api"
-    ], factory);
-}(this, function (otr, converse, converse_api) {
-    "use strict";
-    // Strophe methods for building stanzas
-    var Strophe = converse_api.env.Strophe,
-        utils = converse_api.env.utils,
-        b64_sha1 = converse_api.env.b64_sha1;
-    // Other necessary globals
-    var $ = converse_api.env.jQuery,
-        _ = converse_api.env._;
-
-    // For translations
-    var __ = utils.__.bind(converse);
-
-    var HAS_CSPRNG = ((typeof crypto !== 'undefined') &&
-        ((typeof crypto.randomBytes === 'function') ||
-            (typeof crypto.getRandomValues === 'function')
-    ));
-    var HAS_CRYPTO = HAS_CSPRNG && (
-        (typeof CryptoJS !== "undefined") &&
-        (typeof otr.OTR !== "undefined") &&
-        (typeof otr.DSA !== "undefined")
-    );
-
-    var UNENCRYPTED = 0;
-    var UNVERIFIED= 1;
-    var VERIFIED= 2;
-    var FINISHED = 3;
-
-    var OTR_TRANSLATED_MAPPING  = {}; // Populated in initialize
-    var OTR_CLASS_MAPPING = {};
-    OTR_CLASS_MAPPING[UNENCRYPTED] = 'unencrypted';
-    OTR_CLASS_MAPPING[UNVERIFIED] = 'unverified';
-    OTR_CLASS_MAPPING[VERIFIED] = 'verified';
-    OTR_CLASS_MAPPING[FINISHED] = 'finished';
-
-    converse_api.plugins.add('converse-otr', {
-
-        overrides: {
-            // Overrides mentioned here will be picked up by converse.js's
-            // plugin architecture they will replace existing methods on the
-            // relevant objects or classes.
-            //
-            // New functions which don't exist yet can also be added.
- 
-            _initialize: function () {
-                this._super._initialize.apply(this, arguments);
-                this.otr = new this.OTR();
-            },
-
-            registerGlobalEventHandlers: function () {
-                this._super.registerGlobalEventHandlers();
-
-                $(document).click(function () {
-                    if ($('.toggle-otr ul').is(':visible')) {
-                        $('.toggle-otr ul', this).slideUp();
-                    }
-                    if ($('.toggle-smiley ul').is(':visible')) {
-                        $('.toggle-smiley ul', this).slideUp();
-                    }
-                });
-            },
-
-            wrappedChatBox: function (chatbox) {
-                var wrapped_chatbox = this._super.wrappedChatBox.apply(this, arguments);
-                if (!chatbox) { return; }
-                return _.extend(wrapped_chatbox, {
-                    'endOTR': chatbox.endOTR.bind(chatbox),
-                    'initiateOTR': chatbox.initiateOTR.bind(chatbox),
-                });
-            },
-
-            ChatBox: {
-                initialize: function () {
-                    this._super.initialize.apply(this, arguments);
-                    if (this.get('box_id') !== 'controlbox') {
-                        this.save({
-                            'otr_status': this.get('otr_status') || UNENCRYPTED
-                        });
-                    }
-                },
-
-                shouldPlayNotification: function ($message) {
-                    /* Don't play a notification if this is an OTR message but
-                     * encryption is not yet set up. That would mean that the
-                     * OTR session is still being established, so there are no
-                     * "visible" OTR messages being exchanged.
-                     */
-                    return this._super.shouldPlayNotification.apply(this, arguments) &&
-                        !(utils.isOTRMessage($message[0]) && !_.contains([UNVERIFIED, VERIFIED], this.get('otr_status')));
-                },
-
-                createMessage: function ($message, $delay, original_stanza) {
-                    var converse = this._super.converse,
-                        $body = $message.children('body'),
-                        text = ($body.length > 0 ? $body.text() : undefined);
-
-                    if ((!text) || (!converse.allow_otr)) {
-                        return this._super.createMessage.apply(this, arguments);
-                    }
-                    if (text.match(/^\?OTRv23?/)) {
-                        this.initiateOTR(text);
-                    } else {
-                        if (_.contains([UNVERIFIED, VERIFIED], this.get('otr_status'))) {
-                            this.otr.receiveMsg(text);
-                        } else {
-                            if (text.match(/^\?OTR/)) {
-                                if (!this.otr) {
-                                    this.initiateOTR(text);
-                                } else {
-                                    this.otr.receiveMsg(text);
-                                }
-                            } else {
-                                // Normal unencrypted message.
-                                return this._super.createMessage.apply(this, arguments);
-                            }
-                        }
-                    }
-                },
-                
-                getSession: function (callback) {
-                    var converse = this._super.converse;
-                    var cipher = CryptoJS.lib.PasswordBasedCipher;
-                    var pass, instance_tag, saved_key, pass_check;
-                    if (converse.cache_otr_key) {
-                        pass = converse.otr.getSessionPassphrase();
-                        if (typeof pass !== "undefined") {
-                            instance_tag = window.sessionStorage[b64_sha1(this.id+'instance_tag')];
-                            saved_key = window.sessionStorage[b64_sha1(this.id+'priv_key')];
-                            pass_check = window.sessionStorage[b64_sha1(this.connection.jid+'pass_check')];
-                            if (saved_key && instance_tag && typeof pass_check !== 'undefined') {
-                                var decrypted = cipher.decrypt(CryptoJS.algo.AES, saved_key, pass);
-                                var key = otr.DSA.parsePrivate(decrypted.toString(CryptoJS.enc.Latin1));
-                                if (cipher.decrypt(CryptoJS.algo.AES, pass_check, pass).toString(CryptoJS.enc.Latin1) === 'match') {
-                                    // Verified that the passphrase is still the same
-                                    this.trigger('showHelpMessages', [__('Re-establishing encrypted session')]);
-                                    callback({
-                                        'key': key,
-                                        'instance_tag': instance_tag
-                                    });
-                                    return; // Our work is done here
-                                }
-                            }
-                        }
-                    }
-                    // We need to generate a new key and instance tag
-                    this.trigger('showHelpMessages', [
-                        __('Generating private key.'),
-                        __('Your browser might become unresponsive.')],
-                        null,
-                        true // show spinner
-                    );
-                    window.setTimeout(function () {
-                        var instance_tag = otr.OTR.makeInstanceTag();
-                        callback({
-                            'key': converse.otr.generatePrivateKey.call(this, instance_tag),
-                            'instance_tag': instance_tag
-                        });
-                    }, 500);
-                },
-
-                updateOTRStatus: function (state) {
-                    switch (state) {
-                        case otr.OTR.CONST.STATUS_AKE_SUCCESS:
-                            if (this.otr.msgstate === otr.OTR.CONST.MSGSTATE_ENCRYPTED) {
-                                this.save({'otr_status': UNVERIFIED});
-                            }
-                            break;
-                        case otr.OTR.CONST.STATUS_END_OTR:
-                            if (this.otr.msgstate === otr.OTR.CONST.MSGSTATE_FINISHED) {
-                                this.save({'otr_status': FINISHED});
-                            } else if (this.otr.msgstate === otr.OTR.CONST.MSGSTATE_PLAINTEXT) {
-                                this.save({'otr_status': UNENCRYPTED});
-                            }
-                            break;
-                    }
-                },
-
-                onSMP: function (type, data) {
-                    // Event handler for SMP (Socialist's Millionaire Protocol)
-                    // used by OTR (off-the-record).
-                    switch (type) {
-                        case 'question':
-                            this.otr.smpSecret(prompt(__(
-                                'Authentication request from %1$s\n\nYour chat contact is attempting to verify your identity, by asking you the question below.\n\n%2$s',
-                                [this.get('fullname'), data])));
-                            break;
-                        case 'trust':
-                            if (data === true) {
-                                this.save({'otr_status': VERIFIED});
-                            } else {
-                                this.trigger(
-                                    'showHelpMessages',
-                                    [__("Could not verify this user's identify.")],
-                                    'error');
-                                this.save({'otr_status': UNVERIFIED});
-                            }
-                            break;
-                        default:
-                            throw new TypeError('ChatBox.onSMP: Unknown type for SMP');
-                    }
-                },
-
-                initiateOTR: function (query_msg) {
-                    // Sets up an OTR object through which we can send and receive
-                    // encrypted messages.
-                    //
-                    // If 'query_msg' is passed in, it means there is an alread incoming
-                    // query message from our contact. Otherwise, it is us who will
-                    // send the query message to them.
-                    this.save({'otr_status': UNENCRYPTED});
-                    this.getSession(function (session) {
-                        var converse = this._super.converse;
-                        this.otr = new otr.OTR({
-                            fragment_size: 140,
-                            send_interval: 200,
-                            priv: session.key,
-                            instance_tag: session.instance_tag,
-                            debug: this.debug
-                        });
-                        this.otr.on('status', this.updateOTRStatus.bind(this));
-                        this.otr.on('smp', this.onSMP.bind(this));
-
-                        this.otr.on('ui', function (msg) {
-                            this.trigger('showReceivedOTRMessage', msg);
-                        }.bind(this));
-                        this.otr.on('io', function (msg) {
-                            this.trigger('sendMessage', new converse.Message({ message: msg }));
-                        }.bind(this));
-                        this.otr.on('error', function (msg) {
-                            this.trigger('showOTRError', msg);
-                        }.bind(this));
-
-                        this.trigger('showHelpMessages', [__('Exchanging private key with contact.')]);
-                        if (query_msg) {
-                            this.otr.receiveMsg(query_msg);
-                        } else {
-                            this.otr.sendQueryMsg();
-                        }
-                    }.bind(this));
-                },
-
-                endOTR: function () {
-                    if (this.otr) {
-                        this.otr.endOtr();
-                    }
-                    this.save({'otr_status': UNENCRYPTED});
-                }
-            },
-
-            ChatBoxView:  {
-                events: {
-                    'click .toggle-otr': 'toggleOTRMenu',
-                    'click .start-otr': 'startOTRFromToolbar',
-                    'click .end-otr': 'endOTR',
-                    'click .auth-otr': 'authOTR'
-                },
-
-                initialize: function () {
-                    var converse = this._super.converse;
-                    this._super.initialize.apply(this, arguments);
-                    this.model.on('change:otr_status', this.onOTRStatusChanged, this);
-                    this.model.on('showOTRError', this.showOTRError, this);
-                    this.model.on('showSentOTRMessage', function (text) {
-                        this.showMessage({'message': text, 'sender': converse.sky_myname});
-                    }, this);
-                    this.model.on('showReceivedOTRMessage', function (text) {
-                        this.showMessage({'message': text, 'sender': 'them'});
-                    }, this);
-                    if ((_.contains([UNVERIFIED, VERIFIED], this.model.get('otr_status'))) || converse.use_otr_by_default) {
-                        this.model.initiateOTR();
-                    }
-                },
-
-                createMessageStanza: function () {
-                    var stanza = this._super.createMessageStanza.apply(this, arguments);
-                    if (this.model.get('otr_status') !== UNENCRYPTED || utils.isOTRMessage(stanza.nodeTree)) {
-                        // OTR messages aren't carbon copied
-                        stanza.c('private', {'xmlns': Strophe.NS.CARBONS}).up()
-                              .c('no-store', {'xmlns': Strophe.NS.HINTS}).up()
-                              .c('no-permanent-store', {'xmlns': Strophe.NS.HINTS}).up()
-                              .c('no-copy', {'xmlns': Strophe.NS.HINTS});
-                    }
-                    return stanza;
-                },
-
-                onMessageSubmitted: function (text) {
-                    var converse = this._super.converse;
-                    if (!converse.connection.authenticated) {
-                        return this.showHelpMessages(
-                            ['Sorry, the connection has been lost, '+
-                              'and your message could not be sent'],
-                            'error'
-                        );
-                    }
-                    var match = text.replace(/^\s*/, "").match(/^\/(.*)\s*$/);
-                    if (match) {
-                        if ((converse.allow_otr) && (match[1] === "endotr")) {
-                            return this.endOTR();
-                        } else if ((converse.allow_otr) && (match[1] === "otr")) {
-                            return this.model.initiateOTR();
-                        }
-                    }
-                    if (_.contains([UNVERIFIED, VERIFIED], this.model.get('otr_status'))) {
-                        // Off-the-record encryption is active
-                        this.model.otr.sendMsg(text);
-                        this.model.trigger('showSentOTRMessage', text);
-                    } else {
-                        this._super.onMessageSubmitted.apply(this, arguments);
-                    }
-                },
-
-                onOTRStatusChanged: function () {
-                    this.renderToolbar().informOTRChange();
-                },
-
-                informOTRChange: function () {
-                    var data = this.model.toJSON();
-                    var msgs = [];
-                    if (data.otr_status === UNENCRYPTED) {
-                        msgs.push(__("Your messages are not encrypted anymore"));
-                    } else if (data.otr_status === UNVERIFIED) {
-                        msgs.push(__("Your messages are now encrypted but your contact's identity has not been verified."));
-                    } else if (data.otr_status === VERIFIED) {
-                        msgs.push(__("Your contact's identify has been verified."));
-                    } else if (data.otr_status === FINISHED) {
-                        msgs.push(__("Your contact has ended encryption on their end, you should do the same."));
-                    }
-                    return this.showHelpMessages(msgs, 'info', false);
-                },
-
-                showOTRError: function (msg) {
-                    var converse = this._super.converse;
-                    if (msg === 'Message cannot be sent at this time.') {
-                        this.showHelpMessages(
-                            [__('Your message could not be sent')], 'error');
-                    } else if (msg === 'Received an unencrypted message.') {
-                        this.showHelpMessages(
-                            [__('We received an unencrypted message')], 'error');
-                    } else if (msg === 'Received an unreadable encrypted message.') {
-                        this.showHelpMessages(
-                            [__('We received an unreadable encrypted message')],
-                            'error');
-                    } else {
-                        this.showHelpMessages(['Encryption error occured: '+msg], 'error');
-                    }
-                    converse.log("OTR ERROR:"+msg);
-                },
-
-                startOTRFromToolbar: function (ev) {
-                    $(ev.target).parent().parent().slideUp();
-                    ev.stopPropagation();
-                    this.model.initiateOTR();
-                },
-
-                endOTR: function (ev) {
-                    if (typeof ev !== "undefined") {
-                        ev.preventDefault();
-                        ev.stopPropagation();
-                    }
-                    this.model.endOTR();
-                },
-
-                authOTR: function (ev) {
-                    var converse = this._super.converse;
-                    var scheme = $(ev.target).data().scheme;
-                    var result, question, answer;
-                    if (scheme === 'fingerprint') {
-                        result = confirm(__('Here are the fingerprints, please confirm them with %1$s, outside of this chat.\n\nFingerprint for you, %2$s: %3$s\n\nFingerprint for %1$s: %4$s\n\nIf you have confirmed that the fingerprints match, click OK, otherwise click Cancel.', [
-                                this.model.get('fullname'),
-                                converse.xmppstatus.get('fullname')||converse.bare_jid,
-                                this.model.otr.priv.fingerprint(),
-                                this.model.otr.their_priv_pk.fingerprint()
-                            ]
-                        ));
-                        if (result === true) {
-                            this.model.save({'otr_status': VERIFIED});
-                        } else {
-                            this.model.save({'otr_status': UNVERIFIED});
-                        }
-                    } else if (scheme === 'smp') {
-                        alert(__('You will be prompted to provide a security question and then an answer to that question.\n\nYour contact will then be prompted the same question and if they type the exact same answer (case sensitive), their identity will be verified.'));
-                        question = prompt(__('What is your security question?'));
-                        if (question) {
-                            answer = prompt(__('What is the answer to the security question?'));
-                            this.model.otr.smpSecret(answer, question);
-                        }
-                    } else {
-                        this.showHelpMessages([__('Invalid authentication scheme provided')], 'error');
-                    }
-                },
-
-                toggleOTRMenu: function (ev) {
-                    ev.stopPropagation();
-                    this.$el.find('.toggle-otr ul').slideToggle(200);
-                },
-                
-                getOTRTooltip: function () {
-                    var data = this.model.toJSON();
-                    if (data.otr_status === UNENCRYPTED) {
-                        return __('Your messages are not encrypted. Click here to enable OTR encryption.');
-                    } else if (data.otr_status === UNVERIFIED) {
-                        return __('Your messages are encrypted, but your contact has not been verified.');
-                    } else if (data.otr_status === VERIFIED) {
-                        return __('Your messages are encrypted and your contact verified.');
-                    } else if (data.otr_status === FINISHED) {
-                        return __('Your contact has closed their end of the private session, you should do the same');
-                    }
-                },
-
-                renderToolbar: function (options) {
-                    var converse = this._super.converse;
-                    if (!converse.show_toolbar) {
-                        return;
-                    }
-                    var data = this.model.toJSON();
-                    options = _.extend(options || {}, {
-                        FINISHED: FINISHED,
-                        UNENCRYPTED: UNENCRYPTED,
-                        UNVERIFIED: UNVERIFIED,
-                        VERIFIED: VERIFIED,
-                        // FIXME: Leaky abstraction MUC
-                        allow_otr: converse.allow_otr && !this.is_chatroom,
-                        label_end_encrypted_conversation: __('End encrypted conversation'),
-                        label_refresh_encrypted_conversation: __('Refresh encrypted conversation'),
-                        label_start_encrypted_conversation: __('Start encrypted conversation'),
-                        label_verify_with_fingerprints: __('Verify with fingerprints'),
-                        label_verify_with_smp: __('Verify with SMP'),
-                        label_whats_this: __("What\'s this?"),
-                        otr_status_class: OTR_CLASS_MAPPING[data.otr_status],
-                        otr_tooltip: this.getOTRTooltip(),
-                        otr_translated_status: OTR_TRANSLATED_MAPPING[data.otr_status],
-                    });
-                    this._super.renderToolbar.call(this, options);
-                    this.$el.find('.chat-toolbar').append(
-                            converse.templates.toolbar_otr(
-                                _.extend(this.model.toJSON(), options || {})
-                            ));
-                    return this;
-                }
-            }
-        },
-
-        initialize: function () {
-            /* The initialize function gets called as soon as the plugin is
-             * loaded by converse.js's plugin machinery.
-             */
-            var converse = this.converse;
-            // Translation aware constants
-            // ---------------------------
-            // We can only call the __ translation method *after* converse.js
-            // has been initialized and with it the i18n machinery. That's why
-            // we do it here in the "initialize" method and not at the top of
-            // the module.
-            OTR_TRANSLATED_MAPPING[UNENCRYPTED] = __('unencrypted');
-            OTR_TRANSLATED_MAPPING[UNVERIFIED] = __('unverified');
-            OTR_TRANSLATED_MAPPING[VERIFIED] = __('verified');
-            OTR_TRANSLATED_MAPPING[FINISHED] = __('finished');
-
-            // For translations
-            __ = utils.__.bind(converse);
-            // Configuration values for this plugin
-            var settings = {
-                allow_otr: true,
-                cache_otr_key: false,
-                use_otr_by_default: false
-            };
-            _.extend(converse.default_settings, settings);
-            _.extend(converse, settings);
-            _.extend(converse, _.pick(converse.user_settings, Object.keys(settings)));
-
-            // Only allow OTR if we have the capability
-            converse.allow_otr = converse.allow_otr && HAS_CRYPTO;
-            // Only use OTR by default if allow OTR is enabled to begin with
-            converse.use_otr_by_default = converse.use_otr_by_default && converse.allow_otr;
-
-            // Backbone Models and Views
-            // -------------------------
-            converse.OTR = Backbone.Model.extend({
-                // A model for managing OTR settings.
-                getSessionPassphrase: function () {
-                    if (converse.authentication === 'prebind') {
-                        var key = b64_sha1(converse.connection.jid),
-                            pass = window.sessionStorage[key];
-                        if (typeof pass === 'undefined') {
-                            pass = Math.floor(Math.random()*4294967295).toString();
-                            window.sessionStorage[key] = pass;
-                        }
-                        return pass;
-                    } else {
-                        return converse.connection.pass;
-                    }
-                },
-
-                generatePrivateKey: function (instance_tag) {
-                    var key = new otr.DSA();
-                    var jid = converse.connection.jid;
-                    if (converse.cache_otr_key) {
-                        var cipher = CryptoJS.lib.PasswordBasedCipher;
-                        var pass = this.getSessionPassphrase();
-                        if (typeof pass !== "undefined") {
-                            // Encrypt the key and set in sessionStorage. Also store instance tag.
-                            window.sessionStorage[b64_sha1(jid+'priv_key')] =
-                                cipher.encrypt(CryptoJS.algo.AES, key.packPrivate(), pass).toString();
-                            window.sessionStorage[b64_sha1(jid+'instance_tag')] = instance_tag;
-                            window.sessionStorage[b64_sha1(jid+'pass_check')] =
-                                cipher.encrypt(CryptoJS.algo.AES, 'match', pass).toString();
-                        }
-                    }
-                    return key;
-                }
-            });
-        }
-    });
-}));
-
 // Converse.js (A browser based XMPP chat client)
 // http://conversejs.org
 //
@@ -45843,41 +41787,40 @@ define("crypto.mode-ctr", ["crypto.cipher-core"], function(){});
 //
 /*global Backbone, define */
 
-/* This is a Converse.js plugin which add support for in-band registration
- * as specified in XEP-0077.
- */
 (function (root, factory) {
-    define("converse-register", [
-            "converse-core",
-            "converse-api",
-            "converse-controlbox"
-    ], factory);
+    define("converse-contactview", ["converse-core", "converse-api"], factory);
 }(this, function (converse, converse_api) {
     "use strict";
-    // Strophe methods for building stanzas
-    var Strophe = converse_api.env.Strophe,
-        utils = converse_api.env.utils,
-        $iq = converse_api.env.$iq;
-    // Other necessary globals
     var $ = converse_api.env.jQuery,
-        _ = converse_api.env._;
-    // For translations
-    var __ = utils.__.bind(converse);
-    
-    // Add Strophe Namespaces
-    Strophe.addNamespace('REGISTER', 'jabber:iq:register');
+        utils = converse_api.env.utils,
+        $build = converse_api.env.$build,
+        Strophe = converse_api.env.Strophe,
+        $iq = converse_api.env.$iq,
+        b64_sha1 = converse_api.env.b64_sha1,
+        _ = converse_api.env._,
+        __ = utils.__.bind(converse);
 
-    // Add Strophe Statuses
-    var i = 0;
-    Object.keys(Strophe.Status).forEach(function (key) {
-        i = Math.max(i, Strophe.Status[key]);
-    });
-    Strophe.Status.REGIFAIL        = i + 1;
-    Strophe.Status.REGISTERED      = i + 2;
-    Strophe.Status.CONFLICT        = i + 3;
-    Strophe.Status.NOTACCEPTABLE   = i + 5;
+    var STATUSES = {
+        'dnd': __('This contact is busy'),
+        'online': __('This contact is online'),
+        'offline': __('This contact is offline'),
+        'unavailable': __('This contact is unavailable'),
+        'xa': __('This contact is away for an extended period'),
+        'away': __('This contact is away')
+    };
+    var LABEL_CONTACTS = __('Contacts');
+    var LABEL_GROUPS = __('Groups');
+    var HEADER_CURRENT_CONTACTS =  __('My contacts');
+    var HEADER_PENDING_CONTACTS = __('Pending contacts');
+    var HEADER_REQUESTING_CONTACTS = __('Contact requests');
+    var HEADER_UNGROUPED = __('Ungrouped');
+    var HEADER_WEIGHTS = {};
+    HEADER_WEIGHTS[HEADER_REQUESTING_CONTACTS] = 0;
+    HEADER_WEIGHTS[HEADER_CURRENT_CONTACTS]    = 1;
+    HEADER_WEIGHTS[HEADER_UNGROUPED]           = 2;
+    HEADER_WEIGHTS[HEADER_PENDING_CONTACTS]    = 3;
 
-    converse_api.plugins.add('converse-register', {
+    converse_api.plugins.add('contactview', {
 
         overrides: {
             // Overrides mentioned here will be picked up by converse.js's
@@ -45886,459 +41829,435 @@ define("crypto.mode-ctr", ["crypto.cipher-core"], function(){});
             //
             // New functions which don't exist yet can also be added.
 
-            ControlBoxView: {
-
-                renderLoginPanel: function () {
-                    /* Also render a registration panel, when rendering the
-                     * login panel.
-                     */
-                    this._super.renderLoginPanel.apply(this, arguments);
-                    var converse = this._super.converse;
-                    if (converse.allow_registration) {
-                        this.registerpanel = new converse.RegisterPanel({
-                            '$parent': this.$el.find('.controlbox-panes'),
-                            'model': this
-                        });
-                        this.registerpanel.render().$el.hide();
-                    }
-                    return this;
+            afterReconnected: function () {
+                this.rosterview.registerRosterXHandler();
+                this._super.afterReconnected.apply(this, arguments);
+            },
+            ChatBoxes: {
+                onConnected: function (chatbox) {
+                    this._super.onConnected.apply(this, arguments);
+                    converse.rosterviewmessenger = new converse.RosterViewMessenger({model: converse.rostermessenger});
+                    // converse.rosterviewmessenger.render().fetch().update();
+                    converse.rosterviewmessenger.render().fetch();
                 }
-            }
+            },
         },
+
 
         initialize: function () {
             /* The initialize function gets called as soon as the plugin is
              * loaded by converse.js's plugin machinery.
              */
-            var converse = this.converse;
-
             this.updateSettings({
-                allow_registration: true,
-                domain_placeholder: __(" e.g. conversejs.org"),  // Placeholder text shown in the domain input on the registration form
-                providers_link: 'https://xmpp.net/directory.php', // Link to XMPP providers shown on registration page
+                allow_chat_pending_contacts: false,
+                allow_contact_removal: true,
+                show_toolbar: true,
             });
 
+            converse.RosterViewMessenger = Backbone.Overview.extend({
+                tagName: 'menu',
+                className: 'list-friends',
 
-            converse.RegisterPanel = Backbone.View.extend({
-                tagName: 'div',
-                id: "register",
-                className: 'controlbox-pane',
-                events: {
-                    'submit form#converse-register': 'onProviderChosen'
-                },
-
-                initialize: function (cfg) {
-                    this.reset();
-                    this.$parent = cfg.$parent;
-                    this.$tabs = cfg.$parent.parent().find('#controlbox-tabs');
-                    this.registerHooks();
+                initialize: function () {
+                    this.roster_handler_ref = this.registerRosterHandler();
+                    this.rosterx_handler_ref = this.registerRosterXHandler();
+                    converse.rostermessenger.on("add", this.onContactAdd, this);
+                    converse.rostermessenger.on('change', this.onContactChange, this);
+                    converse.rostermessenger.on("destroy", this.update, this);
+                    converse.rostermessenger.on("remove", this.update, this);
+                    // this.model.on("add", this.onGroupAdd, this);
+                    // this.model.on("reset", this.reset, this);
                 },
 
                 render: function () {
-                    this.$parent.append(this.$el.html(
-                        converse.templates.register_panel({
-                            'label_domain': __("Your XMPP provider's domain name:"),
-                            'label_register': __('Fetch registration form'),
-                            'help_providers': __('Tip: A list of public XMPP providers is available'),
-                            'help_providers_link': __('here'),
-                            'href_providers': converse.providers_link,
-                            'domain_placeholder': converse.domain_placeholder
-                        })
-                    ));
-                    this.$tabs.append(converse.templates.register_tab({label_register: __('Register')}));
+                    $('.left-menu').append(converse.templates.contact_search()).append(this.$el);
+                    // this.$el.html(this.filter_view.render());
+                    // if (!converse.allow_contact_requests) {
+                    //     // XXX: if we ever support live editing of config then
+                    //     // we'll need to be able to remove this class on the fly.
+                    //     this.$el.addClass('no-contact-requests');
+                    // }
                     return this;
                 },
 
-                registerHooks: function () {
-                    /* Hook into Strophe's _connect_cb, so that we can send an IQ
-                     * requesting the registration fields.
+                updateFilter: _.debounce(function () {
+                    /* Filter the roster again.
+                     * Called whenever the filter settings have been changed or
+                     * when contacts have been added, removed or changed.
+                     *
+                     * Debounced so that it doesn't get called for every
+                     * contact fetched from browser storage.
                      */
-                    var conn = converse.connection;
-                    var connect_cb = conn._connect_cb.bind(conn);
-                    conn._connect_cb = function (req, callback, raw) {
-                        if (!this._registering) {
-                            connect_cb(req, callback, raw);
-                        } else {
-                            if (this.getRegistrationFields(req, callback, raw)) {
-                                this._registering = false;
-                            }
-                        }
-                    }.bind(this);
+                    var type = this.filter_view.model.get('filter_type');
+                    if (type === 'state') {
+                        this.filter(this.filter_view.model.get('chat_state'), type);
+                    } else {
+                        this.filter(this.filter_view.model.get('filter_text'), type);
+                    }
+                }, 100),
+
+                unregisterHandlers: function () {
+                    converse.connection.deleteHandler(this.roster_handler_ref);
+                    delete this.roster_handler_ref;
+                    converse.connection.deleteHandler(this.rosterx_handler_ref);
+                    delete this.rosterx_handler_ref;
                 },
 
-                getRegistrationFields: function (req, _callback, raw) {
-                    /*  Send an IQ stanza to the XMPP server asking for the
-                     *  registration fields.
-                     *  Parameters:
-                     *    (Strophe.Request) req - The current request
-                     *    (Function) callback
-                     */
-                    converse.log("sendQueryStanza was called");
-                    var conn = converse.connection;
-                    conn.connected = true;
+                update: _.debounce(function () {
+                    if (this.$roster.parent().length === 0) {
+                        this.$el.append(this.$roster.show());
+                    }
+                    return this.showHideFilter();
+                }, converse.animate ? 100 : 0),
 
-                    var body = conn._proto._reqToData(req);
-                    if (!body) { return; }
-                    if (conn._proto._connect_cb(body) === Strophe.Status.CONNFAIL) {
-                        return false;
+                showHideFilter: function () {
+                    if (!this.$el.is(':visible')) {
+                        return;
                     }
-                    var register = body.getElementsByTagName("register");
-                    var mechanisms = body.getElementsByTagName("mechanism");
-                    if (register.length === 0 && mechanisms.length === 0) {
-                        conn._proto._no_auth_received(_callback);
-                        return false;
+                    if (this.$roster.hasScrollBar()) {
+                        this.filter_view.show();
+                    } else if (!this.filter_view.isActive()) {
+                        this.filter_view.hide();
                     }
-                    if (register.length === 0) {
-                        conn._changeConnectStatus(
-                            Strophe.Status.REGIFAIL,
-                            __('Sorry, the given provider does not support in band account registration. Please try with a different provider.')
-                        );
+                    return this;
+                },
+
+                fetch: function () {
+                    converse.rostermessenger.fetchFromServer();
+                    return this;
+                },
+
+                filter: function (query, type) {
+                    // First we make sure the filter is restored to its
+                    // original state
+                    _.each(this.getAll(), function (view) {
+                        if (view.model.contacts.length > 0) {
+                            view.show().filter('');
+                        }
+                    });
+                    // Now we can filter
+                    query = query.toLowerCase();
+                    if (type === 'groups') {
+                        _.each(this.getAll(), function (view, idx) {
+                            if (view.model.get('name').toLowerCase().indexOf(query.toLowerCase()) === -1) {
+                                view.hide();
+                            } else if (view.model.contacts.length > 0) {
+                                view.show();
+                            }
+                        });
+                    } else {
+                        _.each(this.getAll(), function (view) {
+                            view.filter(query, type);
+                        });
+                    }
+                },
+
+                reset: function () {
+                    converse.roster.reset();
+                    this.removeAll();
+                    this.$roster = $('<dl class="roster-contacts" style="display: none;"></dl>');
+                    this.render().update();
+                    return this;
+                },
+
+                registerRosterHandler: function () {
+                    converse.connection.addHandler(
+                        converse.roster.onRosterPush.bind(converse.roster),
+                        Strophe.NS.ROSTER, 'iq', "set"
+                    );
+                },
+
+                registerRosterXHandler: function () {
+                    var t = 0;
+                    converse.connection.addHandler(
+                        function (msg) {
+                            window.setTimeout(
+                                function () {
+                                    converse.connection.flush();
+                                    converse.roster.subscribeToSuggestedItems.bind(converse.roster)(msg);
+                                },
+                                t
+                            );
+                            t += $(msg).find('item').length*250;
+                            return true;
+                        },
+                        Strophe.NS.ROSTERX, 'message', null
+                    );
+                },
+
+
+                onGroupAdd: function (group) {
+                    var view = new converse.RosterGroupView({model: group});
+                    this.add(group.get('name'), view.render());
+                    this.positionGroup(view);
+                },
+
+                onContactAdd: function (contact) {
+                    var view = new converse.RosterContactViewMessenger({model: contact});
+                    this.$el.append(view.$el);
+                    view.render();
+                    return this;
+                    // lets render the book
+                },
+
+                onContactChange: function (contact) {
+                    this.updateChatBox(contact).update();
+                    if (_.has(contact.changed, 'subscription')) {
+                        if (contact.changed.subscription === 'from') {
+                            this.addContactToGroup(contact, HEADER_PENDING_CONTACTS);
+                        } else if (_.contains(['both', 'to'], contact.get('subscription'))) {
+                            this.addExistingContact(contact);
+                        }
+                    }
+                    if (_.has(contact.changed, 'ask') && contact.changed.ask === 'subscribe') {
+                        this.addContactToGroup(contact, HEADER_PENDING_CONTACTS);
+                    }
+                    if (_.has(contact.changed, 'subscription') && contact.changed.requesting === 'true') {
+                        this.addContactToGroup(contact, HEADER_REQUESTING_CONTACTS);
+                    }
+                    this.updateFilter();
+                },
+
+                updateChatBox: function (contact) {
+                    var chatbox = converse.chatboxes.get(contact.get('jid')),
+                        changes = {};
+                    if (!chatbox) {
+                        return this;
+                    }
+                    if (_.has(contact.changed, 'chat_status')) {
+                        changes.chat_status = contact.get('chat_status');
+                    }
+                    if (_.has(contact.changed, 'status')) {
+                        changes.status = contact.get('status');
+                    }
+                    chatbox.save(changes);
+                    return this;
+                },
+
+                positionFetchedGroups: function (model, resp, options) {
+                    /* Instead of throwing an add event for each group
+                     * fetched, we wait until they're all fetched and then
+                     * we position them.
+                     * Works around the problem of positionGroup not
+                     * working when all groups besides the one being
+                     * positioned aren't already in inserted into the
+                     * roster DOM element.
+                     */
+                    model.sort();
+                    model.each(function (group, idx) {
+                        var view = this.get(group.get('name'));
+                        if (!view) {
+                            view = new converse.RosterGroupView({model: group});
+                            this.add(group.get('name'), view.render());
+                        }
+                        if (idx === 0) {
+                            this.$roster.append(view.$el);
+                        } else {
+                            this.appendGroup(view);
+                        }
+                    }.bind(this));
+                },
+
+                positionGroup: function (view) {
+                    /* Place the group's DOM element in the correct alphabetical
+                     * position amongst the other groups in the roster.
+                     */
+                    var $groups = this.$roster.find('.roster-group'),
+                        index = $groups.length ? this.model.indexOf(view.model) : 0;
+                    if (index === 0) {
+                        this.$roster.prepend(view.$el);
+                    } else if (index === (this.model.length-1)) {
+                        this.appendGroup(view);
+                    } else {
+                        $($groups.eq(index)).before(view.$el);
+                    }
+                    return this;
+                },
+
+                appendGroup: function (view) {
+                    /* Add the group at the bottom of the roster
+                     */
+                    var $last = this.$roster.find('.roster-group').last();
+                    var $siblings = $last.siblings('dd');
+                    if ($siblings.length > 0) {
+                        $siblings.last().after(view.$el);
+                    } else {
+                        $last.after(view.$el);
+                    }
+                    return this;
+                },
+
+                getGroup: function (name) {
+                    /* Returns the group as specified by name.
+                     * Creates the group if it doesn't exist.
+                     */
+                    var view =  this.get(name);
+                    if (view) {
+                        return view.model;
+                    }
+                    return this.model.create({name: name, id: b64_sha1(name)});
+                },
+
+                addContactToGroup: function (contact, name) {
+                    this.getGroup(name).contacts.add(contact);
+                },
+
+                addExistingContact: function (contact) {
+                    var groups;
+                    if (converse.roster_groups) {
+                        groups = contact.get('groups');
+                        if (groups.length === 0) {
+                            groups = [HEADER_UNGROUPED];
+                        }
+                    } else {
+                        groups = [HEADER_CURRENT_CONTACTS];
+                    }
+                    _.each(groups, _.bind(this.addContactToGroup, this, contact));
+                },
+
+                addRosterContact: function (contact) {
+                    this.addExistingContact(contact);
+                    return this;
+                }
+            });
+
+
+            converse.RosterContactViewMessenger = Backbone.View.extend({
+                tagName: 'li',
+
+                events: {
+                    "click .accept-xmpp-request": "acceptRequest",
+                    "click .decline-xmpp-request": "declineRequest",
+                    "click .open-chat": "openChat",
+                    "click .pickup-chat": "pickupChat",
+                    "click .remove-xmpp-contact": "removeContact"
+                },
+
+                initialize: function () {
+                    this.model.on("change", this.render, this);
+                    this.model.on("remove", this.remove, this);
+                    this.model.on("destroy", this.remove, this);
+                    this.model.on("open", this.openChat, this);
+                },
+
+                render: function () {
+                    var item = this.model;
+                    this.$el.html(converse.templates.contact_item(this.model.toJSON()));
+                    return this;
+                },
+
+                isGroupCollapsed: function () {
+                    /* Check whether the group in which this contact appears is
+                     * collapsed.
+                     */
+                    // XXX: this sucks and is fragile.
+                    // It's because I tried to do the "right thing"
+                    // and use definition lists to represent roster groups.
+                    // If roster group items were inside the group elements, we
+                    // would simplify things by not having to check whether the
+                    // group is collapsed or not.
+                    var name = this.$el.prevAll('dt:first').data('group');
+                    var group = converse.rosterview.model.where({'name': name})[0];
+                    if (group.get('state') === converse.CLOSED) {
                         return true;
                     }
-                    // Send an IQ stanza to get all required data fields
-                    conn._addSysHandler(this.onRegistrationFields.bind(this), null, "iq", null, null);
-                    conn.send($iq({type: "get"}).c("query", {xmlns: Strophe.NS.REGISTER}).tree());
+                    return false;
+                },
+
+                mayBeShown: function () {
+                    /* Return a boolean indicating whether this contact should
+                     * generally be visible in the roster.
+                     *
+                     * It doesn't check for the more specific case of whether
+                     * the group it's in is collapsed (see isGroupCollapsed).
+                     */
+                    var chatStatus = this.model.get('chat_status');
+                    if ((converse.show_only_online_users && chatStatus !== 'online') ||
+                        (converse.hide_offline_users && chatStatus === 'offline')) {
+                        // If pending or requesting, show
+                        if ((this.model.get('ask') === 'subscribe') ||
+                                (this.model.get('subscription') === 'from') ||
+                                (this.model.get('requesting') === true)) {
+                            return true;
+                        }
+                        return false;
+                    }
                     return true;
                 },
 
-                onRegistrationFields: function (stanza) {
-                    /*  Handler for Registration Fields Request.
-                     *
-                     *  Parameters:
-                     *    (XMLElement) elem - The query stanza.
-                     */
-                    if (stanza.getElementsByTagName("query").length !== 1) {
-                        converse.connection._changeConnectStatus(Strophe.Status.REGIFAIL, "unknown");
-                        return false;
-                    }
-                    this.setFields(stanza);
-                    this.renderRegistrationForm(stanza);
-                    return false;
-                },
-
-                reset: function (settings) {
-                    var defaults = {
-                        fields: {},
-                        urls: [],
-                        title: "",
-                        instructions: "",
-                        registered: false,
-                        _registering: false,
-                        domain: null,
-                        form_type: null
-                    };
-                    _.extend(this, defaults);
-                    if (settings) {
-                        _.extend(this, _.pick(settings, Object.keys(defaults)));
-                    }
-                },
-
-                onProviderChosen: function (ev) {
-                    /* Callback method that gets called when the user has chosen an
-                     * XMPP provider.
-                     *
-                     * Parameters:
-                     *      (Submit Event) ev - Form submission event.
-                     */
+                openChat: function (ev) {
                     if (ev && ev.preventDefault) { ev.preventDefault(); }
-                    var $form = $(ev.target),
-                        $domain_input = $form.find('input[name=domain]'),
-                        domain = $domain_input.val();
-                    if (!domain) {
-                        $domain_input.addClass('error');
-                        return;
-                    }
-                    $form.find('input[type=submit]').hide()
-                        .after(converse.templates.registration_request({
-                            cancel: __('Cancel'),
-                            info_message: __('Requesting a registration form from the XMPP server')
-                        }));
-                    $form.find('button.cancel').on('click', this.cancelRegistration.bind(this));
-                    this.reset({
-                        domain: Strophe.getDomainFromJid(domain),
-                        _registering: true
-                    });
-                    converse.connection.connect(this.domain, "", this.onRegistering.bind(this));
-                    return false;
-                },
-
-                giveFeedback: function (message, klass) {
-                    this.$('.reg-feedback').attr('class', 'reg-feedback').text(message);
-                    if (klass) {
-                        $('.reg-feedback').addClass(klass);
-                    }
-                },
-
-                onRegistering: function (status, error) {
-                    var that;
-                    converse.log('onRegistering');
-                    if (_.contains([
-                                Strophe.Status.DISCONNECTED,
-                                Strophe.Status.CONNFAIL,
-                                Strophe.Status.REGIFAIL,
-                                Strophe.Status.NOTACCEPTABLE,
-                                Strophe.Status.CONFLICT
-                            ], status)) {
-
-                        converse.log('Problem during registration: Strophe.Status is: '+status);
-                        this.cancelRegistration();
-                        if (error) {
-                            this.giveFeedback(error, 'error');
-                        } else {
-                            this.giveFeedback(__(
-                                    'Something went wrong while establishing a connection with "%1$s". Are you sure it exists?',
-                                    this.domain
-                                ), 'error');
+                    var jid = this.model.attributes.jid;
+                    var item = _.extend(this.model.toJSON(), {
+                            name: jid,
+                            nick: jid,
+                            type: 'chatroom',
+                            box_id: b64_sha1(jid)
                         }
-                    } else if (status === Strophe.Status.REGISTERED) {
-                        converse.log("Registered successfully.");
-                        converse.connection.reset();
-                        that = this;
-                        this.$('form').hide(function () {
-                            $(this).replaceWith('<span class="spinner centered"/>');
-                            if (that.fields.password && that.fields.username) {
-                                // automatically log the user in
-                                converse.connection.connect(
-                                    that.fields.username.toLowerCase()+'@'+that.domain.toLowerCase(),
-                                    that.fields.password,
-                                    converse.onConnectStatusChanged
-                                );
-                                converse.chatboxviews.get('controlbox')
-                                    .switchTab({target: that.$tabs.find('.current')})
-                                    .giveFeedback(__('Now logging you in'));
-                            } else {
-                                converse.chatboxviews.get('controlbox')
-                                    .renderLoginPanel()
-                                    .giveFeedback(__('Registered successfully'));
-                            }
-                            that.reset();
-                        });
-                    }
+                    );
+                    return converse.chatboxviewsmessenger.showChat(item);
                 },
-
-                renderRegistrationForm: function (stanza) {
-                    /* Renders the registration form based on the XForm fields
-                     * received from the XMPP server.
-                     *
-                     * Parameters:
-                     *      (XMLElement) stanza - The IQ stanza received from the XMPP server.
-                     */
-                    var $form= this.$('form'),
-                        $stanza = $(stanza),
-                        $fields, $input;
-                    $form.empty().append(converse.templates.registration_form({
-                        'domain': this.domain,
-                        'title': this.title,
-                        'instructions': this.instructions
-                    }));
-                    if (this.form_type === 'xform') {
-                        $fields = $stanza.find('field');
-                        _.each($fields, function (field) {
-                            $form.append(utils.xForm2webForm.bind(this, $(field), $stanza));
-                        }.bind(this));
-                    } else {
-                        // Show fields
-                        _.each(Object.keys(this.fields), function (key) {
-                            if (key === "username") {
-                                $input = converse.templates.form_username({
-                                    domain: ' @'+this.domain,
-                                    name: key,
-                                    type: "text",
-                                    label: key,
-                                    value: '',
-                                    required: 1
-                                });
-                            } else {
-                                $form.append('<label>'+key+'</label>');
-                                $input = $('<input placeholder="'+key+'" name="'+key+'"></input>');
-                                if (key === 'password' || key === 'email') {
-                                    $input.attr('type', key);
-                                }
-                            }
-                            $form.append($input);
-                        }.bind(this));
-                        // Show urls
-                        _.each(this.urls, function (url) {
-                            $form.append($('<a target="blank"></a>').attr('href', url).text(url));
-                        }.bind(this));
-                    }
-                    if (this.fields) {
-                        $form.append('<input type="submit" class="pure-button button-primary" value="'+__('Register')+'"/>');
-                        $form.on('submit', this.submitRegistrationForm.bind(this));
-                        $form.append('<input type="button" class="pure-button button-cancel" value="'+__('Cancel')+'"/>');
-                        $form.find('input[type=button]').on('click', this.cancelRegistration.bind(this));
-                    } else {
-                        $form.append('<input type="button" class="submit" value="'+__('Return')+'"/>');
-                        $form.find('input[type=button]').on('click', this.cancelRegistration.bind(this));
-                    }
-                },
-
-                reportErrors: function (stanza) {
-                    /* Report back to the user any error messages received from the
-                     * XMPP server after attempted registration.
-                     *
-                     * Parameters:
-                     *      (XMLElement) stanza - The IQ stanza received from the
-                     *      XMPP server.
-                     */
-                    var $form= this.$('form'), flash;
-                    var $errmsgs = $(stanza).find('error text');
-                    var $flash = $form.find('.form-errors');
-                    if (!$flash.length) {
-                    flash = '<legend class="form-errors"></legend>';
-                        if ($form.find('p.instructions').length) {
-                            $form.find('p.instructions').append(flash);
-                        } else {
-                            $form.prepend(flash);
-                        }
-                        $flash = $form.find('.form-errors');
-                    } else {
-                        $flash.empty();
-                    }
-                    $errmsgs.each(function (idx, txt) {
-                        $flash.append($('<p>').text($(txt).text()));
-                    });
-                    if (!$errmsgs.length) {
-                        $flash.append($('<p>').text(
-                            __('The provider rejected your registration attempt. '+
-                            'Please check the values you entered for correctness.')));
-                    }
-                    $flash.show();
-                },
-
-                cancelRegistration: function (ev) {
-                    /* Handler, when the user cancels the registration form.
-                     */
+                pickupChat: function (ev) {
                     if (ev && ev.preventDefault) { ev.preventDefault(); }
-                    converse.connection.reset();
-                    this.render();
+                    var jid = this.model.attributes.jid;
+                    var room = Strophe.getNodeFromJid(jid);
+                    var item = $build("member", {jid: Strophe.getNodeFromJid(converse.connection.jid), role: "member"});
+                    var iq = $iq({to: room+converse.sky_room, type: "set", id: Math.random().toString(36).substr(2, 6)})
+                        .c("query", {xmlns: "kickweb"})
+                        .cnode(item.node).up();
+                    converse.connection.sendIQ(iq, this.pickUpSuccess.bind(this), this.pickUpFail.bind(this));
+                    return this;
                 },
+                pickUpSuccess: function(iq){
+                    converse.log("picksuccess");
+                    this.$el.find('.pickup-chat').hide();
+                },
+                pickUpFail: function(iq){
 
-                submitRegistrationForm : function (ev) {
-                    /* Handler, when the user submits the registration form.
-                     * Provides form error feedback or starts the registration
-                     * process.
-                     *
-                     * Parameters:
-                     *      (Event) ev - the submit event.
-                     */
+                },
+                removeContact: function (ev) {
                     if (ev && ev.preventDefault) { ev.preventDefault(); }
-                    var $empty_inputs = this.$('input.required:emptyVal');
-                    if ($empty_inputs.length) {
-                        $empty_inputs.addClass('error');
-                        return;
-                    }
-                    var $inputs = $(ev.target).find(':input:not([type=button]):not([type=submit])'),
-                        iq = $iq({type: "set"}).c("query", {xmlns:Strophe.NS.REGISTER});
-
-                    if (this.form_type === 'xform') {
-                        iq.c("x", {xmlns: Strophe.NS.XFORM, type: 'submit'});
-                        $inputs.each(function () {
-                            iq.cnode(utils.webForm2xForm(this)).up();
-                        });
-                    } else {
-                        $inputs.each(function () {
-                            var $input = $(this);
-                            iq.c($input.attr('name'), {}, $input.val());
-                        });
-                    }
-                    converse.connection._addSysHandler(this._onRegisterIQ.bind(this), null, "iq", null, null);
-                    converse.connection.send(iq);
-                    this.setFields(iq.tree());
-                },
-
-                setFields: function (stanza) {
-                    /* Stores the values that will be sent to the XMPP server
-                     * during attempted registration.
-                     *
-                     * Parameters:
-                     *      (XMLElement) stanza - the IQ stanza that will be sent to the XMPP server.
-                     */
-                    var $query = $(stanza).find('query'), $xform;
-                    if ($query.length > 0) {
-                        $xform = $query.find('x[xmlns="'+Strophe.NS.XFORM+'"]');
-                        if ($xform.length > 0) {
-                            this._setFieldsFromXForm($xform);
-                        } else {
-                            this._setFieldsFromLegacy($query);
-                        }
-                    }
-                },
-
-                _setFieldsFromLegacy: function ($query) {
-                    $query.children().each(function (idx, field) {
-                        var $field = $(field);
-                        if (field.tagName.toLowerCase() === 'instructions') {
-                            this.instructions = Strophe.getText(field);
-                            return;
-                        } else if (field.tagName.toLowerCase() === 'x') {
-                            if ($field.attr('xmlns') === 'jabber:x:oob') {
-                                $field.find('url').each(function (idx, url) {
-                                    this.urls.push($(url).text());
-                                }.bind(this));
+                    if (!converse.allow_contact_removal) { return; }
+                    var result = confirm(__("Are you sure you want to remove this contact?"));
+                    if (result === true) {
+                        var iq = $iq({type: 'set'})
+                            .c('query', {xmlns: Strophe.NS.ROSTER})
+                            .c('item', {jid: this.model.get('jid'), subscription: "remove"});
+                        converse.connection.sendIQ(iq,
+                            function (iq) {
+                                this.model.destroy();
+                                this.remove();
+                            }.bind(this),
+                            function (err) {
+                                alert(__("Sorry, there was an error while trying to remove "+name+" as a contact."));
+                                converse.log(err);
                             }
-                            return;
-                        }
-                        this.fields[field.tagName.toLowerCase()] = Strophe.getText(field);
-                    }.bind(this));
-                    this.form_type = 'legacy';
-                },
-
-                _setFieldsFromXForm: function ($xform) {
-                    this.title = $xform.find('title').text();
-                    this.instructions = $xform.find('instructions').text();
-                    $xform.find('field').each(function (idx, field) {
-                        var _var = field.getAttribute('var');
-                        if (_var) {
-                            this.fields[_var.toLowerCase()] = $(field).children('value').text();
-                        } else {
-                            // TODO: other option seems to be type="fixed"
-                            converse.log("WARNING: Found field we couldn't parse");
-                        }
-                    }.bind(this));
-                    this.form_type = 'xform';
-                },
-
-                _onRegisterIQ: function (stanza) {
-                    /* Callback method that gets called when a return IQ stanza
-                     * is received from the XMPP server, after attempting to
-                     * register a new user.
-                     *
-                     * Parameters:
-                     *      (XMLElement) stanza - The IQ stanza.
-                     */
-                    var error = null,
-                        query = stanza.getElementsByTagName("query");
-                    if (query.length > 0) {
-                        query = query[0];
+                        );
                     }
-                    if (stanza.getAttribute("type") === "error") {
-                        converse.log("Registration failed.");
-                        error = stanza.getElementsByTagName("error");
-                        if (error.length !== 1) {
-                            converse.connection._changeConnectStatus(Strophe.Status.REGIFAIL, "unknown");
-                            return false;
-                        }
-                        error = error[0].firstChild.tagName.toLowerCase();
-                        if (error === 'conflict') {
-                            converse.connection._changeConnectStatus(Strophe.Status.CONFLICT, error);
-                        } else if (error === 'not-acceptable') {
-                            converse.connection._changeConnectStatus(Strophe.Status.NOTACCEPTABLE, error);
-                        } else {
-                            converse.connection._changeConnectStatus(Strophe.Status.REGIFAIL, error);
-                        }
-                        this.reportErrors(stanza);
-                    } else {
-                        converse.connection._changeConnectStatus(Strophe.Status.REGISTERED, null);
-                    }
-                    return false;
                 },
 
-                remove: function () {
-                    this.$tabs.empty();
-                    this.$el.parent().empty();
+                acceptRequest: function (ev) {
+                    if (ev && ev.preventDefault) { ev.preventDefault(); }
+                    converse.roster.sendContactAddIQ(
+                        this.model.get('jid'),
+                        this.model.get('fullname'),
+                        [],
+                        function () { this.model.authorize().subscribe(); }.bind(this)
+                    );
+                },
+
+                declineRequest: function (ev) {
+                    if (ev && ev.preventDefault) { ev.preventDefault(); }
+                    var result = confirm(__("Are you sure you want to decline this contact request?"));
+                    if (result === true) {
+                        this.model.unauthorize().destroy();
+                    }
+                    return this;
                 }
             });
+
+
+
         }
     });
 }));
@@ -46477,7 +42396,7 @@ Strophe.addConnectionPlugin('ping', {
             var converse = this.converse;
 
             this.updateSettings({
-                ping_interval: 180 //in seconds
+                ping_interval: 30 //in seconds
             });
 
             converse.ping = function (jid, success, error, timeout) {
@@ -46888,6 +42807,7 @@ Strophe.addConnectionPlugin('ping', {
                     this.save({
                         'minimized': this.get('minimized') || false,
                         'time_minimized': this.get('time_minimized') || moment(),
+                        'is_opened': this.get('is_opened') || false
                     });
                 },
 
@@ -46904,6 +42824,20 @@ Strophe.addConnectionPlugin('ping', {
                         'time_minimized': moment().format()
                     });
                 },
+                chatBoxOpen: function () {
+                    this.save({
+                        'minimized': false,
+                        'time_minimized': moment().format(),
+                        'is_opened': true
+                    });
+                },
+                chatBoxClose: function () {
+                    this.save({
+                        'minimized': false,
+                        'time_minimized': moment().format(),
+                        'is_opened': false
+                    });
+                }
             },
 
             ChatBoxView: {
@@ -47335,304 +43269,6 @@ Strophe.addConnectionPlugin('ping', {
 /*global define, window */
 
 (function (root, factory) {
-    define("converse-dragresize", [
-            "converse-core",
-            "converse-api",
-            "converse-chatview",
-            "converse-muc", // XXX: would like to remove this
-            "converse-controlbox"
-    ], factory);
-}(this, function (converse, converse_api) {
-    "use strict";
-    var $ = converse_api.env.jQuery,
-        _ = converse_api.env._;
-
-    converse_api.plugins.add('converse-dragresize', {
-
-        overrides: {
-            // Overrides mentioned here will be picked up by converse.js's
-            // plugin architecture they will replace existing methods on the
-            // relevant objects or classes.
-            //
-            // New functions which don't exist yet can also be added.
-
-            registerGlobalEventHandlers: function () {
-                $(document).on('mousemove', function (ev) {
-                    if (!this.resizing || !this.allow_dragresize) { return true; }
-                    ev.preventDefault();
-                    this.resizing.chatbox.resizeChatBox(ev);
-                }.bind(this));
-
-                $(document).on('mouseup', function (ev) {
-                    if (!this.resizing || !this.allow_dragresize) { return true; }
-                    ev.preventDefault();
-                    var height = this.applyDragResistance(
-                            this.resizing.chatbox.height,
-                            this.resizing.chatbox.model.get('default_height')
-                    );
-                    var width = this.applyDragResistance(
-                            this.resizing.chatbox.width,
-                            this.resizing.chatbox.model.get('default_width')
-                    );
-                    if (this.connection.connected) {
-                        this.resizing.chatbox.model.save({'height': height});
-                        this.resizing.chatbox.model.save({'width': width});
-                    } else {
-                        this.resizing.chatbox.model.set({'height': height});
-                        this.resizing.chatbox.model.set({'width': width});
-                    }
-                    this.resizing = null;
-                }.bind(this));
-
-                return this._super.registerGlobalEventHandlers.apply(this, arguments);
-            },
-
-            ChatBox: {
-                initialize: function () {
-                    var result = this._super.initialize.apply(this, arguments),
-                        height = this.get('height'), width = this.get('width'),
-                        save = this.get('id') === 'controlbox' ? this.set.bind(this) : this.save.bind(this);
-                    save({
-                        'height': converse.applyDragResistance(height, this.get('default_height')),
-                        'width': converse.applyDragResistance(width, this.get('default_width')),
-                    });
-                    return result;
-                }
-            },
-
-            ChatBoxView: {
-                events: {
-                    'mousedown .dragresize-top': 'onStartVerticalResize',
-                    'mousedown .dragresize-left': 'onStartHorizontalResize',
-                    'mousedown .dragresize-topleft': 'onStartDiagonalResize'
-                },
-
-                initialize: function () {
-                    $(window).on('resize', _.debounce(this.setDimensions.bind(this), 100));
-                    this._super.initialize.apply(this, arguments);
-                },
-
-                render: function () {
-                    var result = this._super.render.apply(this, arguments);
-                    this.setWidth();
-                    return result;
-                },
-
-                setWidth: function () {
-                    // If a custom width is applied (due to drag-resizing),
-                    // then we need to set the width of the .chatbox element as well.
-                    if (this.model.get('width')) {
-                        this.$el.css('width', this.model.get('width'));
-                    }
-                },
-
-                _show: function () {
-                    this.initDragResize().setDimensions();
-                    this._super._show.apply(this, arguments);
-                },
-
-                initDragResize: function () {
-                    /* Determine and store the default box size.
-                     * We need this information for the drag-resizing feature.
-                     */
-                    var $flyout = this.$el.find('.box-flyout');
-                    if (typeof this.model.get('height') === 'undefined') {
-                        var height = $flyout.height();
-                        var width = $flyout.width();
-                        this.model.set('height', height);
-                        this.model.set('default_height', height);
-                        this.model.set('width', width);
-                        this.model.set('default_width', width);
-                    }
-                    var min_width = $flyout.css('min-width');
-                    var min_height = $flyout.css('min-height');
-                    this.model.set('min_width', min_width.endsWith('px') ? Number(min_width.replace(/px$/, '')) :0);
-                    this.model.set('min_height', min_height.endsWith('px') ? Number(min_height.replace(/px$/, '')) :0);
-                    // Initialize last known mouse position
-                    this.prev_pageY = 0;
-                    this.prev_pageX = 0;
-                    if (converse.connection.connected) {
-                        this.height = this.model.get('height');
-                        this.width = this.model.get('width');
-                    }
-                    return this;
-                },
-
-                setDimensions: function () {
-                    // Make sure the chat box has the right height and width.
-                    this.adjustToViewport();
-                    this.setChatBoxHeight(this.model.get('height'));
-                    this.setChatBoxWidth(this.model.get('width'));
-                },
-
-                setChatBoxHeight: function (height) {
-                    if (height) {
-                        height = converse.applyDragResistance(height, this.model.get('default_height'))+'px';
-                    } else {
-                        height = "";
-                    }
-                    this.$el.children('.box-flyout')[0].style.height = height;
-                },
-
-                setChatBoxWidth: function (width) {
-                    if (width) {
-                        width = converse.applyDragResistance(width, this.model.get('default_width'))+'px';
-                    } else {
-                        width = "";
-                    }
-                    this.$el[0].style.width = width;
-                    this.$el.children('.box-flyout')[0].style.width = width;
-                },
-
-
-                adjustToViewport: function () {
-                    /* Event handler called when viewport gets resized. We remove
-                     * custom width/height from chat boxes.
-                     */
-                    var viewport_width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-                    var viewport_height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-                    if (viewport_width <= 480) {
-                        this.model.set('height', undefined);
-                        this.model.set('width', undefined);
-                    } else if (viewport_width <= this.model.get('width')) {
-                        this.model.set('width', undefined);
-                    } else if (viewport_height <= this.model.get('height')) {
-                        this.model.set('height', undefined);
-                    }
-                },
-
-                onStartVerticalResize: function (ev) {
-                    if (!converse.allow_dragresize) { return true; }
-                    // Record element attributes for mouseMove().
-                    this.height = this.$el.children('.box-flyout').height();
-                    converse.resizing = {
-                        'chatbox': this,
-                        'direction': 'top'
-                    };
-                    this.prev_pageY = ev.pageY;
-                },
-
-                onStartHorizontalResize: function (ev) {
-                    if (!converse.allow_dragresize) { return true; }
-                    this.width = this.$el.children('.box-flyout').width();
-                    converse.resizing = {
-                        'chatbox': this,
-                        'direction': 'left'
-                    };
-                    this.prev_pageX = ev.pageX;
-                },
-
-                onStartDiagonalResize: function (ev) {
-                    this.onStartHorizontalResize(ev);
-                    this.onStartVerticalResize(ev);
-                    converse.resizing.direction = 'topleft';
-                },
-
-                resizeChatBox: function (ev) {
-                    var diff;
-                    if (converse.resizing.direction.indexOf('top') === 0) {
-                        diff = ev.pageY - this.prev_pageY;
-                        if (diff) {
-                            this.height = ((this.height-diff) > (this.model.get('min_height') || 0)) ? (this.height-diff) : this.model.get('min_height');
-                            this.prev_pageY = ev.pageY;
-                            this.setChatBoxHeight(this.height);
-                        }
-                    }
-                    if (converse.resizing.direction.indexOf('left') !== -1) {
-                        diff = this.prev_pageX - ev.pageX;
-                        if (diff) {
-                            this.width = ((this.width+diff) > (this.model.get('min_width') || 0)) ? (this.width+diff) : this.model.get('min_width');
-                            this.prev_pageX = ev.pageX;
-                            this.setChatBoxWidth(this.width);
-                        }
-                    }
-                }
-            },
-
-            ControlBoxView: {
-                events: {
-                    'mousedown .dragresize-top': 'onStartVerticalResize',
-                    'mousedown .dragresize-left': 'onStartHorizontalResize',
-                    'mousedown .dragresize-topleft': 'onStartDiagonalResize'
-                },
-
-                initialize: function () {
-                    $(window).on('resize', _.debounce(this.setDimensions.bind(this), 100));
-                    this._super.initialize.apply(this, arguments);
-                },
-
-                renderLoginPanel: function () {
-                    var result = this._super.renderLoginPanel.apply(this, arguments);
-                    this.initDragResize().setDimensions();
-                    return result;
-                },
-
-                renderContactsPanel: function () {
-                    var result = this._super.renderContactsPanel.apply(this, arguments);
-                    this.initDragResize().setDimensions();
-                    return result;
-                }
-            },
-
-            ChatRoomView: {
-                events: {
-                    'mousedown .dragresize-top': 'onStartVerticalResize',
-                    'mousedown .dragresize-left': 'onStartHorizontalResize',
-                    'mousedown .dragresize-topleft': 'onStartDiagonalResize'
-                },
-
-                initialize: function () {
-                    $(window).on('resize', _.debounce(this.setDimensions.bind(this), 100));
-                    this._super.initialize.apply(this, arguments);
-                },
-
-                render: function () {
-                    var result = this._super.render.apply(this, arguments);
-                    this.setWidth();
-                    return result;
-                }
-            }
-        },
-
-
-        initialize: function () {
-            /* The initialize function gets called as soon as the plugin is
-             * loaded by converse.js's plugin machinery.
-             */
-            var converse = this.converse;
-            this.updateSettings({
-                allow_dragresize: true,
-            });
-            converse.applyDragResistance = function (value, default_value) {
-                /* This method applies some resistance around the
-                * default_value. If value is close enough to
-                * default_value, then default_value is returned instead.
-                */
-                if (typeof value === 'undefined') {
-                    return undefined;
-                } else if (typeof default_value === 'undefined') {
-                    return value;
-                }
-                var resistance = 10;
-                if ((value !== default_value) &&
-                    (Math.abs(value- default_value) < resistance)) {
-                    return default_value;
-                }
-                return value;
-            };
-        }
-    });
-}));
-
-// Converse.js (A browser based XMPP chat client)
-// http://conversejs.org
-//
-// Copyright (c) 2012-2016, Jan-Carel Brand <jc@opkode.com>
-// Licensed under the Mozilla Public License (MPLv2)
-//
-/*global define, window */
-
-(function (root, factory) {
     define("converse-headline", [
             "converse-core",
             "converse-api",
@@ -47772,6 +43408,7 @@ require.config({
         "backbone.overview":        "components/backbone.overview/backbone.overview",
         "eventemitter":             "components/otr/build/dep/eventemitter",
         "jquery":                   "components/jquery/dist/jquery",
+        "jquery.nicescroll":        "components/jquery/dist/jquery.nicescroll",
         "jquery-private":           "src/jquery-private",
         "jquery.browser":           "components/jquery.browser/dist/jquery.browser",
         "jquery.easing":            "components/jquery-easing-original/index",          // XXX: Only required for https://conversejs.org website
@@ -47807,6 +43444,7 @@ require.config({
         "converse-minimize":        "src/converse-minimize",
         "converse-muc":             "src/converse-muc",
         "converse-frontend-muc":    "src/converse-frontend-muc",
+        "converse-contactview":     "src/converse-contactview",
         "converse-notification":    "src/converse-notification",
         "converse-otr":             "src/converse-otr",
         "converse-ping":            "src/converse-ping",
@@ -47927,7 +43565,14 @@ require.config({
         "toolbar_otr":              "src/templates/toolbar_otr",
         "trimmed_chat":             "src/templates/trimmed_chat",
         "vcard":                    "src/templates/vcard",
-        "chatbox_minimize":         "src/templates/chatbox_minimize"
+        "chatbox_minimize":         "src/templates/chatbox_minimize",
+        "messenger_left_menu":      "src/templates/messenger_left_menu",
+        "messenger_right_chat":     "src/templates/messenger_right_chat",
+        "contact_item":             "src/templates/contact_item",
+        "contact_search":           "src/templates/contact_search",
+        "chatbox_messenger":        "src/templates/chatbox_messenger",
+        "chatbox_message":          "src/templates/chatbox_message",
+        "chatbox_message_me":          "src/templates/chatbox_message_me"
     },
 
     map: {
@@ -47984,6 +43629,7 @@ if (typeof define !== 'undefined') {
         * --------------------
         * Any of the following components may be removed if they're not needed.
         */
+        "jquery.nicescroll",
         "locales",              // Translations for converse.js. This line can be removed
                                 // to remove *all* translations, or you can modify the
                                 // file src/locales.js to include only those
@@ -47991,16 +43637,17 @@ if (typeof define !== 'undefined') {
 
         "converse-chatview",    // Renders standalone chat boxes for single user chat
         "converse-controlbox",  // The control box
-        "converse-mam",         // XEP-0313 Message Archive Management
+        // "converse-mam",         // XEP-0313 Message Archive Management
         "converse-muc",         // XEP-0045 Multi-user chat
         "converse-frontend-muc",    // XEP-0045 frontend
-        "converse-vcard",       // XEP-0054 VCard-temp
-        "converse-otr",         // Off-the-record encryption for one-on-one messages
-        "converse-register",    // XEP-0077 In-band registration
+        "converse-contactview",
+        // "converse-vcard",       // XEP-0054 VCard-temp
+        // "converse-otr",         // Off-the-record encryption for one-on-one messages
+        // "converse-register",    // XEP-0077 In-band registration
         "converse-ping",        // XEP-0199 XMPP Ping
         "converse-notification",// HTML5 Notifications
         "converse-minimize",    // Allows chat boxes to be minimized
-        "converse-dragresize",  // Allows chat boxes to be resized by dragging them
+        // "converse-dragresize",  // Allows chat boxes to be resized by dragging them
         "converse-headline",    // Support for headline messages
         /* END: Removable components */
 

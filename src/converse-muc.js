@@ -137,7 +137,18 @@
                 }
             },
 
-            ChatBoxViews: {
+            // ChatBoxViews: {
+            //     onChatBoxAdded: function (item) {
+            //         var view = this.get(item.get('id'));
+            //         if (!view && item.get('type') === 'chatroom') {
+            //             view = new converse.ChatRoomView({'model': item});
+            //             return this.add(item.get('id'), view);
+            //         } else {
+            //             return this._super.onChatBoxAdded.apply(this, arguments);
+            //         }
+            //     }
+            // }
+            ChatBoxViewsMessenger: {
                 onChatBoxAdded: function (item) {
                     var view = this.get(item.get('id'));
                     if (!view && item.get('type') === 'chatroom') {
@@ -148,6 +159,7 @@
                     }
                 }
             }
+
         },
 
         initialize: function () {
@@ -173,9 +185,8 @@
                 /* Backbone View which renders a chat room, based upon the view
                  * for normal one-on-one chat boxes.
                  */
-                length: 300,
                 tagName: 'div',
-                className: 'chatbox chatroom',
+                className: 'chat',
                 is_chatroom: true,
                 events: {
                     'click .close-chatbox-button': 'close',
@@ -186,7 +197,8 @@
                     'click .toggle-call': 'toggleCall',
                     'click .toggle-occupants a': 'toggleOccupants',
                     'click .new-msgs-indicator': 'viewUnreadMessages',
-                    'keypress textarea.chat-textarea': 'keyPressed'
+                    'keypress textarea.chat-textarea': 'keyPressed',
+                    'click .send-raw': 'sendRawMsg'
                 },
 
                 initialize: function () {
@@ -200,34 +212,99 @@
                     var id = b64_sha1('converse.occupants'+converse.bare_jid+this.model.get('id')+this.model.get('nick'));
                     // this.occupantsview.model.browserStorage = new Backbone.BrowserStorage[converse.storage](id);
                     // this.occupantsview.chatroomview = this;
-                    this.render().$el.hide();
+                    // this.render().$el.hide();
+                    converse.chatboxviewsmessenger.closeAllChatBoxes();
+                    this.render();
                     // this.occupantsview.model.fetch({add:true});
                     // this.join(null, {'maxstanzas': converse.muc_history_max_stanzas});
                     this.registerHandleMessage(null, {'maxstanzas': converse.muc_history_max_stanzas});
-                    this.fetchMessages().insertIntoDOM();
+                    this.insertIntoDOM();
+                    this.fetchMessagesOffline(0, 20);
                     // XXX: adding the event below to the events map above doesn't work.
                     // The code that gets executed because of that looks like this:
                     //      this.$el.on('scroll', '.chat-content', this.markScrolled.bind(this));
                     // Which for some reason doesn't work.
                     // So working around that fact here:
-                    this.$el.find('.chat-content').on('scroll', this.markScrolled.bind(this));
+                    // this.$el.find('.chat-content').on('scroll', this.markScrolled.bind(this));
                     converse.emit('chatRoomOpened', this);
                 },
 
                 insertIntoDOM: function () {
-                    var view = converse.chatboxviews.get("controlbox");
-                    if (view) {
-                        this.$el.insertAfter(view.$el);
-                    } else {
-                        $('#conversejs').prepend(this.$el);
-                    }
+                    $('.ui').append(this.$el);
+                    var lol = {
+                        cursorcolor: "#cdd2d6",
+                        cursorwidth: "4px",
+                        cursorborder: "none"
+                    };
+                    var contentScroll = this.$content;
+                    this.$content.niceScroll(lol);
+                    this.$content.getNiceScroll(0).scrollend(function(info, cc){
+                        if(info.current.y < 100) {
+                            var first = this.$content.children('.chat-message:first').data('isodate');
+                            // var unixtime = Date.parse(first);
+                            this.fetchMessagesOffline(first, 20);
+
+                        }
+                    }.bind(this));
+                    //     .scrollstart(function(info){
+                    //     console.log("start");
+                    //     $(".messages").scrollTop();
+                    // }).scrollend(function(info){
+                    //     console.log("end");
+                    //     $(".messages").scrollTop();
+                    // });
+
+                    // var view = converse.chatboxviews.get("controlbox");
+                    // if (view) {
+                    //     this.$el.insertAfter(view.$el);
+                    // } else {
+                    //     $('#conversejs').prepend(this.$el);
+                    // }
                     return this;
                 },
-
+                fetchMessagesOffline: function (beginTime, sizeMsg) {
+                    // this.$content.empty();
+                    var from = converse.connection.jid;
+                    from = Strophe.getNodeFromJid(from);
+                    var to = this.model.get('jid');
+                    to = Strophe.getNodeFromJid(to);
+                    converse.log("From "+from+" To "+ to);
+                    var infoUser = JSON.stringify({"room_name":to,"unix_start":"0","unix_end":beginTime,"size_msg":20});
+                    //post data to
+                    var xhr = new XMLHttpRequest();
+                    var url = converse.sky_apiserver+"storemessage";
+                    xhr.open("POST", url, true);
+                    var that = this;
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState == 4 && xhr.status == 200) {
+                            var json = JSON.parse(xhr.responseText);
+                            if(json.code == 200){
+                                var msgJson = json.msg;
+                                if(msgJson.length == 0){
+                                    return this;
+                                }
+                                _.each(msgJson, function(msgJ){
+                                    converse.log(msgJ.packet);
+                                    var msgPacket = msgJ.packet;
+                                    // var stanza  = $.parseXML(msgPacket);
+                                    that.onChatRoomMessageOffline(msgPacket, json.timereceive);
+                                });
+                            }
+                        }
+                    }
+                    xhr.send(infoUser);
+                    return this;
+                },
                 render: function () {
-                    this.$el.attr('id', this.model.get('box_id'))
-                            .html(converse.templates.chatroom(this.model.toJSON()));
-                    this.renderChatArea();
+                    var idshow = this.model.id;
+                    var nameshow = idshow.substr((idshow.length -15), 6);
+                    this.$el.html(converse.templates.chatbox_messenger(
+                        _.extend(
+                            this.model.toJSON(), {
+                                'nameshow':nameshow
+                            })));
+                    // this.renderChatArea();
+                    this.$content = this.$el.find('.messages');
                     window.setTimeout(converse.refreshWebkit, 50);
                     return this;
                 },
@@ -252,14 +329,30 @@
                     // converse.connection.deleteHandler(this.handler);
                     // this.leave();
                     // converse.ChatBoxView.prototype.close.apply(this, arguments);
-                    this.$el.hide('fast', function () {
-                        converse.emit('chatBoxClosed', this);
+                    // this.$el.hide('fast', function () {
+                        // converse.emit('chatBoxClosed', this);
                         // converse.controlboxtoggle.show(function () {
                         //     if (typeof callback === "function") {
                         //         callback();
                         //     }
                         // });
-                    });
+                    // });
+                    this.$el.hide();
+                    return this;
+                },
+                show: function (ev) {
+                    // converse.connection.deleteHandler(this.handler);
+                    // this.leave();
+                    // converse.ChatBoxView.prototype.close.apply(this, arguments);
+                    // this.$el.show('fast', function () {
+                        // converse.emit('chatBoxOpened', this);
+                        // converse.controlboxtoggle.show(function () {
+                        //     if (typeof callback === "function") {
+                        //         callback();
+                        //     }
+                        // });
+                    // });
+                    this.$el.show();
                     return this;
                 },
 
@@ -320,14 +413,25 @@
                         id: msgid
                     }).c("body").t(text).up()
                     .c("x", {xmlns: "jabber:x:event"}).c("composing");
-                    converse.connection.send(msg);
+
+                    // this.model.messages.create({
+                    //     fullname: this.model.get('nick'),
+                    //     sender: converse.sky_myname,
+                    //     to: this.model.get('jid'),
+                    //     time: moment().format(),
+                    //     message: text,
+                    //     msgid: msgid
+                    // });
                     this.model.messages.create({
                         fullname: this.model.get('nick'),
                         sender: converse.sky_myname,
                         time: moment().format(),
                         message: text,
+                        timesend: Date.now(),
+                        sendtype: 'presskey',
                         msgid: msgid
                     });
+                    converse.connection.send(msg);
                 },
 
                 setAffiliation: function(room, jid, affiliation, reason, onSuccess, onError) {
@@ -504,16 +608,33 @@
                         var subtype = stanza.getAttribute('subtype');
                         converse.log("[HUYNHDC create room aa] "+ subtype);
                         if(subtype == 'create'){
-                            var jid = from;
+                            var jid = from,
+                            $message = $(stanza),
+                            type = $message.attr('type'),
+                            $forwarded = $message.find('forwarded');
                             converse.log("[HUYNHDC create room aa] "+ jid);
-                            var chatroom = converse.chatboxviews.showChat({
+                            converse.rostermessenger.addNewContact(Strophe.getNodeFromJid(jid));
+                            var chatroom = converse.chatboxviewsmessenger.showChatCreate({
                                 'id': jid,
                                 'jid': jid,
                                 'name': Strophe.unescapeNode(Strophe.getNodeFromJid(jid)),
                                 'nick': 'PHòng chat',
+                                'is_create':'create',
                                 'type': 'chatroom',
                                 'box_id': b64_sha1(jid)
-                            });
+                            },'create');
+                            if (!$forwarded.length) {
+                                converse.connection.send(
+                                    $msg({to: jid, type: type, id: Math.random().toString(36).substr(2, 10)})
+                                        .c("x", {
+                                            xmlns: "jabber:x:event"
+                                        })
+                                        .c("deleted").up()
+                                        .c("msgid").t($message.attr('id'))
+                                );
+                            }
+
+
                         }
                         return true;
 
@@ -984,6 +1105,51 @@
                         }
                     }
 
+                    return true;
+                },
+                onChatRoomMessageOffline: function (message, timereceive) {
+                    converse.log("[ON MESSAGE GROUP ]" +message);
+                    var $message = $(message),
+                        $forwarded = $message.find('forwarded'),
+                        $delay;
+                    if ($forwarded.length) {
+                        var jid = $message.attr('to');
+                        var myJid = converse.connection.jid;
+                        $message = $forwarded.children('message');
+                        $delay = $forwarded.children('delay');
+                        //check if resource is not same
+                        converse.log("Check if same id when continue: " + jid + " My: "+myJid);
+                        if(jid != myJid){
+                            return true;
+                        }
+                        //TODO
+                    }
+                    var jid = $message.attr('from'),
+                        msgid = $message.attr('id'),
+                        sender = $message.attr('member'),
+                    // subject = $message.children('subject').text(),
+                    // subject = "Hỗ trợ khách hàng",
+                        dupes = msgid && this.model.messages.filter(function (msg) {
+                                // Find duplicates.
+                                // Some bots (like HAL in the prosody chatroom)
+                                // respond to commands with the same ID as the
+                                // original message. So we also check the sender.
+                                return msg.get('msgid') === msgid && msg.get('fullname') === sender;
+                            });
+                    if (dupes && dupes.length) {
+                        return true;
+                    }
+                    // if (subject) {
+                    //     this.setChatRoomSubject(sender, subject);
+                    // }
+                    if (sender === '') {
+                        return true;
+                    }
+                    this.model.createMessageStore($message, $delay, message, timereceive);
+                    if (sender !== this.model.get('nick')) {
+                        // We only emit an event if it's not our own message
+                        converse.emit('message', message);
+                    }
                     return true;
                 },
 
