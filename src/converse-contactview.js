@@ -74,8 +74,9 @@
             });
 
             converse.RosterViewMessenger = Backbone.Overview.extend({
-                tagName: 'menu',
-                className: 'list-friends',
+                tagName: 'div',
+                className: 'tab-content tab-child-content-contact',
+                // id: 'chat_list',
 
                 initialize: function () {
                     this.roster_handler_ref = this.registerRosterHandler();
@@ -87,9 +88,14 @@
                     // this.model.on("add", this.onGroupAdd, this);
                     // this.model.on("reset", this.reset, this);
                 },
+                events: {
+                    "change": "contactViewChange"
+                },
 
                 render: function () {
-                    $('.left-menu').append(converse.templates.contact_search()).append(this.$el);
+                    $('.tab-content-contact').append(this.$el);
+                    this.$el.append('<div class="tab-pane" id="chat_list"></div>')
+                            .append('<div class="tab-pane active" id="chat_request"></div>');
                     // this.$el.html(this.filter_view.render());
                     // if (!converse.allow_contact_requests) {
                     //     // XXX: if we ever support live editing of config then
@@ -98,7 +104,9 @@
                     // }
                     return this;
                 },
-
+                contactViewChange: function(){
+                    console.log("[HUYNHDC] contact change");
+                },
                 updateFilter: _.debounce(function () {
                     /* Filter the roster again.
                      * Called whenever the filter settings have been changed or
@@ -213,10 +221,16 @@
 
                 onContactAdd: function (contact) {
                     var view = new converse.RosterContactViewMessenger({model: contact});
-                    this.$el.append(view.$el);
-                    view.render();
+                    if(contact.get('is_pick') == 'true'){
+                        $('#chat_list').prepend(view.$el);
+                        view.render();
+                        view.$el.find('.pickup-chat').hide();
+                    }else{
+                        $('#chat_request').prepend(view.$el);
+                        view.render();
+                        $('.mideas-list-request-count').html($("#chat_request").children("p").size());
+                    }
                     return this;
-                    // lets render the book
                 },
 
                 onContactChange: function (contact) {
@@ -342,12 +356,14 @@
 
 
             converse.RosterContactViewMessenger = Backbone.View.extend({
-                tagName: 'li',
+                tagName: 'p',
+                className: 'open-chat contact-item-mideas',
 
                 events: {
                     "click .accept-xmpp-request": "acceptRequest",
                     "click .decline-xmpp-request": "declineRequest",
                     "click .open-chat": "openChat",
+                    "click": "openChat",
                     "click .pickup-chat": "pickupChat",
                     "click .remove-xmpp-contact": "removeContact"
                 },
@@ -407,19 +423,23 @@
                 openChat: function (ev) {
                     if (ev && ev.preventDefault) { ev.preventDefault(); }
                     var jid = this.model.attributes.jid;
+                    var is_pick = this.model.attributes.is_pick;
                     var item = _.extend(this.model.toJSON(), {
                             name: jid,
                             nick: jid,
                             type: 'chatroom',
+                            is_pick: is_pick,
                             box_id: b64_sha1(jid)
                         }
                     );
+                    converse.chatboxviewsmessenger.closeAllChatBoxesHide();
                     return converse.chatboxviewsmessenger.showChat(item);
                 },
                 pickupChat: function (ev) {
                     if (ev && ev.preventDefault) { ev.preventDefault(); }
                     var jid = this.model.attributes.jid;
                     var room = Strophe.getNodeFromJid(jid);
+
                     var item = $build("member", {jid: Strophe.getNodeFromJid(converse.connection.jid), role: "member"});
                     var iq = $iq({to: room+converse.sky_room, type: "set", id: Math.random().toString(36).substr(2, 6)})
                         .c("query", {xmlns: "kickweb"})
@@ -430,6 +450,11 @@
                 pickUpSuccess: function(iq){
                     converse.log("picksuccess");
                     this.$el.find('.pickup-chat').hide();
+                    $('#mideas-list-contact').click();
+                    $('#chat_list').prepend(this.$el);
+                    converse.chatboxviewsmessenger.get(this.model.attributes.jid).$chattextarea.prop("disabled",false);
+                    this.model.attributes.is_pick = "true";
+                    $('.mideas-list-request-count').html($("#chat_request").children("p").size());
                 },
                 pickUpFail: function(iq){
 

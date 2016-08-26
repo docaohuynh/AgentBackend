@@ -192,8 +192,8 @@ body {
   color: #fff;
   font-size: 15px;
   border-radius: 3px;
-  padding: 20px;
-  line-height: 25px;
+  padding: 5px 20px 5px 20px;
+  line-height: 20px;
   max-width: 500px;
   word-wrap: break-word;
   position: relative;
@@ -266,7 +266,7 @@ body {
   margin-right: 5px;
 }
 .ui .avatar {
-  display: inline-block;
+  display: inline-flex;
 }
 .ui .send {
   color: #7ac5ef;
@@ -285,4 +285,7 @@ body {
 }
 .ui i.fa-picture-o {
   margin-left: 5%;
+}
+.forcus-contact {
+  background-color: gray;
 }

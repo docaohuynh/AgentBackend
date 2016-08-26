@@ -1,7 +1,12 @@
-<li class="i chat-message {{extra_classes}}" data-isodate="{{isodate}}" data-msgid="{{msgid}}">
-    <div class="head">
-        <span class="time">10:14 AM, Today</span>
-        <span class="name chat-msg-author chat-msg-{{sender}}">{{username}}:&nbsp;</span>
-    </div>
-    <div class="message chat-msg-content">{{message}}</div>
-</li>
+<!--<li class="i chat-message {{extra_classes}}" data-isodate="{{isodate}}" data-msgid="{{msgid}}">-->
+    <!--<div class="head">-->
+        <!--&lt;!&ndash;<span class="time">10:14 AM, Today</span>&ndash;&gt;-->
+        <!--<span class="name chat-msg-author chat-msg-{{sender}}">{{username}}:&nbsp;</span>-->
+    <!--</div>-->
+    <!--<div class="message chat-msg-content">{{message}}</div>-->
+<!--</li>-->
+<div class="direct-chat-msg right chat-message {{extra_classes}}" data-isodate="{{isodate}}" data-msgid="{{msgid}}">
+    <div class="direct-chat-info clearfix"><span class="direct-chat-name pull-right chat-msg-{{sender}}">{{username}}</span><span class="direct-chat-timestamp pull-left"></span></div>
+    <img src="http://mideasvn.com:9999/../dist/img/user3-128x128.jpg" alt="Message User Image" class="direct-chat-img">
+    <div class="direct-chat-text chat-msg-content">You better believe it!</div>
+</div>

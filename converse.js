@@ -183,7 +183,8 @@ require.config({
         "contact_search":           "src/templates/contact_search",
         "chatbox_messenger":        "src/templates/chatbox_messenger",
         "chatbox_message":          "src/templates/chatbox_message",
-        "chatbox_message_me":          "src/templates/chatbox_message_me"
+        "chatbox_message_me":       "src/templates/chatbox_message_me",
+        "contact_info":             "src/templates/contact_info"
     },
 
     map: {
@@ -257,7 +258,7 @@ if (typeof define !== 'undefined') {
         // "converse-register",    // XEP-0077 In-band registration
         "converse-ping",        // XEP-0199 XMPP Ping
         "converse-notification",// HTML5 Notifications
-        "converse-minimize",    // Allows chat boxes to be minimized
+        // "converse-minimize",    // Allows chat boxes to be minimized
         // "converse-dragresize",  // Allows chat boxes to be resized by dragging them
         "converse-headline",    // Support for headline messages
         /* END: Removable components */

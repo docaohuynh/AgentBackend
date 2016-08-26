@@ -25603,7 +25603,7 @@ return __p;
 define('tpl!messenger_left_menu', [],function () { return function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 with(obj||{}){
-__p+='<div class="left-menu">\r\n</div>';
+__p+='<!-- /.search form-->\r\n<ul class="nav nav-pills nav-justified">\r\n    <li class=""><a data-toggle="tab" href="#chat_list" aria-expanded="false" id="mideas-list-contact">Danh sách</a></li>\r\n    <li class="active"><a data-toggle="tab" href="#chat_request" aria-expanded="true" id="mideas-list-request">Yêu cầu<span class="pull-right text-red mideas-list-request-count" style="font-size: 15px">0</span></a></li>\r\n</ul>\r\n<div class="tab-content-contact" style="padding: 10px; color: white">\r\n    <!--<div class="tab-content tab-child-content-contact">-->\r\n        <!--<div class="tab-pane" id="chat_list">-->\r\n            <!--<p><i class="fa fa-circle text-green"></i> Hải<span class="pull-right text-red">8</span></p>-->\r\n            <!--<p><i class="fa fa-circle text-green"></i> Dũng<span class="pull-right text-red">8</span></p>-->\r\n            <!--<p><i class="fa fa-circle text-muted"></i> Huỳnh<span class="pull-right text-red"></span></p>-->\r\n        <!--</div>-->\r\n        <!--<div class="tab-pane active" id="chat_request">-->\r\n            <!--<p><span>Ngọc</span><i class="fa fa-sign-out pull-right"></i></p>-->\r\n            <!--<p><span>Hoa</span><i class="fa fa-sign-out pull-right"></i></p>-->\r\n            <!--<p><span>Lan</span><i class="fa fa-sign-out pull-right"></i></p>-->\r\n        <!--</div>-->\r\n    <!--</div>-->\r\n</div>';
 }
 return __p;
 }; });
@@ -25621,11 +25621,15 @@ return __p;
 define('tpl!contact_item', [],function () { return function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 with(obj||{}){
-__p+='<img class="open-chat open-image" data-msgid="contact_'+
+__p+='<!--<img class="open-chat open-image" style="cursor: pointer" data-msgid="contact_'+
 ((__t=(id))==null?'':__t)+
-'" width="50" height="50" src="http://cs625730.vk.me/v625730358/1126a/qEjM1AnybRA.jpg">\r\n<div class="info open-chat">\r\n    <div class="user">'+
+'" width="50" height="50" src="../../dist/img/icon-user.png">-->\r\n<!--<div class="info open-chat" style="cursor: pointer">-->\r\n    <!--<div class="user">'+
 ((__t=(nameShow))==null?'':__t)+
-'</div>\r\n    <div class="status on"> online</div>\r\n    <i class="fa fa-sign-out pull-right pickup-chat" style="cursor:pointer"></i>\r\n</div>';
+'</div>-->\r\n    <!--<div class="status on"> online</div>-->\r\n    <!--<i class="fa fa-sign-out pull-right pickup-chat" style="cursor:pointer"></i>-->\r\n<!--</div>-->\r\n<i class="fa fa-circle text-green open-image open-chat" data-msgid="contact_'+
+((__t=(id))==null?'':__t)+
+'" style="cursor: pointer"></i> '+
+((__t=(nameShow))==null?'':__t)+
+'<span class="fa fa-sign-out pull-right pickup-chat"></span>';
 }
 return __p;
 }; });
@@ -25634,7 +25638,7 @@ return __p;
 define('tpl!contact_search', [],function () { return function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 with(obj||{}){
-__p+='<form action="#" class="search">\r\n    <input placeholder="search..." type="search" name="" id="">\r\n    <input type="submit" value="&#xf002;">\r\n</form>';
+__p+='<!-- search form (Optional)-->\r\n<form class="sidebar-form" method="get" action="#">\r\n    <div class="input-group"><input type="text" class="form-control" placeholder="Search..." name="q"><span class="input-group-btn"><button class="btn btn-flat" name="search" type="submit" id="search-btn"><i class="fa fa-search"></i></button></span></div>\r\n</form>';
 }
 return __p;
 }; });
@@ -25643,9 +25647,9 @@ return __p;
 define('tpl!chatbox_messenger', [],function () { return function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 with(obj||{}){
-__p+='<div class="top">\r\n    <div class="avatar">\r\n        <img width="50" height="50" src="http://cs625730.vk.me/v625730358/1126a/qEjM1AnybRA.jpg">\r\n    </div>\r\n    <div class="info">\r\n        <div class="name">Khách hàng</div>\r\n        <div class="count">'+
-((__t=(id))==null?'':__t)+
-'</div>\r\n    </div>\r\n    <i class="fa fa-star"></i>\r\n</div>\r\n<ul class="messages">\r\n\r\n</ul>\r\n<div class="write-form">\r\n    <textarea placeholder="Type your message" name="e" id="texxt"  rows="2" class="chat-textarea"></textarea>\r\n    <i class="fa fa-picture-o"></i>\r\n    <i class="fa fa-file-o"></i>\r\n    <span class="send">Send</span>\r\n</div>';
+__p+='<!--<div class="top">-->\r\n    <!--<div class="avatar">-->\r\n        <!--<img width="50" height="50" src="../../dist/img/icon-user.png">-->\r\n    <!--</div>-->\r\n    <!--<div class="info">-->\r\n        <!--<div class="name">Khách hàng</div>-->\r\n        <!--<div class="count">'+
+((__t=(nameshow))==null?'':__t)+
+'</div>-->\r\n    <!--</div>-->\r\n    <!--<i class="fa fa-star"></i>-->\r\n<!--</div>-->\r\n<!--<ul class="messages">-->\r\n\r\n<!--</ul>-->\r\n<!--<div class="write-form">-->\r\n    <!--<textarea placeholder="Type your message" name="e" id="texxt"  rows="2" class="chat-textarea"></textarea>-->\r\n    <!--<i class="fa fa-picture-o"></i>-->\r\n    <!--<i class="fa fa-file-o"></i>-->\r\n    <!--<span class="send send-raw">Send</span>-->\r\n<!--</div>-->\r\n\r\n<div class="box-body">\r\n    <div class="direct-chat-messages" style="height: 450px;">\r\n\r\n    </div>\r\n</div>\r\n<div class="box-footer box-footer-content">\r\n    <div class="input-group">\r\n        <div class="input-group-btn"><button class="btn btn-deafult btn-flat"><i class="fa fa-question-circle"></i></button></div>\r\n        <div class="input-group-btn"><button class="btn btn-deafult btn-flat" onclick="showModal(\'task-add/normals\')"><i class="fa fa-list"></i></button></div>\r\n        <div class="input-group-btn"><button class="btn btn-deafult btn-flat" onclick="showModal(\'user-list\')"><i class="fa fa-user"></i></button></div>\r\n        <textarea class="form-control chat-textarea" placeholder="Gửi tin nhắn...." rows="1" id="input-message"></textarea>\r\n        <div class="input-group-btn"><button class="btn btn-primary btn-flat send-raw">Gửi</button></div>\r\n    </div>\r\n</div>';
 }
 return __p;
 }; });
@@ -25654,19 +25658,29 @@ return __p;
 define('tpl!chatbox_message', [],function () { return function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 with(obj||{}){
-__p+='<li class="friend-with-a-SVAGina chat-message '+
+__p+='<!--<li class="friend-with-a-SVAGina chat-message '+
 ((__t=(extra_classes))==null?'':__t)+
 '" data-isodate="'+
 ((__t=(isodate))==null?'':__t)+
 '" data-msgid="'+
 ((__t=(msgid))==null?'':__t)+
-'">\r\n    <div class="head">\r\n        <!--<span class="time">10:14 AM, Today</span>-->\r\n        <span class="name chat-msg-author chat-msg-'+
+'">-->\r\n    <!--<div class="head">-->\r\n        <!--&lt;!&ndash;<span class="time">10:14 AM, Today</span>&ndash;&gt;-->\r\n        <!--<span class="name chat-msg-author chat-msg-'+
 ((__t=(sender))==null?'':__t)+
 '">'+
 ((__t=(username))==null?'':__t)+
-':&nbsp;</span>\r\n    </div>\r\n    <div class="message chat-msg-content">'+
+':&nbsp;</span>-->\r\n    <!--</div>-->\r\n    <!--<div class="message chat-msg-content">'+
 ((__t=(message))==null?'':__t)+
-'</div>\r\n</li>';
+'</div>-->\r\n<!--</li>-->\r\n<div class="direct-chat-msg chat-message '+
+((__t=(extra_classes))==null?'':__t)+
+'" data-isodate="'+
+((__t=(isodate))==null?'':__t)+
+'" data-msgid="'+
+((__t=(msgid))==null?'':__t)+
+'">\r\n    <div class="direct-chat-info clearfix"><span class="direct-chat-name pull-left chat-msg-'+
+((__t=(sender))==null?'':__t)+
+'">'+
+((__t=(username))==null?'':__t)+
+'</span><span class="direct-chat-timestamp pull-right"></span></div>\r\n    <img src="http://mideasvn.com:9999/../dist/img/user1-128x128.jpg" alt="Message User Image" class="direct-chat-img">\r\n    <div class="direct-chat-text chat-msg-content"></div>\r\n</div>';
 }
 return __p;
 }; });
@@ -25675,19 +25689,38 @@ return __p;
 define('tpl!chatbox_message_me', [],function () { return function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 with(obj||{}){
-__p+='<li class="i chat-message '+
+__p+='<!--<li class="i chat-message '+
 ((__t=(extra_classes))==null?'':__t)+
 '" data-isodate="'+
 ((__t=(isodate))==null?'':__t)+
 '" data-msgid="'+
 ((__t=(msgid))==null?'':__t)+
-'">\r\n    <div class="head">\r\n        <span class="time">10:14 AM, Today</span>\r\n        <span class="name chat-msg-author chat-msg-'+
+'">-->\r\n    <!--<div class="head">-->\r\n        <!--&lt;!&ndash;<span class="time">10:14 AM, Today</span>&ndash;&gt;-->\r\n        <!--<span class="name chat-msg-author chat-msg-'+
 ((__t=(sender))==null?'':__t)+
 '">'+
 ((__t=(username))==null?'':__t)+
-':&nbsp;</span>\r\n    </div>\r\n    <div class="message chat-msg-content">'+
+':&nbsp;</span>-->\r\n    <!--</div>-->\r\n    <!--<div class="message chat-msg-content">'+
 ((__t=(message))==null?'':__t)+
-'</div>\r\n</li>';
+'</div>-->\r\n<!--</li>-->\r\n<div class="direct-chat-msg right chat-message '+
+((__t=(extra_classes))==null?'':__t)+
+'" data-isodate="'+
+((__t=(isodate))==null?'':__t)+
+'" data-msgid="'+
+((__t=(msgid))==null?'':__t)+
+'">\r\n    <div class="direct-chat-info clearfix"><span class="direct-chat-name pull-right chat-msg-'+
+((__t=(sender))==null?'':__t)+
+'">'+
+((__t=(username))==null?'':__t)+
+'</span><span class="direct-chat-timestamp pull-left"></span></div>\r\n    <img src="http://mideasvn.com:9999/../dist/img/user3-128x128.jpg" alt="Message User Image" class="direct-chat-img">\r\n    <div class="direct-chat-text chat-msg-content">You better believe it!</div>\r\n</div>';
+}
+return __p;
+}; });
+
+
+define('tpl!contact_info', [],function () { return function(obj){
+var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+with(obj||{}){
+__p+='<!-- Sidebar user panel (optional)-->\r\n<div class="user-panel">\r\n    <!--<div class="pull-left image"><img class="img-circle" alt="User Image" src="http://mideasvn.com:9999/dist/img/user2-160x160.jpg"></div>-->\r\n    <!--<div class="pull-left info">-->\r\n        <!--<p class="username">nhung@gmail.com</p>-->\r\n        <!--&lt;!&ndash; Status&ndash;&gt;<a href="#"><i class="fa fa-circle text-success"></i> Online</a>-->\r\n    <!--</div>-->\r\n</div>';
 }
 return __p;
 }; });
@@ -25757,7 +25790,8 @@ define("converse-templates", [
     "tpl!contact_search",
     "tpl!chatbox_messenger",
     "tpl!chatbox_message",
-    "tpl!chatbox_message_me"
+    "tpl!chatbox_message_me",
+    "tpl!contact_info"
 ], function () {
     return {
         action:                 arguments[0],
@@ -25820,7 +25854,8 @@ define("converse-templates", [
         contact_search:         arguments[57],
         chatbox_messenger:      arguments[58],
         chatbox_message:        arguments[59],
-        chatbox_message_me:        arguments[60]
+        chatbox_message_me:     arguments[60],
+        contact_info:     arguments[61]
     };
 });
 
@@ -30161,17 +30196,17 @@ return Backbone.BrowserStorage;
                     var room = roomx.room;
                     var jid = room+converse.sky_room;
                     //open first chat room
-                    if(firstRoom == 1){
-                        converse.chatboxviewsmessenger.showChat({
-                            'id': jid,
-                            'jid': jid,
-                            'name': Strophe.unescapeNode(Strophe.getNodeFromJid(jid)),
-                            'nick': jid,
-                            'type': 'chatroom',
-                            'box_id': b64_sha1(jid)
-                        });
-                    }
-                    firstRoom ++;
+                    // if(firstRoom == 1){
+                    //     converse.chatboxviewsmessenger.showChat({
+                    //         'id': jid,
+                    //         'jid': jid,
+                    //         'name': Strophe.unescapeNode(Strophe.getNodeFromJid(jid)),
+                    //         'nick': jid,
+                    //         'type': 'chatroom',
+                    //         'box_id': b64_sha1(jid)
+                    //     });
+                    // }
+
                     //end open first chat room
 
                     if (that.isSelf(jid)) { return; }
@@ -30184,8 +30219,15 @@ return Backbone.BrowserStorage;
                             fullname: jid,
                             groups: groups,
                             jid: jid,
+                            is_pick: roomx.is_pick
                         }, {sort: false});
                     }
+
+                    if(firstRoom == 1){
+                        var $currentRoster = $('.list-friends').find('.open-image[data-msgid="contact_'+jid+'"]').parent();
+                        $currentRoster.addClass('forcus-contact');
+                    }
+                    firstRoom ++;
                     // that.updateContact(room);
                 });
                 //scroll contact
@@ -30194,10 +30236,10 @@ return Backbone.BrowserStorage;
                     cursorwidth: "4px",
                     cursorborder: "none"
                 };
-                $('.list-friends').niceScroll(conf);
+                $('.chat_list').niceScroll(conf);
                 return this;
             },
-            addNewContact: function (room) {
+            addNewContact: function (room, is_pick) {
                 /* Update or create RosterContact models based on items
                  * received in the IQ from the server.
                  */
@@ -30214,6 +30256,7 @@ return Backbone.BrowserStorage;
                         nameShow: nameShow,
                         fullname: jid,
                         groups: groups,
+                        is_pick: is_pick,
                         jid: jid,
                     }, {sort: false});
                 }
@@ -30418,7 +30461,10 @@ return Backbone.BrowserStorage;
                 } else {
                     from = Strophe.getBareJidFromJid($message.attr('from'));
                 }
-                if (_.isEmpty(fullname)) {
+                // if (_.isEmpty(fullname)) {
+                //     fullname = from;
+                // }
+                if (!_.isEmpty(jidSend)) {
                     fullname = from;
                 }
                 if (delayed) {
@@ -30460,9 +30506,11 @@ return Backbone.BrowserStorage;
 
                 }else{
                     var date = new Date(Number(timeS));
-                    time = date;
+                    time = Number(date);
                 }
-
+                if(isNaN(timesendlocal)){
+                    timesendlocal = Number(new Date());
+                }
                 return {
                     'type': type,
                     'chat_state': chat_state,
@@ -30508,6 +30556,7 @@ return Backbone.BrowserStorage;
                     from = $message.attr('member');
                     if($message.attr('member') == 'hana_ai'){
                         jidSend = $message.attr('member');
+                        fullname = jidSend;
                     }
                     if(!from){
                         from = Strophe.getBareJidFromJid($message.attr('from'));
@@ -30522,7 +30571,7 @@ return Backbone.BrowserStorage;
                 } else {
                     from = Strophe.getBareJidFromJid($message.attr('from'));
                 }
-                if (_.isEmpty(fullname)) {
+                if (!_.isEmpty(jidSend)) {
                     fullname = from;
                 }
                 if (delayed) {
@@ -30779,7 +30828,7 @@ return Backbone.BrowserStorage;
                 if (!this.el) {
                     var $el = $('#conversejs');
                     if (!$el.length) {
-                        $el = $('<div id="conversejs">');
+                        $el = $('<div id="conversejs" style="display: none">');
                         $('body').append($el);
                     }
                     $el.html(converse.templates.chats_panel());
@@ -30853,14 +30902,17 @@ return Backbone.BrowserStorage;
             _ensureElement: function () {
                 /* Override method from backbone.js
                  * If the #conversejs element doesn't exist, create it.
+                 * Create view contact, chatbox
                  */
                 if (!this.el) {
-                    var $el = $('.ui');
-                    if (!$el.length) {
-                        $el = $('<div class="ui">');
-                        $('.direct-chat-primary').append($el);
-                    }
-                    $el.html(converse.templates.messenger_left_menu());
+                    var $el = $('.contact-chat');
+                    // if (!$el.length) {
+                    //     $el = $('<div class="ui">');
+                    //     $('.direct-chat-primary').append($el);
+                    // }
+                    $el.prepend(converse.templates.messenger_left_menu())
+                       .prepend(converse.templates.contact_search())
+                       .prepend(converse.templates.contact_info());
                     this.setElement($el, false);
                 } else {
                     this.setElement(_.result(this, 'el'), false);
@@ -30890,6 +30942,7 @@ return Backbone.BrowserStorage;
                 /* This method gets overridden in src/converse-controlbox.js if
                  * the controlbox plugin is active.
                  */
+                
                 this.each(function (view) { view.hideAll(); });
                 return this;
             },
@@ -30910,11 +30963,29 @@ return Backbone.BrowserStorage;
                             converse.log(response.responseText);
                         }
                     });
-
+                    if(attrs.is_pick == "true"){
+                        var $currentRoster = $('#chat_list').find('.open-image[data-msgid="contact_'+attrs.id+'"]').parent();
+                        $currentRoster.addClass('forcus-contact');
+                    }else{
+                        var $currentRoster = $('#chat_request').find('.open-image[data-msgid="contact_'+attrs.id+'"]').parent();
+                        $currentRoster.addClass('forcus-contact');
+                    }
                 }else{
                     converse.chatboxviewsmessenger.closeAllChatBoxesHide();
                     converse.chatboxviewsmessenger.get(chatbox.get('id')).show();
-                    chatbox.chatBoxOpen();
+                    if(attrs.is_pick == "true"){
+                        converse.chatboxviewsmessenger.get(chatbox.get('id')).$chattextarea.prop("disabled",false);
+                    }
+                    if(attrs.is_pick == "true"){
+                        var $currentRoster = $('#chat_list').find('.open-image[data-msgid="contact_'+attrs.id+'"]').parent();
+                        $currentRoster.addClass('forcus-contact');
+                    }else{
+                        var $currentRoster = $('#chat_request').find('.open-image[data-msgid="contact_'+attrs.id+'"]').parent();
+                        $currentRoster.addClass('forcus-contact');
+                    }
+
+
+                    // chatbox.chatBoxOpen();
                 }
                 var defaultRoom  = 'defaultroom'+converse.sky_room;
                 if(chatbox.get('id') == defaultRoom){
@@ -30948,6 +31019,18 @@ return Backbone.BrowserStorage;
                         chatbox.chatBoxOpen();
                     }
                     converse.chatboxviewsmessenger.closeAllChatBoxes();
+                }else{
+
+                    if(attrs.is_pick == "false"){
+                        converse.chatboxviewsmessenger.get(chatbox.get('id')).$chattextarea.prop("disabled",true);
+                    }
+                    // kiem tra neu co contact ben contact list thi chuyen qua request list
+                    var $currentRoster = $('#chat_list').find('.open-image[data-msgid="contact_'+chatbox.get('id')+'"]').parent();
+                    if($currentRoster.length == 1){
+                        $('#chat_request').prepend($currentRoster);
+                        $currentRoster.find('.pickup-chat').show();
+                        $('.mideas-list-request-count').html($("#chat_request").children("p").size());
+                    }
                 }
                 var defaultRoom  = 'defaultroom'+converse.sky_room;
                 if(chatbox.get('id') == defaultRoom){
@@ -36040,7 +36123,7 @@ define('text!zh',[],function () { return '{\n   "domain": "converse",\n   "local
 
             converse.ChatBoxView = Backbone.View.extend({
                 tagName: 'div',
-                className: 'chat',
+                className: 'box box-primary direct-chat direct-chat-primary',
                 is_chatroom: false,  // This is not a multi-user chatroom
 
                 events: {
@@ -36050,7 +36133,7 @@ define('text!zh',[],function () { return '{\n   "domain": "converse",\n   "local
                     'click .toggle-smiley ul li': 'insertEmoticon',
                     'click .toggle-clear': 'clearMessages',
                     'click .toggle-call': 'toggleCall',
-                    'scroll .messages': 'scrollContent',
+                    // 'scroll .direct-chat-messages': 'scrollContent',
                     'click .new-msgs-indicator': 'viewUnreadMessages'
                 },
 
@@ -36065,7 +36148,8 @@ define('text!zh',[],function () { return '{\n   "domain": "converse",\n   "local
                     this.model.on('change:status', this.onStatusChanged, this);
                     this.model.on('showHelpMessages', this.showHelpMessages, this);
                     this.model.on('sendMessage', this.sendMessage, this);
-                    this.$content = this.$el.find('.messages');
+                    this.$content = this.$el.find('.direct-chat-messages');
+                    this.$chattextarea = this.$el.find('.chat-textarea');
                     // this.render().fetchMessages().insertIntoDOM().hide();
                     // this.render().insertIntoDOM();
                     // XXX: adding the event below to the events map above doesn't work.
@@ -36080,7 +36164,7 @@ define('text!zh',[],function () { return '{\n   "domain": "converse",\n   "local
                 render: function () {
                     this.$el.attr('id', this.model.get('box_id'))
                         .html(converse.templates.chatbox_messenger(this.model.toJSON()));
-                    this.$content = this.$el.find('.messages');
+                    this.$content = this.$el.find('.direct-chat-messages');
                     this.$content.scroll(function() {
                         console.log('scroll');
                     });
@@ -36218,7 +36302,7 @@ define('text!zh',[],function () { return '{\n   "domain": "converse",\n   "local
                      */
                     var insert = prepend ? this.$content.prepend : this.$content.append;
                     _.compose(
-                        // this.scrollDownMessageHeight.bind(this),
+                        this.scrollDownMessageHeight.bind(this),
                         function ($el) {
                             insert.call(this.$content, $el);
                             return $el;
@@ -36236,14 +36320,31 @@ define('text!zh',[],function () { return '{\n   "domain": "converse",\n   "local
                      * Parameters:
                      *  (Object) attrs: An object containing the message attributes.
                      */
-                    var $currentRoster = $('.list-friends').find('.open-image[data-msgid="contact_'+attrs.to+'"]').parent();
-                    $('.list-friends').prepend($currentRoster);
+                    var firstContact = $('#chat_list').children('.contact-item-mideas:first').children('.open-image').data('msgid');
+                    var currentContact = "contact_"+attrs.to;
+                    if(firstContact == currentContact){
+                        converse.log("[HUYNHDC] no change");
+                    }else{
+                        var $currentRoster = $('#chat_list').find('.open-image[data-msgid="contact_'+attrs.to+'"]').parent();
+                        $('#chat_list').prepend($currentRoster);
+                        this.updateContactActiveTime(Strophe.getNodeFromJid(attrs.to), Strophe.getNodeFromJid(converse.connection.jid));
+                        //request update contact
+                    }
 
+                    var firstContact = $('#chat_request').children('.contact-item-mideas:first').children('.open-image').data('msgid');
+                    if(firstContact == currentContact){
+                        converse.log("[HUYNHDC] no change");
+                    }else{
+                        var $currentRoster = $('#chat_request').find('.open-image[data-msgid="contact_'+attrs.to+'"]').parent();
+                        $('#chat_request').prepend($currentRoster);
+                        this.updateContactActiveTime(Strophe.getNodeFromJid(attrs.to), Strophe.getNodeFromJid(converse.connection.jid));
+                        //request update contact
+                    }
 
                     /*
                      *  sort contact update recent list here
                      */
-                    this.$content = this.$el.find('.messages');
+                    // this.$content = this.$el.find('.messages');
                     var hasMsg = this.$content.find('.chat-message[data-msgid="'+attrs.msgid+'"]');
                     if(hasMsg.length > 0){
                         return;
@@ -36307,6 +36408,26 @@ define('text!zh',[],function () { return '{\n   "domain": "converse",\n   "local
                         )(this.renderMessage(attrs));
                 },
                 showMessageSend: function (attrs) {
+                    var firstContact = $('#chat_list').children('.contact-item-mideas:first').children('.open-image').data('msgid');
+                    var currentContact = "contact_"+attrs.to;
+                    if(firstContact == currentContact){
+                        converse.log("[HUYNHDC] no change");
+                    }else{
+                        var $currentRoster = $('#chat_list').find('.open-image[data-msgid="contact_'+attrs.to+'"]').parent();
+                        $('#chat_list').prepend($currentRoster);
+                        this.updateContactActiveTime(Strophe.getNodeFromJid(attrs.to), Strophe.getNodeFromJid(converse.connection.jid));
+                        //request update contact
+                    }
+
+                    var firstContact = $('#chat_request').children('.contact-item-mideas:first').children('.open-image').data('msgid');
+                    if(firstContact == currentContact){
+                        converse.log("[HUYNHDC] no change");
+                    }else{
+                        var $currentRoster = $('#chat_request').find('.open-image[data-msgid="contact_'+attrs.to+'"]').parent();
+                        $('#chat_request').prepend($currentRoster);
+                        this.updateContactActiveTime(Strophe.getNodeFromJid(attrs.to), Strophe.getNodeFromJid(converse.connection.jid));
+                        //request update contact
+                    }
 
                     var msg_dates, idx,
                         $first_msg = this.$content.children('.chat-message:first'),  //get first message
@@ -36318,11 +36439,31 @@ define('text!zh',[],function () { return '{\n   "domain": "converse",\n   "local
                     this.insertMessageSend(attrs);
                 },
                 showMessageReceive: function (attrs) {
+                    var firstContact = $('#chat_list').children('.contact-item-mideas:first').children('.open-image').data('msgid');
+                    var currentContact = "contact_"+attrs.to;
+                    if(firstContact == currentContact){
+                        converse.log("[HUYNHDC] no change");
+                    }else{
+                        var $currentRoster = $('#chat_list').find('.open-image[data-msgid="contact_'+attrs.to+'"]').parent();
+                        $('#chat_list').prepend($currentRoster);
+                        this.updateContactActiveTime(Strophe.getNodeFromJid(attrs.to), Strophe.getNodeFromJid(converse.connection.jid));
+                        //request update contact
+                    }
+                    
+                    var firstContact = $('#chat_request').children('.contact-item-mideas:first').children('.open-image').data('msgid');
+                    if(firstContact == currentContact){
+                        converse.log("[HUYNHDC] no change");
+                    }else{
+                        var $currentRoster = $('#chat_request').find('.open-image[data-msgid="contact_'+attrs.to+'"]').parent();
+                        $('#chat_request').prepend($currentRoster);
+                        this.updateContactActiveTime(Strophe.getNodeFromJid(attrs.to), Strophe.getNodeFromJid(converse.connection.jid));
+                        //request update contact
+                    }
 
                     var msg_dates, idx,
                         $first_msg = this.$content.children('.chat-message:first'),  //get first message
                         first_msg_date = $first_msg.data('isodate'),                 //first message date
-                        timeMsg = Number(attrs.time),
+                        timeMsg = Number(attrs.timesend),
                     // current_msg_date = Date.now(),             //current date
                         last_msg_date = this.$content.children('.chat-message:last').data('isodate');  //last message date
 
@@ -36362,10 +36503,11 @@ define('text!zh',[],function () { return '{\n   "domain": "converse",\n   "local
                     )(this.renderMessageReceive(attrs));
                 },
                 showMessageReceiveStore: function (attrs) {
+
                     var msg_dates, idx,
                         $first_msg = this.$content.children('.chat-message:first'),  //get first message
                         first_msg_date = $first_msg.data('isodate'),                 //first message date
-                        timeMsg = Number(attrs.time),
+                        timeMsg = Number(attrs.timesend),
                     // current_msg_date = Date.now(),             //current date
                         last_msg_date = this.$content.children('.chat-message:last').data('isodate');  //last message date
 
@@ -36724,15 +36866,33 @@ define('text!zh',[],function () { return '{\n   "domain": "converse",\n   "local
                         // message is received.
                         this.model.set('scrolled', false);
                     }
-                    if (this.shouldShowOnTextMessage()) {
-                        if(converse.chatboxviewsmessenger.$el.length > 0){
+                    // if (this.shouldShowOnTextMessage()) {
+                    //     if(converse.chatboxviewsmessenger.$el.length > 0){
+                    //
+                    //         this.scrollDown();
+                    //     }else{
+                    //         this.show();
+                    //     }
+                    // } else {
+                    //     this.scrollDown();
+                    // }
+                    // console.log($('.chat-content').height());
+                    // console.log($('.chat-content').scrollTop());
 
-                            // this.scrollDown();
-                        }else{
-                            this.show();
+
+                    if(message.attributes.sendtype == 'presskey'){
+                        this.scrollDown();
+                    }else{
+                        // var scroll = this.$content.height() + this.$content.scrollTop()+ 78;
+                        // var scrollHeight = this.$content.prop("scrollHeight");
+                        if(this.$content[0]){
+                            converse.log("[HUYNHDC HEIGHT ]+ "+this.$content[0].scrollHeight);
+                            if (this.$content[0].scrollHeight - this.$content.scrollTop() - 69 == this.$content.outerHeight())
+                            {
+                                this.scrollDown();
+                            }
                         }
-                    } else {
-                        // this.scrollDown();
+
                     }
                 },
 
@@ -36901,7 +37061,25 @@ define('text!zh',[],function () { return '{\n   "domain": "converse",\n   "local
                         this.setChatState(converse.COMPOSING, ev.keyCode === KEY.FORWARD_SLASH);
                     }
                 },
+                sendRawMsg: function (ev) {
+                    /* Event handler for when a key is pressed in a chat box textarea.
+                     */
+                    var $textarea , message;
+                    ev.preventDefault();
+                    message = this.$chattextarea.val();
+                    this.$chattextarea.val('').focus();
+                    if (message !== '') {
+                        // XXX: leaky abstraction from MUC
+                        if (this.model.get('type') === 'chatroom') {
+                            this.onChatRoomMessageSubmitted(message);
+                        } else {
+                            this.onMessageSubmitted(message);
+                        }
+                        converse.emit('messageSend', message);
+                    }
+                    this.setChatState(converse.ACTIVE);
 
+                },
                 clearMessages: function (ev) {
                     if (ev && ev.preventDefault) { ev.preventDefault(); }
                     var result = confirm(__("Are you sure you want to clear the messages from this chat box?"));
@@ -37043,7 +37221,7 @@ define('text!zh',[],function () { return '{\n   "domain": "converse",\n   "local
                         return this;
                     }
                     this.$el.hide();
-                    utils.refreshWebkit();
+                    // utils.refreshWebkit();
                     return this;
                 },
 
@@ -37053,8 +37231,9 @@ define('text!zh',[],function () { return '{\n   "domain": "converse",\n   "local
                         'time_minimized': moment().format(),
                         'is_opened': false
                     });
+                    $('.contact-item-mideas').removeClass('forcus-contact');
                     this.$el.hide();
-                    utils.refreshWebkit();
+                    // utils.refreshWebkit();
                     return this;
                 },
 
@@ -37130,6 +37309,20 @@ define('text!zh',[],function () { return '{\n   "domain": "converse",\n   "local
                         this.$el.find('.new-msgs-indicator').addClass('hidden');
                     }
                     return this;
+                },
+                updateContactActiveTime: function(room, user){
+                    var infoUser = JSON.stringify({"room_name":room,"uid":user});
+                    //post data to
+                    var xhr = new XMLHttpRequest();
+                    var url = converse.sky_apiserver+"webclient/updatecontact";
+                    xhr.open("POST", url, true);
+                    var that = this;
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState == 4 && xhr.status == 200) {
+
+                        }
+                    }
+                    xhr.send(infoUser);
                 }
             });
         }
@@ -38286,34 +38479,34 @@ define('text!zh',[],function () { return '{\n   "domain": "converse",\n   "local
                     /* We initialize the roster, which will appear inside the
                      * Contacts Panel.
                      */
-                    converse.rosterview = new converse.RosterView({model: converse.rostergroups});
-                    this.contactspanel.$el.append(converse.rosterview.$el);
-                    converse.rosterview.render().fetch().update();
+                    // converse.rosterview = new converse.RosterView({model: converse.rostergroups});
+                    // this.contactspanel.$el.append(converse.rosterview.$el);
+                    // converse.rosterview.render().fetch().update();
                     return this;
                 },
 
                 renderLoginPanel: function () {
-                    var $feedback = this.$('.conn-feedback'); // we want to still show any existing feedback.
-                    this.loginpanel = new converse.LoginPanel({
-                        '$parent': this.$el.find('.controlbox-panes'),
-                        'model': this
-                    });
-                    this.loginpanel.render();
-                    if ($feedback.length && $feedback.text() !== __('Connecting')) {
-                        this.$('.conn-feedback').replaceWith($feedback);
-                    }
+                    // var $feedback = this.$('.conn-feedback'); // we want to still show any existing feedback.
+                    // this.loginpanel = new converse.LoginPanel({
+                    //     '$parent': this.$el.find('.controlbox-panes'),
+                    //     'model': this
+                    // });
+                    // this.loginpanel.render();
+                    // if ($feedback.length && $feedback.text() !== __('Connecting')) {
+                    //     this.$('.conn-feedback').replaceWith($feedback);
+                    // }
                     return this;
                 },
 
                 renderContactsPanel: function () {
-                    this.contactspanel = new converse.ContactsPanel({
-                        '$parent': this.$el.find('.controlbox-panes')
-                    });
-                    this.contactspanel.render();
-                    converse.xmppstatusview = new converse.XMPPStatusView({
-                        'model': converse.xmppstatus
-                    });
-                    converse.xmppstatusview.render();
+                    // this.contactspanel = new converse.ContactsPanel({
+                    //     '$parent': this.$el.find('.controlbox-panes')
+                    // });
+                    // this.contactspanel.render();
+                    // converse.xmppstatusview = new converse.XMPPStatusView({
+                    //     'model': converse.xmppstatus
+                    // });
+                    // converse.xmppstatusview.render();
                 },
 
                 close: function (ev) {
@@ -40161,7 +40354,7 @@ define('text!zh',[],function () { return '{\n   "domain": "converse",\n   "local
                  * for normal one-on-one chat boxes.
                  */
                 tagName: 'div',
-                className: 'chat',
+                className: 'box box-primary direct-chat direct-chat-primary',
                 is_chatroom: true,
                 events: {
                     'click .close-chatbox-button': 'close',
@@ -40172,7 +40365,8 @@ define('text!zh',[],function () { return '{\n   "domain": "converse",\n   "local
                     'click .toggle-call': 'toggleCall',
                     'click .toggle-occupants a': 'toggleOccupants',
                     'click .new-msgs-indicator': 'viewUnreadMessages',
-                    'keypress textarea.chat-textarea': 'keyPressed'
+                    'keypress textarea.chat-textarea': 'keyPressed',
+                    'click .send-raw': 'sendRawMsg'
                 },
 
                 initialize: function () {
@@ -40204,22 +40398,25 @@ define('text!zh',[],function () { return '{\n   "domain": "converse",\n   "local
                 },
 
                 insertIntoDOM: function () {
-                    $('.ui').append(this.$el);
-                    var lol = {
-                        cursorcolor: "#cdd2d6",
-                        cursorwidth: "4px",
-                        cursorborder: "none"
-                    };
-                    var contentScroll = this.$content;
-                    this.$content.niceScroll(lol);
-                    this.$content.getNiceScroll(0).scrollend(function(info, cc){
-                        if(info.current.y < 100) {
-                            var first = this.$content.children('.chat-message:first').data('isodate');
-                            // var unixtime = Date.parse(first);
-                            this.fetchMessagesOffline(first, 20);
+                    $('.chatbox-messenger-content').append(this.$el);
+                    // var lol = {
+                    //     cursorcolor: "#cdd2d6",
+                    //     cursorwidth: "4px",
+                    //     cursorborder: "none"
+                    // };
+                    // var contentScroll = this.$content;
 
-                        }
-                    }.bind(this));
+                    // this.$content.niceScroll(lol);
+                    // this.$content.getNiceScroll(0).scrollend(function(info, cc){
+                    //     if(info.current.y < 100) {
+                    //         var first = this.$content.children('.chat-message:first').data('isodate');
+                    //         // var unixtime = Date.parse(first);
+                    //         this.fetchMessagesOffline(Number(first)-5, 20);
+                    //
+                    //     }
+                    // }.bind(this));
+
+
                     //     .scrollstart(function(info){
                     //     console.log("start");
                     //     $(".messages").scrollTop();
@@ -40234,6 +40431,10 @@ define('text!zh',[],function () { return '{\n   "domain": "converse",\n   "local
                     // } else {
                     //     $('#conversejs').prepend(this.$el);
                     // }
+                    var that = this;
+                    this.$content.scroll(function(e){
+                        that.onScrollContent(e);
+                    });
                     return this;
                 },
                 fetchMessagesOffline: function (beginTime, sizeMsg) {
@@ -40243,7 +40444,7 @@ define('text!zh',[],function () { return '{\n   "domain": "converse",\n   "local
                     var to = this.model.get('jid');
                     to = Strophe.getNodeFromJid(to);
                     converse.log("From "+from+" To "+ to);
-                    var infoUser = JSON.stringify({"room_name":to,"unix_start":"0","unix_end":beginTime,"size_msg":20});
+                    var infoUser = JSON.stringify({"room_name":to,"unix_start":"0","unix_end":beginTime,"size_msg":10});
                     //post data to
                     var xhr = new XMLHttpRequest();
                     var url = converse.sky_apiserver+"storemessage";
@@ -40270,9 +40471,19 @@ define('text!zh',[],function () { return '{\n   "domain": "converse",\n   "local
                     return this;
                 },
                 render: function () {
-                    this.$el.html(converse.templates.chatbox_messenger(this.model.toJSON()));
+                    var idshow = this.model.id;
+                    var nameshow = idshow.substr((idshow.length -15), 6);
+                    this.$el.html(converse.templates.chatbox_messenger(
+                        _.extend(
+                            this.model.toJSON(), {
+                                'nameshow':nameshow
+                            })));
                     // this.renderChatArea();
-                    this.$content = this.$el.find('.messages');
+                    this.$content = this.$el.find('.direct-chat-messages');
+                    this.$chattextarea = this.$el.find('.chat-textarea');
+                    if(this.model.get('is_pick') == "false"){
+                        this.$chattextarea.prop("disabled", true);
+                    }
                     window.setTimeout(converse.refreshWebkit, 50);
                     return this;
                 },
@@ -40292,7 +40503,20 @@ define('text!zh',[],function () { return '{\n   "domain": "converse",\n   "local
                     this.toggleOccupants(null, true);
                     return this;
                 },
-
+                onScrollContent: function (e) {
+                    converse.log("[HUYNHDC] scroll");
+                    var elem = $(e.currentTarget);
+                    console.log(elem.scrollTop());
+                    if(elem.scrollTop() == 0){
+                        var first = this.$content.children('.chat-message:first').data('isodate');
+                        this.fetchMessagesOffline(Number(first)-5, 10);
+                    }
+                    if (elem[0].scrollHeight - elem.scrollTop() == elem.outerHeight())
+                    {
+                        console.log("bottom");
+                    }
+                    return this;
+                },
                 close: function (ev) {
                     // converse.connection.deleteHandler(this.handler);
                     // this.leave();
@@ -40390,12 +40614,14 @@ define('text!zh',[],function () { return '{\n   "domain": "converse",\n   "local
                     //     message: text,
                     //     msgid: msgid
                     // });
+                    var timesend = Number(Date.now());
                     this.model.messages.create({
                         fullname: this.model.get('nick'),
                         sender: converse.sky_myname,
-                        time: moment().format(),
+                        time: timesend,
                         message: text,
-                        timesend: Date.now(),
+                        to: this.model.get('jid'),
+                        timesend: timesend,
                         sendtype: 'presskey',
                         msgid: msgid
                     });
@@ -40568,7 +40794,16 @@ define('text!zh',[],function () { return '{\n   "domain": "converse",\n   "local
                 },
 
                 handleMUCStanza: function (stanza) {
+
                     converse.log("[HUYNHDC nhan message group ] "+ stanza);
+
+                    converse.log("Kien tra message do co phai offline khong neu phai khong xu ly  "+ stanza);
+                    var $message = $(stanza),
+                        $delay = $message.find('delay');
+                    if ($delay.length) {
+                        return;
+                    }
+
                     var xmlns, xquery, i;
                     var from = stanza.getAttribute('from');
                     var is_mam = $(stanza).find('[xmlns="'+Strophe.NS.MAM+'"]').length > 0;
@@ -40581,12 +40816,13 @@ define('text!zh',[],function () { return '{\n   "domain": "converse",\n   "local
                             type = $message.attr('type'),
                             $forwarded = $message.find('forwarded');
                             converse.log("[HUYNHDC create room aa] "+ jid);
-                            converse.rostermessenger.addNewContact(Strophe.getNodeFromJid(jid));
+                            converse.rostermessenger.addNewContact(Strophe.getNodeFromJid(jid), "false");
                             var chatroom = converse.chatboxviewsmessenger.showChatCreate({
                                 'id': jid,
                                 'jid': jid,
                                 'name': Strophe.unescapeNode(Strophe.getNodeFromJid(jid)),
                                 'nick': 'PHòng chat',
+                                'is_pick': 'false',
                                 'is_create':'create',
                                 'type': 'chatroom',
                                 'box_id': b64_sha1(jid)
@@ -40601,8 +40837,69 @@ define('text!zh',[],function () { return '{\n   "domain": "converse",\n   "local
                                         .c("msgid").t($message.attr('id'))
                                 );
                             }
+                        }
 
+                        if(subtype == 'join' || subtype == 'inviteweb'){
+                            var jid = from,
+                                $message = $(stanza),
+                                type = $message.attr('type'),
+                                $forwarded = $message.find('forwarded');
+                            converse.log("[HUYNHDC create room aa] "+ jid);
+                            //
+                            var $currentRoster = $('#chat_list').find('.open-image[data-msgid="contact_'+jid+'"]').parent();
+                            if($currentRoster.length == 1){
+                                converse.rostermessenger.get(jid).attributes.is_pick = "false";
+                            }else{
+                                $currentRoster = $('#chat_request').find('.open-image[data-msgid="contact_'+jid+'"]').parent();
+                                if($currentRoster.length == 1){
+                                    $('#chat_request').prepend($currentRoster);
+                                    converse.rostermessenger.get(jid).attributes.is_pick = "false";
+                                }else{
+                                    converse.rostermessenger.addNewContact(Strophe.getNodeFromJid(jid), "false");
+                                }
+                            }
 
+                            var chatroom = converse.chatboxviewsmessenger.showChatCreate({
+                                'id': jid,
+                                'jid': jid,
+                                'name': Strophe.unescapeNode(Strophe.getNodeFromJid(jid)),
+                                'nick': 'PHòng chat',
+                                'is_pick': 'false',
+                                'is_create':'create',
+                                'type': 'chatroom',
+                                'box_id': b64_sha1(jid)
+                            },'create');
+                            if (!$forwarded.length) {
+                                converse.connection.send(
+                                    $msg({to: jid, type: type, id: Math.random().toString(36).substr(2, 10)})
+                                        .c("x", {
+                                            xmlns: "jabber:x:event"
+                                        })
+                                        .c("deleted").up()
+                                        .c("msgid").t($message.attr('id'))
+                                );
+                            }
+                        }
+
+                        if(subtype == 'kickweb'){
+                            var jid = from,
+                                $message = $(stanza),
+                                type = $message.attr('type'),
+                                $forwarded = $message.find('forwarded');
+                            converse.log("[HUYNHDC xoa chatbox and contact] "+ jid);
+                            converse.rostermessenger.get(jid).destroy();
+                            converse.chatboxes.get(jid).destroy();
+                            $('.mideas-list-request-count').html($("#chat_request").children("p").size());
+                            if (!$forwarded.length) {
+                                converse.connection.send(
+                                    $msg({to: jid, type: type, id: Math.random().toString(36).substr(2, 10)})
+                                        .c("x", {
+                                            xmlns: "jabber:x:event"
+                                        })
+                                        .c("deleted").up()
+                                        .c("msgid").t($message.attr('id'))
+                                );
+                            }
                         }
                         return true;
 
@@ -41740,6 +42037,7 @@ define('text!zh',[],function () { return '{\n   "domain": "converse",\n   "local
                     // converse.log('[HUYNHDC create IQ room ]');
                     var converse = this._super.converse;
                     this._super.onConnected.apply(this, arguments);
+                    $('#conversejs').hide('slow');
                     //
                     // var infoUser = JSON.stringify({"uid":Strophe.getNodeFromJid(converse.connection.jid)});
                     // //post data to
@@ -41855,8 +42153,9 @@ define('text!zh',[],function () { return '{\n   "domain": "converse",\n   "local
             });
 
             converse.RosterViewMessenger = Backbone.Overview.extend({
-                tagName: 'menu',
-                className: 'list-friends',
+                tagName: 'div',
+                className: 'tab-content tab-child-content-contact',
+                // id: 'chat_list',
 
                 initialize: function () {
                     this.roster_handler_ref = this.registerRosterHandler();
@@ -41868,9 +42167,14 @@ define('text!zh',[],function () { return '{\n   "domain": "converse",\n   "local
                     // this.model.on("add", this.onGroupAdd, this);
                     // this.model.on("reset", this.reset, this);
                 },
+                events: {
+                    "change": "contactViewChange"
+                },
 
                 render: function () {
-                    $('.left-menu').append(converse.templates.contact_search()).append(this.$el);
+                    $('.tab-content-contact').append(this.$el);
+                    this.$el.append('<div class="tab-pane" id="chat_list"></div>')
+                            .append('<div class="tab-pane active" id="chat_request"></div>');
                     // this.$el.html(this.filter_view.render());
                     // if (!converse.allow_contact_requests) {
                     //     // XXX: if we ever support live editing of config then
@@ -41879,7 +42183,9 @@ define('text!zh',[],function () { return '{\n   "domain": "converse",\n   "local
                     // }
                     return this;
                 },
-
+                contactViewChange: function(){
+                    console.log("[HUYNHDC] contact change");
+                },
                 updateFilter: _.debounce(function () {
                     /* Filter the roster again.
                      * Called whenever the filter settings have been changed or
@@ -41994,10 +42300,16 @@ define('text!zh',[],function () { return '{\n   "domain": "converse",\n   "local
 
                 onContactAdd: function (contact) {
                     var view = new converse.RosterContactViewMessenger({model: contact});
-                    this.$el.append(view.$el);
-                    view.render();
+                    if(contact.get('is_pick') == 'true'){
+                        $('#chat_list').prepend(view.$el);
+                        view.render();
+                        view.$el.find('.pickup-chat').hide();
+                    }else{
+                        $('#chat_request').prepend(view.$el);
+                        view.render();
+                        $('.mideas-list-request-count').html($("#chat_request").children("p").size());
+                    }
                     return this;
-                    // lets render the book
                 },
 
                 onContactChange: function (contact) {
@@ -42123,12 +42435,14 @@ define('text!zh',[],function () { return '{\n   "domain": "converse",\n   "local
 
 
             converse.RosterContactViewMessenger = Backbone.View.extend({
-                tagName: 'li',
+                tagName: 'p',
+                className: 'open-chat contact-item-mideas',
 
                 events: {
                     "click .accept-xmpp-request": "acceptRequest",
                     "click .decline-xmpp-request": "declineRequest",
                     "click .open-chat": "openChat",
+                    "click": "openChat",
                     "click .pickup-chat": "pickupChat",
                     "click .remove-xmpp-contact": "removeContact"
                 },
@@ -42188,19 +42502,23 @@ define('text!zh',[],function () { return '{\n   "domain": "converse",\n   "local
                 openChat: function (ev) {
                     if (ev && ev.preventDefault) { ev.preventDefault(); }
                     var jid = this.model.attributes.jid;
+                    var is_pick = this.model.attributes.is_pick;
                     var item = _.extend(this.model.toJSON(), {
                             name: jid,
                             nick: jid,
                             type: 'chatroom',
+                            is_pick: is_pick,
                             box_id: b64_sha1(jid)
                         }
                     );
+                    converse.chatboxviewsmessenger.closeAllChatBoxesHide();
                     return converse.chatboxviewsmessenger.showChat(item);
                 },
                 pickupChat: function (ev) {
                     if (ev && ev.preventDefault) { ev.preventDefault(); }
                     var jid = this.model.attributes.jid;
                     var room = Strophe.getNodeFromJid(jid);
+
                     var item = $build("member", {jid: Strophe.getNodeFromJid(converse.connection.jid), role: "member"});
                     var iq = $iq({to: room+converse.sky_room, type: "set", id: Math.random().toString(36).substr(2, 6)})
                         .c("query", {xmlns: "kickweb"})
@@ -42211,6 +42529,11 @@ define('text!zh',[],function () { return '{\n   "domain": "converse",\n   "local
                 pickUpSuccess: function(iq){
                     converse.log("picksuccess");
                     this.$el.find('.pickup-chat').hide();
+                    $('#mideas-list-contact').click();
+                    $('#chat_list').prepend(this.$el);
+                    converse.chatboxviewsmessenger.get(this.model.attributes.jid).$chattextarea.prop("disabled",false);
+                    this.model.attributes.is_pick = "true";
+                    $('.mideas-list-request-count').html($("#chat_request").children("p").size());
                 },
                 pickUpFail: function(iq){
 
@@ -43572,7 +43895,8 @@ require.config({
         "contact_search":           "src/templates/contact_search",
         "chatbox_messenger":        "src/templates/chatbox_messenger",
         "chatbox_message":          "src/templates/chatbox_message",
-        "chatbox_message_me":          "src/templates/chatbox_message_me"
+        "chatbox_message_me":       "src/templates/chatbox_message_me",
+        "contact_info":             "src/templates/contact_info"
     },
 
     map: {

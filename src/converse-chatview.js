@@ -58,7 +58,7 @@
 
             converse.ChatBoxView = Backbone.View.extend({
                 tagName: 'div',
-                className: 'chat',
+                className: 'box box-primary direct-chat direct-chat-primary',
                 is_chatroom: false,  // This is not a multi-user chatroom
 
                 events: {
@@ -68,7 +68,7 @@
                     'click .toggle-smiley ul li': 'insertEmoticon',
                     'click .toggle-clear': 'clearMessages',
                     'click .toggle-call': 'toggleCall',
-                    'scroll .messages': 'scrollContent',
+                    // 'scroll .direct-chat-messages': 'scrollContent',
                     'click .new-msgs-indicator': 'viewUnreadMessages'
                 },
 
@@ -83,7 +83,8 @@
                     this.model.on('change:status', this.onStatusChanged, this);
                     this.model.on('showHelpMessages', this.showHelpMessages, this);
                     this.model.on('sendMessage', this.sendMessage, this);
-                    this.$content = this.$el.find('.messages');
+                    this.$content = this.$el.find('.direct-chat-messages');
+                    this.$chattextarea = this.$el.find('.chat-textarea');
                     // this.render().fetchMessages().insertIntoDOM().hide();
                     // this.render().insertIntoDOM();
                     // XXX: adding the event below to the events map above doesn't work.
@@ -98,7 +99,7 @@
                 render: function () {
                     this.$el.attr('id', this.model.get('box_id'))
                         .html(converse.templates.chatbox_messenger(this.model.toJSON()));
-                    this.$content = this.$el.find('.messages');
+                    this.$content = this.$el.find('.direct-chat-messages');
                     this.$content.scroll(function() {
                         console.log('scroll');
                     });
@@ -254,14 +255,31 @@
                      * Parameters:
                      *  (Object) attrs: An object containing the message attributes.
                      */
-                    var $currentRoster = $('.list-friends').find('.open-image[data-msgid="contact_'+attrs.to+'"]').parent();
-                    $('.list-friends').prepend($currentRoster);
+                    var firstContact = $('#chat_list').children('.contact-item-mideas:first').children('.open-image').data('msgid');
+                    var currentContact = "contact_"+attrs.to;
+                    if(firstContact == currentContact){
+                        converse.log("[HUYNHDC] no change");
+                    }else{
+                        var $currentRoster = $('#chat_list').find('.open-image[data-msgid="contact_'+attrs.to+'"]').parent();
+                        $('#chat_list').prepend($currentRoster);
+                        this.updateContactActiveTime(Strophe.getNodeFromJid(attrs.to), Strophe.getNodeFromJid(converse.connection.jid));
+                        //request update contact
+                    }
 
+                    var firstContact = $('#chat_request').children('.contact-item-mideas:first').children('.open-image').data('msgid');
+                    if(firstContact == currentContact){
+                        converse.log("[HUYNHDC] no change");
+                    }else{
+                        var $currentRoster = $('#chat_request').find('.open-image[data-msgid="contact_'+attrs.to+'"]').parent();
+                        $('#chat_request').prepend($currentRoster);
+                        this.updateContactActiveTime(Strophe.getNodeFromJid(attrs.to), Strophe.getNodeFromJid(converse.connection.jid));
+                        //request update contact
+                    }
 
                     /*
                      *  sort contact update recent list here
                      */
-                    this.$content = this.$el.find('.messages');
+                    // this.$content = this.$el.find('.messages');
                     var hasMsg = this.$content.find('.chat-message[data-msgid="'+attrs.msgid+'"]');
                     if(hasMsg.length > 0){
                         return;
@@ -325,6 +343,26 @@
                         )(this.renderMessage(attrs));
                 },
                 showMessageSend: function (attrs) {
+                    var firstContact = $('#chat_list').children('.contact-item-mideas:first').children('.open-image').data('msgid');
+                    var currentContact = "contact_"+attrs.to;
+                    if(firstContact == currentContact){
+                        converse.log("[HUYNHDC] no change");
+                    }else{
+                        var $currentRoster = $('#chat_list').find('.open-image[data-msgid="contact_'+attrs.to+'"]').parent();
+                        $('#chat_list').prepend($currentRoster);
+                        this.updateContactActiveTime(Strophe.getNodeFromJid(attrs.to), Strophe.getNodeFromJid(converse.connection.jid));
+                        //request update contact
+                    }
+
+                    var firstContact = $('#chat_request').children('.contact-item-mideas:first').children('.open-image').data('msgid');
+                    if(firstContact == currentContact){
+                        converse.log("[HUYNHDC] no change");
+                    }else{
+                        var $currentRoster = $('#chat_request').find('.open-image[data-msgid="contact_'+attrs.to+'"]').parent();
+                        $('#chat_request').prepend($currentRoster);
+                        this.updateContactActiveTime(Strophe.getNodeFromJid(attrs.to), Strophe.getNodeFromJid(converse.connection.jid));
+                        //request update contact
+                    }
 
                     var msg_dates, idx,
                         $first_msg = this.$content.children('.chat-message:first'),  //get first message
@@ -336,11 +374,31 @@
                     this.insertMessageSend(attrs);
                 },
                 showMessageReceive: function (attrs) {
+                    var firstContact = $('#chat_list').children('.contact-item-mideas:first').children('.open-image').data('msgid');
+                    var currentContact = "contact_"+attrs.to;
+                    if(firstContact == currentContact){
+                        converse.log("[HUYNHDC] no change");
+                    }else{
+                        var $currentRoster = $('#chat_list').find('.open-image[data-msgid="contact_'+attrs.to+'"]').parent();
+                        $('#chat_list').prepend($currentRoster);
+                        this.updateContactActiveTime(Strophe.getNodeFromJid(attrs.to), Strophe.getNodeFromJid(converse.connection.jid));
+                        //request update contact
+                    }
+                    
+                    var firstContact = $('#chat_request').children('.contact-item-mideas:first').children('.open-image').data('msgid');
+                    if(firstContact == currentContact){
+                        converse.log("[HUYNHDC] no change");
+                    }else{
+                        var $currentRoster = $('#chat_request').find('.open-image[data-msgid="contact_'+attrs.to+'"]').parent();
+                        $('#chat_request').prepend($currentRoster);
+                        this.updateContactActiveTime(Strophe.getNodeFromJid(attrs.to), Strophe.getNodeFromJid(converse.connection.jid));
+                        //request update contact
+                    }
 
                     var msg_dates, idx,
                         $first_msg = this.$content.children('.chat-message:first'),  //get first message
                         first_msg_date = $first_msg.data('isodate'),                 //first message date
-                        timeMsg = Number(attrs.time),
+                        timeMsg = Number(attrs.timesend),
                     // current_msg_date = Date.now(),             //current date
                         last_msg_date = this.$content.children('.chat-message:last').data('isodate');  //last message date
 
@@ -380,10 +438,11 @@
                     )(this.renderMessageReceive(attrs));
                 },
                 showMessageReceiveStore: function (attrs) {
+
                     var msg_dates, idx,
                         $first_msg = this.$content.children('.chat-message:first'),  //get first message
                         first_msg_date = $first_msg.data('isodate'),                 //first message date
-                        timeMsg = Number(attrs.time),
+                        timeMsg = Number(attrs.timesend),
                     // current_msg_date = Date.now(),             //current date
                         last_msg_date = this.$content.children('.chat-message:last').data('isodate');  //last message date
 
@@ -754,13 +813,22 @@
                     // }
                     // console.log($('.chat-content').height());
                     // console.log($('.chat-content').scrollTop());
-                    var scroll = this.$content.height() + this.$content.scrollTop()+ 113;
-                    var scrollHeight = this.$content.prop("scrollHeight");
-                    converse.log("[HUYNHDC] SCROLL == SCROLLHEIGHT "+ scroll +" == "+ scrollHeight);
-                    if(scroll == scrollHeight ){
-                        this.scrollDown();
-                    }
 
+
+                    if(message.attributes.sendtype == 'presskey'){
+                        this.scrollDown();
+                    }else{
+                        // var scroll = this.$content.height() + this.$content.scrollTop()+ 78;
+                        // var scrollHeight = this.$content.prop("scrollHeight");
+                        if(this.$content[0]){
+                            converse.log("[HUYNHDC HEIGHT ]+ "+this.$content[0].scrollHeight);
+                            if (this.$content[0].scrollHeight - this.$content.scrollTop() - 69 == this.$content.outerHeight())
+                            {
+                                this.scrollDown();
+                            }
+                        }
+
+                    }
                 },
 
                 handleErrorMessage: function (message) {
@@ -931,11 +999,10 @@
                 sendRawMsg: function (ev) {
                     /* Event handler for when a key is pressed in a chat box textarea.
                      */
-                    var $textarea = $(ev.target), message;
-
+                    var $textarea , message;
                     ev.preventDefault();
-                    message = $textarea.val();
-                    $textarea.val('').focus();
+                    message = this.$chattextarea.val();
+                    this.$chattextarea.val('').focus();
                     if (message !== '') {
                         // XXX: leaky abstraction from MUC
                         if (this.model.get('type') === 'chatroom') {
@@ -946,7 +1013,7 @@
                         converse.emit('messageSend', message);
                     }
                     this.setChatState(converse.ACTIVE);
-                    
+
                 },
                 clearMessages: function (ev) {
                     if (ev && ev.preventDefault) { ev.preventDefault(); }
@@ -1089,7 +1156,7 @@
                         return this;
                     }
                     this.$el.hide();
-                    utils.refreshWebkit();
+                    // utils.refreshWebkit();
                     return this;
                 },
 
@@ -1099,8 +1166,9 @@
                         'time_minimized': moment().format(),
                         'is_opened': false
                     });
+                    $('.contact-item-mideas').removeClass('forcus-contact');
                     this.$el.hide();
-                    utils.refreshWebkit();
+                    // utils.refreshWebkit();
                     return this;
                 },
 
@@ -1176,6 +1244,20 @@
                         this.$el.find('.new-msgs-indicator').addClass('hidden');
                     }
                     return this;
+                },
+                updateContactActiveTime: function(room, user){
+                    var infoUser = JSON.stringify({"room_name":room,"uid":user});
+                    //post data to
+                    var xhr = new XMLHttpRequest();
+                    var url = converse.sky_apiserver+"webclient/updatecontact";
+                    xhr.open("POST", url, true);
+                    var that = this;
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState == 4 && xhr.status == 200) {
+
+                        }
+                    }
+                    xhr.send(infoUser);
                 }
             });
         }

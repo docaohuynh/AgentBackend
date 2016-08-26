@@ -1541,6 +1541,7 @@
                             'jid': jidTemp,
                             'name': Strophe.unescapeNode(Strophe.getNodeFromJid(jidTemp)),
                             'nick': 'PHòng chat',
+                            'is_pick': 'false',
                             'type': 'chatroom',
                             'box_id': b64_sha1(jidTemp)
                         });
@@ -1581,17 +1582,17 @@
                     var room = roomx.room;
                     var jid = room+converse.sky_room;
                     //open first chat room
-                    if(firstRoom == 1){
-                        converse.chatboxviewsmessenger.showChat({
-                            'id': jid,
-                            'jid': jid,
-                            'name': Strophe.unescapeNode(Strophe.getNodeFromJid(jid)),
-                            'nick': jid,
-                            'type': 'chatroom',
-                            'box_id': b64_sha1(jid)
-                        });
-                    }
-                    firstRoom ++;
+                    // if(firstRoom == 1){
+                    //     converse.chatboxviewsmessenger.showChat({
+                    //         'id': jid,
+                    //         'jid': jid,
+                    //         'name': Strophe.unescapeNode(Strophe.getNodeFromJid(jid)),
+                    //         'nick': jid,
+                    //         'type': 'chatroom',
+                    //         'box_id': b64_sha1(jid)
+                    //     });
+                    // }
+
                     //end open first chat room
 
                     if (that.isSelf(jid)) { return; }
@@ -1604,8 +1605,15 @@
                             fullname: jid,
                             groups: groups,
                             jid: jid,
+                            is_pick: roomx.is_pick
                         }, {sort: false});
                     }
+
+                    if(firstRoom == 1){
+                        var $currentRoster = $('.list-friends').find('.open-image[data-msgid="contact_'+jid+'"]').parent();
+                        $currentRoster.addClass('forcus-contact');
+                    }
+                    firstRoom ++;
                     // that.updateContact(room);
                 });
                 //scroll contact
@@ -1614,10 +1622,10 @@
                     cursorwidth: "4px",
                     cursorborder: "none"
                 };
-                $('.list-friends').niceScroll(conf);
+                $('.chat_list').niceScroll(conf);
                 return this;
             },
-            addNewContact: function (room) {
+            addNewContact: function (room, is_pick) {
                 /* Update or create RosterContact models based on items
                  * received in the IQ from the server.
                  */
@@ -1634,6 +1642,7 @@
                         nameShow: nameShow,
                         fullname: jid,
                         groups: groups,
+                        is_pick: is_pick,
                         jid: jid,
                     }, {sort: false});
                 }
@@ -1838,7 +1847,10 @@
                 } else {
                     from = Strophe.getBareJidFromJid($message.attr('from'));
                 }
-                if (_.isEmpty(fullname)) {
+                // if (_.isEmpty(fullname)) {
+                //     fullname = from;
+                // }
+                if (!_.isEmpty(jidSend)) {
                     fullname = from;
                 }
                 if (delayed) {
@@ -1880,9 +1892,11 @@
 
                 }else{
                     var date = new Date(Number(timeS));
-                    time = date;
+                    time = Number(date);
                 }
-
+                if(isNaN(timesendlocal)){
+                    timesendlocal = Number(new Date());
+                }
                 return {
                     'type': type,
                     'chat_state': chat_state,
@@ -1928,6 +1942,7 @@
                     from = $message.attr('member');
                     if($message.attr('member') == 'hana_ai'){
                         jidSend = $message.attr('member');
+                        fullname = jidSend;
                     }
                     if(!from){
                         from = Strophe.getBareJidFromJid($message.attr('from'));
@@ -1942,7 +1957,7 @@
                 } else {
                     from = Strophe.getBareJidFromJid($message.attr('from'));
                 }
-                if (_.isEmpty(fullname)) {
+                if (!_.isEmpty(jidSend)) {
                     fullname = from;
                 }
                 if (delayed) {
@@ -2199,7 +2214,7 @@
                 if (!this.el) {
                     var $el = $('#conversejs');
                     if (!$el.length) {
-                        $el = $('<div id="conversejs">');
+                        $el = $('<div id="conversejs" style="display: none">');
                         $('body').append($el);
                     }
                     $el.html(converse.templates.chats_panel());
@@ -2273,14 +2288,17 @@
             _ensureElement: function () {
                 /* Override method from backbone.js
                  * If the #conversejs element doesn't exist, create it.
+                 * Create view contact, chatbox
                  */
                 if (!this.el) {
-                    var $el = $('.ui');
-                    if (!$el.length) {
-                        $el = $('<div class="ui">');
-                        $('.direct-chat-primary').append($el);
-                    }
-                    $el.html(converse.templates.messenger_left_menu());
+                    var $el = $('.contact-chat');
+                    // if (!$el.length) {
+                    //     $el = $('<div class="ui">');
+                    //     $('.direct-chat-primary').append($el);
+                    // }
+                    $el.prepend(converse.templates.messenger_left_menu())
+                       .prepend(converse.templates.contact_search())
+                       .prepend(converse.templates.contact_info());
                     this.setElement($el, false);
                 } else {
                     this.setElement(_.result(this, 'el'), false);
@@ -2310,6 +2328,7 @@
                 /* This method gets overridden in src/converse-controlbox.js if
                  * the controlbox plugin is active.
                  */
+                
                 this.each(function (view) { view.hideAll(); });
                 return this;
             },
@@ -2330,11 +2349,29 @@
                             converse.log(response.responseText);
                         }
                     });
-
+                    if(attrs.is_pick == "true"){
+                        var $currentRoster = $('#chat_list').find('.open-image[data-msgid="contact_'+attrs.id+'"]').parent();
+                        $currentRoster.addClass('forcus-contact');
+                    }else{
+                        var $currentRoster = $('#chat_request').find('.open-image[data-msgid="contact_'+attrs.id+'"]').parent();
+                        $currentRoster.addClass('forcus-contact');
+                    }
                 }else{
                     converse.chatboxviewsmessenger.closeAllChatBoxesHide();
                     converse.chatboxviewsmessenger.get(chatbox.get('id')).show();
-                    chatbox.chatBoxOpen();
+                    if(attrs.is_pick == "true"){
+                        converse.chatboxviewsmessenger.get(chatbox.get('id')).$chattextarea.prop("disabled",false);
+                    }
+                    if(attrs.is_pick == "true"){
+                        var $currentRoster = $('#chat_list').find('.open-image[data-msgid="contact_'+attrs.id+'"]').parent();
+                        $currentRoster.addClass('forcus-contact');
+                    }else{
+                        var $currentRoster = $('#chat_request').find('.open-image[data-msgid="contact_'+attrs.id+'"]').parent();
+                        $currentRoster.addClass('forcus-contact');
+                    }
+
+
+                    // chatbox.chatBoxOpen();
                 }
                 var defaultRoom  = 'defaultroom'+converse.sky_room;
                 if(chatbox.get('id') == defaultRoom){
@@ -2368,6 +2405,18 @@
                         chatbox.chatBoxOpen();
                     }
                     converse.chatboxviewsmessenger.closeAllChatBoxes();
+                }else{
+
+                    if(attrs.is_pick == "false"){
+                        converse.chatboxviewsmessenger.get(chatbox.get('id')).$chattextarea.prop("disabled",true);
+                    }
+                    // kiem tra neu co contact ben contact list thi chuyen qua request list
+                    var $currentRoster = $('#chat_list').find('.open-image[data-msgid="contact_'+chatbox.get('id')+'"]').parent();
+                    if($currentRoster.length == 1){
+                        $('#chat_request').prepend($currentRoster);
+                        $currentRoster.find('.pickup-chat').show();
+                        $('.mideas-list-request-count').html($("#chat_request").children("p").size());
+                    }
                 }
                 var defaultRoom  = 'defaultroom'+converse.sky_room;
                 if(chatbox.get('id') == defaultRoom){

@@ -186,7 +186,7 @@
                  * for normal one-on-one chat boxes.
                  */
                 tagName: 'div',
-                className: 'chat',
+                className: 'box box-primary direct-chat direct-chat-primary',
                 is_chatroom: true,
                 events: {
                     'click .close-chatbox-button': 'close',
@@ -230,22 +230,25 @@
                 },
 
                 insertIntoDOM: function () {
-                    $('.ui').append(this.$el);
-                    var lol = {
-                        cursorcolor: "#cdd2d6",
-                        cursorwidth: "4px",
-                        cursorborder: "none"
-                    };
-                    var contentScroll = this.$content;
-                    this.$content.niceScroll(lol);
-                    this.$content.getNiceScroll(0).scrollend(function(info, cc){
-                        if(info.current.y < 100) {
-                            var first = this.$content.children('.chat-message:first').data('isodate');
-                            // var unixtime = Date.parse(first);
-                            this.fetchMessagesOffline(first, 20);
+                    $('.chatbox-messenger-content').append(this.$el);
+                    // var lol = {
+                    //     cursorcolor: "#cdd2d6",
+                    //     cursorwidth: "4px",
+                    //     cursorborder: "none"
+                    // };
+                    // var contentScroll = this.$content;
 
-                        }
-                    }.bind(this));
+                    // this.$content.niceScroll(lol);
+                    // this.$content.getNiceScroll(0).scrollend(function(info, cc){
+                    //     if(info.current.y < 100) {
+                    //         var first = this.$content.children('.chat-message:first').data('isodate');
+                    //         // var unixtime = Date.parse(first);
+                    //         this.fetchMessagesOffline(Number(first)-5, 20);
+                    //
+                    //     }
+                    // }.bind(this));
+
+
                     //     .scrollstart(function(info){
                     //     console.log("start");
                     //     $(".messages").scrollTop();
@@ -260,6 +263,10 @@
                     // } else {
                     //     $('#conversejs').prepend(this.$el);
                     // }
+                    var that = this;
+                    this.$content.scroll(function(e){
+                        that.onScrollContent(e);
+                    });
                     return this;
                 },
                 fetchMessagesOffline: function (beginTime, sizeMsg) {
@@ -269,7 +276,7 @@
                     var to = this.model.get('jid');
                     to = Strophe.getNodeFromJid(to);
                     converse.log("From "+from+" To "+ to);
-                    var infoUser = JSON.stringify({"room_name":to,"unix_start":"0","unix_end":beginTime,"size_msg":20});
+                    var infoUser = JSON.stringify({"room_name":to,"unix_start":"0","unix_end":beginTime,"size_msg":10});
                     //post data to
                     var xhr = new XMLHttpRequest();
                     var url = converse.sky_apiserver+"storemessage";
@@ -289,6 +296,8 @@
                                     // var stanza  = $.parseXML(msgPacket);
                                     that.onChatRoomMessageOffline(msgPacket, json.timereceive);
                                 });
+                            }else{
+                                return this;
                             }
                         }
                     }
@@ -304,7 +313,11 @@
                                 'nameshow':nameshow
                             })));
                     // this.renderChatArea();
-                    this.$content = this.$el.find('.messages');
+                    this.$content = this.$el.find('.direct-chat-messages');
+                    this.$chattextarea = this.$el.find('.chat-textarea');
+                    if(this.model.get('is_pick') == "false"){
+                        this.$chattextarea.prop("disabled", true);
+                    }
                     window.setTimeout(converse.refreshWebkit, 50);
                     return this;
                 },
@@ -324,7 +337,20 @@
                     this.toggleOccupants(null, true);
                     return this;
                 },
-
+                onScrollContent: function (e) {
+                    converse.log("[HUYNHDC] scroll");
+                    var elem = $(e.currentTarget);
+                    console.log(elem.scrollTop());
+                    if(elem.scrollTop() == 0){
+                        var first = this.$content.children('.chat-message:first').data('isodate');
+                        this.fetchMessagesOffline(Number(first)-5, 10);
+                    }
+                    if (elem[0].scrollHeight - elem.scrollTop() == elem.outerHeight())
+                    {
+                        console.log("bottom");
+                    }
+                    return this;
+                },
                 close: function (ev) {
                     // converse.connection.deleteHandler(this.handler);
                     // this.leave();
@@ -422,12 +448,14 @@
                     //     message: text,
                     //     msgid: msgid
                     // });
+                    var timesend = Number(Date.now());
                     this.model.messages.create({
                         fullname: this.model.get('nick'),
                         sender: converse.sky_myname,
-                        time: moment().format(),
+                        time: timesend,
                         message: text,
-                        timesend: Date.now(),
+                        to: this.model.get('jid'),
+                        timesend: timesend,
                         sendtype: 'presskey',
                         msgid: msgid
                     });
@@ -600,7 +628,17 @@
                 },
 
                 handleMUCStanza: function (stanza) {
+
                     converse.log("[HUYNHDC nhan message group ] "+ stanza);
+
+                    converse.log("Kien tra message do co phai offline khong neu phai khong xu ly  "+ stanza);
+                    if (stanza.nodeName === "message") {
+                        var $message = $(stanza),
+                            $delay = $message.find('delay');
+                        if ($delay.length) {
+                            return true;
+                        }
+                    }
                     var xmlns, xquery, i;
                     var from = stanza.getAttribute('from');
                     var is_mam = $(stanza).find('[xmlns="'+Strophe.NS.MAM+'"]').length > 0;
@@ -613,12 +651,13 @@
                             type = $message.attr('type'),
                             $forwarded = $message.find('forwarded');
                             converse.log("[HUYNHDC create room aa] "+ jid);
-                            converse.rostermessenger.addNewContact(Strophe.getNodeFromJid(jid));
+                            converse.rostermessenger.addNewContact(Strophe.getNodeFromJid(jid), "false");
                             var chatroom = converse.chatboxviewsmessenger.showChatCreate({
                                 'id': jid,
                                 'jid': jid,
                                 'name': Strophe.unescapeNode(Strophe.getNodeFromJid(jid)),
                                 'nick': 'PHòng chat',
+                                'is_pick': 'false',
                                 'is_create':'create',
                                 'type': 'chatroom',
                                 'box_id': b64_sha1(jid)
@@ -633,8 +672,69 @@
                                         .c("msgid").t($message.attr('id'))
                                 );
                             }
+                        }
 
+                        if(subtype == 'join' || subtype == 'inviteweb'){
+                            var jid = from,
+                                $message = $(stanza),
+                                type = $message.attr('type'),
+                                $forwarded = $message.find('forwarded');
+                            converse.log("[HUYNHDC create room aa] "+ jid);
+                            //
+                            var $currentRoster = $('#chat_list').find('.open-image[data-msgid="contact_'+jid+'"]').parent();
+                            if($currentRoster.length == 1){
+                                converse.rostermessenger.get(jid).attributes.is_pick = "false";
+                            }else{
+                                $currentRoster = $('#chat_request').find('.open-image[data-msgid="contact_'+jid+'"]').parent();
+                                if($currentRoster.length == 1){
+                                    $('#chat_request').prepend($currentRoster);
+                                    converse.rostermessenger.get(jid).attributes.is_pick = "false";
+                                }else{
+                                    converse.rostermessenger.addNewContact(Strophe.getNodeFromJid(jid), "false");
+                                }
+                            }
 
+                            var chatroom = converse.chatboxviewsmessenger.showChatCreate({
+                                'id': jid,
+                                'jid': jid,
+                                'name': Strophe.unescapeNode(Strophe.getNodeFromJid(jid)),
+                                'nick': 'PHòng chat',
+                                'is_pick': 'false',
+                                'is_create':'create',
+                                'type': 'chatroom',
+                                'box_id': b64_sha1(jid)
+                            },'create');
+                            if (!$forwarded.length) {
+                                converse.connection.send(
+                                    $msg({to: jid, type: type, id: Math.random().toString(36).substr(2, 10)})
+                                        .c("x", {
+                                            xmlns: "jabber:x:event"
+                                        })
+                                        .c("deleted").up()
+                                        .c("msgid").t($message.attr('id'))
+                                );
+                            }
+                        }
+
+                        if(subtype == 'kickweb'){
+                            var jid = from,
+                                $message = $(stanza),
+                                type = $message.attr('type'),
+                                $forwarded = $message.find('forwarded');
+                            converse.log("[HUYNHDC xoa chatbox and contact] "+ jid);
+                            converse.rostermessenger.get(jid).destroy();
+                            converse.chatboxes.get(jid).destroy();
+                            $('.mideas-list-request-count').html($("#chat_request").children("p").size());
+                            if (!$forwarded.length) {
+                                converse.connection.send(
+                                    $msg({to: jid, type: type, id: Math.random().toString(36).substr(2, 10)})
+                                        .c("x", {
+                                            xmlns: "jabber:x:event"
+                                        })
+                                        .c("deleted").up()
+                                        .c("msgid").t($message.attr('id'))
+                                );
+                            }
                         }
                         return true;
 

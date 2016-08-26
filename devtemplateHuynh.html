@@ -1,0 +1,817 @@
+
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <title>10minutes</title>
+    <!-- Tell the browser to be responsive to screen width-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!-- Bootstrap 3.3.6-->
+    <link href="http://mideasvn.com:9999/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Ionicons-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet">
+    <!-- Theme style-->
+    <link href="http://mideasvn.com:9999/dist/css/AdminLTE.min.css" rel="stylesheet">
+    <link href="http://mideasvn.com:9999/dist/css/skins/_all-skins.min.css" rel="stylesheet">
+    <link href="http://mideasvn.com:9999/plugins/select2/select2.min.css" rel="stylesheet">
+    <link href="http://mideasvn.com:9999/dist/css/app.css" rel="stylesheet">
+    <!-- daterange picker-->
+    <link href="http://mideasvn.com:9999/plugins/daterangepicker/daterangepicker.css" rel="stylesheet">
+    <!-- bootstrap datetimepicker-->
+    <link href="http://mideasvn.com:9999/plugins/datetimepicker/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <!-- iCheck for checkboxes and radio inputs-->
+    <link href="http://mideasvn.com:9999/plugins/iCheck/all.css" rel="stylesheet">
+    <!-- Bootstrap Color Picker-->
+    <link href="http://mideasvn.com:9999/plugins/colorpicker/bootstrap-colorpicker.min.css" rel="stylesheet">
+    <!-- Bootstrap time Picker-->
+    <link href="http://mideasvn.com:9999/plugins/timepicker/bootstrap-timepicker.min.css" rel="stylesheet">
+    <!-- Select2-->
+    <link href="http://mideasvn.com:9999/plugins/select2/select2.min.css" rel="stylesheet">
+    <!-- Bootstrap select-->
+    <link href="http://mideasvn.com:9999/plugins/bootstrap-select/bootstrap-select.css" rel="stylesheet">
+    <!-- toastr-->
+    <link href="http://mideasvn.com:9999/plugins/toastr/toastr.min.css" rel="stylesheet">
+    <!-- awesomplete-->
+    <link href="http://mideasvn.com:9999/plugins/awesomplete/awesomplete.css" rel="stylesheet">
+    <!-- flexdatalist-->
+    <link href="http://mideasvn.com:9999/plugins/flexdatalist/jquery.flexdatalist.min.css" rel="stylesheet">
+    <!-- datatable-->
+    <link href="http://mideasvn.com:9999/plugins/datatables/dataTables.bootstrap.css" rel="stylesheet">
+    <link href="css/mytheme.css" rel="stylesheet">
+    <style>h3 {
+        margin-top: 0;
+    }
+    label.error {
+        margin-top: 5px;
+        color: #a94442;
+        width: 100%;
+        text-align: center;
+        border: 1px solid #a94442;
+    }
+    table.table.table-bordered td {
+        vertical-align: middle;
+    }
+    .vertical-alignment-helper {
+        display:table;
+        height: 100%;
+        width: 100%;
+        pointer-events:none;
+    }
+    .vertical-align-center {
+        display: table-cell;
+        vertical-align: middle;
+        pointer-events:none;
+    }
+    .modal-content {
+        width:inherit;
+        height:inherit;
+        margin: 0 auto;
+        pointer-events:all;
+    }
+    </style>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.3/moment.js"></script>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <!--script(src='plugins/jQuery/jquery-2.2.3.min.js')-->
+    <!--script(src='bootstrap/js/bootstrap.min.js')-->
+    <!--script(src='dist/js/app.min.js')-->
+    <!-- REQUIRED JS SCRIPTS--><!-- jQuery 2.2.3-->
+    <script src="http://mideasvn.com:9999/plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <script src="http://mideasvn.com:9999/bootstrap/js/bootstrap.min.js"></script>
+    <script src="http://mideasvn.com:9999/dist/js/app.min.js"></script>
+    <script src="http://mideasvn.com:9999/dist/js/demo.js"></script>
+    <script src="http://mideasvn.com:9999/plugins/select2/select2.full.min.js"></script>
+    <script src="http://mideasvn.com:9999/plugins/bootstrap-select/bootstrap-select.js"></script>
+    <script src="http://mideasvn.com:9999/plugins/datetimepicker/bootstrap-datetimepicker.min.js"></script>
+    <script src="http://mideasvn.com:9999/plugins/toastr/toastr.min.js"></script>
+    <script src="http://mideasvn.com:9999/plugins/awesomplete/awesomplete.js"></script>
+    <script src="http://mideasvn.com:9999/plugins/flexdatalist/jquery.flexdatalist.min.js"></script>
+    <script src="http://mideasvn.com:9999/plugins/dta/jquery.dataTables.min.js"></script>
+    <script src="http://mideasvn.com:9999/plugins/dta/dataTables.bootstrap.js"></script>
+    <script src="http://mideasvn.com:9999/dist/js/agent.js"></script>
+    <script src="http://mideasvn.com:9999/plugins/jQueryValidate/jquery.validate.min.js"></script>
+    <script src="components/requirejs/require.js"></script>
+    <script src="converse.js"></script>
+
+    </script><script>toastr.options = {
+    "closeButton": false,
+    "debug": false,
+    "newestOnTop": true,
+    "progressBar": true,
+    "positionClass": "toast-top-center",
+    "preventDuplicates": true,
+    "onclick": null,
+    "showDuration": "200",
+    "hideDuration": "200",
+    "timeOut": "5000",
+    "extendedTimeOut": "1000",
+    "showEasing": "swing",
+    "hideEasing": "linear",
+    "showMethod": "fadeIn",
+    "hideMethod": "fadeOut"
+}
+</script>
+</head>
+<!--BODY TAG OPTIONS:
+   =================
+   Apply one or more of the following classes to get the
+   desired effect
+   |---------------------------------------------------------|
+   | SKINS         | skin-blue                               |
+   |               | skin-black                              |
+   |               | skin-purple                             |
+   |               | skin-yellow                             |
+   |               | skin-red                                |
+   |               | skin-green                              |
+   |---------------------------------------------------------|
+   |LAYOUT OPTIONS | fixed                                   |
+   |               | layout-boxed                            |
+   |               | layout-top-nav                          |
+   |               | sidebar-collapse                        |
+   |               | sidebar-mini                            |
+   |---------------------------------------------------------|-->
+<body class="skin-blue sidebar-mini">
+<div class="wrapper">
+    <!-- Main Header-->
+    <header class="main-header">
+        <!-- Logo-->
+        <a class="logo" href="index">
+            <!-- mini logo for sidebar mini 50x50 pixels--><span class="logo-mini"><b>10</b>m</span><!-- logo for regular state and mobile devices--><span class="logo-lg"><b>10</b>minutes</span>
+        </a>
+        <!-- Header Navbar-->
+        <nav class="navbar navbar-static-top" role="navigation">
+            <!-- Sidebar toggle button--><a class="sidebar-toggle" role="button" data-toggle="offcanvas" href="#"><span class="sr-only">Toggle navigation</span></a><!-- Navbar Right Menu-->
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+                    <li><a href="/customer-search">Khách hàng</a></li>
+                    <li><a href="/task-search">Công việc</a></li>
+                    <li><a href="/faq-search">FAQ</a></li>
+                    <li><a href="/demand-search">Nhu cầu</a></li>
+                    <li><a href="/report-search">Báo cáo</a></li>
+                    <li><a href="/chat-mgmt-search">Quản lý chat</a></li>
+                    <li><a href="/chat">Chat</a></li>
+                    <!-- Messages: style can be found in dropdown.less-->
+                    <li class="dropdown messages-menu">
+                        <!-- Menu toggle button--><a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-envelope-o"></i><span class="label label-success">4</span></a>
+                        <ul class="dropdown-menu">
+                            <li class="header">You have 4 messages</li>
+                            <li>
+                                <!-- inner menu: contains the messages-->
+                                <ul class="menu">
+                                    <li>
+                                        <!-- start message-->
+                                        <a href="#">
+                                            <div class="pull-left">
+                                                <!-- User Image--><img class="img-circle" alt="User Image" src="http://mideasvn.com:9999/dist/img/user2-160x160.jpg">
+                                            </div>
+                                            <!-- Message title and timestamp-->
+                                            <h4>Support Team<small><i class="fa fa-clock-o"></i> 5 mins</small></h4>
+                                            <!-- The message-->
+                                            <p>Why not buy a new awesome theme?</p>
+                                        </a>
+                                    </li>
+                                    <!-- end message-->
+                                </ul>
+                                <!-- /.menu-->
+                            </li>
+                            <li class="footer"><a href="#">See All Messages</a></li>
+                        </ul>
+                    </li>
+                    <!-- /.messages-menu--><!-- Notifications Menu-->
+                    <li class="dropdown notifications-menu">
+                        <!-- Menu toggle button--><a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-bell-o"></i><span class="label label-warning">10</span></a>
+                        <ul class="dropdown-menu">
+                            <li class="header">You have 10 notifications</li>
+                            <li>
+                                <!-- Inner Menu: contains the notifications-->
+                                <ul class="menu">
+                                    <li>
+                                        <!-- start notification--><a href="#"><i class="fa fa-users text-aqua"></i> 5 new members joined today</a>
+                                    </li>
+                                    <!-- end notification-->
+                                </ul>
+                            </li>
+                            <li class="footer"><a href="#">View all</a></li>
+                        </ul>
+                    </li>
+                    <!-- Tasks Menu-->
+                    <li class="dropdown tasks-menu">
+                        <!-- Menu Toggle Button--><a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-flag-o"></i><span class="label label-danger">9</span></a>
+                        <ul class="dropdown-menu">
+                            <li class="header">You have 9 tasks</li>
+                            <li>
+                                <!-- Inner menu: contains the tasks-->
+                                <ul class="menu">
+                                    <li>
+                                        <!-- Task item-->
+                                        <a href="#">
+                                            <!-- Task title and progress text-->
+                                            <h3>Design some buttons<small class="pull-right">20%</small></h3>
+                                            <!-- The progress bar-->
+                                            <div class="progress xs">
+                                                <!-- Change the css width attribute to simulate progress-->
+                                                <div class="progress-bar progress-bar-aqua" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" style="width: 20%"><span class="sr-only">20% Complete</span></div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <!-- end task item-->
+                                </ul>
+                            </li>
+                            <li class="footer"><a href="#">View all tasks</a></li>
+                        </ul>
+                    </li>
+                    <!-- User Account Menu-->
+                    <li class="dropdown user user-menu">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><img class="user-image" alt="User Image" src="http://mideasvn.com:9999/dist/img/user2-160x160.jpg"><span class="hidden-xs username">nhung@gmail.com</span></a>
+                        <ul class="dropdown-menu">
+                            <li class="user-footer">
+                                <div class="pull-left"><a class="btn btn-default btn-flat" onclick="showModal('profile')">Thông tin cá nhân</a></div>
+                                <div class="pull-right"><a class="btn btn-default btn-flat" href="/signout">Đăng xuất</a></div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a data-toggle="control-sidebar" href="#"><i class="fa fa-gears"></i></a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- Left side column. contains the logo and sidebar-->
+    <aside class="main-sidebar">
+        <!-- sidebar: style can be found in sidebar.less-->
+        <section class="sidebar contact-chat">
+
+            <!-- Sidebar Menu-->
+            <ul class="sidebar-menu">
+                <li class="header">Menu</li>
+                <!-- Optionally, you can add icons to the links-->
+                <li class="treeview">
+                    <a href="#"><i class="fa fa-user-secret"></i><span>Agent</span><i class="fa fa-angle-left pull-right"></i></a>
+                    <ul class="treeview-menu">
+                        <li><a href="/agent"><i class="fa fa-circle-o"></i> Create new agent</a></li>
+                        <li><a href="/agent-search"><i class="fa fa-circle-o"></i> View all agents</a></li>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#"><i class="fa fa-thumb-tack"></i><span>Intents</span><i class="fa fa-angle-left pull-right"></i></a>
+                    <ul class="treeview-menu">
+                        <li><a href="/intent"><i class="fa fa-circle-o"></i> Create new intent</a></li>
+                        <li><a href="/intent-search"><i class="fa fa-circle-o"></i> View all intents</a></li>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#"><i class="fa fa-street-view"></i><span>Entity</span><i class="fa fa-angle-left pull-right"></i></a>
+                    <ul class="treeview-menu">
+                        <li><a href="/entity"><i class="fa fa-circle-o"></i> Create new entity</a></li>
+                        <li><a href="/entity-search"><i class="fa fa-circle-o"></i> View all entitys</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- /.sidebar-menu--><script>function setNavActive() {
+            var path = decodeURIComponent(window.location.pathname.replace(/\/$/, ""));
+            $(".sidebar-menu a").each(function () {
+                var href = $(this).attr('href');
+                if (path.substring(0, href.length) === href) {
+                    $(this).closest('li.treeview').addClass('active');
+                }
+            });
+        }
+        window.onload = setNavActive;
+        </script>
+        </section>
+        <!-- /.sidebar-->
+    </aside>
+    <!-- Content Wrapper. Contains page content-->
+    <div class="content-wrapper" style="min-height: 446px;">
+        <!-- Content Header (Page header)-->
+        <!--<section class="content-header">-->
+            <!--<h1>Chat<small>Danh sách chat</small></h1>-->
+            <!--<ol class="breadcrumb">-->
+                <!--<li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>-->
+                <!--<li class="active">Here</li>-->
+            <!--</ol>-->
+        <!--</section>-->
+        <!-- Main content-->
+        <section class="content">
+            <!--form(method='get')-->
+            <div class="row">
+                <div class="col-md-9 chatbox-messenger-content" style="padding-right: 5px;">
+                    <!--<div class="box box-primary direct-chat direct-chat-primary">-->
+
+                    <!--</div>-->
+                </div>
+                <div class="col-md-3" style="padding-left: 5px;">
+                    <div class="box box-primary" style="font-size: 12px; overflow: auto; height: 508px;">
+                        <div class="box-body box-profile">
+                            <a title="Thông tin cá nhân" onclick="showModal('chat-mgmt-view')" href="#"><img class="profile-user-img img-responsive img-circle" alt="User profile picture" src="http://mideasvn.com:9999/../../dist/img/user4-128x128.jpg"></a>
+                            <h4 class="profile-username text-center"><span>Nina Mcintire</span></h4>
+                            <div class="input-group"><span class="input-group-addon"><i class="fa fa-envelope"></i></span><input type="text" class="form-control" placeholder="Nhập email...." value="ngoc@gmail.com" id="phone"></div>
+                            <br>
+                            <div class="input-group"><span class="input-group-addon"><i class="fa fa-phone"></i></span><input type="text" class="form-control" placeholder="Nhập số điện thoại...." value="0126589147" id="phone"></div>
+                            <br>
+                            <div class="text-center"><button class="btn btn-default btn-block">Lưu</button></div>
+                            <br>
+                            <p class="text-center" style="margin-bottom: 0">FAQ</p>
+                        </div>
+                        <div class="box-footer" style="height: 168px; overflow: auto;">
+                            <table class="table table-striped table-hover table-responsive">
+                                <tbody></tbody>
+                                <tbody>
+                                <tr>
+                                    <td class="faq-content" colspan="2">hỏi đi</td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-answer" onclick="showModal('faq-question-info/10')">đang tra loi</td>
+                                    <td class="copyToChat" style="cursor: pointer; text-align: right"><i class="fa fa-arrow-right"></i></td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-content" colspan="2">hỏi</td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-answer" onclick="showModal('faq-question-info/11')">đang tra loi</td>
+                                    <td class="copyToChat" style="cursor: pointer; text-align: right"><i class="fa fa-arrow-right"></i></td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-content" colspan="2">nghia 1</td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-answer" onclick="showModal('faq-question-info/13')">sfs</td>
+                                    <td class="copyToChat" style="cursor: pointer; text-align: right"><i class="fa fa-arrow-right"></i></td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-content" colspan="2">fdfdf</td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-answer" onclick="showModal('faq-question-info/14')">dfdfd</td>
+                                    <td class="copyToChat" style="cursor: pointer; text-align: right"><i class="fa fa-arrow-right"></i></td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-content" colspan="2">ghghg</td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-answer" onclick="showModal('faq-question-info/15')">hghgh</td>
+                                    <td class="copyToChat" style="cursor: pointer; text-align: right"><i class="fa fa-arrow-right"></i></td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-content" colspan="2">ch ff3</td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-answer" onclick="showModal('faq-question-info/16')">ctl zz3</td>
+                                    <td class="copyToChat" style="cursor: pointer; text-align: right"><i class="fa fa-arrow-right"></i></td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-content" colspan="2">d</td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-answer" onclick="showModal('faq-question-info/17')">d</td>
+                                    <td class="copyToChat" style="cursor: pointer; text-align: right"><i class="fa fa-arrow-right"></i></td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-content" colspan="2">chính sách giảm giá cho điện thoại như thế nào ?</td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-answer" onclick="showModal('faq-question-info/19')">chúng tôi chỉ gia3m 30 % cho mua iphone nha</td>
+                                    <td class="copyToChat" style="cursor: pointer; text-align: right"><i class="fa fa-arrow-right"></i></td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-content" colspan="2">chính sách khuyến mãi như thế nào</td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-answer" onclick="showModal('faq-question-info/20')">chúng tôi chỉ gia3m 30 % cho mua iphone nha</td>
+                                    <td class="copyToChat" style="cursor: pointer; text-align: right"><i class="fa fa-arrow-right"></i></td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-content" colspan="2"></td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-answer" onclick="showModal('faq-question-info/22')"></td>
+                                    <td class="copyToChat" style="cursor: pointer; text-align: right"><i class="fa fa-arrow-right"></i></td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-content" colspan="2"></td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-answer" onclick="showModal('faq-question-info/23')"></td>
+                                    <td class="copyToChat" style="cursor: pointer; text-align: right"><i class="fa fa-arrow-right"></i></td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-content" colspan="2"></td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-answer" onclick="showModal('faq-question-info/24')">chúng tôi chỉ gia3m 30 % cho mua iphone nha</td>
+                                    <td class="copyToChat" style="cursor: pointer; text-align: right"><i class="fa fa-arrow-right"></i></td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-content" colspan="2">fdfd</td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-answer" onclick="showModal('faq-question-info/25')">dfdf</td>
+                                    <td class="copyToChat" style="cursor: pointer; text-align: right"><i class="fa fa-arrow-right"></i></td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-content" colspan="2">fdfd</td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-answer" onclick="showModal('faq-question-info/26')">dfdf</td>
+                                    <td class="copyToChat" style="cursor: pointer; text-align: right"><i class="fa fa-arrow-right"></i></td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-content" colspan="2">fdfd</td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-answer" onclick="showModal('faq-question-info/27')">dfdf</td>
+                                    <td class="copyToChat" style="cursor: pointer; text-align: right"><i class="fa fa-arrow-right"></i></td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-content" colspan="2">hjhj</td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-answer" onclick="showModal('faq-question-info/28')">jhjh</td>
+                                    <td class="copyToChat" style="cursor: pointer; text-align: right"><i class="fa fa-arrow-right"></i></td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-content" colspan="2">hjhj</td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-answer" onclick="showModal('faq-question-info/29')">jhjh</td>
+                                    <td class="copyToChat" style="cursor: pointer; text-align: right"><i class="fa fa-arrow-right"></i></td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-content" colspan="2">hjhj</td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-answer" onclick="showModal('faq-question-info/30')">jhjh</td>
+                                    <td class="copyToChat" style="cursor: pointer; text-align: right"><i class="fa fa-arrow-right"></i></td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-content" colspan="2">hjhj</td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-answer" onclick="showModal('faq-question-info/31')">jhjh</td>
+                                    <td class="copyToChat" style="cursor: pointer; text-align: right"><i class="fa fa-arrow-right"></i></td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-content" colspan="2">hjhj</td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-answer" onclick="showModal('faq-question-info/32')">jhjh</td>
+                                    <td class="copyToChat" style="cursor: pointer; text-align: right"><i class="fa fa-arrow-right"></i></td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-content" colspan="2">hjhj</td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-answer" onclick="showModal('faq-question-info/33')">jhjh</td>
+                                    <td class="copyToChat" style="cursor: pointer; text-align: right"><i class="fa fa-arrow-right"></i></td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-content" colspan="2">hjhj</td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-answer" onclick="showModal('faq-question-info/34')">jhjh</td>
+                                    <td class="copyToChat" style="cursor: pointer; text-align: right"><i class="fa fa-arrow-right"></i></td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-content" colspan="2">hjhj</td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-answer" onclick="showModal('faq-question-info/35')">jhjh</td>
+                                    <td class="copyToChat" style="cursor: pointer; text-align: right"><i class="fa fa-arrow-right"></i></td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-content" colspan="2">hjhj</td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-answer" onclick="showModal('faq-question-info/36')">jhjh</td>
+                                    <td class="copyToChat" style="cursor: pointer; text-align: right"><i class="fa fa-arrow-right"></i></td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-content" colspan="2">hjhj</td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-answer" onclick="showModal('faq-question-info/37')">jhjh</td>
+                                    <td class="copyToChat" style="cursor: pointer; text-align: right"><i class="fa fa-arrow-right"></i></td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-content" colspan="2">cau hỏi cua p56 nghiadt4</td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-answer" onclick="showModal('faq-question-info/38')">test thui</td>
+                                    <td class="copyToChat" style="cursor: pointer; text-align: right"><i class="fa fa-arrow-right"></i></td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-content" colspan="2">ch aaaaa</td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-answer" onclick="showModal('faq-question-info/39')">ctl aaaa</td>
+                                    <td class="copyToChat" style="cursor: pointer; text-align: right"><i class="fa fa-arrow-right"></i></td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-content" colspan="2">chch aa1</td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-answer" onclick="showModal('faq-question-info/40')">ctlctl aa</td>
+                                    <td class="copyToChat" style="cursor: pointer; text-align: right"><i class="fa fa-arrow-right"></i></td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-content" colspan="2">chch aa2</td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-answer" onclick="showModal('faq-question-info/41')">ctlctl aa</td>
+                                    <td class="copyToChat" style="cursor: pointer; text-align: right"><i class="fa fa-arrow-right"></i></td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-content" colspan="2">chch aa3</td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-answer" onclick="showModal('faq-question-info/42')">ctlctl aa</td>
+                                    <td class="copyToChat" style="cursor: pointer; text-align: right"><i class="fa fa-arrow-right"></i></td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-content" colspan="2">q aa333</td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-answer" onclick="showModal('faq-question-info/44')">a qq33</td>
+                                    <td class="copyToChat" style="cursor: pointer; text-align: right"><i class="fa fa-arrow-right"></i></td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-content" colspan="2">q aa511</td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-answer" onclick="showModal('faq-question-info/45')">a qq33</td>
+                                    <td class="copyToChat" style="cursor: pointer; text-align: right"><i class="fa fa-arrow-right"></i></td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-content" colspan="2">1222</td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-answer" onclick="showModal('faq-question-info/46')">a qq33</td>
+                                    <td class="copyToChat" style="cursor: pointer; text-align: right"><i class="fa fa-arrow-right"></i></td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-content" colspan="2">321</td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-answer" onclick="showModal('faq-question-info/47')">a qq33</td>
+                                    <td class="copyToChat" style="cursor: pointer; text-align: right"><i class="fa fa-arrow-right"></i></td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-content" colspan="2">ch1</td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-answer" onclick="showModal('faq-question-info/48')">ch2</td>
+                                    <td class="copyToChat" style="cursor: pointer; text-align: right"><i class="fa fa-arrow-right"></i></td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-content" colspan="2">cauhoi aa1</td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-answer" onclick="showModal('faq-question-info/49')">cautraloi aa</td>
+                                    <td class="copyToChat" style="cursor: pointer; text-align: right"><i class="fa fa-arrow-right"></i></td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-content" colspan="2">vvv1</td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-answer" onclick="showModal('faq-question-info/50')">vvv aaa1</td>
+                                    <td class="copyToChat" style="cursor: pointer; text-align: right"><i class="fa fa-arrow-right"></i></td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-content" colspan="2">vvv2</td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-answer" onclick="showModal('faq-question-info/51')">vvv aaa1</td>
+                                    <td class="copyToChat" style="cursor: pointer; text-align: right"><i class="fa fa-arrow-right"></i></td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-content" colspan="2">qqq2</td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-answer" onclick="showModal('faq-question-info/52')">qqq aaa</td>
+                                    <td class="copyToChat" style="cursor: pointer; text-align: right"><i class="fa fa-arrow-right"></i></td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-content" colspan="2">qqq3</td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-answer" onclick="showModal('faq-question-info/53')">qqq aaa</td>
+                                    <td class="copyToChat" style="cursor: pointer; text-align: right"><i class="fa fa-arrow-right"></i></td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-content" colspan="2">qqq1</td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-answer" onclick="showModal('faq-question-info/54')">qqq aaa</td>
+                                    <td class="copyToChat" style="cursor: pointer; text-align: right"><i class="fa fa-arrow-right"></i></td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-content" colspan="2">hải hỏi 1</td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-answer" onclick="showModal('faq-question-info/55')">Hải trả lời 1</td>
+                                    <td class="copyToChat" style="cursor: pointer; text-align: right"><i class="fa fa-arrow-right"></i></td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-content" colspan="2">Hải hỏi 2</td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-answer" onclick="showModal('faq-question-info/56')">Hải trả lời 1</td>
+                                    <td class="copyToChat" style="cursor: pointer; text-align: right"><i class="fa fa-arrow-right"></i></td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-content" colspan="2">vvv3</td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-answer" onclick="showModal('faq-question-info/57')">vvv aaa1</td>
+                                    <td class="copyToChat" style="cursor: pointer; text-align: right"><i class="fa fa-arrow-right"></i></td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-content" colspan="2">156</td>
+                                </tr>
+                                <tr>
+                                    <td class="faq-answer" onclick="showModal('faq-question-info/58')">a qq33</td>
+                                    <td class="copyToChat" style="cursor: pointer; text-align: right"><i class="fa fa-arrow-right"></i></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Your Page Content Here--><!-- /.content-->
+    </div>
+    <!-- /.content-wrapper--><!-- Main Footer-->
+    <footer class="main-footer">
+        <!-- To the right-->
+        <div class="pull-right hidden-xs"> </div>
+        <!-- Default to the left--><strong>Copyright &copy; 2016 <a href="javascript:;">10minutes</a>.</strong> All rights reserved.
+    </footer>
+    <!-- Control Sidebar-->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Create the tabs-->
+        <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+            <li class="active"><a data-toggle="tab" href="#control-sidebar-home-tab"><i class="fa fa-home"></i></a></li>
+            <li><a data-toggle="tab" href="#control-sidebar-settings-tab"><i class="fa fa-gears"></i></a></li>
+        </ul>
+        <!-- Tab panes-->
+        <div class="tab-content">
+            <!-- Home tab content-->
+            <div class="tab-pane active" id="control-sidebar-home-tab">
+                <h3 class="control-sidebar-heading">Recent Activity</h3>
+                <ul class="control-sidebar-menu">
+                    <li>
+                        <a href="#">
+                            <i class="menu-icon fa fa-birthday-cake bg-red"></i>
+                            <div class="menu-info">
+                                <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
+                                <p>Will be 23 on April 24th</p>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+                <!-- /.control-sidebar-menu-->
+                <h3 class="control-sidebar-heading">Tasks Progress</h3>
+                <ul class="control-sidebar-menu">
+                    <li>
+                        <a href="javascript::;">
+                            <h4 class="control-sidebar-subheading">Custom Template Design<span class="pull-right-container"><span class="label label-danger pull-right">70%</span></span></h4>
+                            <div class="progress progress-xxs">
+                                <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+                <!-- /.control-sidebar-menu-->
+            </div>
+            <!-- /.tab-pane--><!-- Stats tab content-->
+            <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
+            <!-- /.tab-pane--><!-- Settings tab content-->
+            <div class="tab-pane" id="control-sidebar-settings-tab">
+                <form method="post">
+                    <h3 class="control-sidebar-heading">General Settings</h3>
+                    <div class="form-group">
+                        <label class="control-sidebar-subheading">Report panel usage<input type="checkbox" class="pull-right" checked=""></label>
+                        <p>Some information about this general settings option</p>
+                    </div>
+                    <!-- /.form-group-->
+                </form>
+            </div>
+            <!-- /.tab-pane-->
+        </div>
+    </aside>
+    <!-- /.control-sidebar--><!--Add the sidebar's background. This div must be placed
+            immediately after the control sidebar-->
+    <div class="control-sidebar-bg" style="position: fixed; height: auto;"></div>
+</div>
+<!-- ./wrapper--><!--Optionally, you can add Slimscroll and FastClick plugins.
+         Both of these plugins are recommended to enhance the
+         user experience. Slimscroll is required when using the
+         fixed layout.
+         --><script>var showModal = function(url) {
+    var html = '<div class="modal-body"><h3 class="text-center">Chuyển cuộc chat</h3><div class="row"><div class="col-md-12"><div class="form-group"><label>Agent</label><div class="btn-group bootstrap-select form-control"><button data-toggle="dropdown" class="btn dropdown-toggle btn-default" type="button" data-id="name" title="chatbot - chatbot"><span class="filter-option pull-left">chatbot - chatbot</span>&nbsp;<span class="bs-caret"><span class="caret"></span></span></button><div class="dropdown-menu open"><div class="bs-searchbox"><input type="text" autocomplete="off" class="form-control"></div><ul role="menu" class="dropdown-menu inner"><li data-original-index="0" class="selected"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">chatbot - chatbot</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="1"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">nghia@gmail.com - Nghĩa Đặng</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="2"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">huynh@gmail.com - Huỳnh Đỗ</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="3"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">toantm2@gmail.com - Toan Truyen</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="4"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">nhung@gmail.com - Nhung Nguyễn</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="5"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">example@gmail.com - example</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="6"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">hohieukn@gmail.com - ho hieu</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="7"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">toantm4@gmail.com - Toan Truyen</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="8"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">toantm5@gmail.com - Toan Truyen</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="9"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">toantm6@gmail.com - Toan Truyen</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="10"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">toantm7@gmail.com - Toan Truyen</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="11"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">KuroDenjiro1@gmail.com - kuro</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="12"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">hohieukn1@gmail.com - ho hieu</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="13"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">nhung1@gmail.com - Nguyễn Nhung</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="14"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">toantm9@gmail.com - Toan Truyen</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="15"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">toantm10@gmail.com - dfl wwwww111</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="16"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">system@gmail.com - system</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="17"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">linh@gmail.com - linh</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="18"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">nghiadt@gmail.com - nghia</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="19"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">toantm20@gmail.com - toan truyen</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="20"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">nghia1@gmail.com - nghia1</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="21"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">nghia2@gmail.com - nghia1</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="22"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">nghia2@gmai - nghia1</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="23"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">n@gmail.com -      nghianha      </span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="24"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">example2@gmail.com - </span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="25"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">example3@gmail.com - </span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="26"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">example4@gmail.com - </span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="27"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">example6@gmail.com - </span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="28"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">agent1@gmail.com - agent 1</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="29"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">agent2@gmail.com - agent2</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="30"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">nhung2@gmail.com - nhung2</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="31"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">nmkien@gmail.com - Ken Do</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="32"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">toantm31@gmail.com - Toan truyen</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="33"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">toantm32@gmail.com - dddeeeeee</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="34"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">toantm33@gmail.com - toan truyen</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="35"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">toantm30@gmail.com - toantm20</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="36"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">example7@gmail.com - </span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="37"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">tttttttt2@gmail.com - ererererererrerererererererererer</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="38"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">tchaiitpro@gmail.com - Hai111111</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="39"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">safiquan11Test - Quan Safi</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="40"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">hai.truong@mideasvn.com - Hector</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="41"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">nghiadt5@gmail.com - dang thi nghia</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="42"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">nhungnghia@gmail.com - </span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="43"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">example9@gmail.com - ex name</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="44"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">nghi@gmail.com - nghi</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="45"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">nghiadt6@gmail.com - nghĩa</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="46"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">nghiadt8@gmail.com - nghia</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="47"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">sorrybabby@hotmail.com - Kuro</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="48"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">nghiadt4@gmail.com - nghĩa</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="49"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">kuro@hotmail.com - </span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="50"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">nghiadt9@gmail.com - nghĩa</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="51"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">quan@gmail.com - </span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="52"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">quan23@gmail.com - </span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="53"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">safiquan - Quan Safi</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="54"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">KuroDenjiro4@gmail.com - </span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="55"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">quânnt9@gmail.com - </span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="56"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">KuroDenjiro8@gmail.com - </span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="57"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">quannt6@gmail.com - </span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="58"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">quannt7@gmail.com - </span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="59"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">example10@gmail.com - </span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="60"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">example11@gmail.com - </span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="61"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">example12@gmail.com - </span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="62"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">mideasvn@gmail.com - Hồ Hiếu</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="63"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">example13@gmail.com - </span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="64"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">hai_agent@gmail.com - </span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="65"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">chihungadmin - Hùng Admin</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="66"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">chihungagent - Hùng Agent</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="67"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">tanagent - Tấn Agent</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="68"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">tanadmin - Tấn Admin</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="69"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">dungadmin - Dũng Admin</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="70"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">dungagent - Dũng Agent</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="71"><a data-tokens="null" style="" class="" tabindex="0"><span class="text">safiquanagent - Quân Agent</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li></ul></div><select class="form-control selectpicker" data-live-search="true" data-size="5" name="name" id="name" tabindex="-98"><option value="1">chatbot - chatbot</option><option value="2">nghia@gmail.com - Nghĩa Đặng</option><option value="3">huynh@gmail.com - Huỳnh Đỗ</option><option value="4">toantm2@gmail.com - Toan Truyen</option><option value="5">nhung@gmail.com - Nhung Nguyễn</option><option value="6">example@gmail.com - example</option><option value="7">hohieukn@gmail.com - ho hieu</option><option value="9">toantm4@gmail.com - Toan Truyen</option><option value="10">toantm5@gmail.com - Toan Truyen</option><option value="11">toantm6@gmail.com - Toan Truyen</option><option value="12">toantm7@gmail.com - Toan Truyen</option><option value="14">KuroDenjiro1@gmail.com - kuro</option><option value="16">hohieukn1@gmail.com - ho hieu</option><option value="17">nhung1@gmail.com - Nguyễn Nhung</option><option value="18">toantm9@gmail.com - Toan Truyen</option><option value="19">toantm10@gmail.com - dfl wwwww111</option><option value="20">system@gmail.com - system</option><option value="21">linh@gmail.com - linh</option><option value="22">nghiadt@gmail.com - nghia</option><option value="23">toantm20@gmail.com - toan truyen</option><option value="24">nghia1@gmail.com - nghia1</option><option value="25">nghia2@gmail.com - nghia1</option><option value="26">nghia2@gmai - nghia1</option><option value="27">n@gmail.com -      nghianha      </option><option value="34">example2@gmail.com - </option><option value="35">example3@gmail.com - </option><option value="36">example4@gmail.com - </option><option value="38">example6@gmail.com - </option><option value="39">agent1@gmail.com - agent 1</option><option value="40">agent2@gmail.com - agent2</option><option value="42">nhung2@gmail.com - nhung2</option><option value="43">nmkien@gmail.com - Ken Do</option><option value="44">toantm31@gmail.com - Toan truyen</option><option value="45">toantm32@gmail.com - dddeeeeee</option><option value="46">toantm33@gmail.com - toan truyen</option><option value="47">toantm30@gmail.com - toantm20</option><option value="48">example7@gmail.com - </option><option value="50">tttttttt2@gmail.com - ererererererrerererererererererer</option><option value="52">tchaiitpro@gmail.com - Hai111111</option><option value="53">safiquan11Test - Quan Safi</option><option value="54">hai.truong@mideasvn.com - Hector</option><option value="55">nghiadt5@gmail.com - dang thi nghia</option><option value="56">nhungnghia@gmail.com - </option><option value="57">example9@gmail.com - ex name</option><option value="58">nghi@gmail.com - nghi</option><option value="59">nghiadt6@gmail.com - nghĩa</option><option value="60">nghiadt8@gmail.com - nghia</option><option value="61">sorrybabby@hotmail.com - Kuro</option><option value="62">nghiadt4@gmail.com - nghĩa</option><option value="63">kuro@hotmail.com - </option><option value="64">nghiadt9@gmail.com - nghĩa</option><option value="65">quan@gmail.com - </option><option value="66">quan23@gmail.com - </option><option value="67">safiquan - Quan Safi</option><option value="68">KuroDenjiro4@gmail.com - </option><option value="69">quânnt9@gmail.com - </option><option value="70">KuroDenjiro8@gmail.com - </option><option value="71">quannt6@gmail.com - </option><option value="72">quannt7@gmail.com - </option><option value="73">example10@gmail.com - </option><option value="74">example11@gmail.com - </option><option value="75">example12@gmail.com - </option><option value="76">mideasvn@gmail.com - Hồ Hiếu</option><option value="77">example13@gmail.com - </option><option value="78">hai_agent@gmail.com - </option><option value="79">chihungadmin - Hùng Admin</option><option value="80">chihungagent - Hùng Agent</option><option value="81">tanagent - Tấn Agent</option><option value="82">tanadmin - Tấn Admin</option><option value="83">dungadmin - Dũng Admin</option><option value="84">dungagent - Dũng Agent</option><option value="85">safiquanagent - Quân Agent</option></select></div></div></div><div class="col-md-12 text-center"><button class="btn btn-flat btn-default" style="margin-right: 10px; width: 25%" data-dismiss="modal" type="button">Đóng</button><button class="btn btn-flat btn-primary" onclick="user.selectToChat()" style="margin-left : 10px; width: 25%" type="button">Chuyển</button></div></div></div>';
+    jQuery('#modal_ajax .modal-body').html(html);
+
+    jQuery('#modal_ajax').modal('show', {backdrop: 'true'});
+    /*
+     $.ajax({
+     url: url,
+     success: function(response)
+     {
+     jQuery('#modal_ajax .modal-body').html(response);
+     $.ajax({
+     type : "POST",
+     url : "/loadUser",
+     success : function(data) {
+     $('input.username').val(data.username);
+     }
+     });
+     }
+     }); */
+}
+</script>
+<div class="modal fade" aria-hidden="true" role="dialog" tabindex="-1" id="modal_ajax">
+    <div class="vertical-alignment-helper">
+        <div class="modal-dialog vertical-align-center">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" aria-hidden="true" data-dismiss="modal" type="button">×</button>
+                    <h4 class="modal-title">10minutes</h4>
+                </div>
+                <div class="modal-body"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>var cfmModal = function(delete_url, post_refresh_url) {
+    jQuery('#modal_delete').modal('show', {backdrop: 'static'});
+    document.getElementById('btn_delete').setAttribute("onclick" , "delete_data('" + delete_url + "' , '" + post_refresh_url + "')" );
+    document.getElementById('btn_delete').focus();
+}
+
+var delete_data = function(delete_url, post_refresh_url) {
+    $.ajax({
+        url: delete_url,
+        success: function(response)
+        {
+            $.ajax({ url: post_refresh_url, type: 'GET', dataType: 'html'}).done(function(response) {
+                toastr["success"]("Đã xóa");
+                $('section.content').html(response);
+            })
+        }
+    });
+}
+</script>
+<div class="modal fade" aria-hidden="true" role="dialog" tabindex="-1" id="modal_delete">
+    <div class="vertical-alignment-helper">
+        <div class="modal-dialog vertical-align-center">
+            <div class="modal-content">
+                <div class="modal-header" style="text-align: center">
+                    <button class="close" aria-hidden="true" data-dismiss="modal" type="button">×</button>
+                    <h4 class="modal-title">Bạn có chắc muốn xóa dữ liệu này?</h4>
+                </div>
+                <div class="modal-footer" style="text-align: center"><button class="btn btn-flat btn-default" style="width: 25%" data-dismiss="modal" type="button">Đóng</button><button class="btn btn-flat btn-danger" style="width: 25%" data-dismiss="modal" type="button" id="btn_delete">Xóa</button></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>$(document).ready(function() {
+    $('.copyToChat').on('click', function() {
+        $('#input-message').val($(this).closest('tr').children('td.faq-answer').text());
+    });
+    require(['converse'], function (converse) {
+
+        converse.initialize({
+            auto_reconnect: true,
+            bosh_service_url: 'https://mideasvn.com:3280/http-bind', // Please use this connection manager only for testing purposes
+            keepalive: true,
+            message_carbons: true,
+            message_archiving: 'always',
+            play_sounds: true,
+            roster_groups: true,
+            show_controlbox_by_default: false,
+            strict_plugin_dependencies: false,
+            chatstate_notification_blacklist: ['mulles@movim.eu'],
+            xhr_user_search: false,
+//            storage: 'session',
+            debug: true,
+            sky_host: '@skyb',
+            sky_room: '@muc.skyb',
+            sky_apiserver: 'https://mideasvn.com:7272/ReengBackendBiz/',
+            jid: 'skyb',
+            sky_agent: 'hana_841656132662',
+            sky_partner: '5618cbfc-9b91-4bec-accc-a8af52c9e241',
+            sky_pass: '1111',
+            sky_myname: 'Tôi',
+            sky_resource: 'webclient',
+//            authentication: 'anonymous' // Available values are "login", "prebind", "anonymous".
+        });
+    });
+
+});
+</script>
+</body>
+</html>
+

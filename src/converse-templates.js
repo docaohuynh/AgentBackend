@@ -63,7 +63,8 @@ define("converse-templates", [
     "tpl!contact_search",
     "tpl!chatbox_messenger",
     "tpl!chatbox_message",
-    "tpl!chatbox_message_me"
+    "tpl!chatbox_message_me",
+    "tpl!contact_info"
 ], function () {
     return {
         action:                 arguments[0],
@@ -126,6 +127,7 @@ define("converse-templates", [
         contact_search:         arguments[57],
         chatbox_messenger:      arguments[58],
         chatbox_message:        arguments[59],
-        chatbox_message_me:        arguments[60]
+        chatbox_message_me:     arguments[60],
+        contact_info:     arguments[61]
     };
 });

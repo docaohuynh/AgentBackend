@@ -84,6 +84,7 @@
                     // converse.log('[HUYNHDC create IQ room ]');
                     var converse = this._super.converse;
                     this._super.onConnected.apply(this, arguments);
+                    $('#conversejs').hide();
                     //
                     // var infoUser = JSON.stringify({"uid":Strophe.getNodeFromJid(converse.connection.jid)});
                     // //post data to
