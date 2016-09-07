@@ -6,7 +6,7 @@
     <!--<div class="message chat-msg-content">{{message}}</div>-->
 <!--</li>-->
 <div class="direct-chat-msg right chat-message {{extra_classes}}" data-isodate="{{isodate}}" data-msgid="{{msgid}}">
-    <div class="direct-chat-info clearfix"><span class="direct-chat-name pull-right chat-msg-{{sender}}">{{username}}</span><span class="direct-chat-timestamp pull-left"></span></div>
-    <img src="http://mideasvn.com:9999/../dist/img/user3-128x128.jpg" alt="Message User Image" class="direct-chat-img">
-    <div class="direct-chat-text chat-msg-content">You better believe it!</div>
+    <div class="direct-chat-info clearfix"><span class="direct-chat-name pull-right chat-msg-{{sender}}">{{username}}</span><span class="direct-chat-timestamp pull-left">{{time}}</span></div>
+    <img src="../../dist/img/icon-user-me.png" alt="Message User Image" class="direct-chat-img">
+    <div class="direct-chat-text chat-msg-content" onclick="customer_chat.searchFaq(this)">You better believe it!</div>
 </div>

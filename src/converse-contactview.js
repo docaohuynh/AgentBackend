@@ -85,6 +85,9 @@
                     converse.rostermessenger.on('change', this.onContactChange, this);
                     converse.rostermessenger.on("destroy", this.update, this);
                     converse.rostermessenger.on("remove", this.update, this);
+
+                    var that = this;
+                    setInterval(function(){ that.customerStatus(); }, 5*1000);
                     // this.model.on("add", this.onGroupAdd, this);
                     // this.model.on("reset", this.reset, this);
                 },
@@ -103,6 +106,18 @@
                     //     this.$el.addClass('no-contact-requests');
                     // }
                     return this;
+                },
+                customerStatus: function(){
+
+                    converse.rostermessenger.each(function (item, index, all) {
+                        var idUser = item.get('user_id');
+                        converse.log("INDEX " + idUser);
+                        var customer = idUser.substr(0, idUser.length - 14);
+                        converse.log("INDEX " + customer);
+                        // item.set("BookName", item.get("BookName") + "_updated");
+                        // item.save();
+                    });
+                    
                 },
                 contactViewChange: function(){
                     console.log("[HUYNHDC] contact change");
@@ -373,6 +388,8 @@
                     this.model.on("remove", this.remove, this);
                     this.model.on("destroy", this.remove, this);
                     this.model.on("open", this.openChat, this);
+
+
                 },
 
                 render: function () {
@@ -429,9 +446,24 @@
                             nick: jid,
                             type: 'chatroom',
                             is_pick: is_pick,
+                            is_click: 'true',
                             box_id: b64_sha1(jid)
                         }
                     );
+                    //call function
+                    try {
+                        converse.log("INFO CUSTOMER EEEEEEEEEEEEEEEEEEE ");
+                        var uid = Strophe.getNodeFromJid(jid);
+                        var user = uid.substr(0, uid.length - 14 );
+                        $('.chat-textarea').val("");
+                        customer_chat.infoChat(user);
+                        customer_chat.customerInfo(user);
+                        
+                    }
+                    catch(err) {
+                        converse.log(err);
+                    }
+
                     converse.chatboxviewsmessenger.closeAllChatBoxesHide();
                     return converse.chatboxviewsmessenger.showChat(item);
                 },

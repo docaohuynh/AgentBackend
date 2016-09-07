@@ -18,6 +18,7 @@
     define("converse-core", [
         "jquery",
         "underscore",
+        "offlinejs",
         "polyfill",
         "utils",
         "moment_with_locales",
@@ -28,7 +29,7 @@
         "backbone.browserStorage",
         "backbone.overview",
     ], factory);
-}(this, function ($, _, dummy, utils, moment, Strophe, templates, pluggable) {
+}(this, function ($, _, offlinejs, dummy, utils, moment, Strophe, templates, pluggable) {
     /*
      * Cannot use this due to Safari bug.
      * See https://github.com/jcbrand/converse.js/issues/196
@@ -167,6 +168,13 @@
             'INACTIVE':   90000
         };
 
+        this.STATEMESSAGE = { // state message
+            'NOTSENT':     0,
+            'HASSENT':     1,
+            'HASRECEIVED': 2,
+            'HASREAD':     3
+        };
+
         // XEP-0085 Chat states
         // http://xmpp.org/extensions/xep-0085.html
         this.INACTIVE = 'inactive';
@@ -260,6 +268,8 @@
             sky_myname: 'Tôi',
             sky_apiserver: 'http://localhost:8080/ReengBackendBiz/',
             sky_room: '@muc.skyb',
+            sky_status_network: true,
+            sky_ai_name: 'Trợ lý ảo Hana',
             sky_host: '@skya',
             sky_partner: 'hello',
             sky_agent: '01656132662@skyb',
@@ -467,14 +477,17 @@
         }, 1000);
 
         this.onDisconnected = function (condition) {
-            if (converse.disconnection_cause === Strophe.Status.CONNFAIL && converse.auto_reconnect) {
-                converse.reconnect(condition);
-                return 'reconnecting';
-            } else {
-                converse._tearDown();
-                converse.emit('disconnected');
-                return 'disconnected';
-            }
+            converse.appendDisconnectNetwork();
+            // if (converse.disconnection_cause === Strophe.Status.CONNFAIL && converse.auto_reconnect) {
+            //     converse.reconnect(condition);
+            //     return 'reconnecting';
+            // } else {
+            //     converse._tearDown();
+            //     converse.emit('disconnected');
+            //     return 'disconnected';
+            // }
+            converse.emit('disconnected');
+            return 'disconnected';
         };
 
         this.onConnectStatusChanged = function (status, condition, reconnect) {
@@ -1219,6 +1232,7 @@
                     if ((subscription === "none" && ask === null) || (subscription === "remove")) {
                         return; // We're lazy when adding contacts.
                     }
+
                     this.create({
                         ask: ask,
                         fullname: item.getAttribute("name") || jid,
@@ -1548,6 +1562,9 @@
                         if(!json.room){
                             //create room default
                         }else{
+                            $('#chat_request').empty();
+                            $('#chat_list').empty();
+                            $('.mideas-list-request-count').html(0);
                             var allRoom = json.room;
                             that.updateContact(allRoom);
                         }
@@ -1831,7 +1848,10 @@
                     // from = Strophe.unescapeNode(Strophe.getResourceFromJid($message.attr('from')));
                     from = $message.attr('member');
                     if($message.attr('member') == 'hana_ai'){
-                        jidSend = $message.attr('member');
+                        // jidSend = $message.attr('member');
+                        jidSend = converse.sky_ai_name;
+                        fullname = jidSend;
+                        from = jidSend;
                     }
                     if(!from){
                         from = Strophe.getBareJidFromJid($message.attr('from'));
@@ -1907,6 +1927,7 @@
                     'msgid': $message.attr('id'),
                     'sender': sender,
                     'jidsend': jidSend,
+                    'msg_state': converse.STATEMESSAGE.NOTSENT,
                     'timesend': timesendlocal,
                     'sendtype': 'receive',
                     'time': time
@@ -1941,8 +1962,10 @@
                     // from = Strophe.unescapeNode(Strophe.getResourceFromJid($message.attr('from')));
                     from = $message.attr('member');
                     if($message.attr('member') == 'hana_ai'){
-                        jidSend = $message.attr('member');
+                        // jidSend = $message.attr('member');
+                        jidSend = converse.sky_ai_name;
                         fullname = jidSend;
+                        from = jidSend;
                     }
                     if(!from){
                         from = Strophe.getBareJidFromJid($message.attr('from'));
@@ -1977,7 +2000,7 @@
                 var timereceive = timereceivestore;
                 // var timesendlocal = Date.now() + (Number(timereceive) - Number(timesend));
 
-                var timesendlocal = Number(Date.now()) + (Number(timereceive) - Number(timesend));
+                var timesendlocal = Number(Date.now()) - (Number(timereceive) - Number(timesend));
                 converse.log("TIMESEND==TIMERECEIVE==TIMELOCAL "+ timesend + "==" + timereceive + "=="+timesendlocal);
                 if(!timeS){
 
@@ -1996,7 +2019,7 @@
                     'msgid': $message.attr('id'),
                     'sender': sender,
                     'jidsend': jidSend,
-                    'timesend': timesend,
+                    'timesend': timesendlocal,
                     'sendtype': 'storemsg',
                     'time': time
                 };
@@ -2135,7 +2158,7 @@
 
 
                 if($message.find('body').length > 0){
-                    console.log("HUYNHDC receive body message and send message event "+ $message.children('body').text());
+                    converse.log("HUYNHDC receive body message and send message event "+ $message.children('body').text());
                     converse.connection.send(
                         $msg({to:from_jid, id: Math.random().toString(36).substr(2, 10)})
                             .c("x", {
@@ -2146,7 +2169,7 @@
                     );
                 }
                 if($message.find('delivered').length > 0){
-                    console.log("HUYNHDC receive Delivered message evssent "+ $message.children('x').text() + " To "+ to_jid);
+                    converse.log("HUYNHDC receive Delivered message evssent "+ $message.children('x').text() + " To "+ to_jid);
                     converse.connection.send(
                         $msg({to:from_jid, id: Math.random().toString(36).substr(2, 10)})
                             .c("x", {
@@ -2263,7 +2286,7 @@
                 /* Find the chat box and show it (if it may be shown).
                  * If it doesn't exist, create it.
                  */
-                console.log('[HUYNHDC show chatbox]'+attrs);
+                converse.log('[HUYNHDC show chatbox]'+attrs);
                 var chatbox = this.getChatBox(attrs, true);
                 // if (this.chatBoxMayBeShown(chatbox)) {
                 //     chatbox.trigger('show', true);
@@ -2340,7 +2363,15 @@
             setChatboxShow: function (chatbox) {
                 return this.model.chatBoxMayBeShown(chatbox);
             },
-
+            appendReconnectedChatBoxes: function () {
+                /* This method gets overridden in src/converse-controlbox.js if
+                 * the controlbox plugin is active.
+                 */
+                this.each(function (view) {
+                    view.appendDisconnected();
+                });
+                return this;
+            },
             getChatBox: function (attrs, create) {
                 var chatbox  = this.model.get(attrs.jid);
                 if (!chatbox && create) {
@@ -2356,22 +2387,23 @@
                         var $currentRoster = $('#chat_request').find('.open-image[data-msgid="contact_'+attrs.id+'"]').parent();
                         $currentRoster.addClass('forcus-contact');
                     }
+                    chatbox.chatBoxOpen();
+                    // converse.chatboxviewsmessenger.closeAllChatBoxesHide();
                 }else{
                     converse.chatboxviewsmessenger.closeAllChatBoxesHide();
                     converse.chatboxviewsmessenger.get(chatbox.get('id')).show();
+                    // if(attrs.is_pick == "true"){
+                    //
+                    // }
                     if(attrs.is_pick == "true"){
                         converse.chatboxviewsmessenger.get(chatbox.get('id')).$chattextarea.prop("disabled",false);
-                    }
-                    if(attrs.is_pick == "true"){
                         var $currentRoster = $('#chat_list').find('.open-image[data-msgid="contact_'+attrs.id+'"]').parent();
                         $currentRoster.addClass('forcus-contact');
                     }else{
                         var $currentRoster = $('#chat_request').find('.open-image[data-msgid="contact_'+attrs.id+'"]').parent();
                         $currentRoster.addClass('forcus-contact');
                     }
-
-
-                    // chatbox.chatBoxOpen();
+                    chatbox.chatBoxOpen();
                 }
                 var defaultRoom  = 'defaultroom'+converse.sky_room;
                 if(chatbox.get('id') == defaultRoom){
@@ -2385,7 +2417,7 @@
                 /* Find the chat box and show it (if it may be shown).
                  * If it doesn't exist, create it.
                  */
-                console.log('[HUYNHDC show chatbox messenger]'+attrs);
+                converse.log('[HUYNHDC show chatbox messenger]'+attrs);
                 var chatbox = this.getChatBox(attrs, true);
                 // if (this.chatBoxMayBeShown(chatbox)) {
                 //     chatbox.trigger('show', true);
@@ -2429,7 +2461,7 @@
                 /* Find the chat box and show it (if it may be shown).
                  * If it doesn't exist, create it.
                  */
-                console.log('[HUYNHDC show chatbox messenger]'+attrs);
+                converse.log('[HUYNHDC show chatbox messenger]'+attrs);
                 var chatbox = this.getChatBoxCreate(attrs, true, create);
                 // if (this.chatBoxMayBeShown(chatbox)) {
                 //     chatbox.trigger('show', true);
@@ -2598,7 +2630,7 @@
             this.logIn({"jid":converse.sky_agent, "password":converse.sky_pass});
         };
         this.createAnonymous = function (){
-            console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAaa");
+            converse.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAaa");
             var infoUser = JSON.stringify({"app":converse.sky_partner});
             //post data to
             var xhr = new XMLHttpRequest();
@@ -2799,11 +2831,49 @@
             window.clearInterval(converse.everySecondTrigger);
             return this;
         };
+        this.addEventStatusNetwork = function (){
+            Offline.options = {checks: {xhr: {url: 'https://mideasvn.com:3280/http-bind'}},reconnect: {initialDelay: 0,delay: (10, 1)}};
+            Offline.check();
+            Offline.on('down', function(e) {
+                converse.sky_status_network = false;
+                converse.log('down');
+                converse.appendDisconnectNetwork();
+                // converse.emit('disconnected');
+                // converse.logOut();
+            }, function(e) {
+
+            });
+            Offline.on('up', function() {
+                converse.sky_status_network = true;
+                converse.log('up');
+            }, function(e) {
+
+            })
+        };
+
+        this.appendDisconnectNetwork = function(){
+            if($('.content').find(".chatbox-check-connection").length > 0){
+                return this;
+            }else{
+                var disconview = new converse.ReconnectView();
+                $('.chatbox-messenger-content').parent().prepend(disconview.render());
+                return this;
+            }
+
+        };
+
 
         this._initialize = function () {
             this.chatboxes = new this.ChatBoxes();
             this.chatboxviews = new this.ChatBoxViews({model: this.chatboxes});
             this.chatboxviewsmessenger = new this.ChatBoxViewsMessenger({model: this.chatboxes});
+            var ModelForward =  Backbone.Model.extend({
+            });
+            this.modelForward  = new ModelForward({ members: converse.all_agent.users, jid:"null" });
+            this.forwardChat =  new converse.ForwardChat({
+                model: this.modelForward
+            });
+
             this.initSession();
             this.initConnection();
             this.setUpXMLLogging();
@@ -2833,6 +2903,7 @@
         converse.emit('pluginsInitialized');
         converse._initialize();
         converse.registerGlobalEventHandlers();
+        converse.addEventStatusNetwork();
         return init_deferred.promise();
     };
     return converse;

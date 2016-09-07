@@ -198,13 +198,18 @@
                     'click .toggle-occupants a': 'toggleOccupants',
                     'click .new-msgs-indicator': 'viewUnreadMessages',
                     'keypress textarea.chat-textarea': 'keyPressed',
-                    'click .send-raw': 'sendRawMsg'
+                    'click .send-raw': 'sendRawMsg',
+                    'click .forward-chat': 'forwardChat'
                 },
 
                 initialize: function () {
                     this.model.messages.on('add', this.onMessageAdded, this);
+                    this.model.messages.on('change', this.onMessageChangeState, this);
                     this.model.on('show', this.show, this);
                     this.model.on('destroy', this.hide, this);
+                    this.messageSendFail = {};
+                    var that = this;
+                    setInterval(function(){ that.executeFailMessage(); }, 5*1000);
 
                     // this.occupantsview = new converse.ChatRoomOccupantsView({
                     //     model: new converse.ChatRoomOccupants({nick: this.model.get('nick')})
@@ -227,6 +232,29 @@
                     // So working around that fact here:
                     // this.$el.find('.chat-content').on('scroll', this.markScrolled.bind(this));
                     converse.emit('chatRoomOpened', this);
+                },
+                executeFailMessage: function(){
+                    converse.log(this.messageSendFail);
+                    var that =  this;
+                    $.each(that.messageSendFail, function(index, value) {
+                        that.$content.find('.chat-message[data-msgid="'+value+'"]').children('.direct-chat-text').addClass("msg-send-fail");
+                        delete that.messageSendFail[value];
+                    });
+                },
+                forwardChat: function(ev){
+
+                    // var ModelForward =  Backbone.Model.extend({
+                    // });
+                    // var model = new ModelForward({ members: converse.all_agent.users, jid: this.model.get('jid') });
+                    // var forwardChat =  new converse.ForwardChat({
+                    //     model: model
+                    // });
+                    // forwardChat.render();
+                    ev.preventDefault();
+                    converse.modelForward.set({jid:null, members:null});
+                    converse.modelForward.set({jid:this.model.get('jid'), members:converse.all_agent.users});
+
+                    // return this;
                 },
 
                 insertIntoDOM: function () {
@@ -381,7 +409,13 @@
                     this.$el.show();
                     return this;
                 },
-
+                appendDisconnected: function (ev) {
+                    converse.log("DISCONNECTED AND SHOW TEXT");
+                    var that = this;
+                    var disconview = new converse.ReconnectView();
+                    $('.chatbox-messenger-content').parent().prepend(disconview.render());
+                    return this;
+                },
                 toggleOccupants: function (ev, preserve_state) {
                     if (ev) {
                         ev.preventDefault();
@@ -431,14 +465,37 @@
                 },
 
                 sendChatRoomMessage: function (text) {
+
                     var msgid = converse.connection.getUniqueId();
+                    var timesend = Number(Date.now());
+                    this.messageSendFail[msgid] = msgid;
+
+                    this.model.messages.create({
+                        fullname: this.model.get('nick'),
+                        sender: converse.sky_myname,
+                        time: timesend,
+                        message: text,
+                        to: this.model.get('jid'),
+                        timesend: timesend,
+                        msg_state: converse.STATEMESSAGE.NOTSENT,
+                        sendtype: 'presskey',
+                        msgid: msgid,
+                        id: msgid
+                    });
+
                     var msg = $msg({
                         to: this.model.get('jid'),
                         from: converse.connection.jid,
                         type: 'groupchat',
                         id: msgid
-                    }).c("body").t(text).up()
-                    .c("x", {xmlns: "jabber:x:event"}).c("composing");
+                    }).c("body").t(text);
+                    // var msg = $msg({
+                    //     to: this.model.get('jid'),
+                    //     from: converse.connection.jid,
+                    //     type: 'groupchat',
+                    //     id: msgid
+                    // }).c("body").t(text).up()
+                    // .c("x", {xmlns: "jabber:x:event"}).c("composing");
 
                     // this.model.messages.create({
                     //     fullname: this.model.get('nick'),
@@ -448,17 +505,7 @@
                     //     message: text,
                     //     msgid: msgid
                     // });
-                    var timesend = Number(Date.now());
-                    this.model.messages.create({
-                        fullname: this.model.get('nick'),
-                        sender: converse.sky_myname,
-                        time: timesend,
-                        message: text,
-                        to: this.model.get('jid'),
-                        timesend: timesend,
-                        sendtype: 'presskey',
-                        msgid: msgid
-                    });
+
                     converse.connection.send(msg);
                 },
 
@@ -634,10 +681,107 @@
                     converse.log("Kien tra message do co phai offline khong neu phai khong xu ly  "+ stanza);
                     if (stanza.nodeName === "message") {
                         var $message = $(stanza),
-                            $delay = $message.find('delay');
+                            $delay = $message.find('delay'),
+                            type = $message.attr('type'),
+                            $forwarded = $message.find('forwarded');
                         if ($delay.length) {
+                            if($message.find('body').length > 0){
+                                if (!$forwarded.length) {
+                                    converse.connection.send(
+                                        $msg({to:stanza.getAttribute('from'), type:type, id: Math.random().toString(36).substr(2, 10)})
+                                            .c("x", {
+                                                xmlns: "jabber:x:event"
+                                            })
+                                            .c("delivered").up()
+                                            .c("msgid").t($message.attr('id'))
+                                    );
+                                }
+
+                            }else{
+                                converse.connection.send(
+                                    $msg({to: stanza.getAttribute('from'), type: type, id: Math.random().toString(36).substr(2, 10)})
+                                        .c("x", {
+                                            xmlns: "jabber:x:event"
+                                        })
+                                        .c("deleted").up()
+                                        .c("msgid").t($message.attr('id'))
+                                );
+                            }
+
                             return true;
+                        }else{
+                            if(type == 'groupchat'){
+                                var fromContact = stanza.getAttribute('from');
+                                var hasRoster = converse.rostermessenger.get(fromContact);
+                                if(hasRoster){
+
+                                }else{
+                                    converse.log("Create new roster");
+                                    var defaultRoom  = 'defaultroom'+converse.sky_room;
+                                    var jid = fromContact;
+                                    if(fromContact != defaultRoom){
+                                        converse.rostermessenger.addNewContact(Strophe.getNodeFromJid(jid), "false");
+                                        var chatroom = converse.chatboxviewsmessenger.showChatCreate({
+                                            'id': jid,
+                                            'jid': jid,
+                                            'name': Strophe.unescapeNode(Strophe.getNodeFromJid(jid)),
+                                            'nick': 'PHòng chat',
+                                            'is_pick': 'false',
+                                            'is_create':'create',
+                                            'type': 'chatroom',
+                                            'box_id': b64_sha1(jid)
+                                        },'create');
+                                    }
+                                }
+                            }
+                            
                         }
+
+                        //xu li cac goi tin event x xmlns="jabber:x:event"
+                        var is_event_msg = $(stanza).find('[xmlns="jabber:x:event"]').length > 0;
+
+                        if(is_event_msg){
+                            var hasSent = $(stanza).find('sent').length > 0;
+                            var delivered = $(stanza).find('delivered').length > 0;
+                            var displayed = $(stanza).find('displayed').length > 0;
+                            if(hasSent){
+                                var msgIdSent = $message.children('x').children('msgid').text();
+                                converse.log("has Send " +msgIdSent);
+                                if(msgIdSent.length > 0){
+                                    var modelMsg = this.model.messages.get(msgIdSent);
+                                    if(modelMsg){
+                                        modelMsg.set("msg_state", converse.STATEMESSAGE.HASSENT);
+                                        this.$content.find('.chat-message[data-msgid="'+msgIdSent+'"]').children('.direct-chat-text').removeClass("msg-send-fail");
+                                        delete this.messageSendFail[msgIdSent];
+                                    }
+                                }
+                            }
+                            if(delivered){
+                                var msgIdSent = $message.children('x').children('msgid').text();
+                                converse.log("has delivered " +msgIdSent);
+                                converse.log("has delivered");
+                                if(msgIdSent.length > 0){
+                                    var modelMsg = this.model.messages.get(msgIdSent);
+                                    if(modelMsg){
+                                        modelMsg.set("msg_state", converse.STATEMESSAGE.HASRECEIVED);
+                                    }
+
+                                }
+                            }
+                            if(displayed){
+                                var msgIdSent = $message.children('x').children('msgid').text();
+                                converse.log("has displayed " +msgIdSent);
+                                converse.log("has displayed");
+                                var modelMsg = this.model.messages.get(msgIdSent);
+                                if(modelMsg){
+                                    modelMsg.set("msg_state", converse.STATEMESSAGE.HASREAD);
+                                }
+                            }
+
+                        } else{
+
+                        }
+
                     }
                     var xmlns, xquery, i;
                     var from = stanza.getAttribute('from');
@@ -800,9 +944,12 @@
                     return converse.connection.send(stanza);
                 },
                 registerHandleMessage: function (password, history_attrs, extended_presence) {
-                    if (!this.handler) {
-                        this.handler = converse.connection.addHandler(this.handleMUCStanza.bind(this));
+                    if (this.handler) {
+                        converse.connection.deleteHandler(this.handler);
                     }
+                    // if (!this.handler) {
+                    this.handler = converse.connection.addHandler(this.handleMUCStanza.bind(this));
+                    // }
                     this.model.set('connection_status', Strophe.Status.CONNECTING);
                 },
 

@@ -12,6 +12,8 @@
     "use strict";
     var $ = converse_api.env.jQuery,
         utils = converse_api.env.utils,
+        $iq = converse_api.env.$iq,
+        $build = converse_api.env.$build,
         Strophe = converse_api.env.Strophe,
         $msg = converse_api.env.$msg,
         _ = converse_api.env._,
@@ -73,7 +75,7 @@
                 },
 
                 initialize: function () {
-                    this.model.messages.on('add', this.onMessageAdded, this);
+                    // this.model.messages.on('add', this.onMessageAdded, this);
                     this.model.on('show', this.show, this);
                     this.model.on('destroy', this.hide, this);
                     // TODO check for changed fullname as well
@@ -608,11 +610,13 @@
                         extra_classes += ' mentioned';
                     }
                     converse.log("CHAT BOT" + username);
+                    var timeshow = Number(attrs.timesend)/1000;
+                    var timestamp = moment.unix(timeshow).format("DD-MM-YYYY HH:mm:ss");
                     return $(template(
                         _.extend(this.getExtraMessageTemplateAttributes(attrs), {
                             'msgid': attrs.msgid,
                             'sender': attrs.sender,
-                            'time': msg_time.format('hh:mm'),
+                            'time': timestamp,
                             'isodate': attrs.timesend,
                             'username': username,
                             'message': '',
@@ -663,12 +667,14 @@
                         // are mentioned.
                         extra_classes += ' mentioned';
                     }
+                    var timeshow = Number(attrs.timesend)/1000;
+                    var timestamp = moment.unix(timeshow).format("DD-MM-YYYY HH:mm:ss");
                     converse.log("CHAT BOT" + username);
                     return $(template(
                         _.extend(this.getExtraMessageTemplateAttributes(attrs), {
                             'msgid': attrs.msgid,
                             'sender': attrs.sender,
-                            'time': msg_time.format('hh:mm'),
+                            'time': timestamp,
                             'isodate': attrs.timesend,
                             'username': username,
                             'message': '',
@@ -718,12 +724,15 @@
                         // are mentioned.
                         extra_classes += ' mentioned';
                     }
+                    var timeshow = Number(attrs.timesend)/1000;
+                    var timestamp = moment.unix(timeshow).format("DD-MM-YYYY HH:mm:ss");
+
                     converse.log("CHAT BOT" + username);
                     return $(template(
                         _.extend(this.getExtraMessageTemplateAttributes(attrs), {
                             'msgid': attrs.msgid,
                             'sender': attrs.sender,
-                            'time': msg_time.format('hh:mm'),
+                            'time': timestamp,
                             'isodate': attrs.timesend,
                             'username': username,
                             'message': '',
@@ -791,16 +800,18 @@
                         this.showMessageReceiveStore(_.clone(message.attributes));
                     }else{
                         this.showMessageReceive(_.clone(message.attributes));
+
+                        if (message.get('sender') !== converse.sky_myname) {
+                            this.updateNewMessageIndicators(message);
+                        } else {
+                            // We remove the "scrolled" flag so that the chat area
+                            // gets scrolled down. We always want to scroll down
+                            // when the user writes a message as opposed to when a
+                            // message is received.
+                            this.model.set('scrolled', false);
+                        }
                     }
-                    if (message.get('sender') !== converse.sky_myname) {
-                        this.updateNewMessageIndicators(message);
-                    } else {
-                        // We remove the "scrolled" flag so that the chat area
-                        // gets scrolled down. We always want to scroll down
-                        // when the user writes a message as opposed to when a
-                        // message is received.
-                        this.model.set('scrolled', false);
-                    }
+
                     // if (this.shouldShowOnTextMessage()) {
                     //     if(converse.chatboxviewsmessenger.$el.length > 0){
                     //
@@ -856,6 +867,15 @@
                     } else {
                         this.handleTextMessage(message);
                     }
+                },
+
+                onMessageChangeState: function (message) {
+                    /* Handler that gets called when a new message object is created.
+                     *
+                     * Parameters:
+                     *    (Object) message - The message Backbone object that was added.
+                     */
+                    converse.log("Change state " + message);
                 },
 
                 createMessageStanza: function (message) {
@@ -1099,7 +1119,10 @@
                     converse.emit('chatBoxClosed', this);
                     return this;
                 },
+                appendDisconnected: function (ev) {
 
+                    return this;
+                },
                 renderToolbar: function (options) {
                     if (!converse.show_toolbar) {
                         return;
@@ -1152,6 +1175,11 @@
                 },
 
                 hide: function () {
+                    var defaultRoom  = 'defaultroom'+converse.sky_room;
+                    if(this.model.get('id') == defaultRoom){
+                        this.$el.hide();
+                        return this;
+                    }
                     if (this.model.get('is_opened')) {
                         return this;
                     }
@@ -1258,6 +1286,128 @@
                         }
                     }
                     xhr.send(infoUser);
+                }
+            });
+
+            converse.ReconnectView = Backbone.View.extend({
+                length: 200,
+                tagName: 'div',
+                className: 'callout callout-danger chatbox-check-connection',
+
+                events: {
+                    'click .click-reconnected': 'reconnect',
+                },
+
+                initialize: function () {
+
+                },
+
+                render: function () {
+                    $('.chat-textarea').hide();
+                    return this.$el.html(converse.templates.chatbox_reconnect({
+                        "content":"Mất kết nối tới máy chủ. Bấm vào đây để kết nối lại."
+                    }));
+                },
+                reconnect: function(){
+                    converse.log("RUN RECONNECCTED");
+                    this.$el.html(converse.templates.chatbox_reconnect({
+                        "content":"Đang kết nối vui lòng chờ...."
+                    }));
+
+                    // if(converse.sky_status_network){
+                    //     if(converse.connection.connected == true){
+                    //         $('.chat-textarea').show();
+                    //
+                    //     }else{
+                    //         converse.createAnonymous();
+                    //     }
+                    //     var that = this;
+                    //     setTimeout(function(){
+                    //         that.$el.remove();
+                    //     }, 3000);
+                    //
+                    // }else{
+                    //     var that = this;
+                    //     setTimeout(function(){
+                    //         that.$el.html(converse.templates.chatbox_reconnect({
+                    //             "content":"Vui lòng kiểm tra kết nối. Bấm vào đây để thử lại"
+                    //         }))
+                    //     }, 3000);
+                    // }
+                    var that = this;
+                    $.ajax({
+                        url: "https://www.mideasvn.com:3280/http-bind",
+                        context: document.body,
+                        error: function(jqXHR, exception) {
+                            setTimeout(function(){
+                                that.$el.html(converse.templates.chatbox_reconnect({
+                                    "content":"Vui lòng kiểm tra kết nối. Bấm vào đây để thử lại"
+                                }))
+                            }, 1000);
+                        },
+                        success: function() {
+                            converse.sky_status_network = true;
+                            if(converse.connection.connected == true){
+                                $('.chat-textarea').show();
+
+                            }else{
+                                converse.createAnonymous();
+                            }
+                            setTimeout(function(){
+                                that.$el.remove();
+                            }, 1000);
+                        }
+                    })
+                }
+
+            });
+
+            converse.ForwardChat = Backbone.View.extend({
+                tagName: 'div',
+                className: 'modal-body',
+
+                events: {
+                    'click .forward-action': 'forwardAction',
+                },
+
+                initialize: function () {
+                    this.listenTo(this.model, "change", this.render);
+                    this.listenTo(this.model, "add", this.render);
+                },
+
+                render: function () {
+                    var html = "<h1>lỗi xảy ra</h1>";
+                    jQuery('#modal_ajax').modal('hide');
+                    if(converse.modelForward.get('jid') != null){
+                        converse.log(JSON.stringify(converse.all_agent));
+                        html = this.$el.html(converse.templates.forward_chat(converse.modelForward.toJSON()));
+                        jQuery('#modal_ajax .modal-body-first').html(html);
+                        jQuery('#modal_ajax').modal('show');
+                    }
+                },
+                forwardActionSuccess: function(iq){
+                    converse.log("forward success");
+                    $('.forward-close').click();
+                    alert("Chuyển cuộc chat thành công");
+                    // this.$el.remove();
+                    // return this;
+                },
+                forwardActionFail: function(){
+                    converse.log("forward fail");
+                    $('.forward-close').click();
+                    alert("Chuyển cuộc chat thất bại");
+                    // this.$el.remove();
+                    // return this;
+                },
+                forwardAction: function(){
+                    var iq = $iq({to: converse.modelForward.get('jid'), type: "set", id: Math.random().toString(36).substr(2, 6)})
+                        .c("query", {xmlns: "inviteweb"})
+                    var itemmember = $build("member", {jid: $('#agentSelected').val(), role: "member"});
+                    iq = iq.cnode(itemmember.node).up();
+
+                    converse.log('[HUYNHDC create IQ room IIIIIIIIIIIIII2 ]  '+iq);
+                    converse.connection.sendIQ(iq, this.forwardActionSuccess.bind(this), this.forwardActionFail.bind(this));
+                    // return this;
                 }
             });
         }
