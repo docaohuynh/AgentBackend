@@ -87,7 +87,7 @@
                     converse.rostermessenger.on("remove", this.update, this);
 
                     var that = this;
-                    setInterval(function(){ that.customerStatus(); }, 5*1000);
+                    setInterval(function(){ that.customerStatus(); }, 10*1000);
                     // this.model.on("add", this.onGroupAdd, this);
                     // this.model.on("reset", this.reset, this);
                 },
@@ -108,16 +108,44 @@
                     return this;
                 },
                 customerStatus: function(){
-
+                    var contactString = "";
                     converse.rostermessenger.each(function (item, index, all) {
                         var idUser = item.get('user_id');
                         converse.log("INDEX " + idUser);
-                        var customer = idUser.substr(0, idUser.length - 14);
-                        converse.log("INDEX " + customer);
-                        // item.set("BookName", item.get("BookName") + "_updated");
-                        // item.save();
+                        contactString += '{"user":"'+idUser+'"},';
                     });
+                    contactString = "["+contactString.substr(0, contactString.length -1)+"]";
+                    // var infoUser = JSON.stringify(contactString);
+                    var xhr = new XMLHttpRequest();
+                    var url = converse.sky_apiserver+"webclient/customerstatus";
+                    xhr.open("POST", url, true);
+                    xhr.setRequestHeader('Content-type','application/json; charset=utf-8');
+                    var that = this;
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState == 4 && xhr.status == 200) {
+                            var json = JSON.parse(xhr.responseText);
+                            if(json.code == 200){
+                                var msgJson = json.users;
+                                if(msgJson.length == 0){
+                                    return this;
+                                }
+                                _.each(msgJson, function(msgJ){
+                                    converse.log(msgJ.user);
+                                    converse.log(msgJ.status);
+                                    that.updateStatusCustomer(msgJ.user, msgJ.status);
+                                });
+                            }else{
+                                return this;
+                            }
+                        }
+                    }
+                    xhr.send(contactString);
                     
+                },
+                updateStatusCustomer: function(user, status){
+                    user = user+converse.sky_room;
+                    var modelContact = converse.rostermessenger.get(user);
+                    modelContact.set("status",status);
                 },
                 contactViewChange: function(){
                     console.log("[HUYNHDC] contact change");
@@ -249,21 +277,34 @@
                 },
 
                 onContactChange: function (contact) {
-                    this.updateChatBox(contact).update();
-                    if (_.has(contact.changed, 'subscription')) {
-                        if (contact.changed.subscription === 'from') {
-                            this.addContactToGroup(contact, HEADER_PENDING_CONTACTS);
-                        } else if (_.contains(['both', 'to'], contact.get('subscription'))) {
-                            this.addExistingContact(contact);
-                        }
+                    if(contact.get('status') == 0){
+                        this.$el.find('.open-image[data-msgid="contact_'+contact.get('jid')+'"]').removeClass("text-muted").addClass("text-green");
+                    }else{
+                        this.$el.find('.open-image[data-msgid="contact_'+contact.get('jid')+'"]').removeClass("text-green").addClass("text-muted");
                     }
-                    if (_.has(contact.changed, 'ask') && contact.changed.ask === 'subscribe') {
-                        this.addContactToGroup(contact, HEADER_PENDING_CONTACTS);
+
+                    //have new unread message
+                    if(contact.get('num_unread') > 0){
+                        this.$el.find('.open-image[data-msgid="contact_'+contact.get('jid')+'"]').addClass("unread-contact");
+                    }else{
+                        this.$el.find('.open-image[data-msgid="contact_'+contact.get('jid')+'"]').removeClass("unread-contact");
                     }
-                    if (_.has(contact.changed, 'subscription') && contact.changed.requesting === 'true') {
-                        this.addContactToGroup(contact, HEADER_REQUESTING_CONTACTS);
-                    }
-                    this.updateFilter();
+                   
+                    // this.updateChatBox(contact).update();
+                    // if (_.has(contact.changed, 'subscription')) {
+                    //     if (contact.changed.subscription === 'from') {
+                    //         this.addContactToGroup(contact, HEADER_PENDING_CONTACTS);
+                    //     } else if (_.contains(['both', 'to'], contact.get('subscription'))) {
+                    //         this.addExistingContact(contact);
+                    //     }
+                    // }
+                    // if (_.has(contact.changed, 'ask') && contact.changed.ask === 'subscribe') {
+                    //     this.addContactToGroup(contact, HEADER_PENDING_CONTACTS);
+                    // }
+                    // if (_.has(contact.changed, 'subscription') && contact.changed.requesting === 'true') {
+                    //     this.addContactToGroup(contact, HEADER_REQUESTING_CONTACTS);
+                    // }
+                    // this.updateFilter();
                 },
 
                 updateChatBox: function (contact) {
@@ -384,7 +425,7 @@
                 },
 
                 initialize: function () {
-                    this.model.on("change", this.render, this);
+                    // this.model.on("change", this.render, this);
                     this.model.on("remove", this.remove, this);
                     this.model.on("destroy", this.remove, this);
                     this.model.on("open", this.openChat, this);
@@ -463,7 +504,7 @@
                     catch(err) {
                         converse.log(err);
                     }
-
+                    this.focusContactClick(item);
                     converse.chatboxviewsmessenger.closeAllChatBoxesHide();
                     return converse.chatboxviewsmessenger.showChat(item);
                 },
@@ -490,6 +531,18 @@
                 },
                 pickUpFail: function(iq){
 
+                },
+                focusContactClick: function(contact){
+                    var id = contact.name;
+                    converse.rostermessenger.each(function (item, index, all) {
+                        var roomName = item.get('id');
+                        if(roomName == id){  //focus this
+                            converse.rostermessenger.get(roomName).save('is_focus', true);
+                        }else{  //unfocus all
+                            converse.rostermessenger.get(roomName).save('is_focus', false);
+                        }
+                    });
+                    this.model.save('num_unread', 0 );
                 },
                 removeContact: function (ev) {
                     if (ev && ev.preventDefault) { ev.preventDefault(); }

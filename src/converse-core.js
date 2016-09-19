@@ -1546,6 +1546,7 @@
                 var xhr = new XMLHttpRequest();
                 var url = converse.sky_apiserver+"webclient/allroom";
                 xhr.open("POST", url, true);
+                xhr.setRequestHeader('Content-type','application/json; charset=utf-8');
                 xhr.onreadystatechange = function () {
                     if (xhr.readyState == 4 && xhr.status == 200) {
                         var json = JSON.parse(xhr.responseText);
@@ -1598,6 +1599,7 @@
                 _.each(allRoom, function(roomx){
                     var room = roomx.room;
                     var jid = room+converse.sky_room;
+                    var room_name = roomx.room_name;
                     //open first chat room
                     // if(firstRoom == 1){
                     //     converse.chatboxviewsmessenger.showChat({
@@ -1614,14 +1616,24 @@
 
                     if (that.isSelf(jid)) { return; }
                     var groups = [],
-                        contact = that.get(jid);
-                    var nameShow = jid.substr((jid.length -15), 6);
+                        contact = that.get(jid),
+                        nameShow;
+                    if(room_name == ""){
+                        nameShow = jid.substr((jid.length -15), 6);
+                    }else{
+                        nameShow = room_name;
+                    }
+
                     if (!contact) {
                         that.create({
                             nameShow: nameShow,
                             fullname: jid,
                             groups: groups,
                             jid: jid,
+                            id: jid,
+                            status: 0,
+                            num_unread: 0,
+                            is_focus: false,
                             is_pick: roomx.is_pick
                         }, {sort: false});
                     }
@@ -1634,12 +1646,12 @@
                     // that.updateContact(room);
                 });
                 //scroll contact
-                var conf = {
-                    cursorcolor: "#696c75",
-                    cursorwidth: "4px",
-                    cursorborder: "none"
-                };
-                $('.chat_list').niceScroll(conf);
+                // var conf = {
+                //     cursorcolor: "#696c75",
+                //     cursorwidth: "4px",
+                //     cursorborder: "none"
+                // };
+                // $('.chat_list').niceScroll(conf);
                 return this;
             },
             addNewContact: function (room, is_pick) {
@@ -1661,6 +1673,10 @@
                         groups: groups,
                         is_pick: is_pick,
                         jid: jid,
+                        id: jid,
+                        is_focus: false,
+                        num_unread: 0,
+                        status: 0,
                     }, {sort: false});
                 }
                 return this;
@@ -2020,6 +2036,7 @@
                     'sender': sender,
                     'jidsend': jidSend,
                     'timesend': timesendlocal,
+                    'timesendorg': timesend,
                     'sendtype': 'storemsg',
                     'time': time
                 };
@@ -2234,17 +2251,17 @@
                 /* Override method from backbone.js
                  * If the #conversejs element doesn't exist, create it.
                  */
-                if (!this.el) {
-                    var $el = $('#conversejs');
-                    if (!$el.length) {
-                        $el = $('<div id="conversejs" style="display: none">');
-                        $('body').append($el);
-                    }
-                    $el.html(converse.templates.chats_panel());
-                    this.setElement($el, false);
-                } else {
-                    this.setElement(_.result(this, 'el'), false);
-                }
+                // if (!this.el) {
+                //     var $el = $('#conversejs');
+                //     if (!$el.length) {
+                //         $el = $('<div id="conversejs" style="display: none">');
+                //         $('body').append($el);
+                //     }
+                //     $el.html(converse.templates.chats_panel());
+                //     this.setElement($el, false);
+                // } else {
+                //     this.setElement(_.result(this, 'el'), false);
+                // }
             },
 
             onChatBoxAdded: function (item) {
@@ -2636,6 +2653,9 @@
             var xhr = new XMLHttpRequest();
             var url = converse.sky_apiserver+"webclient/allAgent";
             xhr.open("POST", url, true);
+            // xhr.setRequestHeader("content-type", "application/json;charset=UTF-8");
+            // xhr.setRequestHeader('Content-Type','application/json; charset=utf-8');
+            xhr.setRequestHeader('Content-type','application/json; charset=utf-8');
             xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4 && xhr.status == 200) {
                     var json = JSON.parse(xhr.responseText);
@@ -2867,6 +2887,7 @@
             this.chatboxes = new this.ChatBoxes();
             this.chatboxviews = new this.ChatBoxViews({model: this.chatboxes});
             this.chatboxviewsmessenger = new this.ChatBoxViewsMessenger({model: this.chatboxes});
+
             var ModelForward =  Backbone.Model.extend({
             });
             this.modelForward  = new ModelForward({ members: converse.all_agent.users, jid:"null" });
@@ -2874,6 +2895,11 @@
                 model: this.modelForward
             });
 
+            this.modelBlockUser  = new ModelForward({ members: "null", jid:"null" });
+            this.blockSpamUser =  new converse.BlockSpamUser({
+                model: this.modelBlockUser
+            });
+            
             this.initSession();
             this.initConnection();
             this.setUpXMLLogging();

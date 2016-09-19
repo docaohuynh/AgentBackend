@@ -106,6 +106,7 @@
                         } else {
                             view = new converse.ControlBoxView({model: item});
                             return this.add(item.get('id'), view);
+                            return this._super.onChatBoxAdded.apply(this, arguments);
                         }
                     } else {
                         return this._super.onChatBoxAdded.apply(this, arguments);
@@ -195,13 +196,13 @@
                 },
 
                 initialize: function () {
-                    this.$el.insertAfter(converse.controlboxtoggle.$el);
+                    // this.$el.insertAfter(converse.controlboxtoggle.$el);
                     this.model.on('change:connected', this.onConnected, this);
                     this.model.on('destroy', this.hide, this);
                     this.model.on('hide', this.hide, this);
                     this.model.on('show', this.show, this);
                     this.model.on('change:closed', this.ensureClosedState, this);
-                    this.render();
+                    // this.render();
                     if (this.model.get('connected')) {
                         this.initRoster();
                     }
@@ -683,14 +684,14 @@
                 },
 
                 initialize: function () {
-                    this.render();
-                    this.updateOnlineCount();
-                    converse.on('initialized', function () {
-                        converse.roster.on("add", this.updateOnlineCount, this);
-                        converse.roster.on('change', this.updateOnlineCount, this);
-                        converse.roster.on("destroy", this.updateOnlineCount, this);
-                        converse.roster.on("remove", this.updateOnlineCount, this);
-                    }.bind(this));
+                    // this.render();
+                    // this.updateOnlineCount();
+                    // converse.on('initialized', function () {
+                    //     converse.roster.on("add", this.updateOnlineCount, this);
+                    //     converse.roster.on('change', this.updateOnlineCount, this);
+                    //     converse.roster.on("destroy", this.updateOnlineCount, this);
+                    //     converse.roster.on("remove", this.updateOnlineCount, this);
+                    // }.bind(this));
                 },
 
                 render: function () {

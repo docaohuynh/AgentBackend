@@ -177,10 +177,10 @@
              * otherwise chatboxes are not moved along when one is closed.
              */
             if ($.browser.webkit) {
-                var conversejs = document.getElementById('conversejs');
-                conversejs.style.display = 'none';
-                var tmp = conversejs.offsetHeight; // jshint ignore:line
-                conversejs.style.display = 'block';
+                // var conversejs = document.getElementById('conversejs');
+                // conversejs.style.display = 'none';
+                // var tmp = conversejs.offsetHeight; // jshint ignore:line
+                // conversejs.style.display = 'block';
             }
         },
 

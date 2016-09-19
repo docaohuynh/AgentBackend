@@ -174,7 +174,21 @@
                         datestring: day_date.format("dddd MMM Do YYYY")
                     }));
                 },
-
+                insertDayIndicatorStore: function (date, prepend) {
+                    /* Appends (or prepends if "prepend" is truthy) an indicator
+                     * into the chat area, showing the day as given by the
+                     * passed in date.
+                     *
+                     * Parameters:
+                     *  (String) date - An ISO8601 date string.
+                     */
+                    var day_date = moment(date).startOf('day');
+                    var insert = prepend ? this.$content.prepend: this.$content.append;
+                    insert.call(this.$content, converse.templates.new_day({
+                        isodate: date,
+                        datestring: day_date.format("dddd MMM Do YYYY")
+                    }));
+                },
                 insertMessage: function (attrs, prepend) {
                     /* Helper method which appends a message (or prepends if the
                      * 2nd parameter is set to true) to the end of the chat box's
@@ -242,6 +256,24 @@
                         this.scrollDownMessageHeight.bind(this),
                         function ($el) {
                             insert.call(this.$content, $el);
+                            return $el;
+                        }.bind(this)
+                    )(this.renderMessageReceiveStore(attrs));
+                },
+                insertMessageReceiveStoreAfterIndicator: function (attrs, prepend) {
+                    /* Helper method which appends a message (or prepends if the
+                     * 2nd parameter is set to true) to the end of the chat box's
+                     * content area.
+                     *
+                     * Parameters:
+                     *  (Object) attrs: An object containing the message attributes.
+                     */
+                    var insert = prepend ? this.$content.prepend : this.$content.append;
+                    _.compose(
+                        this.scrollDownMessageHeight.bind(this),
+                        function ($el) {
+                            $el.insertAfter(this.$content.find('time:first'));
+                            // insert.call(this.$content, $el);
                             return $el;
                         }.bind(this)
                     )(this.renderMessageReceiveStore(attrs));
@@ -372,7 +404,10 @@
                         timeMsg = attrs.timesend,
                         current_msg_date = timeMsg,             //current date
                         last_msg_date = this.$content.children('.chat-message:last').data('isodate');  //last message date
-
+                    if (moment(timeMsg).startOf('day').isAfter(moment(last_msg_date).startOf('day'), 'day')) {
+                        // Append a new day indicator
+                        this.insertDayIndicatorStore(timeMsg);
+                    }
                     this.insertMessageSend(attrs);
                 },
                 showMessageReceive: function (attrs) {
@@ -401,22 +436,23 @@
                         $first_msg = this.$content.children('.chat-message:first'),  //get first message
                         first_msg_date = $first_msg.data('isodate'),                 //first message date
                         timeMsg = Number(attrs.timesend),
-                    // current_msg_date = Date.now(),             //current date
+                        current_msg_date = Date.now(),             //current date
                         last_msg_date = this.$content.children('.chat-message:last').data('isodate');  //last message date
 
                     if (!first_msg_date) {            //if first message
                         // This is the first received message, so we insert a
                         // date indicator before it.
-                        // this.insertDayIndicator(current_msg_date);
+                        this.insertDayIndicator(attrs.timesend);
                         this.insertMessageReceive(attrs);
                         return;
                     }
                     if (timeMsg >= last_msg_date) {  //insert last message date
                         // The new message is after the last message
-                        // if (current_msg_date.isAfter(last_msg_date, 'day')) {
-                        //     // Append a new day indicator
-                        //     this.insertDayIndicator(current_msg_date);
-                        // }
+                        if (moment(timeMsg).startOf('day').isAfter(moment(last_msg_date).startOf('day'), 'day')) {
+                            // Append a new day indicator
+                            this.insertDayIndicator(timeMsg);
+                        }
+
                         this.insertMessageReceive(attrs);
                         return;
                     }
@@ -452,7 +488,8 @@
                         // This is the first received message, so we insert a
                         // date indicator before it.
                         // this.insertDayIndicator(current_msg_date);
-                        this.insertMessageReceiveStore(attrs);
+                        this.insertDayIndicatorStore(attrs.timesend);
+                        this.insertMessageReceiveStoreAfterIndicator(attrs, 'prepend');
                         return;
                     }
                     if (timeMsg >= last_msg_date) {  //insert last message date
@@ -461,11 +498,16 @@
                         //     // Append a new day indicator
                         //     this.insertDayIndicator(current_msg_date);
                         // }
-                        this.insertMessageReceiveStore(attrs);
+                        this.insertMessageReceiveStoreAfterIndicator(attrs);
                         return;
                     }
                     if (timeMsg <= first_msg_date) { //
-                        this.insertMessageReceiveStore(attrs, 'prepend');
+                        // The new message is after the last message .startOf('day')
+                        if (moment(timeMsg).startOf('day').isBefore(moment(first_msg_date).startOf('day'), 'day')) {
+                            // Append a new day indicator
+                            this.insertDayIndicatorStore(timeMsg, 'prepend');
+                        }
+                        this.insertMessageReceiveStoreAfterIndicator(attrs, 'prepend');
                         return;
                     }
                     // Find the correct place to position the message
@@ -618,6 +660,7 @@
                             'sender': attrs.sender,
                             'time': timestamp,
                             'isodate': attrs.timesend,
+                            'timesendorg': attrs.timesend,
                             'username': username,
                             'message': '',
                             'extra_classes': extra_classes
@@ -676,6 +719,7 @@
                             'sender': attrs.sender,
                             'time': timestamp,
                             'isodate': attrs.timesend,
+                            'timesendorg': attrs.timesend,
                             'username': username,
                             'message': '',
                             'extra_classes': extra_classes
@@ -734,6 +778,7 @@
                             'sender': attrs.sender,
                             'time': timestamp,
                             'isodate': attrs.timesend,
+                            'timesendorg': attrs.timesendorg,
                             'username': username,
                             'message': '',
                             'extra_classes': extra_classes
@@ -800,7 +845,7 @@
                         this.showMessageReceiveStore(_.clone(message.attributes));
                     }else{
                         this.showMessageReceive(_.clone(message.attributes));
-
+                        this.countMessageContactNotFocus(message);
                         if (message.get('sender') !== converse.sky_myname) {
                             this.updateNewMessageIndicators(message);
                         } else {
@@ -840,8 +885,14 @@
                         }
 
                     }
-                },
 
+                },
+                countMessageContactNotFocus: function(message){
+                    if(converse.rostermessenger.get(message.get('to')).get('is_focus') == false){ //not focus this contact
+                        var curUnread = converse.rostermessenger.get(message.get('to')).get('num_unread') + 1;
+                        converse.rostermessenger.get(message.get('to')).save('num_unread',curUnread);
+                    };
+                },
                 handleErrorMessage: function (message) {
                     var $message = $('[data-msgid='+message.get('msgid')+']');
                     if ($message.length) {
@@ -1279,6 +1330,7 @@
                     var xhr = new XMLHttpRequest();
                     var url = converse.sky_apiserver+"webclient/updatecontact";
                     xhr.open("POST", url, true);
+                    xhr.setRequestHeader('Content-type','application/json; charset=utf-8');
                     var that = this;
                     xhr.onreadystatechange = function () {
                         if (xhr.readyState == 4 && xhr.status == 200) {
@@ -1336,7 +1388,7 @@
                     // }
                     var that = this;
                     $.ajax({
-                        url: "https://www.mideasvn.com:3280/http-bind",
+                        url: converse.bosh_service_url,
                         context: document.body,
                         error: function(jqXHR, exception) {
                             setTimeout(function(){
@@ -1407,6 +1459,75 @@
 
                     converse.log('[HUYNHDC create IQ room IIIIIIIIIIIIII2 ]  '+iq);
                     converse.connection.sendIQ(iq, this.forwardActionSuccess.bind(this), this.forwardActionFail.bind(this));
+                    // return this;
+                }
+            });
+
+            converse.BlockSpamUser = Backbone.View.extend({
+                tagName: 'div',
+                className: 'modal-body',
+
+                events: {
+                    'click .block-action': 'blockAction',
+                },
+
+                initialize: function () {
+                    this.listenTo(this.model, "change", this.render);
+                    this.listenTo(this.model, "add", this.render);
+                },
+
+                render: function () {
+                    var html = "<h1>lỗi xảy ra</h1>";
+                    jQuery('#modal_ajax').modal('hide');
+                    if(converse.modelBlockUser.get('jid') != null){
+                        html = this.$el.html(converse.templates.block_user(converse.modelBlockUser.toJSON()));
+                        jQuery('#modal_ajax .modal-body-first').html(html);
+                        jQuery('#modal_ajax').modal('show');
+                    }
+                },
+                forwardActionSuccess: function(iq){
+                    converse.log("forward success");
+                    $('.forward-close').click();
+                    alert("Chuyển cuộc chat thành công");
+                    // this.$el.remove();
+                    // return this;
+                },
+                forwardActionFail: function(){
+                    converse.log("forward fail");
+                    $('.forward-close').click();
+                    alert("Chuyển cuộc chat thất bại");
+                    // this.$el.remove();
+                    // return this;
+                },
+                blockAction: function(){
+                    converse.connection.send(
+                        $msg({to: converse.modelBlockUser.get('jid'), type: "groupchat", id: Math.random().toString(36).substr(2, 10)})
+                            .c("x", {
+                                xmlns: "jabber:x:event"
+                            })
+                            .c("blocked").up()
+                            .c("msgid")
+                    );
+                    var infoUser = JSON.stringify({"user":Strophe.getNodeFromJid(converse.modelBlockUser.get('jid')),"time":$('#blockSelected').val()});
+                    //post data to
+                    var xhr = new XMLHttpRequest();
+                    var url = converse.sky_apiserver+"webclient/blockuser";
+                    xhr.open("POST", url, true);
+                    xhr.setRequestHeader('Content-type','application/json; charset=utf-8');
+                    var that = this;
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState == 4 && xhr.status == 200) {
+                            var json = JSON.parse(xhr.responseText);
+                            if(json.code == 200){
+                                $('.block-close').click();
+                                alert("Block user thành công");
+                            }else{
+                                $('.block-close').click();
+                                // alert("Chuyển cuộc chat thành công");
+                            }
+                        }
+                    }
+                    xhr.send(infoUser);
                     // return this;
                 }
             });

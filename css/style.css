@@ -289,3 +289,6 @@ body {
 .forcus-contact {
   background-color: gray;
 }
+.msg-send-fail {
+  color: red;
+}

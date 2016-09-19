@@ -34,9 +34,9 @@
 
             _initialize: function () {
                 this._super._initialize.apply(this, arguments);
-                converse.minimized_chats = new converse.MinimizedChats({
-                    model: converse.chatboxes
-                });
+                // converse.minimized_chats = new converse.MinimizedChats({
+                //     model: converse.chatboxes
+                // });
                 return this;
             },
 
@@ -380,11 +380,11 @@
                 },
 
                 initialize: function () {
-                    this.initToggle();
-                    this.model.on("add", this.onChanged, this);
-                    this.model.on("destroy", this.removeChat, this);
-                    this.model.on("change:minimized", this.onChanged, this);
-                    this.model.on('change:num_unread', this.updateUnreadMessagesCounter, this);
+                    // this.initToggle();
+                    // this.model.on("add", this.onChanged, this);
+                    // this.model.on("destroy", this.removeChat, this);
+                    // this.model.on("change:minimized", this.onChanged, this);
+                    // this.model.on('change:num_unread', this.updateUnreadMessagesCounter, this);
                 },
 
                 tearDown: function () {

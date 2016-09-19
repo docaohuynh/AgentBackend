@@ -1,3 +1,23 @@
 .forcus-contact {
     background-color: gray;
 }
+.unread-contact {
+    background-color: red;
+}
+.msg-send-fail {
+    color: red !important;
+}
+.day_divider {
+    clear: both;
+    color: #2c2d30;
+    cursor: default;
+    font-family: Slack-Lato,appleLogo,sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1rem;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    padding: 0;
+    position: relative;
+    text-align: center;
+}

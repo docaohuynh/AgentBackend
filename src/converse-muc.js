@@ -199,7 +199,8 @@
                     'click .new-msgs-indicator': 'viewUnreadMessages',
                     'keypress textarea.chat-textarea': 'keyPressed',
                     'click .send-raw': 'sendRawMsg',
-                    'click .forward-chat': 'forwardChat'
+                    'click .forward-chat': 'forwardChat',
+                    'click .block-user-spam': 'blockUserSpam'
                 },
 
                 initialize: function () {
@@ -257,6 +258,12 @@
                     // return this;
                 },
 
+                blockUserSpam: function(ev){
+                    ev.preventDefault();
+                    converse.modelBlockUser.set({jid:null, members:null});
+                    converse.modelBlockUser.set({jid:this.model.get('jid'), members:null});
+                },
+
                 insertIntoDOM: function () {
                     $('.chatbox-messenger-content').append(this.$el);
                     // var lol = {
@@ -309,6 +316,7 @@
                     var xhr = new XMLHttpRequest();
                     var url = converse.sky_apiserver+"storemessage";
                     xhr.open("POST", url, true);
+                    xhr.setRequestHeader('Content-type','application/json; charset=utf-8');
                     var that = this;
                     xhr.onreadystatechange = function () {
                         if (xhr.readyState == 4 && xhr.status == 200) {
@@ -334,7 +342,7 @@
                 },
                 render: function () {
                     var idshow = this.model.id;
-                    var nameshow = idshow.substr((idshow.length -15), 6);
+                    var nameshow = idshow.substr((idshow.length -15), XMLHttpRequest);
                     this.$el.html(converse.templates.chatbox_messenger(
                         _.extend(
                             this.model.toJSON(), {
@@ -370,7 +378,7 @@
                     var elem = $(e.currentTarget);
                     console.log(elem.scrollTop());
                     if(elem.scrollTop() == 0){
-                        var first = this.$content.children('.chat-message:first').data('isodate');
+                        var first = this.$content.children('.chat-message:first').data('timesend');
                         this.fetchMessagesOffline(Number(first)-5, 10);
                     }
                     if (elem[0].scrollHeight - elem.scrollTop() == elem.outerHeight())
@@ -744,6 +752,7 @@
                             var hasSent = $(stanza).find('sent').length > 0;
                             var delivered = $(stanza).find('delivered').length > 0;
                             var displayed = $(stanza).find('displayed').length > 0;
+                            
                             if(hasSent){
                                 var msgIdSent = $message.children('x').children('msgid').text();
                                 converse.log("has Send " +msgIdSent);
