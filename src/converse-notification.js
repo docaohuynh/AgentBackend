@@ -120,7 +120,8 @@
                 if (ignore_hidden) {
                     return enabled;
                 } else {
-                    return enabled && converse.windowState === 'hidden';
+                    // return enabled && converse.windowState === 'hidden';
+                    return enabled;
                 }
             };
 
@@ -203,6 +204,15 @@
                 setTimeout(n.close.bind(n), 5000);
             };
 
+            converse.showAiUnderstandNotification = function (data) {
+                var n = new Notification(__('Importance'), {
+                    body: "Có tin nhắn quan trọng",
+                    lang: converse.i18n.locale_data.converse[""].lang,
+                    icon: 'logo/conversejs.png'
+                });
+                setTimeout(n.close.bind(n), 10000);
+            };
+
             converse.handleChatStateNotification = function (evt, contact) {
                 /* Event handler for on('contactStatusChanged').
                  * Will show an HTML5 notification to indicate that the chat
@@ -218,12 +228,19 @@
                  * to play sounds and show HTML5 notifications.
                  */
                 var $message = $(message);
-                if (!converse.shouldNotifyOfMessage(message)) {
-                    return false;
-                }
-                converse.playSoundNotification($message);
+                // if (!converse.shouldNotifyOfMessage(message)) {
+                //     return false;
+                // }
+                // converse.playSoundNotification($message);
+                // if (converse.areDesktopNotificationsEnabled()) {
+                //     converse.showMessageNotification($message);
+                // }
+            };
+
+            converse.handleAiUnderstand = function (evt, message) {
+                // converse.log("AIIAIAIAIAI");
                 if (converse.areDesktopNotificationsEnabled()) {
-                    converse.showMessageNotification($message);
+                    converse.showAiUnderstandNotification(message);
                 }
             };
 
@@ -255,6 +272,7 @@
                 converse.on('contactStatusChanged',  converse.handleChatStateNotification);
                 converse.on('message',  converse.handleMessageNotification);
                 converse.on('feedback', converse.handleFeedback);
+                converse.on('aiDontUnderstand', converse.handleAiUnderstand);
                 converse.on('connected', converse.requestPermission);
             });
         }

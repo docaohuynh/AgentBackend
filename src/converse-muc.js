@@ -752,6 +752,7 @@
                             var hasSent = $(stanza).find('sent').length > 0;
                             var delivered = $(stanza).find('delivered').length > 0;
                             var displayed = $(stanza).find('displayed').length > 0;
+                            var aidontknow  = $(stanza).find('aidontknow').length > 0;
                             
                             if(hasSent){
                                 var msgIdSent = $message.children('x').children('msgid').text();
@@ -784,6 +785,15 @@
                                 var modelMsg = this.model.messages.get(msgIdSent);
                                 if(modelMsg){
                                     modelMsg.set("msg_state", converse.STATEMESSAGE.HASREAD);
+                                }
+                            }
+                            if(aidontknow){
+                                from = stanza.getAttribute('from');
+                                if(from == this.model.get('id')){
+                                    var $currentRoster = $('#chat_request').find('.open-image[data-msgid="contact_'+from+'"]').parent();
+                                    $currentRoster.removeClass('forcus-contact');
+                                    $currentRoster.addClass('important-contact');
+                                    converse.emit('aiDontUnderstand', stanza);
                                 }
                             }
 

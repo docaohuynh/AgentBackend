@@ -1246,6 +1246,7 @@
                         'is_opened': false
                     });
                     $('.contact-item-mideas').removeClass('forcus-contact');
+                    $('.contact-item-mideas').removeClass('important-contact');
                     this.$el.hide();
                     // utils.refreshWebkit();
                     return this;
